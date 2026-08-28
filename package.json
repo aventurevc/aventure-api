@@ -1,0 +1,23 @@
+{
+  "name": "@aventurevc/aventure-api",
+  "version": "0.7.256",
+  "description": "Public aVenture API monorepo: OpenAPI spec, Zod schemas, and TypeScript client.",
+  "license": "Apache-2.0",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aventurevc/aventure-api.git"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces",
+    "test": "npm run test --workspaces",
+    "typecheck": "npm run typecheck --workspaces",
+    "lint": "npm run lint --workspaces"
+  },
+  "engines": {
+    "node": ">=24.18.0 <25"
+  }
+}
