@@ -1,0 +1,35 @@
+// LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
+import { z } from "zod/v4";
+import { EntityFilterSchema } from "../entity/filter.js";
+import { SearchConfidenceSchema } from "./confidence.js";
+import { SearchModeExecutionSchema } from "./mode-execution.js";
+import { SortSpecEntityFilterSortableSchema } from "../sort/spec-entity-filter-sortable.js";
+const SearchInterpretationSchemaDefinition = z.object({
+    /** Planner confidence in the structured interpretation. */
+    confidence: SearchConfidenceSchema,
+    /** Requested and executed search strategy. */
+    execution: SearchModeExecutionSchema,
+    /** True when the semantic fallback replaced an untranslatable planner result with a semantic search over the original query. */
+    fallbackUsed: z.boolean(),
+    /** Canonical entity filter generated from the natural-language query. */
+    filter: EntityFilterSchema,
+    /** Human-readable summary of how the query was interpreted. */
+    interpretation: z.string(),
+    /** Sort generated from the natural-language query. */
+    sort: SortSpecEntityFilterSortableSchema,
+    /** Constraint the planner could not translate into the canonical EntityFilter contract; null when every material constraint was supported. */
+    unsupported: z.string().nullish(),
+});
+/**
+ * Structured interpretation of a natural-language entity search: canonical filter, sort, confidence, and any unsupported constraint the planner could not translate.
+ *
+ * @openapiSchema SearchInterpretation
+ * @endpoint POST /v1/entities/natural-search
+ * @endpoint POST /v1/search/all
+ * @usedBySchema NaturalSearchResultSchema
+ * @contractShape search.interpretation
+ * @contractRole canonical
+ * @ownerSourceFile src/main/kotlin/vc/aventure/domain/model/entity/SearchInterpretation.kt
+ */
+export const SearchInterpretationSchema = SearchInterpretationSchemaDefinition;
+//# sourceMappingURL=interpretation.js.map

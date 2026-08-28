@@ -1,0 +1,23 @@
+// LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
+import { z } from "zod/v4";
+/**
+ * Current slug owner
+ *
+ * @openapiSchema CurrentSlugOwner
+ * @standardProblemResponse
+ * @usedBySchema ProblemDetailSchema
+ * @contractShape redirect.current-slug-owner
+ * @contractRole canonical
+ * @ownerSourceFile src/main/kotlin/vc/aventure/domain/model/redirect/SlugAvailability.kt
+ */
+export const CurrentSlugOwnerSchema = z.object({
+    deletedAt: z.iso.datetime({ offset: true }).nullish(),
+    id: z.string(),
+    isHidden: z.boolean(),
+    nameBrand: z.string().nullish(),
+    /** Resource type whose slug is being changed */
+    resourceType: z.enum(["entity", "person", "news", "blog", "content"]),
+    showOnSitemap: z.boolean(),
+    slug: z.string(),
+});
+//# sourceMappingURL=current-slug-owner.js.map

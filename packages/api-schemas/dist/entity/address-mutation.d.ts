@@ -1,0 +1,32 @@
+import { z } from "zod/v4";
+/**
+ * Create or update entity addresses such as headquarters and offices. Structured fields are canonical; fullAddress is server-synthesized and cannot be written. City-level rows require researchExhausted=true after address research is exhausted. Placeholder values and URLs in address text are rejected. Text fields are normalized: surrounding whitespace and separators are trimmed and caseless values (all-lowercase or ALL-CAPS) are title-cased. Latitude and longitude are written as a pair: an explicit pair also updates coordinates on the resolved address row, while omitted coordinates derive from the resolved location and never carry over from a previously stored address.
+ *
+ * @openapiSchema EntityAddressMutation
+ * @endpoint POST /v1/entities/{entityId}/addresses
+ * @endpoint POST /v1/entities/detail/full
+ * @endpoint PATCH /v1/entities/{entityId}/addresses/{addressJoinId}
+ * @endpoint PUT /v1/entities/{entityId}/addresses/{addressJoinId}
+ * @usedBySchema EntityFullMutationSchema
+ * @contractShape entity.address-mutation
+ * @contractRole canonical
+ * @ownerSourceFile src/main/kotlin/vc/aventure/domain/model/address/AddressMutation.kt
+ */
+export declare const EntityAddressMutationSchema: z.ZodObject<{
+    addressLine1: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    addressLine2: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    cityName: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    countryCode: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    countryName: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    isCurrent: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
+    isHq: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
+    isPrimary: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
+    latitude: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
+    longitude: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
+    postalCode: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    researchExhausted: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
+    stateAbbrev: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    stateName: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+}, z.core.$strip>;
+export type EntityAddressMutation = z.infer<typeof EntityAddressMutationSchema>;
+//# sourceMappingURL=address-mutation.d.ts.map

@@ -1,0 +1,35 @@
+import { z } from "zod/v4";
+/**
+ * Canonical entity classification for the organization, product, and service records stored in the entity domain.
+ *
+ * @openapiSchema EntityType
+ * @standardProblemResponse
+ * @usedBySchema ClassificationAuditEntrySchema
+ * @usedBySchema ClassificationAuditFilterSchema
+ * @usedBySchema ContentEmbeddingBacklogTypeCountSchema
+ * @usedBySchema EntityDuplicateCriteriaSchema
+ * @usedBySchema EntityFilterSchema
+ * @usedBySchema EntityPersonAssociationSchema
+ * @usedBySchema EntitySchema
+ * @usedBySchema EntityTypeCountSchema
+ * @usedBySchema EntityTypeGroupMembershipSchema
+ * @usedBySchema NewsResolvedEntityLinkSchema
+ * @usedBySchema PersonListArrayFilterSchema
+ * @usedBySchema SearchDuplicateCandidateScoreSchema
+ * @contractShape entity.type
+ * @contractRole canonical
+ * @ownerSourceFile src/main/kotlin/vc/aventure/domain/model/identity/EntityType.kt
+ */
+export declare const EntityTypeSchema: z.ZodEnum<{
+    "Business Line": "Business Line";
+    Company: "Company";
+    Fund: "Fund";
+    Government: "Government";
+    "Investment Firm": "Investment Firm";
+    Nonprofit: "Nonprofit";
+    Organization: "Organization";
+    Product: "Product";
+    Service: "Service";
+}>;
+export type EntityType = z.infer<typeof EntityTypeSchema>;
+//# sourceMappingURL=type.d.ts.map
