@@ -3,6 +3,7 @@ import { z } from "zod/v4";
  * Canonical person criteria contract for GET/POST/batch endpoints
  *
  * @openapiSchema PersonFilter
+ * @endpoint GET /v1/search/link
  * @endpoint POST /v1/people
  * @endpoint POST /v1/people/batch
  * @endpoint POST /v1/people/natural-search

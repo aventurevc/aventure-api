@@ -11,6 +11,7 @@ type DecimalRangeDefinition = z.infer<typeof DecimalRangeSchemaDefinition>;
  * @endpoint GET /v1/entities
  * @endpoint GET /v1/entities/summary
  * @endpoint GET /v1/people
+ * @endpoint GET /v1/search/link
  * @endpoint POST /v1/entities
  * @endpoint POST /v1/entities/batch
  * @endpoint POST /v1/entities/filters/refine

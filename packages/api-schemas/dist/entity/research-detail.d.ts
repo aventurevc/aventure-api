@@ -45,6 +45,7 @@ type EntityResearchDetailDefinition = z.infer<typeof EntityResearchDetailSchemaD
  * @endpoint GET /v1/entities/detail
  * @endpoint GET /v1/entities/detail/investors
  * @endpoint GET /v1/entities/detail/similar
+ * @endpoint GET /v1/search/link
  * @endpoint GET /v1/entities/{entityId}/products/suggestions
  * @endpoint GET /v1/entities/{entityId}/relationships/suggestions
  * @endpoint GET /v1/entities/{entityId}/research

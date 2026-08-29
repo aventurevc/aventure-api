@@ -3,6 +3,7 @@ import { z } from "zod/v4";
  * Logo sort priority for entity search
  *
  * @openapiSchema EntityFilterLogoOption
+ * @endpoint GET /v1/search/link
  * @endpoint POST /v1/entities
  * @endpoint POST /v1/entities/batch
  * @endpoint POST /v1/entities/filters/refine

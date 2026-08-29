@@ -20,6 +20,7 @@ type SearchModeExecutionDefinition = z.infer<typeof SearchModeExecutionSchemaDef
  * Search strategy requested by the caller and executed by the canonical engine.
  *
  * @openapiSchema SearchModeExecution
+ * @endpoint GET /v1/search/link
  * @endpoint POST /v1/entities/natural-search
  * @endpoint POST /v1/people/natural-search
  * @endpoint POST /v1/search/all

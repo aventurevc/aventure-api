@@ -17,6 +17,7 @@ const PersonImageSchemaDefinition = z.object({
  * @endpoint GET /v1/people/detail
  * @endpoint GET /v1/people/detail/similar
  * @endpoint GET /v1/people/duplicate-check
+ * @endpoint GET /v1/search/link
  * @endpoint GET /v1/entities/{entityId}/people
  * @endpoint GET /v1/entities/{entityId}/people/{associationId}
  * @endpoint GET /v1/people/{personId}/entities

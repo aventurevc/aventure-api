@@ -1,5 +1,6 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
+import { AddressAssociationRoleSchema } from "../address/association-role.js";
 const PersonAddressMutationSchemaDefinition = z.object({
     /** Address line 1. */
     addressLine1: z.string().max(255).nullish(),
@@ -11,6 +12,10 @@ const PersonAddressMutationSchemaDefinition = z.object({
     countryCode: z.string().min(2).max(2).nullish(),
     /** Country name lookup. */
     countryName: z.string().nullish(),
+    /** Last known day this address association applied. */
+    endDate: z.iso.date().nullish(),
+    /** Whether this address association is currently relevant. */
+    isCurrent: z.boolean().nullish(),
     /** Latitude in decimal degrees */
     latitude: z.number().nullish(),
     /** Longitude in decimal degrees */
@@ -19,6 +24,10 @@ const PersonAddressMutationSchemaDefinition = z.object({
     postalCode: z.string().max(20).nullish(),
     /** Allow a city-level or coarser row only when source research proves no address-line, postal, or coordinate-specific address exists. */
     researchExhausted: z.boolean().nullish(),
+    /** Address association role. Domicile is a legal or registered seat, dominant is the predominant display location, origin is a founding or historical location; null means unclassified. */
+    role: AddressAssociationRoleSchema.nullish(),
+    /** First known day this address association applied. */
+    startDate: z.iso.date().nullish(),
     /** State or region abbreviation for countries that require one. */
     stateAbbrev: z.string().max(20).nullish(),
     /** State or region name, resolved within the selected country when that country requires one. */
@@ -29,6 +38,8 @@ const PersonAddressMutationSchemaDefinition = z.object({
  *
  * @openapiSchema PersonAddressMutation
  * @endpoint POST /v1/people/{personId}/addresses
+ * @endpoint PATCH /v1/people/{personId}/addresses/{addressJoinId}
+ * @endpoint PUT /v1/people/{personId}/addresses/{addressJoinId}
  * @contractShape person.address-mutation
  * @contractRole canonical
  * @ownerSourceFile src/main/kotlin/vc/aventure/domain/model/address/PersonAddressMutation.kt

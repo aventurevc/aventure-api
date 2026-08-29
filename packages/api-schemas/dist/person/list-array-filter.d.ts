@@ -3,6 +3,7 @@ import { z } from "zod/v4";
  * Array and range filters for person list endpoints
  *
  * @openapiSchema PersonListArrayFilter
+ * @endpoint GET /v1/search/link
  * @endpoint POST /v1/people
  * @endpoint POST /v1/people/batch
  * @endpoint POST /v1/people/natural-search

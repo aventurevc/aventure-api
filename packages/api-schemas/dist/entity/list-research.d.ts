@@ -128,6 +128,7 @@ type EntityListResearchDefinition = z.infer<typeof EntityListResearchSchemaDefin
  * @openapiSchema EntityListResearch
  * @endpoint GET /v1/entities
  * @endpoint GET /v1/entities/detail/similar
+ * @endpoint GET /v1/search/link
  * @endpoint GET /v1/entities/{entityId}/products/suggestions
  * @endpoint GET /v1/entities/{entityId}/relationships/suggestions
  * @endpoint POST /v1/entities

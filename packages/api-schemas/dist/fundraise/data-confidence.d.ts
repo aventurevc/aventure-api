@@ -10,6 +10,7 @@ import { z } from "zod/v4";
  * @endpoint GET /v1/entities/detail/investors
  * @endpoint GET /v1/entities/detail/similar
  * @endpoint GET /v1/entities/summary
+ * @endpoint GET /v1/search/link
  * @endpoint GET /v1/entities/{entityId}/acquisitions
  * @endpoint GET /v1/entities/{entityId}/acquisitions/{relationshipId}
  * @endpoint GET /v1/entities/{entityId}/products/suggestions

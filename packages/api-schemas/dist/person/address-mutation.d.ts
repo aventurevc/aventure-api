@@ -5,10 +5,18 @@ declare const PersonAddressMutationSchemaDefinition: z.ZodObject<{
     cityName: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     countryCode: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     countryName: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    endDate: z.ZodOptional<z.ZodNullable<z.ZodISODate>>;
+    isCurrent: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
     latitude: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
     longitude: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
     postalCode: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     researchExhausted: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
+    role: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
+        domicile: "domicile";
+        dominant: "dominant";
+        origin: "origin";
+    }>>>;
+    startDate: z.ZodOptional<z.ZodNullable<z.ZodISODate>>;
     stateAbbrev: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     stateName: z.ZodOptional<z.ZodNullable<z.ZodString>>;
 }, z.core.$strip>;
@@ -18,6 +26,8 @@ type PersonAddressMutationDefinition = z.infer<typeof PersonAddressMutationSchem
  *
  * @openapiSchema PersonAddressMutation
  * @endpoint POST /v1/people/{personId}/addresses
+ * @endpoint PATCH /v1/people/{personId}/addresses/{addressJoinId}
+ * @endpoint PUT /v1/people/{personId}/addresses/{addressJoinId}
  * @contractShape person.address-mutation
  * @contractRole canonical
  * @ownerSourceFile src/main/kotlin/vc/aventure/domain/model/address/PersonAddressMutation.kt

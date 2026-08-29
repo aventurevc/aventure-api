@@ -4,6 +4,7 @@ import { z } from "zod/v4";
  * Confidence that the natural-language query was fully translated.
  *
  * @openapiSchema SearchConfidence
+ * @endpoint GET /v1/search/link
  * @endpoint POST /v1/content/search
  * @endpoint POST /v1/entities/{entityId}/content/search
  * @endpoint POST /v1/entities/natural-search

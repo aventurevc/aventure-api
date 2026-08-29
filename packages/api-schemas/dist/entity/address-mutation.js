@@ -1,5 +1,6 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
+import { AddressAssociationRoleSchema } from "../address/association-role.js";
 /**
  * Create or update entity addresses such as headquarters and offices. Structured fields are canonical; fullAddress is server-synthesized and cannot be written. City-level rows require researchExhausted=true after address research is exhausted. Placeholder values and URLs in address text are rejected. Text fields are normalized: surrounding whitespace and separators are trimmed and caseless values (all-lowercase or ALL-CAPS) are title-cased. Latitude and longitude are written as a pair: an explicit pair also updates coordinates on the resolved address row, while omitted coordinates derive from the resolved location and never carry over from a previously stored address.
  *
@@ -24,6 +25,8 @@ export const EntityAddressMutationSchema = z.object({
     countryCode: z.string().min(2).max(2).nullish(),
     /** Country name lookup. */
     countryName: z.string().nullish(),
+    /** Last known day this address association applied. */
+    endDate: z.iso.date().nullish(),
     /** Deprecated legacy flag marking whether the address is currently in use. */
     isCurrent: z.boolean().nullish(),
     /** Deprecated compatibility flag for a legal or registered seat. */
@@ -38,6 +41,10 @@ export const EntityAddressMutationSchema = z.object({
     postalCode: z.string().max(20).nullish(),
     /** Allow a city-level or coarser row only when source research proves no address-line, postal, or coordinate-specific address exists. */
     researchExhausted: z.boolean().nullish(),
+    /** Address association role. Domicile is a legal or registered seat, dominant is the predominant display location, origin is a founding or historical location; null means unclassified. */
+    role: AddressAssociationRoleSchema.nullish(),
+    /** First known day this address association applied. */
+    startDate: z.iso.date().nullish(),
     /** State or region abbreviation for countries that require one. */
     stateAbbrev: z.string().max(20).nullish(),
     /** State or region name, resolved within the selected country when that country requires one. */

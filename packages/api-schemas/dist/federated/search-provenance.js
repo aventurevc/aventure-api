@@ -13,6 +13,7 @@ const FederatedSearchProvenanceSchemaDefinition = z.object({
  * Requested and executed search strategy for every federated scope.
  *
  * @openapiSchema FederatedSearchProvenance
+ * @endpoint GET /v1/search/link
  * @endpoint POST /v1/search/all
  * @usedBySchema FederatedSearchSchema
  * @contractShape federated.search-provenance

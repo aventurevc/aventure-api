@@ -10,6 +10,7 @@ const SourceDocumentListSchemaDefinition = z.object({
     id: z.uuid(),
     lastAccessedAt: z.iso.datetime({ offset: true }).nullish(),
     provider: z.string(),
+    providerRequestId: z.string().nullish(),
     rawByteCount: z.number().int().nullish(),
     rawCharset: z.string().nullish(),
     rawMediaType: z.string().nullish(),

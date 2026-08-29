@@ -3,6 +3,7 @@ import { z } from "zod/v4";
  * Entity list and search filters. GET flattens these fields as query parameters; POST accepts the same shape as JSON.
  *
  * @openapiSchema EntityFilter
+ * @endpoint GET /v1/search/link
  * @endpoint POST /v1/entities
  * @endpoint POST /v1/entities/batch
  * @endpoint POST /v1/entities/filters/refine

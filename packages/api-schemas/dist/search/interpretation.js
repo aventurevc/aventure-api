@@ -24,6 +24,7 @@ const SearchInterpretationSchemaDefinition = z.object({
  * Structured interpretation of a natural-language entity search: canonical filter, sort, confidence, and any unsupported constraint the planner could not translate.
  *
  * @openapiSchema SearchInterpretation
+ * @endpoint GET /v1/search/link
  * @endpoint POST /v1/entities/natural-search
  * @endpoint POST /v1/search/all
  * @usedBySchema NaturalSearchResultSchema

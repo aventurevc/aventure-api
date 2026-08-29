@@ -121,6 +121,7 @@ type PersonSearchInterpretationDefinition = z.infer<typeof PersonSearchInterpret
  * Structured interpretation of a natural-language people search: canonical filter, sort, confidence, and any unsupported constraint the planner could not translate exactly.
  *
  * @openapiSchema PersonSearchInterpretation
+ * @endpoint GET /v1/search/link
  * @endpoint POST /v1/people/natural-search
  * @endpoint POST /v1/search/all
  * @usedBySchema PersonNaturalSearchResultSchema

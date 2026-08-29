@@ -20,6 +20,7 @@ type SortOrderPersonSortFieldDefinition = z.infer<typeof SortOrderPersonSortFiel
  * Single sort term: which enumerated sort field to use and whether direction is descending.
  *
  * @openapiSchema SortOrderPersonSortField
+ * @endpoint GET /v1/search/link
  * @endpoint POST /v1/people/natural-search
  * @endpoint POST /v1/search/all
  * @usedBySchema SortSpecPersonSortFieldSchema

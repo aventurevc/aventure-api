@@ -15,6 +15,7 @@ export declare const EntityFullMutationSchema: z.ZodObject<{
         cityName: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         countryCode: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         countryName: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        endDate: z.ZodOptional<z.ZodNullable<z.ZodISODate>>;
         isCurrent: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
         isHq: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
         isPrimary: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
@@ -22,6 +23,12 @@ export declare const EntityFullMutationSchema: z.ZodObject<{
         longitude: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
         postalCode: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         researchExhausted: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
+        role: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
+            domicile: "domicile";
+            dominant: "dominant";
+            origin: "origin";
+        }>>>;
+        startDate: z.ZodOptional<z.ZodNullable<z.ZodISODate>>;
         stateAbbrev: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         stateName: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     }, z.core.$strip>>>>;

@@ -9,6 +9,7 @@ import { z } from "zod/v4";
  * @endpoint GET /v1/entities/summary
  * @endpoint GET /v1/people/duplicate-check
  * @endpoint GET /v1/people/duplicate-check/candidates
+ * @endpoint GET /v1/search/link
  * @endpoint POST /v1/entities
  * @endpoint POST /v1/entities/batch
  * @endpoint POST /v1/entities/duplicate-check

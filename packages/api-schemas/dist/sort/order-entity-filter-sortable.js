@@ -27,6 +27,7 @@ const SortOrderEntityFilterSortableSchemaDefinition = z.object({
  * Single sort term: which enumerated sort field to use and whether direction is descending.
  *
  * @openapiSchema SortOrderEntityFilterSortable
+ * @endpoint GET /v1/search/link
  * @endpoint POST /v1/entities/natural-search
  * @endpoint POST /v1/search/all
  * @usedBySchema SortSpecEntityFilterSortableSchema

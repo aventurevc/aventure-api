@@ -7,6 +7,7 @@ import { InvestorActivityFilterSchema } from "../investor/activity-filter.js";
  * Fundraise and investment filters for entity search
  *
  * @openapiSchema EntityFundraiseFilterCriteria
+ * @endpoint GET /v1/search/link
  * @endpoint POST /v1/entities
  * @endpoint POST /v1/entities/batch
  * @endpoint POST /v1/entities/filters/refine

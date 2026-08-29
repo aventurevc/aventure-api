@@ -12313,6 +12313,7 @@ declare const PageResultEntityListSchemaDefinition: z.ZodObject<{
 type PageResultEntityListDefinition = z.infer<typeof PageResultEntityListSchemaDefinition>;
 /**
  * @openapiSchema PageResultEntityList
+ * @endpoint GET /v1/search/link
  * @endpoint POST /v1/entities/natural-search
  * @endpoint POST /v1/search/all
  * @usedBySchema NaturalSearchResultSchema
@@ -12362,6 +12363,7 @@ declare const PageResultNewsSchemaDefinition: z.ZodObject<{
 type PageResultNewsDefinition = z.infer<typeof PageResultNewsSchemaDefinition>;
 /**
  * @openapiSchema PageResultNews
+ * @endpoint GET /v1/search/link
  * @endpoint POST /v1/search/all
  * @usedBySchema FederatedSearchSchema
  * @contractShape pagination.page-result-news
@@ -12478,6 +12480,7 @@ declare const PageResultPersonSchemaDefinition: z.ZodObject<{
 type PageResultPersonDefinition = z.infer<typeof PageResultPersonSchemaDefinition>;
 /**
  * @openapiSchema PageResultPerson
+ * @endpoint GET /v1/search/link
  * @endpoint POST /v1/people/natural-search
  * @endpoint POST /v1/search/all
  * @usedBySchema PersonNaturalSearchResultSchema

@@ -258,6 +258,7 @@ type PersonNaturalSearchResultDefinition = z.infer<typeof PersonNaturalSearchRes
  * Natural-language people search result: planner interpretation plus the canonical person page produced by the person list engine.
  *
  * @openapiSchema PersonNaturalSearchResult
+ * @endpoint GET /v1/search/link
  * @endpoint POST /v1/people/natural-search
  * @endpoint POST /v1/search/all
  * @usedBySchema FederatedSearchSchema

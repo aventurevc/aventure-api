@@ -12,6 +12,7 @@ const NaturalSearchResultSchemaDefinition = z.object({
  * Natural-language entity search result: planner interpretation plus the canonical entity list page produced by EntityListService.
  *
  * @openapiSchema NaturalSearchResult
+ * @endpoint GET /v1/search/link
  * @endpoint POST /v1/entities/natural-search
  * @endpoint POST /v1/search/all
  * @usedBySchema FederatedSearchSchema

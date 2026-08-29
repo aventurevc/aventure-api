@@ -36,6 +36,7 @@ type StandardizedClassificationDefinition = z.infer<typeof StandardizedClassific
  * @endpoint GET /v1/entities/detail
  * @endpoint GET /v1/entities/detail/investors
  * @endpoint GET /v1/entities/detail/similar
+ * @endpoint GET /v1/search/link
  * @endpoint GET /v1/entities/{entityId}/classifications
  * @endpoint GET /v1/entities/{entityId}/classifications/suggestions
  * @endpoint GET /v1/entities/{entityId}/products/suggestions

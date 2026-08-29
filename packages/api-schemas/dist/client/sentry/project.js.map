@@ -1,1 +1,0 @@
-{"version":3,"file":"project.js","sourceRoot":"","sources":["../../../client/sentry/project.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,CAAC,EAAE,MAAM,QAAQ,CAAC;AAE3B,MAAM,mBAAmB,GAAG;IAC1B,UAAU;IACV,WAAW;IACX,kBAAkB;IAClB,cAAc;CACN,CAAC;AAEX;;;;;;;;;;;;GAYG;AACH,MAAM,CAAC,MAAM,mBAAmB,GAAG,CAAC,CAAC,IAAI,CAAC,mBAAmB,CAAC,CAAC;AAI/D,MAAM,CAAC,MAAM,eAAe,GAAG,mBAAmB,CAAC"}

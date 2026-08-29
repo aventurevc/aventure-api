@@ -9,6 +9,7 @@ declare const WebSearchSchemaDefinition: z.ZodObject<{
         id: string;
         lastAccessedAt?: string | null | undefined;
         provider: string;
+        providerRequestId?: string | null | undefined;
         rawByteCount?: number | null | undefined;
         rawCharset?: string | null | undefined;
         rawMediaType?: string | null | undefined;
@@ -23,6 +24,7 @@ declare const WebSearchSchemaDefinition: z.ZodObject<{
         id: string;
         lastAccessedAt?: string | null | undefined;
         provider: string;
+        providerRequestId?: string | null | undefined;
         rawByteCount?: number | null | undefined;
         rawCharset?: string | null | undefined;
         rawMediaType?: string | null | undefined;

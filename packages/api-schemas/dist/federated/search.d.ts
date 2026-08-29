@@ -1520,7 +1520,9 @@ type FederatedSearchDefinition = z.infer<typeof FederatedSearchSchemaDefinition>
  * Federated entity, person, and news search result composed from each domain's canonical search result owner, with the strategy used for every scope.
  *
  * @openapiSchema FederatedSearch
+ * @endpoint GET /v1/search/link
  * @endpoint POST /v1/search/all
+ * @usedBySchema LinkSearchSchema
  * @contractShape federated.search
  * @contractRole canonical
  * @ownerSourceFile src/main/kotlin/vc/aventure/domain/model/search/FederatedSearch.kt

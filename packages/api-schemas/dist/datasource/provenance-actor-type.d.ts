@@ -66,6 +66,7 @@ import { z } from "zod/v4";
  * @endpoint PATCH /v1/entities/relationships/{relationshipId}
  * @endpoint PATCH /v1/news/{newsId}/slug
  * @endpoint PATCH /v1/news/detail
+ * @endpoint PATCH /v1/people/{personId}/addresses/{addressJoinId}
  * @endpoint PATCH /v1/people/{personId}/blog-posts/{blogPostId}
  * @endpoint PATCH /v1/people/{personId}/entities/{associationId}
  * @endpoint PATCH /v1/people/{personId}/slug
@@ -90,6 +91,7 @@ import { z } from "zod/v4";
  * @endpoint PUT /v1/entities/detail/fundraise-rounds/{transactionId}
  * @endpoint PUT /v1/entities/detail/news/{newsId}
  * @endpoint PUT /v1/news/detail
+ * @endpoint PUT /v1/people/{personId}/addresses/{addressJoinId}
  * @endpoint PUT /v1/people/{personId}/blog-posts/{blogPostId}
  * @endpoint PUT /v1/people/{personId}/entities/{associationId}
  * @endpoint PUT /v1/people/{personId}/texts/{textId}

@@ -30,6 +30,7 @@ type NewsDefinition = z.infer<typeof NewsSchemaDefinition>;
  * @endpoint GET /v1/news/recent
  * @endpoint GET /v1/news/similar
  * @endpoint GET /v1/people/detail/news
+ * @endpoint GET /v1/search/link
  * @endpoint GET /v1/people/{personId}/graph
  * @endpoint POST /v1/entities/batch
  * @endpoint POST /v1/entities/detail

@@ -8,6 +8,7 @@ declare const SourceDocumentListSchemaDefinition: z.ZodObject<{
     id: z.ZodUUID;
     lastAccessedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
     provider: z.ZodString;
+    providerRequestId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     rawByteCount: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
     rawCharset: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     rawMediaType: z.ZodOptional<z.ZodNullable<z.ZodString>>;

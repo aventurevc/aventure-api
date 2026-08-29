@@ -11,6 +11,7 @@ import { z } from "zod/v4";
  * @endpoint GET /v1/entities/detail/similar
  * @endpoint GET /v1/people/detail
  * @endpoint GET /v1/people/detail/similar
+ * @endpoint GET /v1/search/link
  * @endpoint GET /v1/entities/{entityId}/addresses
  * @endpoint GET /v1/entities/{entityId}/addresses/{addressJoinId}
  * @endpoint GET /v1/entities/{entityId}/people
@@ -41,11 +42,13 @@ import { z } from "zod/v4";
  * @endpoint PATCH /v1/entities/{entityId}/addresses/{addressJoinId}
  * @endpoint PATCH /v1/entities/{entityId}/people/{associationId}
  * @endpoint PATCH /v1/entities/detail
+ * @endpoint PATCH /v1/people/{personId}/addresses/{addressJoinId}
  * @endpoint PATCH /v1/people/{personId}/entities/{associationId}
  * @endpoint PATCH /v1/people/detail
  * @endpoint PUT /v1/entities/{entityId}/addresses/{addressJoinId}
  * @endpoint PUT /v1/entities/{entityId}/people/{associationId}
  * @endpoint PUT /v1/entities/detail
+ * @endpoint PUT /v1/people/{personId}/addresses/{addressJoinId}
  * @endpoint PUT /v1/people/{personId}/entities/{associationId}
  * @endpoint PUT /v1/people/detail
  * @endpoint DELETE /v1/entities/{entityId}/addresses/{addressJoinId}
@@ -55,6 +58,8 @@ import { z } from "zod/v4";
  * @endpoint DELETE /v1/people/{personId}/entities/{associationId}
  * @endpoint DELETE /v1/people/{personId}/entities/{associationId}/corporate-title
  * @usedBySchema AddressAssociationSchema
+ * @usedBySchema EntityAddressMutationSchema
+ * @usedBySchema PersonAddressMutationSchema
  * @contractShape address.association-role
  * @contractRole canonical
  * @ownerSourceFile src/main/kotlin/vc/aventure/domain/model/address/Address.kt

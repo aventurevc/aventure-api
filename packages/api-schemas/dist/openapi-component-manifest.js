@@ -105,27 +105,6 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         modulePath: "classification/reconcile-plan",
         schemaName: "ClassificationReconcilePlanSchema",
     },
-    CliAuthorization: { modulePath: "cli/authorization", schemaName: "CliAuthorizationSchema" },
-    CliAuthorizationDelivery: {
-        modulePath: "cli/authorization-delivery",
-        schemaName: "CliAuthorizationDeliverySchema",
-    },
-    CliAuthorizationMutation: {
-        modulePath: "cli/authorization-mutation",
-        schemaName: "CliAuthorizationMutationSchema",
-    },
-    CliAuthorizationPoll: {
-        modulePath: "cli/authorization-poll",
-        schemaName: "CliAuthorizationPollSchema",
-    },
-    CliAuthorizationStart: {
-        modulePath: "cli/authorization-start",
-        schemaName: "CliAuthorizationStartSchema",
-    },
-    CliAuthorizationTerminalReason: {
-        modulePath: "cli/authorization-terminal-reason",
-        schemaName: "CliAuthorizationTerminalReasonSchema",
-    },
     CompletionGateCoverage: {
         modulePath: "completion/gate-coverage",
         schemaName: "CompletionGateCoverageSchema",
@@ -137,10 +116,6 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
     CompletionGateType: {
         modulePath: "completion/gate-type",
         schemaName: "CompletionGateTypeSchema",
-    },
-    CompositeHealthDescriptor: {
-        modulePath: "system/composite-health-descriptor",
-        schemaName: "CompositeHealthDescriptorSchema",
     },
     Content: { modulePath: "content/content", schemaName: "ContentSchema" },
     ContentBatchReplaceEntry: {
@@ -634,18 +609,10 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         schemaName: "FundraiseTransactionStatusSchema",
     },
     GithubRepo: { modulePath: "github/repo", schemaName: "GithubRepoSchema" },
-    HealthDescriptor: {
-        modulePath: "system/health-descriptor",
-        schemaName: "HealthDescriptorSchema",
-    },
     HelpCitation: { modulePath: "help/citation", schemaName: "HelpCitationSchema" },
     HelpConfidence: { modulePath: "help/confidence", schemaName: "HelpConfidenceSchema" },
     HelpScope: { modulePath: "help/scope", schemaName: "HelpScopeSchema" },
     HelpSourceType: { modulePath: "help/source-type", schemaName: "HelpSourceTypeSchema" },
-    IndicatedHealthDescriptor: {
-        modulePath: "system/indicated-health-descriptor",
-        schemaName: "IndicatedHealthDescriptorSchema",
-    },
     IntRange: { modulePath: "int/range", schemaName: "IntRangeSchema" },
     InvestorActivityFilter: {
         modulePath: "investor/activity-filter",
@@ -655,6 +622,7 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
     JobEnqueue: { modulePath: "job/enqueue", schemaName: "JobEnqueueSchema" },
     JobState: { modulePath: "job/state", schemaName: "JobStateSchema" },
     JsonValue: { modulePath: "http/json-value", schemaName: "JsonValueSchema" },
+    LinkSearch: { modulePath: "link/search", schemaName: "LinkSearchSchema" },
     LogoAccuracy: { modulePath: "logo/accuracy", schemaName: "LogoAccuracySchema" },
     LogoAccuracyReference: {
         modulePath: "logo/accuracy-reference",
@@ -840,7 +808,6 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         modulePath: "person/address-mutation",
         schemaName: "PersonAddressMutationSchema",
     },
-    PersonalApiKey: { modulePath: "personal/api-key", schemaName: "PersonalApiKeySchema" },
     PersonAliasType: { modulePath: "person/alias-type", schemaName: "PersonAliasTypeSchema" },
     PersonCreate: { modulePath: "person/create", schemaName: "PersonCreateSchema" },
     PersonDetail: { modulePath: "person/detail", schemaName: "PersonDetailSchema" },
@@ -1038,15 +1005,6 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
     StrictUrlLookupConflict: {
         modulePath: "strict/url-lookup-conflict",
         schemaName: "StrictUrlLookupConflictSchema",
-    },
-    SystemBuild: { modulePath: "system/system-build", schemaName: "SystemBuildSchema" },
-    SystemBuildDetail: {
-        modulePath: "system/system-build-detail",
-        schemaName: "SystemBuildDetailSchema",
-    },
-    SystemHealthDescriptor: {
-        modulePath: "system/system-health-descriptor",
-        schemaName: "SystemHealthDescriptorSchema",
     },
     SystemStatus: { modulePath: "system/status", schemaName: "SystemStatusSchema" },
     TextTypeOption: { modulePath: "text/type-option", schemaName: "TextTypeOptionSchema" },

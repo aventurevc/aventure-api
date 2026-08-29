@@ -9,6 +9,7 @@ const SortSpecEntityFilterSortableSchemaDefinition = z.object({
  * Multi-term sort. First term has highest precedence. Used on entity list filters and saved-view payloads. An empty `order` array is valid JSON and means the client did not specify sort terms; the server applies resource-specific defaults.
  *
  * @openapiSchema SortSpecEntityFilterSortable
+ * @endpoint GET /v1/search/link
  * @endpoint POST /v1/entities/natural-search
  * @endpoint POST /v1/search/all
  * @usedBySchema SearchInterpretationSchema

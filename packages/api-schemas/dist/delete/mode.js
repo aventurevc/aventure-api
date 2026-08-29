@@ -14,6 +14,7 @@ import { z } from "zod/v4";
  * @endpoint DELETE /v1/entities/{entityId}/urls/{urlId}
  * @endpoint DELETE /v1/entities/detail
  * @endpoint DELETE /v1/media/delete
+ * @endpoint DELETE /v1/people/{personId}/addresses/{addressJoinId}
  * @endpoint DELETE /v1/people/{personId}/blog-posts/{blogPostId}
  * @endpoint DELETE /v1/people/{personId}/texts/{textId}
  * @endpoint DELETE /v1/people/{personId}/urls/{urlId}
