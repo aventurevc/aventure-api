@@ -19,8 +19,11 @@ type NewsDuplicateCheckDefinition = z.infer<typeof NewsDuplicateCheckSchemaDefin
  * Canonical news duplicate-check criteria
  *
  * @openapiSchema NewsDuplicateCheck
+ * @endpoint GET /v1/jobs/news/duplicate-check
+ * @endpoint GET /v1/jobs/news/duplicate-check/{jobId}
  * @endpoint POST /v1/news/duplicate-check
  * @endpoint POST /v1/news/duplicate-check/candidates
+ * @usedBySchema NewsDuplicateCheckJobSchema
  * @contractShape news.duplicate-check
  * @contractRole canonical
  * @ownerSourceFile src/main/kotlin/vc/aventure/domain/model/news/NewsDuplicateCheck.kt

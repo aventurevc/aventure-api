@@ -32,6 +32,21 @@ declare const EntitySuggestionSchemaDefinition: z.ZodObject<{
                 productServiceSlug: string[];
             } | null | undefined;
             slug: string;
+            source?: {
+                changedAt?: string | null | undefined;
+                dataSourceUpdatedAt?: string | null | undefined;
+                detail?: string | null | undefined;
+                kind?: string | null | undefined;
+                pendingApproval?: number | null | undefined;
+                sourceId?: string | null | undefined;
+                status?: string | null | undefined;
+            } | null | undefined;
+            status?: {
+                isFeatured: boolean;
+                isHidden: boolean;
+                isVerified: boolean;
+                showOnSitemap: boolean;
+            } | undefined;
             typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
             updatedAt?: string | null | undefined;
         };
@@ -305,6 +320,15 @@ declare const EntitySuggestionSchemaDefinition: z.ZodObject<{
                     entityId?: string | null | undefined;
                     personId?: string | null | undefined;
                 } | null | undefined;
+                source?: {
+                    changedAt?: string | null | undefined;
+                    dataSourceUpdatedAt?: string | null | undefined;
+                    detail?: string | null | undefined;
+                    kind?: string | null | undefined;
+                    pendingApproval?: number | null | undefined;
+                    sourceId?: string | null | undefined;
+                    status?: string | null | undefined;
+                } | null | undefined;
                 sourceId?: string | null | undefined;
                 status?: string | null | undefined;
                 statusChecked?: string | null | undefined;
@@ -352,6 +376,21 @@ declare const EntitySuggestionSchemaDefinition: z.ZodObject<{
                         productServiceSlug: string[];
                     } | null | undefined;
                     slug: string;
+                    source?: {
+                        changedAt?: string | null | undefined;
+                        dataSourceUpdatedAt?: string | null | undefined;
+                        detail?: string | null | undefined;
+                        kind?: string | null | undefined;
+                        pendingApproval?: number | null | undefined;
+                        sourceId?: string | null | undefined;
+                        status?: string | null | undefined;
+                    } | null | undefined;
+                    status?: {
+                        isFeatured: boolean;
+                        isHidden: boolean;
+                        isVerified: boolean;
+                        showOnSitemap: boolean;
+                    } | undefined;
                     typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
                     updatedAt?: string | null | undefined;
                 };
@@ -430,6 +469,21 @@ declare const EntitySuggestionSchemaDefinition: z.ZodObject<{
                         productServiceSlug: string[];
                     } | null | undefined;
                     slug: string;
+                    source?: {
+                        changedAt?: string | null | undefined;
+                        dataSourceUpdatedAt?: string | null | undefined;
+                        detail?: string | null | undefined;
+                        kind?: string | null | undefined;
+                        pendingApproval?: number | null | undefined;
+                        sourceId?: string | null | undefined;
+                        status?: string | null | undefined;
+                    } | null | undefined;
+                    status?: {
+                        isFeatured: boolean;
+                        isHidden: boolean;
+                        isVerified: boolean;
+                        showOnSitemap: boolean;
+                    } | undefined;
                     typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
                     updatedAt?: string | null | undefined;
                 };
@@ -454,6 +508,22 @@ declare const EntitySuggestionSchemaDefinition: z.ZodObject<{
                 discreteValue?: number | null | undefined;
                 entityId: string;
                 id: number;
+                source?: string | null | undefined;
+                sourceRecord?: {
+                    changedAt?: string | null | undefined;
+                    operation?: "CREATE" | "DELETE" | "UPDATE" | null | undefined;
+                    provenanceSource?: {
+                        actorType?: "agent" | "employee" | undefined;
+                        agentChassis?: string | null | undefined;
+                        agentModel?: string | null | undefined;
+                        sourceDetail: string;
+                        sourceProvider?: string | null | undefined;
+                        sourceProviderId?: string | null | undefined;
+                        sourceProviderSlug?: string | null | undefined;
+                        sourceType: "api" | "aventureStaff" | "blogArticle" | "firstPartyWebsite" | "import" | "llm" | "manual" | "newsArticle" | "relatedPartyWebsite" | "requestChangeForm" | "thirdPartyWebsite";
+                    } | null | undefined;
+                    source?: string | null | undefined;
+                } | null | undefined;
                 textValue?: string | null | undefined;
                 typeResearchDetail: string;
                 updatedAt?: string | null | undefined;
@@ -504,6 +574,21 @@ declare const EntitySuggestionSchemaDefinition: z.ZodObject<{
                 productServiceSlug: string[];
             } | null | undefined;
             slug: string;
+            source?: {
+                changedAt?: string | null | undefined;
+                dataSourceUpdatedAt?: string | null | undefined;
+                detail?: string | null | undefined;
+                kind?: string | null | undefined;
+                pendingApproval?: number | null | undefined;
+                sourceId?: string | null | undefined;
+                status?: string | null | undefined;
+            } | null | undefined;
+            status?: {
+                isFeatured: boolean;
+                isHidden: boolean;
+                isVerified: boolean;
+                showOnSitemap: boolean;
+            } | undefined;
             typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
             updatedAt?: string | null | undefined;
         };
@@ -777,6 +862,15 @@ declare const EntitySuggestionSchemaDefinition: z.ZodObject<{
                     entityId?: string | null | undefined;
                     personId?: string | null | undefined;
                 } | null | undefined;
+                source?: {
+                    changedAt?: string | null | undefined;
+                    dataSourceUpdatedAt?: string | null | undefined;
+                    detail?: string | null | undefined;
+                    kind?: string | null | undefined;
+                    pendingApproval?: number | null | undefined;
+                    sourceId?: string | null | undefined;
+                    status?: string | null | undefined;
+                } | null | undefined;
                 sourceId?: string | null | undefined;
                 status?: string | null | undefined;
                 statusChecked?: string | null | undefined;
@@ -824,6 +918,21 @@ declare const EntitySuggestionSchemaDefinition: z.ZodObject<{
                         productServiceSlug: string[];
                     } | null | undefined;
                     slug: string;
+                    source?: {
+                        changedAt?: string | null | undefined;
+                        dataSourceUpdatedAt?: string | null | undefined;
+                        detail?: string | null | undefined;
+                        kind?: string | null | undefined;
+                        pendingApproval?: number | null | undefined;
+                        sourceId?: string | null | undefined;
+                        status?: string | null | undefined;
+                    } | null | undefined;
+                    status?: {
+                        isFeatured: boolean;
+                        isHidden: boolean;
+                        isVerified: boolean;
+                        showOnSitemap: boolean;
+                    } | undefined;
                     typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
                     updatedAt?: string | null | undefined;
                 };
@@ -902,6 +1011,21 @@ declare const EntitySuggestionSchemaDefinition: z.ZodObject<{
                         productServiceSlug: string[];
                     } | null | undefined;
                     slug: string;
+                    source?: {
+                        changedAt?: string | null | undefined;
+                        dataSourceUpdatedAt?: string | null | undefined;
+                        detail?: string | null | undefined;
+                        kind?: string | null | undefined;
+                        pendingApproval?: number | null | undefined;
+                        sourceId?: string | null | undefined;
+                        status?: string | null | undefined;
+                    } | null | undefined;
+                    status?: {
+                        isFeatured: boolean;
+                        isHidden: boolean;
+                        isVerified: boolean;
+                        showOnSitemap: boolean;
+                    } | undefined;
                     typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
                     updatedAt?: string | null | undefined;
                 };
@@ -926,6 +1050,22 @@ declare const EntitySuggestionSchemaDefinition: z.ZodObject<{
                 discreteValue?: number | null | undefined;
                 entityId: string;
                 id: number;
+                source?: string | null | undefined;
+                sourceRecord?: {
+                    changedAt?: string | null | undefined;
+                    operation?: "CREATE" | "DELETE" | "UPDATE" | null | undefined;
+                    provenanceSource?: {
+                        actorType?: "agent" | "employee" | undefined;
+                        agentChassis?: string | null | undefined;
+                        agentModel?: string | null | undefined;
+                        sourceDetail: string;
+                        sourceProvider?: string | null | undefined;
+                        sourceProviderId?: string | null | undefined;
+                        sourceProviderSlug?: string | null | undefined;
+                        sourceType: "api" | "aventureStaff" | "blogArticle" | "firstPartyWebsite" | "import" | "llm" | "manual" | "newsArticle" | "relatedPartyWebsite" | "requestChangeForm" | "thirdPartyWebsite";
+                    } | null | undefined;
+                    source?: string | null | undefined;
+                } | null | undefined;
                 textValue?: string | null | undefined;
                 typeResearchDetail: string;
                 updatedAt?: string | null | undefined;

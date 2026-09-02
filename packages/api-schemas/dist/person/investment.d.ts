@@ -32,6 +32,21 @@ declare const PersonInvestmentSchemaDefinition: z.ZodObject<{
                 productServiceSlug: string[];
             } | null | undefined;
             slug: string;
+            source?: {
+                changedAt?: string | null | undefined;
+                dataSourceUpdatedAt?: string | null | undefined;
+                detail?: string | null | undefined;
+                kind?: string | null | undefined;
+                pendingApproval?: number | null | undefined;
+                sourceId?: string | null | undefined;
+                status?: string | null | undefined;
+            } | null | undefined;
+            status?: {
+                isFeatured: boolean;
+                isHidden: boolean;
+                isVerified: boolean;
+                showOnSitemap: boolean;
+            } | undefined;
             typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
             updatedAt?: string | null | undefined;
         };
@@ -66,6 +81,21 @@ declare const PersonInvestmentSchemaDefinition: z.ZodObject<{
                 productServiceSlug: string[];
             } | null | undefined;
             slug: string;
+            source?: {
+                changedAt?: string | null | undefined;
+                dataSourceUpdatedAt?: string | null | undefined;
+                detail?: string | null | undefined;
+                kind?: string | null | undefined;
+                pendingApproval?: number | null | undefined;
+                sourceId?: string | null | undefined;
+                status?: string | null | undefined;
+            } | null | undefined;
+            status?: {
+                isFeatured: boolean;
+                isHidden: boolean;
+                isVerified: boolean;
+                showOnSitemap: boolean;
+            } | undefined;
             typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
             updatedAt?: string | null | undefined;
         };

@@ -83,8 +83,12 @@ type PersonDuplicateCriteriaDefinition = z.infer<typeof PersonDuplicateCriteriaS
  * Canonical person duplicate-check criteria. URL matching stays strict when urlStrictness is omitted; clients can opt into broader matching with loose or any.
  *
  * @openapiSchema PersonDuplicateCriteria
+ * @endpoint GET /v1/jobs/people/duplicate-check
+ * @endpoint GET /v1/jobs/people/duplicate-check/{jobId}
+ * @endpoint POST /v1/jobs/people/duplicate-check
  * @endpoint POST /v1/people/duplicate-check
  * @endpoint POST /v1/people/duplicate-check/candidates
+ * @usedBySchema PersonDuplicateCheckJobSchema
  * @contractShape person.duplicate-criteria
  * @contractRole canonical
  * @ownerSourceFile src/main/kotlin/vc/aventure/domain/model/search/PersonDuplicateCriteria.kt

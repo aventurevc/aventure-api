@@ -113,11 +113,13 @@ declare const ProblemDetailSchemaDefinition: z.ZodObject<{
         candidate?: {
             externalId?: string | null | undefined;
             id: string;
+            isHidden?: boolean | null | undefined;
             name?: string | null | undefined;
             operatingStatus?: string | null | undefined;
             publicPath?: string | null | undefined;
             reason: string[];
             score: number;
+            showOnSitemap?: boolean | null | undefined;
             slug?: string | null | undefined;
             typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
         }[] | null | undefined;
@@ -134,11 +136,13 @@ declare const ProblemDetailSchemaDefinition: z.ZodObject<{
         candidate?: {
             externalId?: string | null | undefined;
             id: string;
+            isHidden?: boolean | null | undefined;
             name?: string | null | undefined;
             operatingStatus?: string | null | undefined;
             publicPath?: string | null | undefined;
             reason: string[];
             score: number;
+            showOnSitemap?: boolean | null | undefined;
             slug?: string | null | undefined;
             typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
         }[] | null | undefined;

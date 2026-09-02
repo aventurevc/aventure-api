@@ -14,6 +14,15 @@ declare const NewsDetailSchemaDefinition: z.ZodObject<{
         publication?: string | null | undefined;
         publishedAt?: string | null | undefined;
         slug?: string | null | undefined;
+        source?: {
+            changedAt?: string | null | undefined;
+            dataSourceUpdatedAt?: string | null | undefined;
+            detail?: string | null | undefined;
+            kind?: string | null | undefined;
+            pendingApproval?: number | null | undefined;
+            sourceId?: string | null | undefined;
+            status?: string | null | undefined;
+        } | undefined;
         title: string;
         updatedAt?: string | null | undefined;
     }, unknown, z.core.$ZodTypeInternals<{
@@ -29,6 +38,15 @@ declare const NewsDetailSchemaDefinition: z.ZodObject<{
         publication?: string | null | undefined;
         publishedAt?: string | null | undefined;
         slug?: string | null | undefined;
+        source?: {
+            changedAt?: string | null | undefined;
+            dataSourceUpdatedAt?: string | null | undefined;
+            detail?: string | null | undefined;
+            kind?: string | null | undefined;
+            pendingApproval?: number | null | undefined;
+            sourceId?: string | null | undefined;
+            status?: string | null | undefined;
+        } | undefined;
         title: string;
         updatedAt?: string | null | undefined;
     }, unknown>>;
@@ -76,6 +94,15 @@ declare const NewsDetailSchemaDefinition: z.ZodObject<{
         slug?: string | null | undefined;
         updatedAt: string;
     }, unknown>>>;
+    source: z.ZodOptional<z.ZodObject<{
+        changedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+        dataSourceUpdatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+        detail: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        kind: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        pendingApproval: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
+        sourceId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        status: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    }, z.core.$strip>>;
 }, z.core.$strip>;
 type NewsDetailDefinition = z.infer<typeof NewsDetailSchemaDefinition>;
 /**

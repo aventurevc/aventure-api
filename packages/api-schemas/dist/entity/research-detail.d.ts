@@ -24,6 +24,41 @@ declare const EntityResearchDetailSchemaDefinition: z.ZodObject<{
     discreteValue: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
     entityId: z.ZodUUID;
     id: z.ZodInt;
+    source: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    sourceRecord: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+        changedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+        operation: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
+            CREATE: "CREATE";
+            DELETE: "DELETE";
+            UPDATE: "UPDATE";
+        }>>>;
+        provenanceSource: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+            actorType: z.ZodOptional<z.ZodEnum<{
+                agent: "agent";
+                employee: "employee";
+            }>>;
+            agentChassis: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+            agentModel: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+            sourceDetail: z.ZodString;
+            sourceProvider: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+            sourceProviderId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+            sourceProviderSlug: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+            sourceType: z.ZodEnum<{
+                api: "api";
+                aventureStaff: "aventureStaff";
+                blogArticle: "blogArticle";
+                firstPartyWebsite: "firstPartyWebsite";
+                import: "import";
+                llm: "llm";
+                manual: "manual";
+                newsArticle: "newsArticle";
+                relatedPartyWebsite: "relatedPartyWebsite";
+                requestChangeForm: "requestChangeForm";
+                thirdPartyWebsite: "thirdPartyWebsite";
+            }>;
+        }, z.core.$strip>>>;
+        source: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    }, z.core.$strip>>>;
     textValue: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     typeResearchDetail: z.ZodString;
     updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;

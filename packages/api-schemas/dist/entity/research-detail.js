@@ -1,5 +1,6 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
+import { EntityResearchSourceSchema } from "./research-source.js";
 import { EntityResearchValueTypeSchema } from "./research-value-type.js";
 import { EntityValuationDataConfidenceSchema } from "./valuation-data-confidence.js";
 import { ResearchDerivedRangeSchema } from "../research/derived-range.js";
@@ -14,6 +15,8 @@ const EntityResearchDetailSchemaDefinition = z.object({
     /** Canonical entity UUID */
     entityId: z.uuid(),
     id: z.int(),
+    source: z.string().nullish(),
+    sourceRecord: EntityResearchSourceSchema.nullish(),
     textValue: z.string().nullish(),
     typeResearchDetail: z.string(),
     updatedAt: z.iso.datetime({ offset: true }).nullish(),

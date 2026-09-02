@@ -12,6 +12,7 @@ import { z } from "zod/v4";
  * @usedBySchema EntityFilterSchema
  * @usedBySchema EntityPersonAssociationSchema
  * @usedBySchema EntitySchema
+ * @usedBySchema EntitySitemapUrlSchema
  * @usedBySchema EntityTypeCountSchema
  * @usedBySchema EntityTypeGroupMembershipSchema
  * @usedBySchema NewsResolvedEntityLinkSchema

@@ -2,11 +2,13 @@ import { z } from "zod/v4";
 declare const SearchDuplicateCandidateScoreSchemaDefinition: z.ZodObject<{
     externalId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     id: z.ZodUUID;
+    isHidden: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
     name: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     operatingStatus: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     publicPath: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     reason: z.ZodArray<z.ZodString>;
     score: z.ZodInt;
+    showOnSitemap: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
     slug: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     typeRecord: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
         "Business Line": "Business Line";

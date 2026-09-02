@@ -3,7 +3,10 @@ import { z } from "zod/v4";
  * Aggregate investor activity filters from distinct fundraise deals and USD amounts.
  *
  * @openapiSchema InvestorActivityFilter
+ * @endpoint GET /v1/app/saved-views
  * @endpoint GET /v1/search/link
+ * @endpoint GET /v1/app/saved-views/{savedViewId}
+ * @endpoint POST /v1/app/saved-views
  * @endpoint POST /v1/entities
  * @endpoint POST /v1/entities/batch
  * @endpoint POST /v1/entities/filters/refine
@@ -13,6 +16,8 @@ import { z } from "zod/v4";
  * @endpoint POST /v1/people/batch
  * @endpoint POST /v1/people/natural-search
  * @endpoint POST /v1/search/all
+ * @endpoint PATCH /v1/app/saved-views/{savedViewId}
+ * @endpoint DELETE /v1/app/saved-views/{savedViewId}
  * @usedBySchema EntityFundraiseFilterCriteriaSchema
  * @usedBySchema PersonFilterSchema
  * @contractShape investor.activity-filter

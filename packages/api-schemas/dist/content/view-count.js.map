@@ -1,0 +1,1 @@
+{"version":3,"file":"view-count.js","sourceRoot":"","sources":["../../../api-schemas/content/view-count.ts"],"names":[],"mappings":"AAAA,8LAA8L;AAE9L,OAAO,EAAE,CAAC,EAAE,MAAM,QAAQ,CAAC;AAE3B,MAAM,gCAAgC,GAAG,CAAC,CAAC,MAAM,CAAC;IAChD,SAAS,EAAE,CAAC,CAAC,GAAG,EAAE;CACnB,CAAC,CAAC;AAIH;;;;;;;;;GASG;AACH,MAAM,CAAC,MAAM,sBAAsB,GACjC,gCAAgC,CAAC"}

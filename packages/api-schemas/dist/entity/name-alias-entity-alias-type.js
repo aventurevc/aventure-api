@@ -22,9 +22,12 @@ const EntityNameAliasEntityAliasTypeSchemaDefinition = z.object({
  * @endpoint GET /v1/entities/detail/person-investors
  * @endpoint GET /v1/entities/detail/similar
  * @endpoint GET /v1/entities/duplicate-check
+ * @endpoint GET /v1/entities/sitemap-routes
  * @endpoint GET /v1/entities/summary
+ * @endpoint GET /v1/harness/runs
  * @endpoint GET /v1/people/detail
  * @endpoint GET /v1/search/link
+ * @endpoint GET /v1/addresses/locations/{scope}/{slug}
  * @endpoint GET /v1/entities/{entityId}/acquisitions
  * @endpoint GET /v1/entities/{entityId}/acquisitions/{relationshipId}
  * @endpoint GET /v1/entities/{entityId}/operating-status
@@ -36,6 +39,7 @@ const EntityNameAliasEntityAliasTypeSchemaDefinition = z.object({
  * @endpoint GET /v1/entities/{entityId}/research
  * @endpoint GET /v1/entities/detail/fundraise-rounds/{transactionId}
  * @endpoint GET /v1/entities/relationships/{relationshipId}
+ * @endpoint GET /v1/harness/runs/{runId}
  * @endpoint GET /v1/news/{id}/related-companies
  * @endpoint GET /v1/people/{personId}/graph
  * @endpoint POST /v1/entities

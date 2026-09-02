@@ -12,6 +12,15 @@ declare const NewsSchemaDefinition: z.ZodObject<{
     publication: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     publishedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
     slug: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    source: z.ZodOptional<z.ZodObject<{
+        changedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+        dataSourceUpdatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+        detail: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        kind: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        pendingApproval: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
+        sourceId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        status: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    }, z.core.$strip>>;
     title: z.ZodString;
     updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
 }, z.core.$strip>;

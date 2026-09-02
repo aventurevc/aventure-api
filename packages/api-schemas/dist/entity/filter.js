@@ -1,5 +1,6 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
+import { DateRangeSchema } from "../date/range.js";
 import { EntityFilterLogoOptionSchema } from "./filter-logo-option.js";
 import { EntityFundraiseFilterCriteriaSchema } from "./fundraise-filter-criteria.js";
 import { EntityListQualityGateSchema } from "./list-quality-gate.js";
@@ -11,15 +12,21 @@ import { IntRangeSchema } from "../int/range.js";
  * Entity list and search filters. GET flattens these fields as query parameters; POST accepts the same shape as JSON.
  *
  * @openapiSchema EntityFilter
+ * @endpoint GET /v1/app/saved-views
  * @endpoint GET /v1/search/link
+ * @endpoint GET /v1/app/saved-views/{savedViewId}
+ * @endpoint POST /v1/app/saved-views
  * @endpoint POST /v1/entities
  * @endpoint POST /v1/entities/batch
  * @endpoint POST /v1/entities/filters/refine
  * @endpoint POST /v1/entities/filters/search
  * @endpoint POST /v1/entities/natural-search
  * @endpoint POST /v1/search/all
+ * @endpoint PATCH /v1/app/saved-views/{savedViewId}
+ * @endpoint DELETE /v1/app/saved-views/{savedViewId}
  * @usedBySchema EntityFilterSearchSchema
  * @usedBySchema EntityNaturalSearchSchema
+ * @usedBySchema SavedViewParamSchema
  * @usedBySchema SearchInterpretationSchema
  * @contractShape entity.filter
  * @contractRole canonical
@@ -36,6 +43,8 @@ export const EntityFilterSchema = z.strictObject({
     acceleratorStatus: z.array(z.string()).optional(),
     /** Affinity provider organization names accepted by the companies list filter. Affinity rows are member -> provider; use provider names here, not member names. */
     affinity: z.array(z.string()).optional(),
+    /** Privileged created timestamp range. */
+    createdAtRange: DateRangeSchema.nullish(),
     /** Inclusive reported employee-count ranges, in employees. */
     employeeCountRange: z.array(IntRangeSchema).optional(),
     /** Restrict results to specific entity IDs. */
@@ -48,6 +57,10 @@ export const EntityFilterSchema = z.strictObject({
     fundraiseActivity: EntityFundraiseFilterCriteriaSchema.optional(),
     /** Filter to entities with fundraise activity. */
     hasFundraising: z.boolean().nullish(),
+    /** Privileged filter to entities with any logo. */
+    hasLogo: z.boolean().nullish(),
+    /** Privileged filter to entities with a real uploaded logo. */
+    hasRealLogo: z.boolean().nullish(),
     /** Headquarters city values. */
     headquartersCity: z.array(z.string()).optional(),
     /** Headquarters country values. */
@@ -56,6 +69,8 @@ export const EntityFilterSchema = z.strictObject({
     headquartersState: z.array(z.string()).optional(),
     /** Industry classification values. */
     industry: z.array(z.string()).optional(),
+    /** Privileged filter by hidden status. */
+    isHidden: z.boolean().nullish(),
     /** First letter of the display name. */
     letter: z.string().nullish(),
     /** Geographic classification values. */
@@ -76,6 +91,8 @@ export const EntityFilterSchema = z.strictObject({
     qualityGate: EntityListQualityGateSchema.optional(),
     /** Semantic entity search phrase. */
     semanticQuery: z.string().nullish(),
+    /** Privileged filter by public sitemap inclusion. */
+    showOnSitemap: z.boolean().nullish(),
     /** Restrict results to entity slugs. */
     slug: z
         .array(z
@@ -105,6 +122,8 @@ export const EntityFilterSchema = z.strictObject({
     typeRevenue: z.array(z.string()).optional(),
     /** Technology-used classification values. */
     typeTechnologyUsed: z.array(z.string()).optional(),
+    /** Privileged updated timestamp range. */
+    updatedAtRange: DateRangeSchema.nullish(),
     /** Current URL to match by normalized host and path. */
     url: z.string().nullish(),
     /** Current root domain to match when urlMatchMode=domain. */

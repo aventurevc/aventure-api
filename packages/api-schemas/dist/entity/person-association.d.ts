@@ -96,6 +96,7 @@ export declare const EntityPersonAssociationSchema: z.ZodObject<{
         updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
     }, z.core.$strip>>;
     entityId: z.ZodUUID;
+    entityIsHidden: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
     entityLogo: z.ZodType<{
         isMonogram: boolean;
         logo?: string | null | undefined;
@@ -107,6 +108,7 @@ export declare const EntityPersonAssociationSchema: z.ZodObject<{
     }, unknown>>;
     entityName: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     entityOperatingStatus: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    entityShowOnSitemap: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
     entitySlug: z.ZodString;
     entityType: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
         "Business Line": "Business Line";
@@ -130,6 +132,15 @@ export declare const EntityPersonAssociationSchema: z.ZodObject<{
             entityId?: string | null | undefined;
             personId?: string | null | undefined;
         } | null | undefined;
+        source?: {
+            changedAt?: string | null | undefined;
+            dataSourceUpdatedAt?: string | null | undefined;
+            detail?: string | null | undefined;
+            kind?: string | null | undefined;
+            pendingApproval?: number | null | undefined;
+            sourceId?: string | null | undefined;
+            status?: string | null | undefined;
+        } | null | undefined;
         sourceId?: string | null | undefined;
         status?: string | null | undefined;
         statusChecked?: string | null | undefined;
@@ -146,6 +157,15 @@ export declare const EntityPersonAssociationSchema: z.ZodObject<{
         owner?: {
             entityId?: string | null | undefined;
             personId?: string | null | undefined;
+        } | null | undefined;
+        source?: {
+            changedAt?: string | null | undefined;
+            dataSourceUpdatedAt?: string | null | undefined;
+            detail?: string | null | undefined;
+            kind?: string | null | undefined;
+            pendingApproval?: number | null | undefined;
+            sourceId?: string | null | undefined;
+            status?: string | null | undefined;
         } | null | undefined;
         sourceId?: string | null | undefined;
         status?: string | null | undefined;
@@ -224,6 +244,15 @@ export declare const EntityPersonAssociationSchema: z.ZodObject<{
             entityId?: string | null | undefined;
             personId?: string | null | undefined;
         } | null | undefined;
+        source?: {
+            changedAt?: string | null | undefined;
+            dataSourceUpdatedAt?: string | null | undefined;
+            detail?: string | null | undefined;
+            kind?: string | null | undefined;
+            pendingApproval?: number | null | undefined;
+            sourceId?: string | null | undefined;
+            status?: string | null | undefined;
+        } | null | undefined;
         sourceId?: string | null | undefined;
         status?: string | null | undefined;
         statusChecked?: string | null | undefined;
@@ -240,6 +269,15 @@ export declare const EntityPersonAssociationSchema: z.ZodObject<{
         owner?: {
             entityId?: string | null | undefined;
             personId?: string | null | undefined;
+        } | null | undefined;
+        source?: {
+            changedAt?: string | null | undefined;
+            dataSourceUpdatedAt?: string | null | undefined;
+            detail?: string | null | undefined;
+            kind?: string | null | undefined;
+            pendingApproval?: number | null | undefined;
+            sourceId?: string | null | undefined;
+            status?: string | null | undefined;
         } | null | undefined;
         sourceId?: string | null | undefined;
         status?: string | null | undefined;

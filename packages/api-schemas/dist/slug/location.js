@@ -13,6 +13,8 @@ const SlugLocationSchemaDefinition = z.object({
  * Current slug location for a resource
  *
  * @openapiSchema SlugLocation
+ * @endpoint GET /v1/app/blog/articles/{id}/slug
+ * @endpoint GET /v1/app/pages/{id}/slug
  * @endpoint GET /v1/entities/{entityId}/slug
  * @endpoint GET /v1/news/{newsId}/slug
  * @endpoint GET /v1/people/{personId}/slug

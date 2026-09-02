@@ -59,6 +59,10 @@ declare const PersonSchemaDefinition: z.ZodObject<{
         sourceId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         status: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     }, z.core.$strip>;
+    status: z.ZodOptional<z.ZodObject<{
+        isHidden: z.ZodBoolean;
+        showOnSitemap: z.ZodBoolean;
+    }, z.core.$strip>>;
     suffix: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     text: z.ZodType<{
         expanded?: string | null | undefined;

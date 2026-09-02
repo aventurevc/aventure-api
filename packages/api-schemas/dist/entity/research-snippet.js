@@ -1,6 +1,7 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
 import { ContentComplianceSchema } from "../content/compliance.js";
+import { EntityResearchSourceSchema } from "./research-source.js";
 const EntityResearchSnippetSchemaDefinition = z.object({
     /** Derived character/word counts and governed-contract compliance for this snippet row; null when not evaluated. */
     compliance: ContentComplianceSchema.nullish(),
@@ -12,6 +13,8 @@ const EntityResearchSnippetSchemaDefinition = z.object({
     isCurrent: z.boolean(),
     /** Primary row among the current snippets of its type. */
     isPrimary: z.boolean(),
+    source: z.string().nullish(),
+    sourceRecord: EntityResearchSourceSchema.nullish(),
     text: z.string(),
     textType: z.string(),
     updatedAt: z.iso.datetime({ offset: true }).nullish(),

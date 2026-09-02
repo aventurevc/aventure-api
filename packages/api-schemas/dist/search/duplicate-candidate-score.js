@@ -6,6 +6,8 @@ const SearchDuplicateCandidateScoreSchemaDefinition = z.object({
     externalId: z.string().nullish(),
     /** Candidate id to read or update when this candidate is the requested record. */
     id: z.uuid(),
+    /** Whether the candidate is hidden from public pages. */
+    isHidden: z.boolean().nullish(),
     /** Candidate display name from the existing record. */
     name: z.string().nullish(),
     /** Current operating status for entity candidates. */
@@ -16,6 +18,8 @@ const SearchDuplicateCandidateScoreSchemaDefinition = z.object({
     reason: z.array(z.string()),
     /** Ranking score for duplicate review. It is not an absence proof; a low score can still be the intended record when reason/name/slug/typeRecord match. */
     score: z.int(),
+    /** Whether the candidate is eligible for sitemap/public listing. */
+    showOnSitemap: z.boolean().nullish(),
     /** Candidate slug from the existing record. */
     slug: z
         .string()

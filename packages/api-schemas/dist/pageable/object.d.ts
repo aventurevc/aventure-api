@@ -1,9 +1,20 @@
 import { z } from "zod/v4";
 /**
  * @openapiSchema PageableObject
+ * @endpoint GET /v1/app/blog/articles
+ * @endpoint GET /v1/app/blog/articles/featured
+ * @endpoint GET /v1/app/blog/categories
+ * @endpoint GET /v1/app/blog/tags
+ * @endpoint GET /v1/app/cli-authorizations
+ * @endpoint GET /v1/app/pages
+ * @endpoint GET /v1/app/pages/categories
+ * @endpoint GET /v1/app/pages/featured
+ * @endpoint GET /v1/app/pages/tags
+ * @endpoint GET /v1/app/saved-views
  * @endpoint GET /v1/classifications/search
  * @endpoint GET /v1/classifications/tags
  * @endpoint GET /v1/content
+ * @endpoint GET /v1/deploy/events
  * @endpoint GET /v1/entities
  * @endpoint GET /v1/entities/detail/financial/valuation
  * @endpoint GET /v1/entities/detail/fundraise-investor-joins
@@ -18,7 +29,11 @@ import { z } from "zod/v4";
  * @endpoint GET /v1/entities/detail/trending-news
  * @endpoint GET /v1/entities/duplicate-check
  * @endpoint GET /v1/entities/duplicate-check/candidates
+ * @endpoint GET /v1/entities/sitemap-routes
+ * @endpoint GET /v1/entities/sitemap-urls
  * @endpoint GET /v1/entities/summary
+ * @endpoint GET /v1/harness/control-plane/runs
+ * @endpoint GET /v1/jobs/runs
  * @endpoint GET /v1/media/logo-audit/jobs
  * @endpoint GET /v1/media/screenshots
  * @endpoint GET /v1/news
@@ -33,6 +48,15 @@ import { z } from "zod/v4";
  * @endpoint GET /v1/people/duplicate-check
  * @endpoint GET /v1/people/duplicate-check/candidates
  * @endpoint GET /v1/provenance/history
+ * @endpoint GET /v1/research/blog-posts
+ * @endpoint GET /v1/research/external-social-posts
+ * @endpoint GET /v1/research/source-documents
+ * @endpoint GET /v1/sitemap/url-slots
+ * @endpoint GET /v1/social/posts
+ * @endpoint GET /v1/addresses/locations/{scope}
+ * @endpoint GET /v1/addresses/locations/{scope}/{slug}
+ * @endpoint GET /v1/app/blog/articles/{id}/slug/redirects
+ * @endpoint GET /v1/app/pages/{id}/slug/redirects
  * @endpoint GET /v1/entities/{entityId}/acquisitions
  * @endpoint GET /v1/entities/{entityId}/blog-posts
  * @endpoint GET /v1/entities/{entityId}/content
@@ -41,6 +65,7 @@ import { z } from "zod/v4";
  * @endpoint GET /v1/entities/{entityId}/repositories
  * @endpoint GET /v1/entities/{entityId}/research/details
  * @endpoint GET /v1/entities/{entityId}/research/snippets
+ * @endpoint GET /v1/entities/{entityId}/sites
  * @endpoint GET /v1/entities/{entityId}/slug/redirects
  * @endpoint GET /v1/entities/{entityId}/texts
  * @endpoint GET /v1/entities/{entityId}/unique-ids
@@ -71,10 +96,15 @@ import { z } from "zod/v4";
  * @endpoint POST /v1/people/detail/batch
  * @endpoint POST /v1/people/duplicate-check
  * @endpoint POST /v1/people/duplicate-check/candidates
+ * @usedBySchema PageAventureBlogArticleListSchema
  * @usedBySchema PageBlogPostSchema
  * @usedBySchema PageClassificationSchema
+ * @usedBySchema PageCliAuthorizationSchema
+ * @usedBySchema PageContentPageListSchema
  * @usedBySchema PageContentSchema
+ * @usedBySchema PageContentTaxonomyCountSchema
  * @usedBySchema PageDatasourceFieldProvenanceSchema
+ * @usedBySchema PageDeployEventSchema
  * @usedBySchema PageEmployeeCountSchema
  * @usedBySchema PageEntityAcquisitionSchema
  * @usedBySchema PageEntityDetailSchema
@@ -90,11 +120,16 @@ import { z } from "zod/v4";
  * @usedBySchema PageEntityResearchSnippetSchema
  * @usedBySchema PageEntitySchema
  * @usedBySchema PageEntitySimilarityResultSchema
+ * @usedBySchema PageEntitySitemapUrlSchema
  * @usedBySchema PageEntityTagSchema
  * @usedBySchema PageEntityTextSchema
  * @usedBySchema PageEntityUrlLinkSchema
  * @usedBySchema PageEntityValuationTimeSeriesPointSchema
+ * @usedBySchema PageExternalSocialPostSchema
  * @usedBySchema PageGithubRepoSchema
+ * @usedBySchema PageHarnessRunSchema
+ * @usedBySchema PageJobSchema
+ * @usedBySchema PageLocationDirectoryEntrySchema
  * @usedBySchema PageMediaCrawlScreenshotSchema
  * @usedBySchema PageMediaLogoAuditJobSchema
  * @usedBySchema PageNewsCandidateScoreSchema
@@ -105,9 +140,14 @@ import { z } from "zod/v4";
  * @usedBySchema PagePersonInvestorParticipationSchema
  * @usedBySchema PagePersonSchema
  * @usedBySchema PagePersonSimilarityResultSchema
+ * @usedBySchema PageSavedViewSchema
  * @usedBySchema PageSearchDuplicateCandidateScoreSchema
+ * @usedBySchema PageSitemapUrlSlotSchema
+ * @usedBySchema PageSocialMediaPostSchema
+ * @usedBySchema PageSourceDocumentListSchema
  * @usedBySchema PageUniqueIdSchema
  * @usedBySchema PageUrlSlugRedirectSchema
+ * @usedBySchema PageWebSiteSchema
  * @contractShape pageable.object
  * @contractRole canonical
  * @ownerModule pageable/object.ts

@@ -3,13 +3,19 @@ import { z } from "zod/v4";
  * Canonical person criteria contract for GET/POST/batch endpoints
  *
  * @openapiSchema PersonFilter
+ * @endpoint GET /v1/app/saved-views
  * @endpoint GET /v1/search/link
+ * @endpoint GET /v1/app/saved-views/{savedViewId}
+ * @endpoint POST /v1/app/saved-views
  * @endpoint POST /v1/people
  * @endpoint POST /v1/people/batch
  * @endpoint POST /v1/people/natural-search
  * @endpoint POST /v1/search/all
+ * @endpoint PATCH /v1/app/saved-views/{savedViewId}
+ * @endpoint DELETE /v1/app/saved-views/{savedViewId}
  * @usedBySchema PersonNaturalSearchSchema
  * @usedBySchema PersonSearchInterpretationSchema
+ * @usedBySchema SavedViewParamSchema
  * @contractShape person.filter
  * @contractRole canonical
  * @ownerSourceFile src/main/kotlin/vc/aventure/domain/model/filter/person/PersonFilter.kt

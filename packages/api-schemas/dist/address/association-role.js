@@ -24,6 +24,7 @@ import { z } from "zod/v4";
  * @endpoint GET /v1/people/{personId}/entities
  * @endpoint GET /v1/people/{personId}/entities/{associationId}
  * @endpoint GET /v1/people/{personId}/graph
+ * @endpoint POST /v1/address/validation
  * @endpoint POST /v1/entities
  * @endpoint POST /v1/entities/{entityId}/addresses
  * @endpoint POST /v1/entities/{entityId}/people

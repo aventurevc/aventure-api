@@ -1,5 +1,6 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
+import { DatasourceSourceMetadataSchema } from "../datasource/source-metadata.js";
 import { EntityPersonOwnerSchema } from "./person-owner.js";
 import { EntityUrlCrawlCdnProviderSchema } from "./url-crawl-cdn-provider.js";
 import { EntityUrlCrawlRenderModeSchema } from "./url-crawl-render-mode.js";
@@ -15,6 +16,8 @@ const EntityUrlLinkSchemaDefinition = z.object({
     isPrimary: z.boolean().nullish(),
     /** Owning record, nested ids only: owner.entityId or owner.personId — exactly one is set, and no name fields. Writes are scoped by the owning entity/person route; owner is never a write field. */
     owner: EntityPersonOwnerSchema.nullish(),
+    /** Latest provenance row from res_provenance_event for this URL — the ProvenanceSource query params set by the caller on the most recent write. Private-API only. */
+    source: DatasourceSourceMetadataSchema.nullish(),
     sourceId: z.string().nullish(),
     status: z.string().nullish(),
     statusChecked: z.iso.datetime({ offset: true }).nullish(),

@@ -1,0 +1,1 @@
+{"version":3,"file":"tag.js","sourceRoot":"","sources":["../../../api-schemas/sentry/tag.ts"],"names":[],"mappings":"AAAA,8LAA8L;AAE9L,OAAO,EAAE,CAAC,EAAE,MAAM,QAAQ,CAAC;AAE3B,MAAM,yBAAyB,GAAG,CAAC,CAAC,MAAM,CAAC;IACzC,MAAM,EAAE,CAAC,CAAC,MAAM,EAAE;IAClB,QAAQ,EAAE,CAAC,CAAC,MAAM,EAAE;CACrB,CAAC,CAAC;AAIH;;;;;;;;;GASG;AACH,MAAM,CAAC,MAAM,eAAe,GAAmC,yBAAyB,CAAC"}

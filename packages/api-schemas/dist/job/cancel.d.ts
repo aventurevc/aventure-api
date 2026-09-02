@@ -8,6 +8,10 @@ type JobCancelDefinition = z.infer<typeof JobCancelSchemaDefinition>;
  * Job cancel
  *
  * @openapiSchema JobCancel
+ * @endpoint DELETE /v1/inference/jobs/{jobId}
+ * @endpoint DELETE /v1/jobs/entities/duplicate-check/{jobId}
+ * @endpoint DELETE /v1/jobs/news/duplicate-check/{jobId}
+ * @endpoint DELETE /v1/jobs/people/duplicate-check/{jobId}
  * @endpoint DELETE /v1/media/logo-audit/jobs/{jobId}
  * @endpoint DELETE /v1/media/retrofit/jobs/{jobId}
  * @contractShape job.cancel

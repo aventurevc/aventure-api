@@ -3,6 +3,7 @@ import { z } from "zod/v4";
  * External research-side blog-post source classification
  *
  * @openapiSchema BlogPostType
+ * @endpoint GET /v1/research/blog-posts
  * @endpoint GET /v1/entities/{entityId}/blog-posts
  * @endpoint GET /v1/entities/{entityId}/blog-posts/{blogPostId}
  * @endpoint GET /v1/people/{personId}/blog-posts

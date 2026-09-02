@@ -12,10 +12,16 @@ const DuplicateUrlCandidateSchemaDefinition = z.object({
  * @openapiSchema DuplicateUrlCandidate
  * @endpoint GET /v1/entities/duplicate-check
  * @endpoint GET /v1/entities/duplicate-check/candidates
+ * @endpoint GET /v1/jobs/entities/duplicate-check
+ * @endpoint GET /v1/jobs/people/duplicate-check
  * @endpoint GET /v1/people/duplicate-check
  * @endpoint GET /v1/people/duplicate-check/candidates
+ * @endpoint GET /v1/jobs/entities/duplicate-check/{jobId}
+ * @endpoint GET /v1/jobs/people/duplicate-check/{jobId}
  * @endpoint POST /v1/entities/duplicate-check
  * @endpoint POST /v1/entities/duplicate-check/candidates
+ * @endpoint POST /v1/jobs/entities/duplicate-check
+ * @endpoint POST /v1/jobs/people/duplicate-check
  * @endpoint POST /v1/people/duplicate-check
  * @endpoint POST /v1/people/duplicate-check/candidates
  * @usedBySchema EntityDuplicateCriteriaSchema

@@ -59,6 +59,15 @@ declare const PersonEnrichmentSchemaDefinition: z.ZodObject<{
             entityId?: string | null | undefined;
             personId?: string | null | undefined;
         } | null | undefined;
+        source?: {
+            changedAt?: string | null | undefined;
+            dataSourceUpdatedAt?: string | null | undefined;
+            detail?: string | null | undefined;
+            kind?: string | null | undefined;
+            pendingApproval?: number | null | undefined;
+            sourceId?: string | null | undefined;
+            status?: string | null | undefined;
+        } | null | undefined;
         sourceId?: string | null | undefined;
         status?: string | null | undefined;
         statusChecked?: string | null | undefined;
@@ -75,6 +84,15 @@ declare const PersonEnrichmentSchemaDefinition: z.ZodObject<{
         owner?: {
             entityId?: string | null | undefined;
             personId?: string | null | undefined;
+        } | null | undefined;
+        source?: {
+            changedAt?: string | null | undefined;
+            dataSourceUpdatedAt?: string | null | undefined;
+            detail?: string | null | undefined;
+            kind?: string | null | undefined;
+            pendingApproval?: number | null | undefined;
+            sourceId?: string | null | undefined;
+            status?: string | null | undefined;
         } | null | undefined;
         sourceId?: string | null | undefined;
         status?: string | null | undefined;

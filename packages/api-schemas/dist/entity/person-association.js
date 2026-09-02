@@ -60,10 +60,12 @@ export const EntityPersonAssociationSchema = z.object({
     entityAddress: z.array(AddressSchema),
     /** Associated entity id */
     entityId: z.uuid(),
+    entityIsHidden: z.boolean().nullish(),
     /** Entity logo image projection */
     entityLogo: EntityImageSchema,
     entityName: z.string().nullish(),
     entityOperatingStatus: z.string().nullish(),
+    entityShowOnSitemap: z.boolean().nullish(),
     /** Canonical lowercase URL slug for the resource */
     entitySlug: z
         .string()

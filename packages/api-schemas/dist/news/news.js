@@ -1,5 +1,6 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
+import { DatasourceSourceMetadataSchema } from "../datasource/source-metadata.js";
 const NewsSchemaDefinition = z.object({
     author: z.string().nullish(),
     category: z.string().nullish(),
@@ -20,6 +21,8 @@ const NewsSchemaDefinition = z.object({
         .regex(/^[a-z0-9_-]+$/)
         .max(255)
         .nullish(),
+    /** Grouped source/provenance state for privileged responses */
+    source: DatasourceSourceMetadataSchema.optional(),
     /** Article headline; the headline field is title */
     title: z.string(),
     updatedAt: z.iso.datetime({ offset: true }).nullish(),

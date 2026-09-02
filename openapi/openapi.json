@@ -7,7 +7,7 @@
     },
     "description": "Spring Boot 4.x w/ Java 25 & Postgres 17 (Supabase) back-end API",
     "title": "aVenture API",
-    "version": "0.7.257"
+    "version": "0.7.259"
   },
   "externalDocs": {
     "description": "Repository",
@@ -81655,8 +81655,8 @@
         "type": "apiKey"
       },
       "bearerAuth": {
-        "bearerFormat": "JWT",
-        "description": "JWT Bearer token issued by Clerk or Supabase",
+        "bearerFormat": "JWT or opaque OAuth access token",
+        "description": "User bearer token: Supabase or Clerk session JWT, Clerk OAuth access token, or Clerk personal API key",
         "scheme": "bearer",
         "type": "http"
       },
