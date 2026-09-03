@@ -40,6 +40,7 @@ declare const ProblemDetailSchemaDefinition: z.ZodObject<{
         sentry_api_error: "sentry_api_error";
         session_expired: "session_expired";
         source_document_body_unavailable: "source_document_body_unavailable";
+        source_document_capture_limit_exceeded: "source_document_capture_limit_exceeded";
         suspectedShellStrip: "suspectedShellStrip";
         swagger_headers_unconfigured: "swagger_headers_unconfigured";
         url_surface_misclassification: "url_surface_misclassification";

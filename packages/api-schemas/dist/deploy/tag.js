@@ -10,7 +10,7 @@ const DeployTagSchemaDefinition = z.object({
     lastDeployedAt: z.iso.datetime({ offset: true }).nullish(),
     /** Outcome of the most recent control-plane deploy of this image to this target; absent when the image was never deployed through the control plane. Submitted means the provider accepted the deploy without a waited terminal status. */
     lastDeployOutcome: DeployOutcomeSchema.nullish(),
-    /** Whether this immutable staging tag can be promoted to main-lane tags */
+    /** Whether this tag can be promoted on the target: an immutable staging source retags to main-lane tags, while the target's own currently active immutable tag redeploys as an environment-only refresh */
     promotionEligible: z.boolean(),
     /** When the image manifest was last pushed to the registry; absent when the registry reports no timestamp */
     pushedAt: z.iso.datetime({ offset: true }).nullish(),

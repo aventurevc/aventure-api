@@ -42,6 +42,7 @@ const ProblemDetailSchemaDefinition = z.object({
         "r2_delete_failed",
         "r2_upload_failed",
         "source_document_body_unavailable",
+        "source_document_capture_limit_exceeded",
         "news_similarity_embedding_unavailable",
         "search_provider_not_configured",
         "search_provider_error",
