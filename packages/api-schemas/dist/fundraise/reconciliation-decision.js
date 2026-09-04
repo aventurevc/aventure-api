@@ -1,9 +1,11 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
+import { FundraiseReconciliationDecisionTypeSchema } from "./reconciliation-decision-type.js";
+import { FundraiseReconciliationReasonSchema } from "./reconciliation-reason.js";
 const FundraiseReconciliationDecisionSchemaDefinition = z.object({
     /** Actionable classification copied from the immutable plan group. */
     classification: z.enum(["EXACT_AUTO_MERGE", "EVIDENCE_REQUIRED"]),
-    decision: z.enum(["MERGE", "KEEP_SEPARATE"]),
+    decision: FundraiseReconciliationDecisionTypeSchema,
     /** Canonical entity UUID */
     entityId: z.uuid(),
     /** SHA-256 digest of the immutable plan-group evidence snapshot. */
@@ -20,23 +22,8 @@ const FundraiseReconciliationDecisionSchemaDefinition = z.object({
         .regex(/.*\S.*/)
         .min(1)
         .max(64),
-    reason: z
-        .array(z.enum([
-        "EXACT_AMOUNT",
-        "EXACT_CURRENCY",
-        "RAW_ROUND_MATCH",
-        "CANONICAL_ROUND_MATCH",
-        "AMOUNT_MISSING_OR_ZERO",
-        "CURRENCY_MISSING",
-        "NEAR_AMOUNT",
-        "UNKNOWN_SEMANTIC_VARIANT",
-        "CONFLICTING_MERGE_FIELDS",
-        "ENTITY_TRANSACTION_LIMIT_REACHED",
-        "INVESTOR_JOIN_LIMIT_REACHED",
-    ]))
-        .min(1)
-        .max(2147483647),
-    supersededDecision: z.enum(["MERGE", "KEEP_SEPARATE"]).nullish(),
+    reason: z.array(FundraiseReconciliationReasonSchema).min(1).max(2147483647),
+    supersededDecision: FundraiseReconciliationDecisionTypeSchema.nullish(),
 });
 /**
  * Explicit action for one immutable plan group. Evidence references are required for keep-separate and for merges whose current plan classification requires evidence.

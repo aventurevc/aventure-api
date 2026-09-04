@@ -1,8 +1,9 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
+import { FundraiseReconciliationDecisionTypeSchema } from "./reconciliation-decision-type.js";
 const FundraiseReconciliationOutcomeSchemaDefinition = z.object({
     affectedRowCount: z.int(),
-    decision: z.enum(["MERGE", "KEEP_SEPARATE"]),
+    decision: FundraiseReconciliationDecisionTypeSchema,
     /** Canonical entity UUID */
     entityId: z.uuid(),
     evidenceDigest: z.string().regex(/^[0-9a-f]{64}$/),

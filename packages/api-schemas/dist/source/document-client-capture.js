@@ -3,8 +3,10 @@ import { z } from "zod/v4";
 import { SourceDocumentCaptureDispatchIntentSchema } from "./document-capture-dispatch-intent.js";
 import { SourceDocumentCaptureExtractionSchema } from "./document-capture-extraction.js";
 import { SourceDocumentCaptureImageReferenceSchema } from "./document-capture-image-reference.js";
+import { SourceDocumentCaptureMethodSchema } from "./document-capture-method.js";
 import { SourceDocumentCaptureOmissionSchema } from "./document-capture-omission.js";
 import { SourceDocumentCapturePartSchema } from "./document-capture-part.js";
+import { SourceDocumentCaptureScopeSchema } from "./document-capture-scope.js";
 import { SourceDocumentCaptureViewportSchema } from "./document-capture-viewport.js";
 /**
  * @openapiSchema SourceDocumentClientCapture
@@ -22,13 +24,8 @@ import { SourceDocumentCaptureViewportSchema } from "./document-capture-viewport
 export const SourceDocumentClientCaptureSchema = z.object({
     /** UTC timestamp when the client capture was created. */
     capturedAt: z.iso.datetime({ offset: true }),
-    captureMethod: z.enum([
-        "browserExtension",
-        "tabsCaptureVisibleTab",
-        "shareSheet",
-        "manualUpload",
-    ]),
-    captureScope: z.enum(["page", "selection", "viewport", "supplied"]),
+    captureMethod: SourceDocumentCaptureMethodSchema,
+    captureScope: SourceDocumentCaptureScopeSchema,
     dispatch: SourceDocumentCaptureDispatchIntentSchema,
     extraction: SourceDocumentCaptureExtractionSchema.nullish(),
     imageReference: z.array(SourceDocumentCaptureImageReferenceSchema),

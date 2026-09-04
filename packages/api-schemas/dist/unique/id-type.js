@@ -19,7 +19,9 @@ import { z } from "zod/v4";
  * @endpoint POST /v1/entities/detail/resolve
  * @endpoint POST /v1/people/{personId}/unique-ids
  * @endpoint POST /v1/sec/entities/{entityId}/identifiers
+ * @endpoint PATCH /v1/entities/{entityId}/unique-ids/{uniqueIdId}
  * @endpoint PATCH /v1/entities/detail
+ * @endpoint PATCH /v1/people/{personId}/unique-ids/{uniqueIdId}
  * @endpoint PUT /v1/entities/detail
  * @endpoint DELETE /v1/entities/{entityId}/unique-ids/{uniqueIdId}
  * @endpoint DELETE /v1/people/{personId}/unique-ids/{uniqueIdId}

@@ -1,5 +1,6 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
+import { BillingPlanTypeSchema } from "./plan-type.js";
 import { ResearchAllowanceUsageSchema } from "../research/allowance-usage.js";
 const BillingSubscriptionSchemaDefinition = z.object({
     allowance: ResearchAllowanceUsageSchema,
@@ -7,7 +8,7 @@ const BillingSubscriptionSchemaDefinition = z.object({
     entitled: z.boolean(),
     periodEnd: z.iso.datetime({ offset: true }).nullish(),
     periodStart: z.iso.datetime({ offset: true }).nullish(),
-    plan: z.enum(["PRO_MONTHLY", "PRO_YEARLY", "PRO_YEARLY_GRANDFATHERED"]).nullish(),
+    plan: BillingPlanTypeSchema.nullish(),
     status: z.enum([
         "NONE",
         "INCOMPLETE",

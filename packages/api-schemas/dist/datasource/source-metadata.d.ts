@@ -9,7 +9,6 @@ import { z } from "zod/v4";
  * @endpoint GET /v1/entities/detail/investments
  * @endpoint GET /v1/entities/detail/investors
  * @endpoint GET /v1/entities/detail/news
- * @endpoint GET /v1/entities/detail/people
  * @endpoint GET /v1/entities/detail/person-investors
  * @endpoint GET /v1/entities/detail/similar
  * @endpoint GET /v1/entities/detail/trending-news
@@ -54,7 +53,6 @@ import { z } from "zod/v4";
  * @endpoint GET /v1/people/{personId}/urls/all
  * @endpoint POST /v1/entities
  * @endpoint POST /v1/entities/{entityId}/acquisitions
- * @endpoint POST /v1/entities/{entityId}/people
  * @endpoint POST /v1/entities/{entityId}/relationships
  * @endpoint POST /v1/entities/{entityId}/urls
  * @endpoint POST /v1/entities/batch
@@ -87,7 +85,6 @@ import { z } from "zod/v4";
  * @endpoint POST /v1/search/all
  * @endpoint POST /v1/sec/entities/{entityId}/exchange-urls
  * @endpoint PATCH /v1/entities/{entityId}/acquisitions/{relationshipId}
- * @endpoint PATCH /v1/entities/{entityId}/people/{associationId}
  * @endpoint PATCH /v1/entities/{entityId}/urls/{urlId}
  * @endpoint PATCH /v1/entities/detail
  * @endpoint PATCH /v1/entities/detail/fundraise-rounds/{transactionId}
@@ -99,7 +96,6 @@ import { z } from "zod/v4";
  * @endpoint PATCH /v1/people/detail
  * @endpoint PATCH /v1/people/detail/news/{newsId}
  * @endpoint PUT /v1/entities/{entityId}/acquisitions/{relationshipId}
- * @endpoint PUT /v1/entities/{entityId}/people/{associationId}
  * @endpoint PUT /v1/entities/{entityId}/urls/{urlId}
  * @endpoint PUT /v1/entities/detail
  * @endpoint PUT /v1/entities/detail/fundraise-rounds/{transactionId}
@@ -110,8 +106,6 @@ import { z } from "zod/v4";
  * @endpoint PUT /v1/people/detail
  * @endpoint PUT /v1/people/detail/news/{newsId}
  * @endpoint DELETE /v1/entities/{entityId}/acquisitions/{relationshipId}
- * @endpoint DELETE /v1/entities/{entityId}/people/{associationId}
- * @endpoint DELETE /v1/entities/{entityId}/people/{associationId}/corporate-title
  * @endpoint DELETE /v1/entities/{entityId}/urls/{urlId}
  * @endpoint DELETE /v1/entities/detail/fundraise-rounds/{transactionId}
  * @endpoint DELETE /v1/entities/detail/news/{newsId}

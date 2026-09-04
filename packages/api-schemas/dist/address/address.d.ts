@@ -6,7 +6,6 @@ import { z } from "zod/v4";
  * @endpoint GET /v1/entities
  * @endpoint GET /v1/entities/detail
  * @endpoint GET /v1/entities/detail/investors
- * @endpoint GET /v1/entities/detail/people
  * @endpoint GET /v1/entities/detail/person-investors
  * @endpoint GET /v1/entities/detail/similar
  * @endpoint GET /v1/people/detail
@@ -26,7 +25,6 @@ import { z } from "zod/v4";
  * @endpoint POST /v1/address/validation
  * @endpoint POST /v1/entities
  * @endpoint POST /v1/entities/{entityId}/addresses
- * @endpoint POST /v1/entities/{entityId}/people
  * @endpoint POST /v1/entities/batch
  * @endpoint POST /v1/entities/detail
  * @endpoint POST /v1/entities/detail/batch
@@ -41,20 +39,16 @@ import { z } from "zod/v4";
  * @endpoint POST /v1/search/all
  * @endpoint POST /v1/sec/entities/{entityId}/address
  * @endpoint PATCH /v1/entities/{entityId}/addresses/{addressJoinId}
- * @endpoint PATCH /v1/entities/{entityId}/people/{associationId}
  * @endpoint PATCH /v1/entities/detail
  * @endpoint PATCH /v1/people/{personId}/addresses/{addressJoinId}
  * @endpoint PATCH /v1/people/{personId}/entities/{associationId}
  * @endpoint PATCH /v1/people/detail
  * @endpoint PUT /v1/entities/{entityId}/addresses/{addressJoinId}
- * @endpoint PUT /v1/entities/{entityId}/people/{associationId}
  * @endpoint PUT /v1/entities/detail
  * @endpoint PUT /v1/people/{personId}/addresses/{addressJoinId}
  * @endpoint PUT /v1/people/{personId}/entities/{associationId}
  * @endpoint PUT /v1/people/detail
  * @endpoint DELETE /v1/entities/{entityId}/addresses/{addressJoinId}
- * @endpoint DELETE /v1/entities/{entityId}/people/{associationId}
- * @endpoint DELETE /v1/entities/{entityId}/people/{associationId}/corporate-title
  * @endpoint DELETE /v1/people/{personId}/addresses/{addressJoinId}
  * @endpoint DELETE /v1/people/{personId}/entities/{associationId}
  * @endpoint DELETE /v1/people/{personId}/entities/{associationId}/corporate-title

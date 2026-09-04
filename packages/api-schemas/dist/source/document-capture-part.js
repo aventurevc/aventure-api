@@ -1,16 +1,16 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
 import { SourceDocumentCaptureConsumptionSchema } from "./document-capture-consumption.js";
+import { SourceDocumentCaptureMethodSchema } from "./document-capture-method.js";
 import { SourceDocumentCapturePartRoleSchema } from "./document-capture-part-role.js";
+import { SourceDocumentCaptureScopeSchema } from "./document-capture-scope.js";
 const SourceDocumentCapturePartSchemaDefinition = z.object({
     /** Positive accepted-part payload size in bytes. */
     byteCount: z.number().int(),
     /** UTC timestamp when this part was captured. */
     capturedAt: z.iso.datetime({ offset: true }).nullish(),
-    captureMethod: z
-        .enum(["browserExtension", "tabsCaptureVisibleTab", "shareSheet", "manualUpload"])
-        .nullish(),
-    captureScope: z.enum(["page", "selection", "viewport", "supplied"]).nullish(),
+    captureMethod: SourceDocumentCaptureMethodSchema.nullish(),
+    captureScope: SourceDocumentCaptureScopeSchema.nullish(),
     consumption: SourceDocumentCaptureConsumptionSchema,
     /** Media type of the accepted part payload. */
     mediaType: z.string(),

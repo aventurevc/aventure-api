@@ -1,14 +1,14 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
+import { ConfidenceSchema } from "../confidence/confidence.js";
 import { HelpCitationSchema } from "../help/citation.js";
-import { HelpConfidenceSchema } from "../help/confidence.js";
 const AgentHelpSchemaDefinition = z.object({
     /** Answer drawn only from the cited corpus; abstains when unsupported. */
     answer: z.string(),
     /** Corpus evidence backing the answer; empty when the model abstains. */
     citation: z.array(HelpCitationSchema),
-    /** Confidence the answer is fully supported by the cited corpus. */
-    confidence: HelpConfidenceSchema,
+    /** Confidence the answer is fully supported by the cited corpus. LOW signals an abstention. */
+    confidence: ConfidenceSchema,
     /** Canonical CLI/MCP/API command the asker should run, when one is supported by the cited corpus; null when no single command applies or the model abstains. */
     recommendedCommand: z.string().nullish(),
 });

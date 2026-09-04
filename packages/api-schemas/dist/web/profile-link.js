@@ -7,7 +7,7 @@ const WebProfileLinkSchemaDefinition = z.object({
     url: z.string().nullish(),
 });
 /**
- * A labelled bio link.
+ * A labeled bio link.
  *
  * @openapiSchema WebProfileLink
  * @endpoint GET /v1/web/profile/person

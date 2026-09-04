@@ -1,12 +1,12 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
+import { ConfidenceSchema } from "../confidence/confidence.js";
 import { PersonFilterSchema } from "./filter.js";
-import { SearchConfidenceSchema } from "../search/confidence.js";
 import { SearchModeExecutionSchema } from "../search/mode-execution.js";
 import { SortSpecPersonSortFieldSchema } from "../sort/spec-person-sort-field.js";
 const PersonSearchInterpretationSchemaDefinition = z.object({
     /** Planner confidence in the structured interpretation. */
-    confidence: SearchConfidenceSchema,
+    confidence: ConfidenceSchema,
     /** Requested and executed search strategy. */
     execution: SearchModeExecutionSchema,
     /** True when the semantic fallback replaced an unconstrained planner result with a semantic search over the original query. */
@@ -15,7 +15,7 @@ const PersonSearchInterpretationSchemaDefinition = z.object({
     filter: PersonFilterSchema,
     /** Human-readable summary of how the query was interpreted. */
     interpretation: z.string(),
-    /** Sort generated from the natural-language query. */
+    /** Sort applied to the result page. Empty when the page was ordered by semantic relevance rank instead of a sortable column. */
     sort: SortSpecPersonSortFieldSchema,
     /** Constraint the planner could not translate into the canonical PersonFilter contract; null when every material constraint was supported. */
     unsupported: z.string().nullish(),

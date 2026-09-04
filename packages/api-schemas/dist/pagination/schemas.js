@@ -464,7 +464,6 @@ const PageEntityPersonSchemaDefinition = z.object({
 });
 /**
  * @openapiSchema PageEntityPerson
- * @endpoint GET /v1/entities/detail/people
  * @endpoint GET /v1/entities/{entityId}/people
  * @contractShape pagination.page-entity-person
  * @contractRole canonical

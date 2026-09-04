@@ -23,7 +23,6 @@ import { z } from "zod/v4";
  * @endpoint POST /v1/entities/{entityId}/blog-posts
  * @endpoint POST /v1/entities/{entityId}/classifications
  * @endpoint POST /v1/entities/{entityId}/operating-status
- * @endpoint POST /v1/entities/{entityId}/people
  * @endpoint POST /v1/entities/{entityId}/relationships
  * @endpoint POST /v1/entities/{entityId}/research/details
  * @endpoint POST /v1/entities/{entityId}/research/snippets
@@ -73,11 +72,11 @@ import { z } from "zod/v4";
  * @endpoint PATCH /v1/entities/{entityId}/blog-posts/{blogPostId}
  * @endpoint PATCH /v1/entities/{entityId}/classifications/{classificationId}
  * @endpoint PATCH /v1/entities/{entityId}/operating-status
- * @endpoint PATCH /v1/entities/{entityId}/people/{associationId}
  * @endpoint PATCH /v1/entities/{entityId}/slug
  * @endpoint PATCH /v1/entities/{entityId}/status
  * @endpoint PATCH /v1/entities/{entityId}/texts/{textId}
  * @endpoint PATCH /v1/entities/{entityId}/type-record
+ * @endpoint PATCH /v1/entities/{entityId}/unique-ids/{uniqueIdId}
  * @endpoint PATCH /v1/entities/{entityId}/urls/{urlId}
  * @endpoint PATCH /v1/entities/detail
  * @endpoint PATCH /v1/entities/detail/financial/valuation/{detailId}
@@ -93,6 +92,7 @@ import { z } from "zod/v4";
  * @endpoint PATCH /v1/people/{personId}/entities/{associationId}
  * @endpoint PATCH /v1/people/{personId}/slug
  * @endpoint PATCH /v1/people/{personId}/texts/{textId}
+ * @endpoint PATCH /v1/people/{personId}/unique-ids/{uniqueIdId}
  * @endpoint PATCH /v1/people/{personId}/urls/{urlId}
  * @endpoint PATCH /v1/people/detail
  * @endpoint PATCH /v1/people/detail/news/{newsId}
@@ -106,7 +106,6 @@ import { z } from "zod/v4";
  * @endpoint PUT /v1/entities/{entityId}/blog-posts/{blogPostId}
  * @endpoint PUT /v1/entities/{entityId}/classifications/{classificationId}
  * @endpoint PUT /v1/entities/{entityId}/operating-status
- * @endpoint PUT /v1/entities/{entityId}/people/{associationId}
  * @endpoint PUT /v1/entities/{entityId}/research/details/{detailId}
  * @endpoint PUT /v1/entities/{entityId}/research/snippets/{snippetId}
  * @endpoint PUT /v1/entities/{entityId}/texts/{textId}
@@ -132,8 +131,6 @@ import { z } from "zod/v4";
  * @endpoint DELETE /v1/entities/{entityId}/addresses/{addressJoinId}
  * @endpoint DELETE /v1/entities/{entityId}/blog-posts/{blogPostId}
  * @endpoint DELETE /v1/entities/{entityId}/classifications/{classificationId}
- * @endpoint DELETE /v1/entities/{entityId}/people/{associationId}
- * @endpoint DELETE /v1/entities/{entityId}/people/{associationId}/corporate-title
  * @endpoint DELETE /v1/entities/{entityId}/research/details/{detailId}
  * @endpoint DELETE /v1/entities/{entityId}/research/snippets/{snippetId}
  * @endpoint DELETE /v1/entities/{entityId}/slug/redirects/{redirectId}

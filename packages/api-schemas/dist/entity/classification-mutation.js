@@ -1,8 +1,9 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
+import { EntityClassificationInactiveTagOverrideSchema } from "./classification-inactive-tag-override.js";
 const EntityClassificationMutationSchemaDefinition = z.object({
     /** Dormant-value handling when type plus name matches an inactive catalog row. Omitted reactivates the dormant value by default (it becomes current and the write returns a Warning header naming the reactivated tag). Set ATTACH_INACTIVE to attach the dormant value without reactivating it. */
-    inactiveTagOverride: z.enum(["REACTIVATE", "ATTACH_INACTIVE"]).nullish(),
+    inactiveTagOverride: EntityClassificationInactiveTagOverrideSchema.nullish(),
     /** Current join row. Create and replace default to true when omitted. */
     isCurrent: z.boolean().nullish(),
     /** Primary tag within its bucket. Create and replace default to false when omitted. */

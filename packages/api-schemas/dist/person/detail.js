@@ -23,7 +23,6 @@ const PersonDetailSchemaDefinition = z.object({
  * @openapiSchema PersonDetail
  * @endpoint GET /v1/entities/detail
  * @endpoint GET /v1/entities/detail/investors
- * @endpoint GET /v1/entities/detail/people
  * @endpoint GET /v1/entities/detail/person-investors
  * @endpoint GET /v1/people/detail
  * @endpoint GET /v1/entities/{entityId}/people

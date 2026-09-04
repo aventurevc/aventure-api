@@ -6,10 +6,12 @@ import { z } from "zod/v4";
  * @openapiSchema ContentSourceType
  * @endpoint GET /v1/content/embedding/activity
  * @endpoint GET /v1/content/embedding/backlog
+ * @endpoint GET /v1/content/embedding/neighbors
+ * @endpoint GET /v1/content/embedding/stale
+ * @endpoint GET /v1/content/similarity/stale
  * @endpoint GET /v1/entities
  * @endpoint GET /v1/entities/detail
  * @endpoint GET /v1/entities/detail/investors
- * @endpoint GET /v1/entities/detail/people
  * @endpoint GET /v1/entities/detail/person-investors
  * @endpoint GET /v1/entities/detail/similar
  * @endpoint GET /v1/people
@@ -21,6 +23,7 @@ import { z } from "zod/v4";
  * @endpoint GET /v1/entities/{entityId}/people/{associationId}
  * @endpoint GET /v1/entities/{entityId}/products/suggestions
  * @endpoint GET /v1/entities/{entityId}/relationships/suggestions
+ * @endpoint POST /v1/content/embedding/refresh
  * @endpoint POST /v1/content/embedding/refresh/sweep
  * @endpoint POST /v1/entities
  * @endpoint POST /v1/entities/batch

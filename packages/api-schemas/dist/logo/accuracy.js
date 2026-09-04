@@ -1,5 +1,6 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
+import { ConfidenceSchema } from "../confidence/confidence.js";
 import { DatasourceSourceMetadataSchema } from "../datasource/source-metadata.js";
 import { LogoAccuracyReferenceSchema } from "./accuracy-reference.js";
 const LogoAccuracySchemaDefinition = z.object({
@@ -8,7 +9,7 @@ const LogoAccuracySchemaDefinition = z.object({
     /** Literal visible description of the candidate mark, when assessed by vision */
     candidateObserved: z.string().nullish(),
     /** Confidence in the outcome */
-    confidence: z.enum(["HIGH", "MEDIUM", "LOW"]),
+    confidence: ConfidenceSchema,
     /** How the outcome was reached */
     method: z.enum(["PERCEPTUAL_HASH", "VISION", "OPERATOR_REVIEW", "REFERENCE_UNAVAILABLE"]),
     /** Whether the candidate mark matches the target's own brand */

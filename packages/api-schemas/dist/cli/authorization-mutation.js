@@ -1,5 +1,7 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
+import { CliAuthorizationClientPlatformSchema } from "./authorization-client-platform.js";
+import { CliAuthorizationEncryptionAlgorithmSchema } from "./authorization-encryption-algorithm.js";
 const CliAuthorizationMutationSchemaDefinition = z.object({
     /** Label for this CLI installation */
     clientLabel: z
@@ -9,9 +11,9 @@ const CliAuthorizationMutationSchemaDefinition = z.object({
         .max(120)
         .nullish(),
     /** Coarse operating-system family */
-    clientPlatform: z.enum(["MACOS", "LINUX", "WINDOWS", "OTHER"]).nullish(),
+    clientPlatform: CliAuthorizationClientPlatformSchema.nullish(),
     /** Requested hybrid encryption suite */
-    encryptionAlgorithm: z.enum(["RSA_OAEP_256_A256_GCM_V1"]).nullish(),
+    encryptionAlgorithm: CliAuthorizationEncryptionAlgorithmSchema.nullish(),
     /** Base64-encoded DER SubjectPublicKeyInfo for an ephemeral RSA public key */
     encryptionPublicKey: z.string().min(344).max(12000).nullish(),
 });

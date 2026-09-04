@@ -1,5 +1,6 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
+import { AgentTaskPresetPhaseSchema } from "../agent/task-preset-phase.js";
 import { EnrichmentModeSchema } from "../enrichment/mode.js";
 import { HarnessRunEnvironmentSchema } from "./run-environment.js";
 import { HarnessRunStatusSchema } from "./run-status.js";
@@ -64,7 +65,7 @@ const HarnessRunSchemaDefinition = z.object({
     /** Micro-task key; null denotes a full enrichment run */
     taskKey: z.string().nullish(),
     /** Catalog-derived phase used for source-backed queue readiness */
-    taskPhase: z.enum(["PRIMARY", "FINAL"]).nullish(),
+    taskPhase: AgentTaskPresetPhaseSchema.nullish(),
     /** Selected task preset keys filed with the run */
     taskPresetKey: z.array(z.string()).nullish(),
     /** Run kind derived from task-key presence: ENRICHMENT for a client-submitted comprehensive or preset-scoped run, TASK for a platform-scheduled micro-task execution */

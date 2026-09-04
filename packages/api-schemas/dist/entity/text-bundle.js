@@ -15,7 +15,6 @@ const EntityTextBundleSchemaDefinition = z.object({
  * @endpoint GET /v1/entities
  * @endpoint GET /v1/entities/detail
  * @endpoint GET /v1/entities/detail/investors
- * @endpoint GET /v1/entities/detail/people
  * @endpoint GET /v1/entities/detail/person-investors
  * @endpoint GET /v1/entities/detail/similar
  * @endpoint GET /v1/people

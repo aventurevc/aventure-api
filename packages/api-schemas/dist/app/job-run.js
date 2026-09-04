@@ -1,5 +1,6 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
+import { AppJobRunStatusSchema } from "./job-run-status.js";
 const AppJobRunSchemaDefinition = z.object({
     /** Run completion timestamp */
     completedAt: z.iso.datetime({ offset: true }).nullish(),
@@ -24,16 +25,7 @@ const AppJobRunSchemaDefinition = z.object({
     /** Run start timestamp */
     startedAt: z.iso.datetime({ offset: true }).nullish(),
     /** Current run status */
-    status: z.enum([
-        "REQUESTED",
-        "ENQUEUED",
-        "RUNNING",
-        "SUCCEEDED",
-        "SKIPPED",
-        "FAILED",
-        "CANCELED",
-        "FENCED_OUT",
-    ]),
+    status: AppJobRunStatusSchema,
 });
 /**
  * Execution ledger row for an app job run

@@ -7,7 +7,7 @@
     },
     "description": "Spring Boot 4.x w/ Java 25 & Postgres 17 (Supabase) back-end API",
     "title": "aVenture API",
-    "version": "0.7.259"
+    "version": "0.7.261"
   },
   "externalDocs": {
     "description": "Repository",
@@ -115,6 +115,10 @@
     {
       "description": "Search companies, people, and news together, or search the live web",
       "name": "Search"
+    },
+    {
+      "description": "Accepted automated-agent runtime chassis tokens",
+      "name": "Agent Chassis"
     },
     {
       "description": "Entity relationship endpoints",
@@ -234,6 +238,109 @@
     }
   ],
   "paths": {
+    "/v1/agents/chassis": {
+      "get": {
+        "description": "Returns the sorted agent runtime chassis tokens accepted by the API.",
+        "operationId": "listAgentChassis",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AgentChassisCatalog"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "406": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Acceptable"
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "500": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          },
+          {
+            "adminApiKeyAuth": []
+          },
+          {
+            "clientSecretAuth": []
+          }
+        ],
+        "summary": "List accepted agent chassis",
+        "tags": [
+          "Agent Chassis"
+        ]
+      }
+    },
     "/v1/agents/help": {
       "post": {
         "description": "Retrieves the most relevant operations, skills, and completion gates, then returns a grounded, citation-bearing answer. Unsupported questions abstain (LOW confidence) rather than invent a command.",
@@ -2524,12 +2631,12 @@
         "operationId": "neighbors",
         "parameters": [
           {
-            "description": "Provenance source type of the query row",
+            "description": "Required unified content partition to act on, for example entity, person, or newsArticle.",
             "in": "query",
-            "name": "sourceType",
-            "required": true,
+            "name": "contentSourceType",
+            "required": false,
             "schema": {
-              "type": "string"
+              "$ref": "#/components/schemas/ContentSourceType"
             }
           },
           {
@@ -2542,12 +2649,12 @@
             }
           },
           {
-            "description": "Source type to search against for nearest-neighbor matches",
+            "description": "Content partition to search against for nearest-neighbor matches",
             "in": "query",
             "name": "targetType",
             "required": true,
             "schema": {
-              "type": "string"
+              "$ref": "#/components/schemas/ContentSourceType"
             }
           },
           {
@@ -2670,12 +2777,12 @@
         "operationId": "refreshOne",
         "parameters": [
           {
-            "description": "Provenance source type",
+            "description": "Required unified content partition to act on, for example entity, person, or newsArticle.",
             "in": "query",
-            "name": "sourceType",
-            "required": true,
+            "name": "contentSourceType",
+            "required": false,
             "schema": {
-              "type": "string"
+              "$ref": "#/components/schemas/ContentSourceType"
             }
           },
           {
@@ -2920,10 +3027,10 @@
         "operationId": "refreshSweep",
         "parameters": [
           {
-            "description": "Refresh-capable content source type",
+            "description": "Required unified content partition to act on, for example entity, person, or newsArticle.",
             "in": "query",
-            "name": "sourceType",
-            "required": true,
+            "name": "contentSourceType",
+            "required": false,
             "schema": {
               "$ref": "#/components/schemas/ContentSourceType"
             }
@@ -3061,12 +3168,12 @@
         "operationId": "staleIds_1",
         "parameters": [
           {
-            "description": "Provenance source type",
+            "description": "Required unified content partition to act on, for example entity, person, or newsArticle.",
             "in": "query",
-            "name": "sourceType",
-            "required": true,
+            "name": "contentSourceType",
+            "required": false,
             "schema": {
-              "type": "string"
+              "$ref": "#/components/schemas/ContentSourceType"
             }
           },
           {
@@ -3506,12 +3613,12 @@
         "operationId": "staleIds",
         "parameters": [
           {
-            "description": "Content source type whose stale similarity rows should be enumerated (e.g. `entity`, `news`).",
+            "description": "Required unified content partition to act on, for example entity, person, or newsArticle.",
             "in": "query",
-            "name": "sourceType",
-            "required": true,
+            "name": "contentSourceType",
+            "required": false,
             "schema": {
-              "type": "string"
+              "$ref": "#/components/schemas/ContentSourceType"
             }
           },
           {
@@ -4736,7 +4843,7 @@
         "operationId": "listEntitiesBatch",
         "parameters": [
           {
-            "description": "Opaque URL-safe cursor token for sort-aware continuation.",
+            "description": "Opaque URL-safe cursor token from X-Next-Cursor. Reuse the same filters and sort.",
             "in": "query",
             "name": "cursor",
             "required": false,
@@ -4981,7 +5088,7 @@
             }
           },
           {
-            "description": "Page size; default 25, capped at 200.",
+            "description": "The size of the page to be returned; default 25, maximum 200.",
             "in": "query",
             "name": "size",
             "required": false,
@@ -5141,7 +5248,7 @@
         "operationId": "auditFleetEntityClassifications",
         "parameters": [
           {
-            "description": "Opaque continuation cursor from a previous page's nextCursor.",
+            "description": "Opaque continuation cursor from the previous response's nextCursor. Reuse the same filters and sort.",
             "in": "query",
             "name": "cursor",
             "required": false,
@@ -5150,7 +5257,7 @@
             }
           },
           {
-            "description": "Page size; default 25, capped at 200.",
+            "description": "The size of the page to be returned; default 25, maximum 200.",
             "in": "query",
             "name": "size",
             "required": false,
@@ -7019,25 +7126,25 @@
             }
           },
           {
-            "description": "Zero-based page index; omit page and size for the full batch.",
+            "description": "Zero-based page index (0..N); omit page and size for the full batch.",
             "in": "query",
             "name": "page",
             "required": false,
             "schema": {
               "type": "integer",
               "format": "int32",
-              "description": "Zero-based page index; omit page and size for the full batch."
+              "description": "Zero-based page index (0..N); omit page and size for the full batch."
             }
           },
           {
-            "description": "Page size; omit page and size for the full batch.",
+            "description": "The size of the page to be returned; omit page and size for the full batch.",
             "in": "query",
             "name": "size",
             "required": false,
             "schema": {
               "type": "integer",
               "format": "int32",
-              "description": "Page size; omit page and size for the full batch."
+              "description": "The size of the page to be returned; omit page and size for the full batch."
             }
           }
         ],
@@ -7783,7 +7890,7 @@
             }
           },
           {
-            "description": "Zero-based page index",
+            "description": "Zero-based page index (0..N)",
             "in": "query",
             "name": "page",
             "required": false,
@@ -7794,7 +7901,7 @@
             }
           },
           {
-            "description": "Page size",
+            "description": "The size of the page to be returned",
             "in": "query",
             "name": "size",
             "required": false,
@@ -10207,7 +10314,7 @@
             }
           },
           {
-            "description": "Zero-based page index",
+            "description": "Zero-based page index (0..N)",
             "in": "query",
             "name": "page",
             "required": false,
@@ -10218,7 +10325,7 @@
             }
           },
           {
-            "description": "Page size",
+            "description": "The size of the page to be returned",
             "in": "query",
             "name": "size",
             "required": false,
@@ -13815,7 +13922,7 @@
             }
           },
           {
-            "description": "Cursor token for deep pagination",
+            "description": "Opaque URL-safe cursor token from X-Next-Cursor. Reuse the same filters and sort.",
             "example": "2025-01-01T00:00:00Z::123",
             "in": "query",
             "name": "cursor",
@@ -15149,256 +15256,6 @@
         }
       }
     },
-    "/v1/entities/detail/people": {
-      "get": {
-        "description": "Returns people for an entity selected by query. Public and client-secret reads exclude hidden entities; trusted admin credentials include them for write readback.",
-        "operationId": "listEntityPeople",
-        "parameters": [
-          {
-            "description": "Entity unique identifier (UUID) — at least one of id or slug required",
-            "in": "query",
-            "name": "id",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          },
-          {
-            "description": "Entity URL-friendly identifier — at least one of id or slug required",
-            "in": "query",
-            "name": "slug",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "description": "Canonical lowercase URL slug for the resource",
-              "example": "aventure-vc",
-              "maxLength": 255,
-              "pattern": "^[a-z0-9_-]+$",
-              "x-source-file": "src/main/kotlin/vc/aventure/domain/model/identity/Slug.kt"
-            }
-          },
-          {
-            "description": "Search term filter",
-            "in": "query",
-            "name": "search",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "description": "Association role filter",
-            "in": "query",
-            "name": "role",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "description": "Current association filter",
-            "in": "query",
-            "name": "isCurrent",
-            "required": false,
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "description": "Include person URL records",
-            "in": "query",
-            "name": "includeUrl",
-            "required": false,
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "description": "Include person address records",
-            "in": "query",
-            "name": "includeAddress",
-            "required": false,
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "description": "Projection: `core` (default) returns person identity only and omits association fields. `association` returns PersonDetail rows with the matching join under `association[]`; read title and period fields from `association[].titleName`, `association[].startDate`, and `association[].endDate`. Person sitemap visibility is owned by people detail/status reads, not this list projection.",
-            "in": "query",
-            "name": "as",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "description": "Person slug fallback for entity-keyed writes",
-            "in": "query",
-            "name": "personSlug",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "description": "Return count metadata without full content",
-            "in": "query",
-            "name": "countOnly",
-            "required": false,
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "description": "Permit generated monogram fallback",
-            "in": "query",
-            "name": "permitMonogram",
-            "required": false,
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "description": "Privileged read scope. Includes associations on hidden entities. Defaults to private visibility for admin API key or ROLE_ADMIN callers; explicit true requires that authority.",
-            "in": "query",
-            "name": "includePrivate",
-            "required": false,
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "description": "Zero-based page index (0..N)",
-            "in": "query",
-            "name": "page",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "default": 0,
-              "minimum": 0
-            }
-          },
-          {
-            "description": "The size of the page to be returned",
-            "in": "query",
-            "name": "size",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "default": 40,
-              "minimum": 1
-            }
-          },
-          {
-            "description": "Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported.",
-            "in": "query",
-            "name": "sort",
-            "required": false,
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PageEntityPerson"
-                }
-              }
-            },
-            "description": "OK"
-          },
-          "400": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Bad Request"
-          },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
-          "406": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Not Acceptable"
-          },
-          "429": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Too Many Requests"
-          },
-          "500": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Internal Server Error"
-          },
-          "503": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Service Unavailable"
-          }
-        },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
-        "summary": "List entity people",
-        "tags": [
-          "Entity Person Associations"
-        ],
-        "x-aventure-tool": {
-          "cli": "entities people filter"
-        }
-      }
-    },
     "/v1/entities/detail/people/time-series": {
       "get": {
         "description": "Returns employee-count time series. Results are sorted newest first. This endpoint does not support custom sorting.",
@@ -15431,7 +15288,7 @@
             }
           },
           {
-            "description": "Zero-based page index",
+            "description": "Zero-based page index (0..N)",
             "in": "query",
             "name": "page",
             "required": false,
@@ -15442,7 +15299,7 @@
             }
           },
           {
-            "description": "Page size (max 500)",
+            "description": "The size of the page to be returned; maximum 500.",
             "in": "query",
             "name": "size",
             "required": false,
@@ -16422,7 +16279,7 @@
             }
           },
           {
-            "description": "Zero-based page index",
+            "description": "Zero-based page index (0..N)",
             "example": 0,
             "in": "query",
             "name": "page",
@@ -16433,7 +16290,7 @@
             }
           },
           {
-            "description": "Page size",
+            "description": "The size of the page to be returned; duplicate-check default 10, maximum 100.",
             "example": 10,
             "in": "query",
             "name": "size",
@@ -16563,7 +16420,7 @@
         "operationId": "duplicateCheckEntitiesPost",
         "parameters": [
           {
-            "description": "Zero-based page index",
+            "description": "Zero-based page index (0..N)",
             "example": 0,
             "in": "query",
             "name": "page",
@@ -16574,7 +16431,7 @@
             }
           },
           {
-            "description": "Page size",
+            "description": "The size of the page to be returned; duplicate-check default 10, maximum 100.",
             "example": 10,
             "in": "query",
             "name": "size",
@@ -16902,7 +16759,7 @@
             }
           },
           {
-            "description": "Zero-based page index",
+            "description": "Zero-based page index (0..N)",
             "example": 0,
             "in": "query",
             "name": "page",
@@ -16913,7 +16770,7 @@
             }
           },
           {
-            "description": "Page size",
+            "description": "The size of the page to be returned; duplicate-check default 10, maximum 100.",
             "example": 10,
             "in": "query",
             "name": "size",
@@ -17043,7 +16900,7 @@
         "operationId": "duplicateCheckEntityCandidatesPost",
         "parameters": [
           {
-            "description": "Zero-based page index",
+            "description": "Zero-based page index (0..N)",
             "example": 0,
             "in": "query",
             "name": "page",
@@ -17054,7 +16911,7 @@
             }
           },
           {
-            "description": "Page size",
+            "description": "The size of the page to be returned; duplicate-check default 10, maximum 100.",
             "example": 10,
             "in": "query",
             "name": "size",
@@ -17679,7 +17536,7 @@
             }
           },
           {
-            "description": "Maximum results to return (default 20, max 100)",
+            "description": "The size of the page to be returned; filter-search default 20, maximum 100.",
             "example": 20,
             "in": "query",
             "name": "size",
@@ -17690,7 +17547,7 @@
             }
           },
           {
-            "description": "Sorting is not supported for filter search",
+            "description": "Sorting is not supported",
             "in": "query",
             "name": "sort",
             "required": false,
@@ -28138,375 +27995,6 @@
         "tags": [
           "Entity Person Associations"
         ]
-      },
-      "post": {
-        "description": "Creates or returns an existing person-entity join.",
-        "operationId": "createEntityPersonAssociation_1",
-        "parameters": [
-          {
-            "description": "Entity id",
-            "in": "path",
-            "name": "entityId",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid",
-              "description": "Canonical entity UUID",
-              "x-source-file": "src/main/kotlin/vc/aventure/domain/model/identity/EntityId.kt"
-            }
-          },
-          {
-            "description": "Entity unique identifier (UUID) — at least one of id or slug required",
-            "in": "query",
-            "name": "id",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          },
-          {
-            "description": "Entity URL-friendly identifier — at least one of id or slug required",
-            "in": "query",
-            "name": "slug",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "description": "Canonical lowercase URL slug for the resource",
-              "example": "aventure-vc",
-              "maxLength": 255,
-              "pattern": "^[a-z0-9_-]+$",
-              "x-source-file": "src/main/kotlin/vc/aventure/domain/model/identity/Slug.kt"
-            }
-          },
-          {
-            "description": "Search term filter",
-            "in": "query",
-            "name": "search",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "description": "Association role filter",
-            "in": "query",
-            "name": "role",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "description": "Current association filter",
-            "in": "query",
-            "name": "isCurrent",
-            "required": false,
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "description": "Include person URL records",
-            "in": "query",
-            "name": "includeUrl",
-            "required": false,
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "description": "Include person address records",
-            "in": "query",
-            "name": "includeAddress",
-            "required": false,
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "description": "Projection: `core` (default) returns person identity only and omits association fields. `association` returns PersonDetail rows with the matching join under `association[]`; read title and period fields from `association[].titleName`, `association[].startDate`, and `association[].endDate`. Person sitemap visibility is owned by people detail/status reads, not this list projection.",
-            "in": "query",
-            "name": "as",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "description": "Person slug fallback for entity-keyed writes",
-            "in": "query",
-            "name": "personSlug",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "description": "Return count metadata without full content",
-            "in": "query",
-            "name": "countOnly",
-            "required": false,
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "description": "Permit generated monogram fallback",
-            "in": "query",
-            "name": "permitMonogram",
-            "required": false,
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "description": "Privileged read scope. Includes associations on hidden entities. Defaults to private visibility for admin API key or ROLE_ADMIN callers; explicit true requires that authority.",
-            "in": "query",
-            "name": "includePrivate",
-            "required": false,
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "description": "Write provenance source type.",
-            "in": "query",
-            "name": "sourceType",
-            "required": true,
-            "schema": {
-              "$ref": "#/components/schemas/DatasourceWritableDataSourceType",
-              "example": "aventureStaff"
-            }
-          },
-          {
-            "description": "Source detail or reviewer reference for the write.",
-            "example": "aventure.vc",
-            "in": "query",
-            "name": "sourceDetail",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "description": "Source detail or reviewer reference for the write.",
-              "example": "aventure.vc"
-            }
-          },
-          {
-            "description": "Provider name for provider-native IDs or slugs.",
-            "example": "TechCrunch",
-            "in": "query",
-            "name": "sourceProvider",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "description": "Provider name for provider-native IDs or slugs.",
-              "example": "TechCrunch"
-            }
-          },
-          {
-            "description": "Provider-native source ID.",
-            "example": "tc-2026-05-20-example-round",
-            "in": "query",
-            "name": "sourceProviderId",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "description": "Provider-native source ID.",
-              "example": "tc-2026-05-20-example-round"
-            }
-          },
-          {
-            "description": "Provider-native source slug.",
-            "example": "example-round",
-            "in": "query",
-            "name": "sourceProviderSlug",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "description": "Provider-native source slug.",
-              "example": "example-round"
-            }
-          },
-          {
-            "description": "Actor type; inferred as agent when agentChassis and agentModel are supplied, or as employee from an authenticated user JWT session.",
-            "example": "agent",
-            "in": "query",
-            "name": "actorType",
-            "required": false,
-            "schema": {
-              "$ref": "#/components/schemas/DatasourceProvenanceActorType"
-            }
-          },
-          {
-            "description": "Agent chassis token for agent-authored writes.",
-            "example": "codex-cli",
-            "in": "query",
-            "name": "agentChassis",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "description": "Agent chassis token for agent-authored writes.",
-              "example": "codex-cli"
-            }
-          },
-          {
-            "description": "Agent model id for agent-authored writes.",
-            "in": "query",
-            "name": "agentModel",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "description": "Agent model id for agent-authored writes."
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/PersonEntityAssociationMutation"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/EntityPersonAssociation"
-                }
-              }
-            },
-            "description": "OK"
-          },
-          "400": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Bad Request"
-          },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
-          "404": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Not Found"
-          },
-          "406": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Not Acceptable"
-          },
-          "409": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Conflict"
-          },
-          "415": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unsupported Media Type"
-          },
-          "422": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unprocessable Content"
-          },
-          "429": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Too Many Requests"
-          },
-          "500": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Internal Server Error"
-          },
-          "503": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Service Unavailable"
-          }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          },
-          {
-            "adminApiKeyAuth": []
-          },
-          {
-            "clientSecretAuth": []
-          }
-        ],
-        "summary": "Create entity person association",
-        "tags": [
-          "Entity Person Associations"
-        ]
       }
     },
     "/v1/entities/{entityId}/people/{associationId}": {
@@ -28752,1121 +28240,6 @@
         "tags": [
           "Entity Person Associations"
         ]
-      },
-      "put": {
-        "description": "Replaces title and period fields for one join.",
-        "operationId": "replaceEntityPersonAssociation_1",
-        "parameters": [
-          {
-            "description": "Entity id",
-            "in": "path",
-            "name": "entityId",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid",
-              "description": "Canonical entity UUID",
-              "x-source-file": "src/main/kotlin/vc/aventure/domain/model/identity/EntityId.kt"
-            }
-          },
-          {
-            "description": "Association id",
-            "in": "path",
-            "name": "associationId",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "description": "Entity unique identifier (UUID) — at least one of id or slug required",
-            "in": "query",
-            "name": "id",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          },
-          {
-            "description": "Entity URL-friendly identifier — at least one of id or slug required",
-            "in": "query",
-            "name": "slug",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "description": "Canonical lowercase URL slug for the resource",
-              "example": "aventure-vc",
-              "maxLength": 255,
-              "pattern": "^[a-z0-9_-]+$",
-              "x-source-file": "src/main/kotlin/vc/aventure/domain/model/identity/Slug.kt"
-            }
-          },
-          {
-            "description": "Search term filter",
-            "in": "query",
-            "name": "search",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "description": "Association role filter",
-            "in": "query",
-            "name": "role",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "description": "Current association filter",
-            "in": "query",
-            "name": "isCurrent",
-            "required": false,
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "description": "Include person URL records",
-            "in": "query",
-            "name": "includeUrl",
-            "required": false,
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "description": "Include person address records",
-            "in": "query",
-            "name": "includeAddress",
-            "required": false,
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "description": "Projection: `core` (default) returns person identity only and omits association fields. `association` returns PersonDetail rows with the matching join under `association[]`; read title and period fields from `association[].titleName`, `association[].startDate`, and `association[].endDate`. Person sitemap visibility is owned by people detail/status reads, not this list projection.",
-            "in": "query",
-            "name": "as",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "description": "Person slug fallback for entity-keyed writes",
-            "in": "query",
-            "name": "personSlug",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "description": "Return count metadata without full content",
-            "in": "query",
-            "name": "countOnly",
-            "required": false,
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "description": "Permit generated monogram fallback",
-            "in": "query",
-            "name": "permitMonogram",
-            "required": false,
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "description": "Privileged read scope. Includes associations on hidden entities. Defaults to private visibility for admin API key or ROLE_ADMIN callers; explicit true requires that authority.",
-            "in": "query",
-            "name": "includePrivate",
-            "required": false,
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "description": "Write provenance source type.",
-            "in": "query",
-            "name": "sourceType",
-            "required": true,
-            "schema": {
-              "$ref": "#/components/schemas/DatasourceWritableDataSourceType",
-              "example": "aventureStaff"
-            }
-          },
-          {
-            "description": "Source detail or reviewer reference for the write.",
-            "example": "aventure.vc",
-            "in": "query",
-            "name": "sourceDetail",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "description": "Source detail or reviewer reference for the write.",
-              "example": "aventure.vc"
-            }
-          },
-          {
-            "description": "Provider name for provider-native IDs or slugs.",
-            "example": "TechCrunch",
-            "in": "query",
-            "name": "sourceProvider",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "description": "Provider name for provider-native IDs or slugs.",
-              "example": "TechCrunch"
-            }
-          },
-          {
-            "description": "Provider-native source ID.",
-            "example": "tc-2026-05-20-example-round",
-            "in": "query",
-            "name": "sourceProviderId",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "description": "Provider-native source ID.",
-              "example": "tc-2026-05-20-example-round"
-            }
-          },
-          {
-            "description": "Provider-native source slug.",
-            "example": "example-round",
-            "in": "query",
-            "name": "sourceProviderSlug",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "description": "Provider-native source slug.",
-              "example": "example-round"
-            }
-          },
-          {
-            "description": "Actor type; inferred as agent when agentChassis and agentModel are supplied, or as employee from an authenticated user JWT session.",
-            "example": "agent",
-            "in": "query",
-            "name": "actorType",
-            "required": false,
-            "schema": {
-              "$ref": "#/components/schemas/DatasourceProvenanceActorType"
-            }
-          },
-          {
-            "description": "Agent chassis token for agent-authored writes.",
-            "example": "codex-cli",
-            "in": "query",
-            "name": "agentChassis",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "description": "Agent chassis token for agent-authored writes.",
-              "example": "codex-cli"
-            }
-          },
-          {
-            "description": "Agent model id for agent-authored writes.",
-            "in": "query",
-            "name": "agentModel",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "description": "Agent model id for agent-authored writes."
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/PersonEntityAssociationMutation"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/EntityPersonAssociation"
-                }
-              }
-            },
-            "description": "OK"
-          },
-          "400": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Bad Request"
-          },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
-          "404": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Not Found"
-          },
-          "406": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Not Acceptable"
-          },
-          "409": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Conflict"
-          },
-          "415": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unsupported Media Type"
-          },
-          "422": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unprocessable Content"
-          },
-          "429": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Too Many Requests"
-          },
-          "500": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Internal Server Error"
-          },
-          "503": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Service Unavailable"
-          }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          },
-          {
-            "adminApiKeyAuth": []
-          },
-          {
-            "clientSecretAuth": []
-          }
-        ],
-        "summary": "Replace entity person association",
-        "tags": [
-          "Entity Person Associations"
-        ]
-      },
-      "patch": {
-        "description": "Applies an RFC 7396 merge patch to one join.",
-        "operationId": "patchEntityPersonAssociation_1",
-        "parameters": [
-          {
-            "description": "Entity id",
-            "in": "path",
-            "name": "entityId",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid",
-              "description": "Canonical entity UUID",
-              "x-source-file": "src/main/kotlin/vc/aventure/domain/model/identity/EntityId.kt"
-            }
-          },
-          {
-            "description": "Association id",
-            "in": "path",
-            "name": "associationId",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "description": "Write provenance source type.",
-            "in": "query",
-            "name": "sourceType",
-            "required": true,
-            "schema": {
-              "$ref": "#/components/schemas/DatasourceWritableDataSourceType",
-              "example": "aventureStaff"
-            }
-          },
-          {
-            "description": "Source detail or reviewer reference for the write.",
-            "example": "aventure.vc",
-            "in": "query",
-            "name": "sourceDetail",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "description": "Source detail or reviewer reference for the write.",
-              "example": "aventure.vc"
-            }
-          },
-          {
-            "description": "Provider name for provider-native IDs or slugs.",
-            "example": "TechCrunch",
-            "in": "query",
-            "name": "sourceProvider",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "description": "Provider name for provider-native IDs or slugs.",
-              "example": "TechCrunch"
-            }
-          },
-          {
-            "description": "Provider-native source ID.",
-            "example": "tc-2026-05-20-example-round",
-            "in": "query",
-            "name": "sourceProviderId",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "description": "Provider-native source ID.",
-              "example": "tc-2026-05-20-example-round"
-            }
-          },
-          {
-            "description": "Provider-native source slug.",
-            "example": "example-round",
-            "in": "query",
-            "name": "sourceProviderSlug",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "description": "Provider-native source slug.",
-              "example": "example-round"
-            }
-          },
-          {
-            "description": "Actor type; inferred as agent when agentChassis and agentModel are supplied, or as employee from an authenticated user JWT session.",
-            "example": "agent",
-            "in": "query",
-            "name": "actorType",
-            "required": false,
-            "schema": {
-              "$ref": "#/components/schemas/DatasourceProvenanceActorType"
-            }
-          },
-          {
-            "description": "Agent chassis token for agent-authored writes.",
-            "example": "codex-cli",
-            "in": "query",
-            "name": "agentChassis",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "description": "Agent chassis token for agent-authored writes.",
-              "example": "codex-cli"
-            }
-          },
-          {
-            "description": "Agent model id for agent-authored writes.",
-            "in": "query",
-            "name": "agentModel",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "description": "Agent model id for agent-authored writes."
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/merge-patch+json": {
-              "schema": {
-                "$ref": "#/components/schemas/PersonEntityAssociationMutation"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/EntityPersonAssociation"
-                }
-              }
-            },
-            "description": "OK"
-          },
-          "400": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Bad Request"
-          },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
-          "404": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Not Found"
-          },
-          "406": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Not Acceptable"
-          },
-          "409": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Conflict"
-          },
-          "415": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unsupported Media Type"
-          },
-          "422": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unprocessable Content"
-          },
-          "429": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Too Many Requests"
-          },
-          "500": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Internal Server Error"
-          },
-          "503": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Service Unavailable"
-          }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          },
-          {
-            "adminApiKeyAuth": []
-          },
-          {
-            "clientSecretAuth": []
-          }
-        ],
-        "summary": "Patch entity person association",
-        "tags": [
-          "Entity Person Associations"
-        ]
-      },
-      "delete": {
-        "description": "Deletes the entity/person join row.",
-        "operationId": "deleteEntityPersonAssociation_1",
-        "parameters": [
-          {
-            "description": "Entity id",
-            "in": "path",
-            "name": "entityId",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid",
-              "description": "Canonical entity UUID",
-              "x-source-file": "src/main/kotlin/vc/aventure/domain/model/identity/EntityId.kt"
-            }
-          },
-          {
-            "description": "Association id",
-            "in": "path",
-            "name": "associationId",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "description": "Write provenance source type.",
-            "in": "query",
-            "name": "sourceType",
-            "required": true,
-            "schema": {
-              "$ref": "#/components/schemas/DatasourceWritableDataSourceType",
-              "example": "aventureStaff"
-            }
-          },
-          {
-            "description": "Source detail or reviewer reference for the write.",
-            "example": "aventure.vc",
-            "in": "query",
-            "name": "sourceDetail",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "description": "Source detail or reviewer reference for the write.",
-              "example": "aventure.vc"
-            }
-          },
-          {
-            "description": "Provider name for provider-native IDs or slugs.",
-            "example": "TechCrunch",
-            "in": "query",
-            "name": "sourceProvider",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "description": "Provider name for provider-native IDs or slugs.",
-              "example": "TechCrunch"
-            }
-          },
-          {
-            "description": "Provider-native source ID.",
-            "example": "tc-2026-05-20-example-round",
-            "in": "query",
-            "name": "sourceProviderId",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "description": "Provider-native source ID.",
-              "example": "tc-2026-05-20-example-round"
-            }
-          },
-          {
-            "description": "Provider-native source slug.",
-            "example": "example-round",
-            "in": "query",
-            "name": "sourceProviderSlug",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "description": "Provider-native source slug.",
-              "example": "example-round"
-            }
-          },
-          {
-            "description": "Actor type; inferred as agent when agentChassis and agentModel are supplied, or as employee from an authenticated user JWT session.",
-            "example": "agent",
-            "in": "query",
-            "name": "actorType",
-            "required": false,
-            "schema": {
-              "$ref": "#/components/schemas/DatasourceProvenanceActorType"
-            }
-          },
-          {
-            "description": "Agent chassis token for agent-authored writes.",
-            "example": "codex-cli",
-            "in": "query",
-            "name": "agentChassis",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "description": "Agent chassis token for agent-authored writes.",
-              "example": "codex-cli"
-            }
-          },
-          {
-            "description": "Agent model id for agent-authored writes.",
-            "in": "query",
-            "name": "agentModel",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "description": "Agent model id for agent-authored writes."
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/EntityPersonAssociation"
-                }
-              }
-            },
-            "description": "OK"
-          },
-          "400": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Bad Request"
-          },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
-          "404": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Not Found"
-          },
-          "406": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Not Acceptable"
-          },
-          "409": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Conflict"
-          },
-          "429": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Too Many Requests"
-          },
-          "500": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Internal Server Error"
-          },
-          "503": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Service Unavailable"
-          }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          },
-          {
-            "adminApiKeyAuth": []
-          },
-          {
-            "clientSecretAuth": []
-          }
-        ],
-        "summary": "Delete entity person association",
-        "tags": [
-          "Entity Person Associations"
-        ]
-      }
-    },
-    "/v1/entities/{entityId}/people/{associationId}/corporate-title": {
-      "delete": {
-        "description": "Clears the corporate title on the entity/person join row and keeps the join row itself.",
-        "operationId": "clearEntityPersonCorporateTitle_1",
-        "parameters": [
-          {
-            "description": "Entity id",
-            "in": "path",
-            "name": "entityId",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid",
-              "description": "Canonical entity UUID",
-              "x-source-file": "src/main/kotlin/vc/aventure/domain/model/identity/EntityId.kt"
-            }
-          },
-          {
-            "description": "Association id",
-            "in": "path",
-            "name": "associationId",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "description": "Write provenance source type.",
-            "in": "query",
-            "name": "sourceType",
-            "required": true,
-            "schema": {
-              "$ref": "#/components/schemas/DatasourceWritableDataSourceType",
-              "example": "aventureStaff"
-            }
-          },
-          {
-            "description": "Source detail or reviewer reference for the write.",
-            "example": "aventure.vc",
-            "in": "query",
-            "name": "sourceDetail",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "description": "Source detail or reviewer reference for the write.",
-              "example": "aventure.vc"
-            }
-          },
-          {
-            "description": "Provider name for provider-native IDs or slugs.",
-            "example": "TechCrunch",
-            "in": "query",
-            "name": "sourceProvider",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "description": "Provider name for provider-native IDs or slugs.",
-              "example": "TechCrunch"
-            }
-          },
-          {
-            "description": "Provider-native source ID.",
-            "example": "tc-2026-05-20-example-round",
-            "in": "query",
-            "name": "sourceProviderId",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "description": "Provider-native source ID.",
-              "example": "tc-2026-05-20-example-round"
-            }
-          },
-          {
-            "description": "Provider-native source slug.",
-            "example": "example-round",
-            "in": "query",
-            "name": "sourceProviderSlug",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "description": "Provider-native source slug.",
-              "example": "example-round"
-            }
-          },
-          {
-            "description": "Actor type; inferred as agent when agentChassis and agentModel are supplied, or as employee from an authenticated user JWT session.",
-            "example": "agent",
-            "in": "query",
-            "name": "actorType",
-            "required": false,
-            "schema": {
-              "$ref": "#/components/schemas/DatasourceProvenanceActorType"
-            }
-          },
-          {
-            "description": "Agent chassis token for agent-authored writes.",
-            "example": "codex-cli",
-            "in": "query",
-            "name": "agentChassis",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "description": "Agent chassis token for agent-authored writes.",
-              "example": "codex-cli"
-            }
-          },
-          {
-            "description": "Agent model id for agent-authored writes.",
-            "in": "query",
-            "name": "agentModel",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "description": "Agent model id for agent-authored writes."
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/EntityPersonAssociation"
-                }
-              }
-            },
-            "description": "OK"
-          },
-          "400": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Bad Request"
-          },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
-          "404": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Not Found"
-          },
-          "406": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Not Acceptable"
-          },
-          "409": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Conflict"
-          },
-          "429": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Too Many Requests"
-          },
-          "500": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Internal Server Error"
-          },
-          "503": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Service Unavailable"
-          }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          },
-          {
-            "adminApiKeyAuth": []
-          },
-          {
-            "clientSecretAuth": []
-          }
-        ],
-        "summary": "Clear corporate title on an entity person association",
-        "tags": [
-          "Entity Person Associations"
-        ]
       }
     },
     "/v1/entities/{entityId}/products/suggestions": {
@@ -30055,7 +28428,7 @@
             }
           },
           {
-            "description": "Opaque URL-safe cursor token from X-Next-Cursor. Reuse the same filters.",
+            "description": "Opaque URL-safe cursor token from X-Next-Cursor. Reuse the same filters and sort.",
             "in": "query",
             "name": "cursor",
             "required": false,
@@ -31076,7 +29449,7 @@
             }
           },
           {
-            "description": "Zero-based page index",
+            "description": "Zero-based page index (0..N)",
             "example": 0,
             "in": "query",
             "name": "page",
@@ -31088,7 +29461,7 @@
             }
           },
           {
-            "description": "Page size",
+            "description": "The size of the page to be returned",
             "example": 25,
             "in": "query",
             "name": "size",
@@ -32140,7 +30513,7 @@
             }
           },
           {
-            "description": "Zero-based page index",
+            "description": "Zero-based page index (0..N)",
             "example": 0,
             "in": "query",
             "name": "page",
@@ -32152,7 +30525,7 @@
             }
           },
           {
-            "description": "Page size",
+            "description": "The size of the page to be returned",
             "example": 25,
             "in": "query",
             "name": "size",
@@ -36616,6 +34989,270 @@
           "Unique IDs"
         ]
       },
+      "patch": {
+        "description": "Applies an RFC 7396 merge patch to one external identifier mapping after verifying it belongs to the path owner. Omitted idType, identifier, and source preserve existing values; idType and identifier are normalized and validated against the owner scope. Set source to null to clear the attribution label. Provenance query parameters are required for audit.",
+        "operationId": "updateEntityUniqueId",
+        "parameters": [
+          {
+            "description": "Canonical entity UUID.",
+            "example": "04e2bf9c-a100-72ad-83ff-ba69c647b30b",
+            "in": "path",
+            "name": "entityId",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "description": "Canonical entity UUID",
+              "x-source-file": "src/main/kotlin/vc/aventure/domain/model/identity/EntityId.kt"
+            }
+          },
+          {
+            "description": "Unique-id row id.",
+            "example": 42,
+            "in": "path",
+            "name": "uniqueIdId",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "description": "Write provenance source type.",
+            "in": "query",
+            "name": "sourceType",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/DatasourceWritableDataSourceType",
+              "example": "aventureStaff"
+            }
+          },
+          {
+            "description": "Source detail or reviewer reference for the write.",
+            "example": "aventure.vc",
+            "in": "query",
+            "name": "sourceDetail",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "Source detail or reviewer reference for the write.",
+              "example": "aventure.vc"
+            }
+          },
+          {
+            "description": "Provider name for provider-native IDs or slugs.",
+            "example": "TechCrunch",
+            "in": "query",
+            "name": "sourceProvider",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Provider name for provider-native IDs or slugs.",
+              "example": "TechCrunch"
+            }
+          },
+          {
+            "description": "Provider-native source ID.",
+            "example": "tc-2026-05-20-example-round",
+            "in": "query",
+            "name": "sourceProviderId",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Provider-native source ID.",
+              "example": "tc-2026-05-20-example-round"
+            }
+          },
+          {
+            "description": "Provider-native source slug.",
+            "example": "example-round",
+            "in": "query",
+            "name": "sourceProviderSlug",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Provider-native source slug.",
+              "example": "example-round"
+            }
+          },
+          {
+            "description": "Actor type; inferred as agent when agentChassis and agentModel are supplied, or as employee from an authenticated user JWT session.",
+            "example": "agent",
+            "in": "query",
+            "name": "actorType",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/DatasourceProvenanceActorType"
+            }
+          },
+          {
+            "description": "Agent chassis token for agent-authored writes.",
+            "example": "codex-cli",
+            "in": "query",
+            "name": "agentChassis",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Agent chassis token for agent-authored writes.",
+              "example": "codex-cli"
+            }
+          },
+          {
+            "description": "Agent model id for agent-authored writes.",
+            "in": "query",
+            "name": "agentModel",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Agent model id for agent-authored writes."
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/merge-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UniqueIdMutation"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UniqueId"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "406": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Acceptable"
+          },
+          "409": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "415": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unsupported Media Type"
+          },
+          "422": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "500": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          },
+          {
+            "adminApiKeyAuth": []
+          }
+        ],
+        "summary": "Update an entity unique id",
+        "tags": [
+          "Unique IDs"
+        ]
+      },
       "delete": {
         "description": "Permanently removes one external identifier mapping after verifying it belongs to the path owner. Returns the deleted record. Provenance query parameters are required for audit.",
         "operationId": "deleteEntityUniqueId",
@@ -39462,7 +38099,7 @@
         "operationId": "listJobs",
         "parameters": [
           {
-            "description": "Zero-based page index",
+            "description": "Zero-based page index (0..N)",
             "in": "query",
             "name": "page",
             "required": false,
@@ -39473,7 +38110,7 @@
             }
           },
           {
-            "description": "Page size (max 100)",
+            "description": "The size of the page to be returned; maximum 100.",
             "in": "query",
             "name": "size",
             "required": false,
@@ -43243,13 +41880,7 @@
             "name": "urlMatchMode",
             "required": false,
             "schema": {
-              "type": "string",
-              "description": "URL match mode",
-              "enum": [
-                "hostPath",
-                "domain"
-              ],
-              "example": "hostPath"
+              "$ref": "#/components/schemas/EntityUrlMatchMode"
             }
           },
           {
@@ -43265,7 +41896,7 @@
             }
           },
           {
-            "description": "Zero-based page index",
+            "description": "Zero-based page index (0..N)",
             "example": 0,
             "in": "query",
             "name": "page",
@@ -43276,7 +41907,7 @@
             }
           },
           {
-            "description": "Page size (default 10, max 100)",
+            "description": "The size of the page to be returned; duplicate-check default 10, maximum 100.",
             "example": 10,
             "in": "query",
             "name": "size",
@@ -43396,7 +42027,7 @@
         "operationId": "duplicateCheckNewsPost",
         "parameters": [
           {
-            "description": "Zero-based page index",
+            "description": "Zero-based page index (0..N)",
             "example": 0,
             "in": "query",
             "name": "page",
@@ -43407,7 +42038,7 @@
             }
           },
           {
-            "description": "Page size (default 10, max 100)",
+            "description": "The size of the page to be returned; duplicate-check default 10, maximum 100.",
             "example": 10,
             "in": "query",
             "name": "size",
@@ -43655,13 +42286,7 @@
             "name": "urlMatchMode",
             "required": false,
             "schema": {
-              "type": "string",
-              "description": "URL match mode",
-              "enum": [
-                "hostPath",
-                "domain"
-              ],
-              "example": "hostPath"
+              "$ref": "#/components/schemas/EntityUrlMatchMode"
             }
           },
           {
@@ -43677,7 +42302,7 @@
             }
           },
           {
-            "description": "Zero-based page index",
+            "description": "Zero-based page index (0..N)",
             "example": 0,
             "in": "query",
             "name": "page",
@@ -43688,7 +42313,7 @@
             }
           },
           {
-            "description": "Page size (default 10, max 100)",
+            "description": "The size of the page to be returned; duplicate-check default 10, maximum 100.",
             "example": 10,
             "in": "query",
             "name": "size",
@@ -43808,7 +42433,7 @@
         "operationId": "duplicateCheckNewsCandidatesPost",
         "parameters": [
           {
-            "description": "Zero-based page index",
+            "description": "Zero-based page index (0..N)",
             "example": 0,
             "in": "query",
             "name": "page",
@@ -43819,7 +42444,7 @@
             }
           },
           {
-            "description": "Page size (default 10, max 100)",
+            "description": "The size of the page to be returned; duplicate-check default 10, maximum 100.",
             "example": 10,
             "in": "query",
             "name": "size",
@@ -47801,25 +46426,25 @@
             }
           },
           {
-            "description": "Zero-based page index; omit page and size for the full batch.",
+            "description": "Zero-based page index (0..N); omit page and size for the full batch.",
             "in": "query",
             "name": "page",
             "required": false,
             "schema": {
               "type": "integer",
               "format": "int32",
-              "description": "Zero-based page index; omit page and size for the full batch."
+              "description": "Zero-based page index (0..N); omit page and size for the full batch."
             }
           },
           {
-            "description": "Page size; omit page and size for the full batch.",
+            "description": "The size of the page to be returned; omit page and size for the full batch.",
             "in": "query",
             "name": "size",
             "required": false,
             "schema": {
               "type": "integer",
               "format": "int32",
-              "description": "Page size; omit page and size for the full batch."
+              "description": "The size of the page to be returned; omit page and size for the full batch."
             }
           }
         ],
@@ -48867,7 +47492,7 @@
             }
           },
           {
-            "description": "Cursor token for deep pagination",
+            "description": "Opaque URL-safe cursor token from X-Next-Cursor. Reuse the same filters and sort.",
             "example": "2025-01-01T00:00:00Z::123",
             "in": "query",
             "name": "cursor",
@@ -50480,7 +49105,7 @@
             }
           },
           {
-            "description": "Zero-based page index",
+            "description": "Zero-based page index (0..N)",
             "example": 0,
             "in": "query",
             "name": "page",
@@ -50491,7 +49116,7 @@
             }
           },
           {
-            "description": "Page size",
+            "description": "The size of the page to be returned; duplicate-check default 10, maximum 100.",
             "example": 10,
             "in": "query",
             "name": "size",
@@ -50621,7 +49246,7 @@
         "operationId": "duplicateCheckPeoplePost",
         "parameters": [
           {
-            "description": "Zero-based page index",
+            "description": "Zero-based page index (0..N)",
             "example": 0,
             "in": "query",
             "name": "page",
@@ -50632,7 +49257,7 @@
             }
           },
           {
-            "description": "Page size",
+            "description": "The size of the page to be returned; duplicate-check default 10, maximum 100.",
             "example": 10,
             "in": "query",
             "name": "size",
@@ -50927,7 +49552,7 @@
             }
           },
           {
-            "description": "Zero-based page index",
+            "description": "Zero-based page index (0..N)",
             "example": 0,
             "in": "query",
             "name": "page",
@@ -50938,7 +49563,7 @@
             }
           },
           {
-            "description": "Page size",
+            "description": "The size of the page to be returned; duplicate-check default 10, maximum 100.",
             "example": 10,
             "in": "query",
             "name": "size",
@@ -51068,7 +49693,7 @@
         "operationId": "duplicateCheckPeopleCandidatesPost",
         "parameters": [
           {
-            "description": "Zero-based page index",
+            "description": "Zero-based page index (0..N)",
             "example": 0,
             "in": "query",
             "name": "page",
@@ -51079,7 +49704,7 @@
             }
           },
           {
-            "description": "Page size",
+            "description": "The size of the page to be returned; duplicate-check default 10, maximum 100.",
             "example": 10,
             "in": "query",
             "name": "size",
@@ -51482,7 +50107,7 @@
             }
           },
           {
-            "description": "Maximum results to return (default 20, max 100)",
+            "description": "The size of the page to be returned; filter-search default 20, maximum 100.",
             "example": 20,
             "in": "query",
             "name": "size",
@@ -51493,7 +50118,7 @@
             }
           },
           {
-            "description": "Sorting is not supported for filter search",
+            "description": "Sorting is not supported",
             "in": "query",
             "name": "sort",
             "required": false,
@@ -60165,6 +58790,270 @@
           "Unique IDs"
         ]
       },
+      "patch": {
+        "description": "Applies an RFC 7396 merge patch to one external identifier mapping after verifying it belongs to the path owner. Omitted idType, identifier, and source preserve existing values; idType and identifier are normalized and validated against the owner scope. Set source to null to clear the attribution label. Provenance query parameters are required for audit.",
+        "operationId": "updatePersonUniqueId",
+        "parameters": [
+          {
+            "description": "Canonical person UUID.",
+            "example": "1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed",
+            "in": "path",
+            "name": "personId",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "description": "Canonical person UUID",
+              "x-source-file": "src/main/kotlin/vc/aventure/domain/model/identity/PersonId.kt"
+            }
+          },
+          {
+            "description": "Unique-id row id.",
+            "example": 42,
+            "in": "path",
+            "name": "uniqueIdId",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "description": "Write provenance source type.",
+            "in": "query",
+            "name": "sourceType",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/DatasourceWritableDataSourceType",
+              "example": "aventureStaff"
+            }
+          },
+          {
+            "description": "Source detail or reviewer reference for the write.",
+            "example": "aventure.vc",
+            "in": "query",
+            "name": "sourceDetail",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "Source detail or reviewer reference for the write.",
+              "example": "aventure.vc"
+            }
+          },
+          {
+            "description": "Provider name for provider-native IDs or slugs.",
+            "example": "TechCrunch",
+            "in": "query",
+            "name": "sourceProvider",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Provider name for provider-native IDs or slugs.",
+              "example": "TechCrunch"
+            }
+          },
+          {
+            "description": "Provider-native source ID.",
+            "example": "tc-2026-05-20-example-round",
+            "in": "query",
+            "name": "sourceProviderId",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Provider-native source ID.",
+              "example": "tc-2026-05-20-example-round"
+            }
+          },
+          {
+            "description": "Provider-native source slug.",
+            "example": "example-round",
+            "in": "query",
+            "name": "sourceProviderSlug",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Provider-native source slug.",
+              "example": "example-round"
+            }
+          },
+          {
+            "description": "Actor type; inferred as agent when agentChassis and agentModel are supplied, or as employee from an authenticated user JWT session.",
+            "example": "agent",
+            "in": "query",
+            "name": "actorType",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/DatasourceProvenanceActorType"
+            }
+          },
+          {
+            "description": "Agent chassis token for agent-authored writes.",
+            "example": "codex-cli",
+            "in": "query",
+            "name": "agentChassis",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Agent chassis token for agent-authored writes.",
+              "example": "codex-cli"
+            }
+          },
+          {
+            "description": "Agent model id for agent-authored writes.",
+            "in": "query",
+            "name": "agentModel",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Agent model id for agent-authored writes."
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/merge-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UniqueIdMutation"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UniqueId"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "406": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Acceptable"
+          },
+          "409": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "415": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unsupported Media Type"
+          },
+          "422": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "500": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          },
+          {
+            "adminApiKeyAuth": []
+          }
+        ],
+        "summary": "Update a person unique id",
+        "tags": [
+          "Unique IDs"
+        ]
+      },
       "delete": {
         "description": "Permanently removes one external identifier mapping after verifying it belongs to the path owner. Returns the deleted record. Provenance query parameters are required for audit.",
         "operationId": "deletePersonUniqueId",
@@ -64950,6 +63839,23 @@
         ],
         "x-source-file": "src/main/kotlin/vc/aventure/domain/model/address/AddressState.kt"
       },
+      "AgentChassisCatalog": {
+        "type": "object",
+        "description": "Agent runtime chassis tokens accepted by the authenticated API.",
+        "properties": {
+          "chassis": {
+            "type": "array",
+            "description": "Accepted agent chassis tokens, sorted lexicographically.",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "chassis"
+        ],
+        "x-source-file": "src/main/kotlin/vc/aventure/domain/model/datasource/AgentChassisCatalog.kt"
+      },
       "AgentHelp": {
         "type": "object",
         "description": "Grounded natural-language help answer with citations to specific operations, skills, or completion gates. Unsupported questions abstain (LOW confidence) rather than guess.",
@@ -64966,8 +63872,8 @@
             }
           },
           "confidence": {
-            "$ref": "#/components/schemas/HelpConfidence",
-            "description": "Confidence the answer is fully supported by the cited corpus."
+            "$ref": "#/components/schemas/Confidence",
+            "description": "Confidence the answer is fully supported by the cited corpus. LOW signals an abstention."
           },
           "recommendedCommand": {
             "type": [
@@ -65153,13 +64059,7 @@
             "format": "date-time"
           },
           "plan": {
-            "type": "string",
-            "enum": [
-              "PRO_MONTHLY",
-              "PRO_YEARLY",
-              "PRO_YEARLY_GRANDFATHERED"
-            ],
-            "x-source-file": "src/main/kotlin/vc/aventure/domain/model/billing/BillingPlanType.kt"
+            "$ref": "#/components/schemas/BillingPlanType"
           },
           "url": {
             "type": "string",
@@ -65191,6 +64091,16 @@
           "plan"
         ],
         "x-source-file": "src/main/kotlin/vc/aventure/domain/model/billing/BillingCheckout.kt"
+      },
+      "BillingPlanType": {
+        "type": "string",
+        "description": "Canonical Pro billing plan offered by aVenture.",
+        "enum": [
+          "PRO_MONTHLY",
+          "PRO_YEARLY",
+          "PRO_YEARLY_GRANDFATHERED"
+        ],
+        "x-source-file": "src/main/kotlin/vc/aventure/domain/model/billing/BillingPlanType.kt"
       },
       "BillingPortal": {
         "type": "object",
@@ -65234,16 +64144,14 @@
             "format": "date-time"
           },
           "plan": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "enum": [
-              "PRO_MONTHLY",
-              "PRO_YEARLY",
-              "PRO_YEARLY_GRANDFATHERED"
-            ],
-            "x-source-file": "src/main/kotlin/vc/aventure/domain/model/billing/BillingPlanType.kt"
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/BillingPlanType"
+              },
+              {
+                "type": "null"
+              }
+            ]
           },
           "status": {
             "type": "string",
@@ -65947,13 +64855,7 @@
             "type": "array",
             "description": "Allowed inactiveTagOverride values for this conflict",
             "items": {
-              "type": "string",
-              "description": "Caller-chosen handling when the canonical classification value exists but is dormant.",
-              "enum": [
-                "REACTIVATE",
-                "ATTACH_INACTIVE"
-              ],
-              "x-source-file": "src/main/kotlin/vc/aventure/domain/model/classification/EntityClassification.kt"
+              "$ref": "#/components/schemas/EntityClassificationInactiveTagOverride"
             }
           },
           "slug": {
@@ -66258,6 +65160,16 @@
           "unobtainableAllowed"
         ],
         "x-source-file": "src/main/kotlin/vc/aventure/domain/model/completion/CompletionGateType.kt"
+      },
+      "Confidence": {
+        "type": "string",
+        "description": "Three-level confidence band for a classifier, model, or probe verdict. The carrying property states what is assessed and what each band licenses.",
+        "enum": [
+          "HIGH",
+          "MEDIUM",
+          "LOW"
+        ],
+        "x-source-file": "src/main/kotlin/vc/aventure/domain/model/confidence/Confidence.kt"
       },
       "Content": {
         "type": "object",
@@ -66976,7 +65888,7 @@
         "description": "Structured interpretation of a natural-language content search.",
         "properties": {
           "confidence": {
-            "$ref": "#/components/schemas/SearchConfidence",
+            "$ref": "#/components/schemas/Confidence",
             "description": "Planner confidence in the structured interpretation."
           },
           "filter": {
@@ -67145,16 +66057,7 @@
             ]
           },
           "resourceType": {
-            "type": "string",
-            "description": "Resource type whose slug is being changed",
-            "enum": [
-              "entity",
-              "person",
-              "news",
-              "blog",
-              "content"
-            ],
-            "x-source-file": "src/main/kotlin/vc/aventure/domain/model/redirect/SlugResource.kt"
+            "$ref": "#/components/schemas/SlugResource"
           },
           "showOnSitemap": {
             "type": "boolean"
@@ -68401,21 +67304,29 @@
         },
         "x-source-file": "src/main/kotlin/vc/aventure/domain/model/classification/EntityClassification.kt"
       },
+      "EntityClassificationInactiveTagOverride": {
+        "type": "string",
+        "description": "Caller-chosen handling when the canonical classification value exists but is dormant.",
+        "enum": [
+          "REACTIVATE",
+          "ATTACH_INACTIVE"
+        ],
+        "x-source-file": "src/main/kotlin/vc/aventure/domain/model/classification/EntityClassification.kt"
+      },
       "EntityClassificationMutation": {
         "type": "object",
         "description": "Create or update an entity classification. Use tagId for an existing tag, standardizedClassificationId for an existing standardized classification, or type and name for a creatable editorial value.",
         "properties": {
           "inactiveTagOverride": {
-            "type": [
-              "string",
-              "null"
-            ],
             "description": "Dormant-value handling when type plus name matches an inactive catalog row. Omitted reactivates the dormant value by default (it becomes current and the write returns a Warning header naming the reactivated tag). Set ATTACH_INACTIVE to attach the dormant value without reactivating it.",
-            "enum": [
-              "REACTIVATE",
-              "ATTACH_INACTIVE"
-            ],
-            "x-source-file": "src/main/kotlin/vc/aventure/domain/model/classification/EntityClassification.kt"
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/EntityClassificationInactiveTagOverride"
+              },
+              {
+                "type": "null"
+              }
+            ]
           },
           "isCurrent": {
             "type": [
@@ -71139,7 +70050,7 @@
             "description": "Instant when this live check completed."
           },
           "confidence": {
-            "$ref": "#/components/schemas/OperatingStatusSignalConfidence",
+            "$ref": "#/components/schemas/Confidence",
             "description": "Classifier confidence for the verdict."
           },
           "currentOperatingStatus": {
@@ -73721,16 +72632,6 @@
         ],
         "x-source-file": "src/main/kotlin/vc/aventure/domain/model/agent/AgentHelp.kt"
       },
-      "HelpConfidence": {
-        "type": "string",
-        "description": "Confidence the answer is fully supported by the cited corpus. LOW signals an abstention.",
-        "enum": [
-          "HIGH",
-          "MEDIUM",
-          "LOW"
-        ],
-        "x-source-file": "src/main/kotlin/vc/aventure/domain/model/agent/AgentHelp.kt"
-      },
       "HelpScope": {
         "type": "string",
         "description": "Operation scope a help answer may recommend: read-only, write, or all.",
@@ -73915,14 +72816,8 @@
             "description": "Literal visible description of the candidate mark, when assessed by vision"
           },
           "confidence": {
-            "type": "string",
-            "description": "Confidence in the outcome",
-            "enum": [
-              "HIGH",
-              "MEDIUM",
-              "LOW"
-            ],
-            "x-source-file": "src/main/kotlin/vc/aventure/domain/model/media/LogoAccuracy.kt"
+            "$ref": "#/components/schemas/Confidence",
+            "description": "Confidence in the outcome"
           },
           "method": {
             "type": "string",
@@ -74742,16 +73637,16 @@
             "example": "techcrunch.com"
           },
           "urlMatchMode": {
-            "type": [
-              "string",
-              "null"
-            ],
             "description": "URL match mode",
-            "enum": [
-              "hostPath",
-              "domain"
-            ],
-            "example": "hostPath"
+            "example": "hostPath",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/EntityUrlMatchMode"
+              },
+              {
+                "type": "null"
+              }
+            ]
           }
         },
         "x-source-file": "src/main/kotlin/vc/aventure/domain/model/news/NewsDuplicateCheck.kt"
@@ -74804,7 +73699,7 @@
       },
       "NewsFeedbackAcknowledgement": {
         "type": "object",
-        "description": "Feedback acknowledgement for news articles - non-mutating response",
+        "description": "Feedback acknowledgment for news articles - non-mutating response",
         "properties": {
           "acknowledged": {
             "type": "boolean"
@@ -75401,16 +74296,6 @@
           "conflictingArticleTitle"
         ],
         "x-source-file": "src/main/kotlin/vc/aventure/domain/model/news/NewsSourceUrlConflict.kt"
-      },
-      "OperatingStatusSignalConfidence": {
-        "type": "string",
-        "description": "Confidence assigned to an operating-status signal.",
-        "enum": [
-          "HIGH",
-          "MEDIUM",
-          "LOW"
-        ],
-        "x-source-file": "src/main/kotlin/vc/aventure/domain/model/entity/EntityOperatingStatusSignal.kt"
       },
       "OperatingStatusSignalVerdict": {
         "type": "string",
@@ -78795,7 +77680,7 @@
         "description": "Structured interpretation of a natural-language people search: canonical filter, sort, confidence, and any unsupported constraint the planner could not translate exactly.",
         "properties": {
           "confidence": {
-            "$ref": "#/components/schemas/SearchConfidence",
+            "$ref": "#/components/schemas/Confidence",
             "description": "Planner confidence in the structured interpretation."
           },
           "execution": {
@@ -78816,7 +77701,7 @@
           },
           "sort": {
             "$ref": "#/components/schemas/SortSpecPersonSortField",
-            "description": "Sort generated from the natural-language query."
+            "description": "Sort applied to the result page. Empty when the page was ordered by semantic relevance rank instead of a sortable column."
           },
           "unsupported": {
             "type": [
@@ -79366,19 +78251,14 @@
             ]
           },
           "targetResourceType": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "description": "Resource type whose slug is being changed",
-            "enum": [
-              "entity",
-              "person",
-              "news",
-              "blog",
-              "content"
-            ],
-            "x-source-file": "src/main/kotlin/vc/aventure/domain/model/redirect/SlugResource.kt"
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/SlugResource"
+              },
+              {
+                "type": "null"
+              }
+            ]
           }
         },
         "required": [
@@ -79876,16 +78756,6 @@
         ],
         "x-source-file": "src/main/kotlin/vc/aventure/domain/model/search/Search.kt"
       },
-      "SearchConfidence": {
-        "type": "string",
-        "description": "Confidence that the natural-language query was fully translated.",
-        "enum": [
-          "HIGH",
-          "MEDIUM",
-          "LOW"
-        ],
-        "x-source-file": "src/main/kotlin/vc/aventure/domain/model/search/NaturalSearch.kt"
-      },
       "SearchDuplicateCandidateScore": {
         "type": "object",
         "description": "Duplicate candidate scoring result. Use id/name/slug/typeRecord/reason to decide whether the candidate is the requested record. score ranks review priority; it does not prove absence.",
@@ -79996,7 +78866,7 @@
         "description": "Structured interpretation of a natural-language entity search: canonical filter, sort, confidence, and any unsupported constraint the planner could not translate.",
         "properties": {
           "confidence": {
-            "$ref": "#/components/schemas/SearchConfidence",
+            "$ref": "#/components/schemas/Confidence",
             "description": "Planner confidence in the structured interpretation."
           },
           "execution": {
@@ -80017,7 +78887,7 @@
           },
           "sort": {
             "$ref": "#/components/schemas/SortSpecEntityFilterSortable",
-            "description": "Sort generated from the natural-language query."
+            "description": "Sort applied to the result page. Empty when the page was ordered by semantic relevance rank instead of a sortable column."
           },
           "unsupported": {
             "type": [
@@ -80318,16 +79188,7 @@
             "$ref": "#/components/schemas/UrlSlugRedirect"
           },
           "resourceType": {
-            "type": "string",
-            "description": "Resource type whose slug is being changed",
-            "enum": [
-              "entity",
-              "person",
-              "news",
-              "blog",
-              "content"
-            ],
-            "x-source-file": "src/main/kotlin/vc/aventure/domain/model/redirect/SlugResource.kt"
+            "$ref": "#/components/schemas/SlugResource"
           }
         },
         "required": [
@@ -80385,16 +79246,7 @@
             "type": "string"
           },
           "resourceType": {
-            "type": "string",
-            "description": "Resource type whose slug is being changed",
-            "enum": [
-              "entity",
-              "person",
-              "news",
-              "blog",
-              "content"
-            ],
-            "x-source-file": "src/main/kotlin/vc/aventure/domain/model/redirect/SlugResource.kt"
+            "$ref": "#/components/schemas/SlugResource"
           },
           "slug": {
             "type": "string"
@@ -80411,6 +79263,18 @@
           "url"
         ],
         "x-source-file": "src/main/kotlin/vc/aventure/domain/model/redirect/SlugLocation.kt"
+      },
+      "SlugResource": {
+        "type": "string",
+        "description": "Resource type whose slug is being changed",
+        "enum": [
+          "entity",
+          "person",
+          "news",
+          "blog",
+          "content"
+        ],
+        "x-source-file": "src/main/kotlin/vc/aventure/domain/model/redirect/SlugResource.kt"
       },
       "SortObject": {
         "type": "object",
@@ -80953,7 +79817,7 @@
       },
       "UniqueIdMutation": {
         "type": "object",
-        "description": "Create payload for attaching an external identifier to an owner.",
+        "description": "Create or update payload for attaching an external identifier to an owner. For PATCH, omitted fields preserve their existing values and source may be explicitly cleared with null.",
         "properties": {
           "idType": {
             "type": [

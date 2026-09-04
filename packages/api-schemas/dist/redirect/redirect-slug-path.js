@@ -1,5 +1,6 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
+import { SlugResourceSchema } from "./slug-resource.js";
 /**
  * Redirect slug path
  *
@@ -15,7 +16,6 @@ export const RedirectSlugPathSchema = z.object({
     oldUrl: z.string(),
     targetCurrentSlug: z.string().nullish(),
     targetId: z.string().nullish(),
-    /** Resource type whose slug is being changed */
-    targetResourceType: z.enum(["entity", "person", "news", "blog", "content"]).nullish(),
+    targetResourceType: SlugResourceSchema.nullish(),
 });
 //# sourceMappingURL=redirect-slug-path.js.map

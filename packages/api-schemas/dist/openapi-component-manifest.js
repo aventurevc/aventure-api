@@ -44,6 +44,10 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         modulePath: "address/validation-status",
         schemaName: "AddressValidationStatusSchema",
     },
+    AgentChassisCatalog: {
+        modulePath: "agent/chassis-catalog",
+        schemaName: "AgentChassisCatalogSchema",
+    },
     AgentHelp: { modulePath: "agent/help", schemaName: "AgentHelpSchema" },
     AgentHelpQuestion: { modulePath: "agent/help-question", schemaName: "AgentHelpQuestionSchema" },
     AgentHelpReindexResult: {
@@ -72,6 +76,10 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         modulePath: "agent/task-preset-catalog",
         schemaName: "AgentTaskPresetCatalogSchema",
     },
+    AgentTaskPresetPhase: {
+        modulePath: "agent/task-preset-phase",
+        schemaName: "AgentTaskPresetPhaseSchema",
+    },
     AgentTaskResultMetadata: {
         modulePath: "agent/task-result-metadata",
         schemaName: "AgentTaskResultMetadataSchema",
@@ -91,6 +99,7 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
     AppJobMutation: { modulePath: "app/job-mutation", schemaName: "AppJobMutationSchema" },
     AppJobRun: { modulePath: "app/job-run", schemaName: "AppJobRunSchema" },
     AppJobRunDetail: { modulePath: "app/job-run-detail", schemaName: "AppJobRunDetailSchema" },
+    AppJobRunStatus: { modulePath: "app/job-run-status", schemaName: "AppJobRunStatusSchema" },
     AuthAck: { modulePath: "auth/ack", schemaName: "AuthAckSchema" },
     AuthAdminUserMutation: {
         modulePath: "auth/admin-user-mutation",
@@ -130,6 +139,7 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         modulePath: "billing/checkout-mutation",
         schemaName: "BillingCheckoutMutationSchema",
     },
+    BillingPlanType: { modulePath: "billing/plan-type", schemaName: "BillingPlanTypeSchema" },
     BillingPortal: { modulePath: "billing/portal", schemaName: "BillingPortalSchema" },
     BillingSubscription: {
         modulePath: "billing/subscription",
@@ -224,9 +234,17 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         schemaName: "ClerkScriptLoadFailureClassificationSchema",
     },
     CliAuthorization: { modulePath: "cli/authorization", schemaName: "CliAuthorizationSchema" },
+    CliAuthorizationClientPlatform: {
+        modulePath: "cli/authorization-client-platform",
+        schemaName: "CliAuthorizationClientPlatformSchema",
+    },
     CliAuthorizationDelivery: {
         modulePath: "cli/authorization-delivery",
         schemaName: "CliAuthorizationDeliverySchema",
+    },
+    CliAuthorizationEncryptionAlgorithm: {
+        modulePath: "cli/authorization-encryption-algorithm",
+        schemaName: "CliAuthorizationEncryptionAlgorithmSchema",
     },
     CliAuthorizationMutation: {
         modulePath: "cli/authorization-mutation",
@@ -239,6 +257,10 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
     CliAuthorizationStart: {
         modulePath: "cli/authorization-start",
         schemaName: "CliAuthorizationStartSchema",
+    },
+    CliAuthorizationStatus: {
+        modulePath: "cli/authorization-status",
+        schemaName: "CliAuthorizationStatusSchema",
     },
     CliAuthorizationTerminalReason: {
         modulePath: "cli/authorization-terminal-reason",
@@ -260,6 +282,7 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         modulePath: "system/composite-health-descriptor",
         schemaName: "CompositeHealthDescriptorSchema",
     },
+    Confidence: { modulePath: "confidence/confidence", schemaName: "ConfidenceSchema" },
     Contact: { modulePath: "contact/contact", schemaName: "ContactSchema" },
     ContactForm: { modulePath: "contact/form", schemaName: "ContactFormSchema" },
     ContactFormAdminEmail: {
@@ -500,6 +523,10 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         modulePath: "entity/classification",
         schemaName: "EntityClassificationSchema",
     },
+    EntityClassificationInactiveTagOverride: {
+        modulePath: "entity/classification-inactive-tag-override",
+        schemaName: "EntityClassificationInactiveTagOverrideSchema",
+    },
     EntityClassificationMutation: {
         modulePath: "entity/classification-mutation",
         schemaName: "EntityClassificationMutationSchema",
@@ -651,10 +678,6 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
     EntityInvestorParticipation: {
         modulePath: "entity/investor-participation",
         schemaName: "EntityInvestorParticipationSchema",
-    },
-    EntityLetterCounts: {
-        modulePath: "entity/letter-counts",
-        schemaName: "EntityLetterCountsSchema",
     },
     EntityList: { modulePath: "entity/list", schemaName: "EntityListSchema" },
     EntityListQualityGate: {
@@ -898,6 +921,10 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         modulePath: "fundraise/reconciliation-decision",
         schemaName: "FundraiseReconciliationDecisionSchema",
     },
+    FundraiseReconciliationDecisionType: {
+        modulePath: "fundraise/reconciliation-decision-type",
+        schemaName: "FundraiseReconciliationDecisionTypeSchema",
+    },
     FundraiseReconciliationGroup: {
         modulePath: "fundraise/reconciliation-group",
         schemaName: "FundraiseReconciliationGroupSchema",
@@ -909,6 +936,10 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
     FundraiseReconciliationPlan: {
         modulePath: "fundraise/reconciliation-plan",
         schemaName: "FundraiseReconciliationPlanSchema",
+    },
+    FundraiseReconciliationReason: {
+        modulePath: "fundraise/reconciliation-reason",
+        schemaName: "FundraiseReconciliationReasonSchema",
     },
     FundraiseReconciliationRun: {
         modulePath: "fundraise/reconciliation-run",
@@ -1010,7 +1041,6 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         schemaName: "HealthDescriptorSchema",
     },
     HelpCitation: { modulePath: "help/citation", schemaName: "HelpCitationSchema" },
-    HelpConfidence: { modulePath: "help/confidence", schemaName: "HelpConfidenceSchema" },
     HelpScope: { modulePath: "help/scope", schemaName: "HelpScopeSchema" },
     HelpSourceType: { modulePath: "help/source-type", schemaName: "HelpSourceTypeSchema" },
     IndicatedHealthDescriptor: {
@@ -1044,6 +1074,7 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
     },
     JobTypeSummary: { modulePath: "job/type-summary", schemaName: "JobTypeSummarySchema" },
     JsonValue: { modulePath: "http/json-value", schemaName: "JsonValueSchema" },
+    LetterCounts: { modulePath: "letter/counts", schemaName: "LetterCountsSchema" },
     LinkSearch: { modulePath: "link/search", schemaName: "LinkSearchSchema" },
     LocationDirectoryEntry: {
         modulePath: "location/directory-entry",
@@ -1107,10 +1138,6 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         schemaName: "NaturalSearchResultSchema",
     },
     News: { modulePath: "news/news", schemaName: "NewsSchema" },
-    NewsAuthorLetterCounts: {
-        modulePath: "news/author-letter-counts",
-        schemaName: "NewsAuthorLetterCountsSchema",
-    },
     NewsCandidateScore: {
         modulePath: "news/candidate-score",
         schemaName: "NewsCandidateScoreSchema",
@@ -1158,10 +1185,6 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
     NotificationSettingMutation: {
         modulePath: "notification/setting-mutation",
         schemaName: "NotificationSettingMutationSchema",
-    },
-    OperatingStatusSignalConfidence: {
-        modulePath: "operating/status-signal-confidence",
-        schemaName: "OperatingStatusSignalConfidenceSchema",
     },
     OperatingStatusSignalVerdict: {
         modulePath: "operating/status-signal-verdict",
@@ -1389,10 +1412,6 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         modulePath: "person/investor-participation",
         schemaName: "PersonInvestorParticipationSchema",
     },
-    PersonLetterCounts: {
-        modulePath: "person/letter-counts",
-        schemaName: "PersonLetterCountsSchema",
-    },
     PersonListArrayFilter: {
         modulePath: "person/list-array-filter",
         schemaName: "PersonListArrayFilterSchema",
@@ -1509,7 +1528,6 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         schemaName: "SavedViewSortFieldSchema",
     },
     Search: { modulePath: "search/search", schemaName: "SearchSchema" },
-    SearchConfidence: { modulePath: "search/confidence", schemaName: "SearchConfidenceSchema" },
     SearchDuplicateCandidateScore: {
         modulePath: "search/duplicate-candidate-score",
         schemaName: "SearchDuplicateCandidateScoreSchema",
@@ -1573,6 +1591,7 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
     SlugChangeResult: { modulePath: "slug/change-result", schemaName: "SlugChangeResultSchema" },
     SlugDelete: { modulePath: "slug/delete", schemaName: "SlugDeleteSchema" },
     SlugLocation: { modulePath: "slug/location", schemaName: "SlugLocationSchema" },
+    SlugResource: { modulePath: "redirect/slug-resource", schemaName: "SlugResourceSchema" },
     SocialEventType: { modulePath: "social/event-type", schemaName: "SocialEventTypeSchema" },
     SocialMediaPost: { modulePath: "social/media-post", schemaName: "SocialMediaPostSchema" },
     SocialMediaPostStatus: {
@@ -1621,6 +1640,10 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         modulePath: "source/document-capture-image-reference",
         schemaName: "SourceDocumentCaptureImageReferenceSchema",
     },
+    SourceDocumentCaptureMethod: {
+        modulePath: "source/document-capture-method",
+        schemaName: "SourceDocumentCaptureMethodSchema",
+    },
     SourceDocumentCaptureOmission: {
         modulePath: "source/document-capture-omission",
         schemaName: "SourceDocumentCaptureOmissionSchema",
@@ -1636,6 +1659,10 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
     SourceDocumentCapturePartRole: {
         modulePath: "source/document-capture-part-role",
         schemaName: "SourceDocumentCapturePartRoleSchema",
+    },
+    SourceDocumentCaptureScope: {
+        modulePath: "source/document-capture-scope",
+        schemaName: "SourceDocumentCaptureScopeSchema",
     },
     SourceDocumentCaptureType: {
         modulePath: "source/document-capture-type",

@@ -5,7 +5,7 @@ declare const WebProfileLinkSchemaDefinition: z.ZodObject<{
 }, z.core.$strip>;
 type WebProfileLinkDefinition = z.infer<typeof WebProfileLinkSchemaDefinition>;
 /**
- * A labelled bio link.
+ * A labeled bio link.
  *
  * @openapiSchema WebProfileLink
  * @endpoint GET /v1/web/profile/person

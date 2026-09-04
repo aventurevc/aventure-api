@@ -1,5 +1,7 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
+import { CliAuthorizationClientPlatformSchema } from "./authorization-client-platform.js";
+import { CliAuthorizationStatusSchema } from "./authorization-status.js";
 import { CliAuthorizationTerminalReasonSchema } from "./authorization-terminal-reason.js";
 const CliAuthorizationSchemaDefinition = z.object({
     /** Time the authenticated user approved this request */
@@ -7,7 +9,7 @@ const CliAuthorizationSchemaDefinition = z.object({
     /** User-supplied label for the requesting CLI installation */
     clientLabel: z.string(),
     /** Coarse client operating-system family */
-    clientPlatform: z.enum(["MACOS", "LINUX", "WINDOWS", "OTHER"]),
+    clientPlatform: CliAuthorizationClientPlatformSchema,
     /** Human comparison code shown by both the CLI and browser */
     comparisonCode: z.string(),
     /** Time the CLI acknowledged durable local storage */
@@ -23,17 +25,7 @@ const CliAuthorizationSchemaDefinition = z.object({
     /** Time encrypted key delivery became available */
     keyReadyAt: z.iso.datetime({ offset: true }).nullish(),
     /** Current broker lifecycle state */
-    status: z.enum([
-        "PENDING",
-        "ISSUING",
-        "KEY_READY",
-        "REVOKING",
-        "CONSUMED",
-        "REVOKED",
-        "DENIED",
-        "EXPIRED",
-        "FAILED",
-    ]),
+    status: CliAuthorizationStatusSchema,
     /** Time this request entered its terminal state */
     terminalAt: z.iso.datetime({ offset: true }).nullish(),
     /** Non-secret terminal-state explanation */

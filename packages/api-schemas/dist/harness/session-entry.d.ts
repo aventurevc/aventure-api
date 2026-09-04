@@ -5,7 +5,7 @@ declare const HarnessSessionEntrySchemaDefinition: z.ZodObject<{
 }, z.core.$strip>;
 type HarnessSessionEntryDefinition = z.infer<typeof HarnessSessionEntrySchemaDefinition>;
 /**
- * One Claude SDK session entry to append
+ * One opaque harness session entry to append
  *
  * @openapiSchema HarnessSessionEntryInput
  * @endpoint POST /v1/harness/sessions/{sessionId}/entries

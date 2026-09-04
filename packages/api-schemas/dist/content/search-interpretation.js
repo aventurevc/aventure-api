@@ -1,11 +1,11 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
+import { ConfidenceSchema } from "../confidence/confidence.js";
 import { ContentFilterSchema } from "./filter.js";
-import { SearchConfidenceSchema } from "../search/confidence.js";
 import { SortSpecContentSortFieldSchema } from "../sort/spec-content-sort-field.js";
 const ContentSearchInterpretationSchemaDefinition = z.object({
     /** Planner confidence in the structured interpretation. */
-    confidence: SearchConfidenceSchema,
+    confidence: ConfidenceSchema,
     /** Canonical content filter generated from the query. */
     filter: ContentFilterSchema,
     /** Human-readable summary of how the query was interpreted. */

@@ -9,7 +9,7 @@ const NewsFeedbackAcknowledgementSchemaDefinition = z.object({
     slug: z.string().nullish(),
 });
 /**
- * Feedback acknowledgement for news articles - non-mutating response
+ * Feedback acknowledgment for news articles - non-mutating response
  *
  * @openapiSchema NewsFeedbackAcknowledgement
  * @endpoint POST /v1/news/feedback

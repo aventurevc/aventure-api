@@ -23,7 +23,6 @@ import { z } from "zod/v4";
  * @endpoint GET /v1/entities/detail/investments
  * @endpoint GET /v1/entities/detail/investors
  * @endpoint GET /v1/entities/detail/news
- * @endpoint GET /v1/entities/detail/people
  * @endpoint GET /v1/entities/detail/people/time-series
  * @endpoint GET /v1/entities/detail/person-investors
  * @endpoint GET /v1/entities/detail/similar

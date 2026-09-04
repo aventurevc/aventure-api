@@ -8276,7 +8276,6 @@ declare const PageEntityPersonSchemaDefinition: z.ZodObject<{
 type PageEntityPersonDefinition = z.infer<typeof PageEntityPersonSchemaDefinition>;
 /**
  * @openapiSchema PageEntityPerson
- * @endpoint GET /v1/entities/detail/people
  * @endpoint GET /v1/entities/{entityId}/people
  * @contractShape pagination.page-entity-person
  * @contractRole canonical

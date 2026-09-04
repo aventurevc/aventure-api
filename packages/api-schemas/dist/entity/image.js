@@ -15,7 +15,6 @@ const EntityImageSchemaDefinition = z.object({
  * @endpoint GET /v1/entities/detail/fundraise-rounds
  * @endpoint GET /v1/entities/detail/investments
  * @endpoint GET /v1/entities/detail/investors
- * @endpoint GET /v1/entities/detail/people
  * @endpoint GET /v1/entities/detail/person-investors
  * @endpoint GET /v1/entities/detail/similar
  * @endpoint GET /v1/entities/duplicate-check
@@ -43,7 +42,6 @@ const EntityImageSchemaDefinition = z.object({
  * @endpoint GET /v1/people/{personId}/graph
  * @endpoint POST /v1/entities
  * @endpoint POST /v1/entities/{entityId}/acquisitions
- * @endpoint POST /v1/entities/{entityId}/people
  * @endpoint POST /v1/entities/{entityId}/relationships
  * @endpoint POST /v1/entities/batch
  * @endpoint POST /v1/entities/detail
@@ -60,21 +58,17 @@ const EntityImageSchemaDefinition = z.object({
  * @endpoint POST /v1/people/detail/batch
  * @endpoint POST /v1/search/all
  * @endpoint PATCH /v1/entities/{entityId}/acquisitions/{relationshipId}
- * @endpoint PATCH /v1/entities/{entityId}/people/{associationId}
  * @endpoint PATCH /v1/entities/detail
  * @endpoint PATCH /v1/entities/detail/fundraise-rounds/{transactionId}
  * @endpoint PATCH /v1/entities/relationships/{relationshipId}
  * @endpoint PATCH /v1/people/{personId}/entities/{associationId}
  * @endpoint PATCH /v1/people/detail
  * @endpoint PUT /v1/entities/{entityId}/acquisitions/{relationshipId}
- * @endpoint PUT /v1/entities/{entityId}/people/{associationId}
  * @endpoint PUT /v1/entities/detail
  * @endpoint PUT /v1/entities/detail/fundraise-rounds/{transactionId}
  * @endpoint PUT /v1/people/{personId}/entities/{associationId}
  * @endpoint PUT /v1/people/detail
  * @endpoint DELETE /v1/entities/{entityId}/acquisitions/{relationshipId}
- * @endpoint DELETE /v1/entities/{entityId}/people/{associationId}
- * @endpoint DELETE /v1/entities/{entityId}/people/{associationId}/corporate-title
  * @endpoint DELETE /v1/entities/detail/fundraise-rounds/{transactionId}
  * @endpoint DELETE /v1/entities/relationships/{relationshipId}
  * @endpoint DELETE /v1/people/{personId}/entities/{associationId}

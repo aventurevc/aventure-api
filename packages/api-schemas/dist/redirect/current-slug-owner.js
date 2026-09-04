@@ -1,5 +1,6 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
+import { SlugResourceSchema } from "./slug-resource.js";
 /**
  * Current slug owner
  *
@@ -15,8 +16,7 @@ export const CurrentSlugOwnerSchema = z.object({
     id: z.string(),
     isHidden: z.boolean(),
     nameBrand: z.string().nullish(),
-    /** Resource type whose slug is being changed */
-    resourceType: z.enum(["entity", "person", "news", "blog", "content"]),
+    resourceType: SlugResourceSchema,
     showOnSitemap: z.boolean(),
     slug: z.string(),
 });

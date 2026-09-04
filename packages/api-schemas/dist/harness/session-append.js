@@ -8,7 +8,7 @@ const HarnessSessionAppendSchemaDefinition = z.object({
     subpath: z.string(),
 });
 /**
- * Append entries to a run's Claude session
+ * Append entries to a run's harness session
  *
  * @openapiSchema HarnessSessionAppend
  * @endpoint POST /v1/harness/sessions/{sessionId}/entries

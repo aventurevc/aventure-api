@@ -1,12 +1,12 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
+import { ConfidenceSchema } from "../confidence/confidence.js";
 import { EntityFilterSchema } from "../entity/filter.js";
-import { SearchConfidenceSchema } from "./confidence.js";
 import { SearchModeExecutionSchema } from "./mode-execution.js";
 import { SortSpecEntityFilterSortableSchema } from "../sort/spec-entity-filter-sortable.js";
 const SearchInterpretationSchemaDefinition = z.object({
     /** Planner confidence in the structured interpretation. */
-    confidence: SearchConfidenceSchema,
+    confidence: ConfidenceSchema,
     /** Requested and executed search strategy. */
     execution: SearchModeExecutionSchema,
     /** True when the semantic fallback replaced an untranslatable planner result with a semantic search over the original query. */
@@ -15,7 +15,7 @@ const SearchInterpretationSchemaDefinition = z.object({
     filter: EntityFilterSchema,
     /** Human-readable summary of how the query was interpreted. */
     interpretation: z.string(),
-    /** Sort generated from the natural-language query. */
+    /** Sort applied to the result page. Empty when the page was ordered by semantic relevance rank instead of a sortable column. */
     sort: SortSpecEntityFilterSortableSchema,
     /** Constraint the planner could not translate into the canonical EntityFilter contract; null when every material constraint was supported. */
     unsupported: z.string().nullish(),

@@ -9,7 +9,7 @@ declare const NewsFeedbackAcknowledgementSchemaDefinition: z.ZodObject<{
 }, z.core.$strip>;
 type NewsFeedbackAcknowledgementDefinition = z.infer<typeof NewsFeedbackAcknowledgementSchemaDefinition>;
 /**
- * Feedback acknowledgement for news articles - non-mutating response
+ * Feedback acknowledgment for news articles - non-mutating response
  *
  * @openapiSchema NewsFeedbackAcknowledgement
  * @endpoint POST /v1/news/feedback

@@ -1,8 +1,8 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
+import { ConfidenceSchema } from "../confidence/confidence.js";
 import { EntityOperatingStatusSchema } from "./operating-status.js";
 import { EntityUrlCrawlCdnProviderSchema } from "./url-crawl-cdn-provider.js";
-import { OperatingStatusSignalConfidenceSchema } from "../operating/status-signal-confidence.js";
 import { OperatingStatusSignalVerdictSchema } from "../operating/status-signal-verdict.js";
 const EntityOperatingStatusSignalSchemaDefinition = z.object({
     /** CDN or edge provider inferred from the probe. */
@@ -10,7 +10,7 @@ const EntityOperatingStatusSignalSchemaDefinition = z.object({
     /** Instant when this live check completed. */
     checkedAt: z.iso.datetime({ offset: true }),
     /** Classifier confidence for the verdict. */
-    confidence: OperatingStatusSignalConfidenceSchema,
+    confidence: ConfidenceSchema,
     /** Current persisted operating status. */
     currentOperatingStatus: EntityOperatingStatusSchema.nullish(),
     /** Entity whose website was checked. */

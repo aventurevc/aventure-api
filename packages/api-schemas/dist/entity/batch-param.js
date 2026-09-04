@@ -13,7 +13,7 @@ export const ENTITY_BATCH_ENDPOINT = "/v1/entities/batch";
  * @ownerSourceFile src/main/kotlin/vc/aventure/adapters/inbound/web/entity/controller/EntityBatchController.kt
  */
 export const EntityBatchParamSchema = PageParamSchema.extend({
-    /** Opaque URL-safe cursor token for sort-aware continuation. */
+    /** Opaque URL-safe cursor token from X-Next-Cursor. Reuse the same filters and sort. */
     cursor: z.string().optional(),
     /** Privileged read flag. Must be true to return the /v1/entities/detail payload. */
     includeFullDetail: z.boolean().optional(),

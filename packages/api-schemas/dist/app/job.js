@@ -1,5 +1,6 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
+import { AppJobRunStatusSchema } from "./job-run-status.js";
 const AppJobSchemaDefinition = z.object({
     /** Instance currently holding the active claim */
     activeInstanceId: z.string().nullish(),
@@ -34,18 +35,7 @@ const AppJobSchemaDefinition = z.object({
     /** Most recent time JobRunr scheduled this recurring app job */
     lastScheduledAt: z.iso.datetime({ offset: true }).nullish(),
     /** Last run status */
-    lastStatus: z
-        .enum([
-        "REQUESTED",
-        "ENQUEUED",
-        "RUNNING",
-        "SUCCEEDED",
-        "SKIPPED",
-        "FAILED",
-        "CANCELED",
-        "FENCED_OUT",
-    ])
-        .nullish(),
+    lastStatus: AppJobRunStatusSchema.nullish(),
     /** Current claim lease expiry */
     leaseUntil: z.iso.datetime({ offset: true }).nullish(),
     /** Next time JobRunr will schedule this recurring app job */

@@ -9,11 +9,13 @@ const UniqueIdMutationSchemaDefinition = z.object({
     source: z.string().nullish(),
 });
 /**
- * Create payload for attaching an external identifier to an owner.
+ * Create or update payload for attaching an external identifier to an owner. For PATCH, omitted fields preserve their existing values and source may be explicitly cleared with null.
  *
  * @openapiSchema UniqueIdMutation
  * @endpoint POST /v1/entities/{entityId}/unique-ids
  * @endpoint POST /v1/people/{personId}/unique-ids
+ * @endpoint PATCH /v1/entities/{entityId}/unique-ids/{uniqueIdId}
+ * @endpoint PATCH /v1/people/{personId}/unique-ids/{uniqueIdId}
  * @contractShape unique.id-mutation
  * @contractRole canonical
  * @ownerSourceFile src/main/kotlin/vc/aventure/domain/model/uniqueid/UniqueIdMutation.kt

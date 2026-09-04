@@ -1,5 +1,6 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
+import { EntityUrlMatchModeSchema } from "../entity/url-match-mode.js";
 const NewsDuplicateCheckSchemaDefinition = z.object({
     /** Exclude news id */
     excludeId: z.int().nullish(),
@@ -20,7 +21,7 @@ const NewsDuplicateCheckSchemaDefinition = z.object({
     /** URL domain match */
     urlDomain: z.string().nullish(),
     /** URL match mode */
-    urlMatchMode: z.enum(["hostPath", "domain"]).nullish(),
+    urlMatchMode: EntityUrlMatchModeSchema.nullish(),
 });
 /**
  * Canonical news duplicate-check criteria

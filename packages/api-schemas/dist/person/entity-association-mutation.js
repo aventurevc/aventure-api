@@ -26,11 +26,8 @@ const PersonEntityAssociationMutationSchemaDefinition = z.object({
  * Mutation body for joining or updating a person-entity association.
  *
  * @openapiSchema PersonEntityAssociationMutation
- * @endpoint POST /v1/entities/{entityId}/people
  * @endpoint POST /v1/people/{personId}/entities
- * @endpoint PATCH /v1/entities/{entityId}/people/{associationId}
  * @endpoint PATCH /v1/people/{personId}/entities/{associationId}
- * @endpoint PUT /v1/entities/{entityId}/people/{associationId}
  * @endpoint PUT /v1/people/{personId}/entities/{associationId}
  * @contractShape person.entity-association-mutation
  * @contractRole canonical

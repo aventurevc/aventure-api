@@ -15,7 +15,6 @@ const EntityNameAliasPersonAliasTypeSchemaDefinition = z.object({
  * @openapiSchema EntityNameAliasPersonAliasType
  * @endpoint GET /v1/entities/detail
  * @endpoint GET /v1/entities/detail/investors
- * @endpoint GET /v1/entities/detail/people
  * @endpoint GET /v1/entities/detail/person-investors
  * @endpoint GET /v1/people
  * @endpoint GET /v1/people/detail

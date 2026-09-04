@@ -1,5 +1,6 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
+import { AgentTaskPresetPhaseSchema } from "./task-preset-phase.js";
 const AgentTaskPresetSchemaDefinition = z.object({
     /** For MICRO presets, the agent-task catalog key the client invokes directly via the harness engine POST /agent-tasks/{key}/run route; null for FULL presets. */
     agentTaskKey: z.string().nullish(),
@@ -10,7 +11,7 @@ const AgentTaskPresetSchemaDefinition = z.object({
     /** Human-readable task name shown in operator controls. */
     name: z.string(),
     /** Dispatch phase for intra-job ordering: PRIMARY presets run first; FINAL presets defer until the primary wave completes so they read the freshly-updated entity dossier. */
-    phase: z.enum(["PRIMARY", "FINAL"]),
+    phase: AgentTaskPresetPhaseSchema,
     /** Exact server-owned task prompt prepended to the submitted URL/user prompt. */
     prompt: z.string(),
 });

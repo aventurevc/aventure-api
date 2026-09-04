@@ -1,8 +1,9 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
+import { BillingPlanTypeSchema } from "./plan-type.js";
 const BillingCheckoutSchemaDefinition = z.object({
     expiresAt: z.iso.datetime({ offset: true }),
-    plan: z.enum(["PRO_MONTHLY", "PRO_YEARLY", "PRO_YEARLY_GRANDFATHERED"]),
+    plan: BillingPlanTypeSchema,
     url: z.string(),
 });
 /**
