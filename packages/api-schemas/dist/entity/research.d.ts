@@ -182,71 +182,58 @@ declare const EntityResearchSchemaDefinition: z.ZodObject<{
         valueResearchDetail?: string | null | undefined;
         valueType: "date" | "monetary" | "numeric" | "percentage" | "text";
     }, unknown>>>;
-    snippet: z.ZodArray<z.ZodType<{
-        compliance?: {
-            characterCount: number;
-            meetsRequirements: boolean;
-            violation: string[];
-            wordCount: number;
-        } | null | undefined;
-        createdAt?: string | null | undefined;
-        entityId: string;
-        id: number;
-        isCurrent: boolean;
-        isPrimary: boolean;
-        source?: string | null | undefined;
-        sourceRecord?: {
-            changedAt?: string | null | undefined;
-            operation?: "CREATE" | "DELETE" | "UPDATE" | null | undefined;
-            provenanceSource?: {
-                actorType?: "agent" | "employee" | undefined;
-                agentChassis?: string | null | undefined;
-                agentModel?: string | null | undefined;
-                sourceDetail: string;
-                sourceProvider?: string | null | undefined;
-                sourceProviderId?: string | null | undefined;
-                sourceProviderSlug?: string | null | undefined;
-                sourceType: "api" | "aventureStaff" | "blogArticle" | "firstPartyWebsite" | "import" | "llm" | "manual" | "newsArticle" | "relatedPartyWebsite" | "requestChangeForm" | "thirdPartyWebsite";
-            } | null | undefined;
-            source?: string | null | undefined;
-        } | null | undefined;
-        text: string;
-        textType: string;
-        updatedAt?: string | null | undefined;
-        visible: boolean;
-    }, unknown, z.core.$ZodTypeInternals<{
-        compliance?: {
-            characterCount: number;
-            meetsRequirements: boolean;
-            violation: string[];
-            wordCount: number;
-        } | null | undefined;
-        createdAt?: string | null | undefined;
-        entityId: string;
-        id: number;
-        isCurrent: boolean;
-        isPrimary: boolean;
-        source?: string | null | undefined;
-        sourceRecord?: {
-            changedAt?: string | null | undefined;
-            operation?: "CREATE" | "DELETE" | "UPDATE" | null | undefined;
-            provenanceSource?: {
-                actorType?: "agent" | "employee" | undefined;
-                agentChassis?: string | null | undefined;
-                agentModel?: string | null | undefined;
-                sourceDetail: string;
-                sourceProvider?: string | null | undefined;
-                sourceProviderId?: string | null | undefined;
-                sourceProviderSlug?: string | null | undefined;
-                sourceType: "api" | "aventureStaff" | "blogArticle" | "firstPartyWebsite" | "import" | "llm" | "manual" | "newsArticle" | "relatedPartyWebsite" | "requestChangeForm" | "thirdPartyWebsite";
-            } | null | undefined;
-            source?: string | null | undefined;
-        } | null | undefined;
-        text: string;
-        textType: string;
-        updatedAt?: string | null | undefined;
-        visible: boolean;
-    }, unknown>>>;
+    snippet: z.ZodArray<z.ZodObject<{
+        compliance: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+            characterCount: z.ZodInt;
+            meetsRequirements: z.ZodBoolean;
+            violation: z.ZodArray<z.ZodString>;
+            wordCount: z.ZodInt;
+        }, z.core.$strip>>>;
+        createdAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+        entityId: z.ZodUUID;
+        id: z.ZodInt;
+        isCurrent: z.ZodBoolean;
+        isPrimary: z.ZodBoolean;
+        source: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        sourceRecord: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+            changedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+            operation: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
+                CREATE: "CREATE";
+                DELETE: "DELETE";
+                UPDATE: "UPDATE";
+            }>>>;
+            provenanceSource: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+                actorType: z.ZodOptional<z.ZodEnum<{
+                    agent: "agent";
+                    employee: "employee";
+                }>>;
+                agentChassis: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+                agentModel: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+                sourceDetail: z.ZodString;
+                sourceProvider: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+                sourceProviderId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+                sourceProviderSlug: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+                sourceType: z.ZodEnum<{
+                    api: "api";
+                    aventureStaff: "aventureStaff";
+                    blogArticle: "blogArticle";
+                    firstPartyWebsite: "firstPartyWebsite";
+                    import: "import";
+                    llm: "llm";
+                    manual: "manual";
+                    newsArticle: "newsArticle";
+                    relatedPartyWebsite: "relatedPartyWebsite";
+                    requestChangeForm: "requestChangeForm";
+                    thirdPartyWebsite: "thirdPartyWebsite";
+                }>;
+            }, z.core.$strip>>>;
+            source: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        }, z.core.$strip>>>;
+        text: z.ZodString;
+        textType: z.ZodString;
+        updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+        visible: z.ZodBoolean;
+    }, z.core.$strip>>;
 }, z.core.$strip>;
 type EntityResearchDefinition = z.infer<typeof EntityResearchSchemaDefinition>;
 /**

@@ -28,9 +28,6 @@ type EntityNameAliasEntityAliasTypeDefinition = z.infer<typeof EntityNameAliasEn
  * @endpoint GET /v1/addresses/locations/{scope}/{slug}
  * @endpoint GET /v1/entities/{entityId}/acquisitions
  * @endpoint GET /v1/entities/{entityId}/acquisitions/{relationshipId}
- * @endpoint GET /v1/entities/{entityId}/operating-status
- * @endpoint GET /v1/entities/{entityId}/people
- * @endpoint GET /v1/entities/{entityId}/people/{associationId}
  * @endpoint GET /v1/entities/{entityId}/products/suggestions
  * @endpoint GET /v1/entities/{entityId}/relationships
  * @endpoint GET /v1/entities/{entityId}/relationships/suggestions

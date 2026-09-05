@@ -1,23 +1,14 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
-import { EntityAddressMutationSchema } from "./address-mutation.js";
+import { AddressMutationSchema } from "../address/mutation.js";
 import { EntityClassificationMutationSchema } from "./classification-mutation.js";
 import { EntityCreateSchema } from "./create.js";
 import { EntityManualLogoSchema } from "./manual-logo.js";
 import { EntityResearchDetailMutationSchema } from "./research-detail-mutation.js";
 import { EntityTextMutationSchema } from "./text-mutation.js";
-/**
- * Multipart JSON body for full entity create. Supply base entity fields, required summary and expanded texts, URL links, and optional classifications, addresses, research details, product/service provider join, or manual logo.
- *
- * @openapiSchema EntityFullMutation
- * @endpoint POST /v1/entities/detail/full
- * @contractShape entity.full-mutation
- * @contractRole canonical
- * @ownerSourceFile src/main/kotlin/vc/aventure/domain/model/entity/EntityFullMutation.kt
- */
-export const EntityFullMutationSchema = z.object({
-    /** Address rows created with the entity. Provide this as a top-level array on the full-create body alongside text, not nested under create.entity. Company-class entities need one current HQ address row (isHq=true); products and services may omit addresses. */
-    address: z.array(EntityAddressMutationSchema).nullish(),
+const EntityFullMutationSchemaDefinition = z.object({
+    /** Address rows created with the entity. Provide this as a top-level array on the full-create body alongside text, not nested under create.entity. Company-class entities need one current domicile address row; products and services may omit addresses. */
+    address: z.array(AddressMutationSchema).nullish(),
     /** Classification joins created with the entity. */
     classification: z.array(EntityClassificationMutationSchema).nullish(),
     /** Base entity fields. */
@@ -31,4 +22,14 @@ export const EntityFullMutationSchema = z.object({
     /** Text rows created with the entity. Include summary and expanded rows; optional rows may add generated or source text. */
     text: z.array(EntityTextMutationSchema),
 });
+/**
+ * Multipart JSON body for full entity create. Supply base entity fields, required summary and expanded texts, URL links, and optional classifications, addresses, research details, product/service provider join, or manual logo.
+ *
+ * @openapiSchema EntityFullMutation
+ * @endpoint POST /v1/entities/detail/full
+ * @contractShape entity.full-mutation
+ * @contractRole canonical
+ * @ownerSourceFile src/main/kotlin/vc/aventure/domain/model/entity/EntityFullMutation.kt
+ */
+export const EntityFullMutationSchema = EntityFullMutationSchemaDefinition;
 //# sourceMappingURL=full-mutation.js.map

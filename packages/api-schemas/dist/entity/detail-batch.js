@@ -1,8 +1,8 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
-const EntityDetailBatchSchemaDefinition = z.object({
+const EntityDetailBatchSchemaDefinition = z.strictObject({
     /** Entity UUID values */
-    id: z.array(z.uuid()).optional(),
+    entityId: z.array(z.uuid()).optional(),
     /** Permit monogram fallbacks */
     permitMonogram: z.boolean().nullable().default(true).optional(),
     /** Entity slug values */

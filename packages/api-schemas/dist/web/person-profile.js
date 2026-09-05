@@ -32,6 +32,8 @@ const WebPersonProfileSchemaDefinition = z.object({
     currentCompanyLocation: z.string().nullish(),
     /** Current company LinkedIn slug */
     currentCompanySlug: z.string().nullish(),
+    /** Current company LinkedIn profile URL */
+    currentCompanyUrl: z.string().nullish(),
     /** Title at the current company */
     currentTitle: z.string().nullish(),
     /** Education history */

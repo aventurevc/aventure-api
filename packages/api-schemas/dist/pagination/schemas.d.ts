@@ -7359,930 +7359,6 @@ type PageEntityListSummaryDefinition = z.infer<typeof PageEntityListSummarySchem
  */
 export declare const PageEntityListSummarySchema: z.ZodType<PageEntityListSummaryDefinition>;
 export type PageEntityListSummary = z.infer<typeof PageEntityListSummarySchema>;
-declare const PageEntityPersonSchemaDefinition: z.ZodObject<{
-    content: z.ZodOptional<z.ZodArray<z.ZodUnion<readonly [z.ZodType<{
-        createdAt?: string | null | undefined;
-        gender?: string | null | undefined;
-        id: string;
-        image: {
-            isMonogram: boolean;
-            picture?: string | null | undefined;
-        };
-        lastModifiedAt?: string | null | undefined;
-        nameAlias: {
-            displayable?: boolean | null | undefined;
-            name: string;
-            type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
-        }[];
-        nameFirst?: string | null | undefined;
-        nameFull: string;
-        nameLast?: string | null | undefined;
-        nameMiddle?: string | null | undefined;
-        nickname?: string | null | undefined;
-        publicId?: string | null | undefined;
-        semanticMatch?: {
-            computedAt: string;
-            cosineDistance: number;
-            cosineScore: number;
-            modelVersion: string;
-            rank: number;
-            sourceHash: string;
-            sourceId: string;
-            sourceJson: string;
-            sourceText: string;
-            sourceType: "agentHelpDoc" | "blogPost" | "classificationCode" | "classificationTag" | "entity" | "newsArticle" | "person" | "product" | "service" | "text";
-        } | null | undefined;
-        slug: string;
-        source: {
-            changedAt?: string | null | undefined;
-            dataSourceUpdatedAt?: string | null | undefined;
-            detail?: string | null | undefined;
-            kind?: string | null | undefined;
-            pendingApproval?: number | null | undefined;
-            sourceId?: string | null | undefined;
-            status?: string | null | undefined;
-        };
-        status?: {
-            isHidden: boolean;
-            showOnSitemap: boolean;
-        } | undefined;
-        suffix?: string | null | undefined;
-        text: {
-            expanded?: string | null | undefined;
-            generatedDescription?: string | null | undefined;
-            short?: string | null | undefined;
-        };
-        updatedAt?: string | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
-        createdAt?: string | null | undefined;
-        gender?: string | null | undefined;
-        id: string;
-        image: {
-            isMonogram: boolean;
-            picture?: string | null | undefined;
-        };
-        lastModifiedAt?: string | null | undefined;
-        nameAlias: {
-            displayable?: boolean | null | undefined;
-            name: string;
-            type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
-        }[];
-        nameFirst?: string | null | undefined;
-        nameFull: string;
-        nameLast?: string | null | undefined;
-        nameMiddle?: string | null | undefined;
-        nickname?: string | null | undefined;
-        publicId?: string | null | undefined;
-        semanticMatch?: {
-            computedAt: string;
-            cosineDistance: number;
-            cosineScore: number;
-            modelVersion: string;
-            rank: number;
-            sourceHash: string;
-            sourceId: string;
-            sourceJson: string;
-            sourceText: string;
-            sourceType: "agentHelpDoc" | "blogPost" | "classificationCode" | "classificationTag" | "entity" | "newsArticle" | "person" | "product" | "service" | "text";
-        } | null | undefined;
-        slug: string;
-        source: {
-            changedAt?: string | null | undefined;
-            dataSourceUpdatedAt?: string | null | undefined;
-            detail?: string | null | undefined;
-            kind?: string | null | undefined;
-            pendingApproval?: number | null | undefined;
-            sourceId?: string | null | undefined;
-            status?: string | null | undefined;
-        };
-        status?: {
-            isHidden: boolean;
-            showOnSitemap: boolean;
-        } | undefined;
-        suffix?: string | null | undefined;
-        text: {
-            expanded?: string | null | undefined;
-            generatedDescription?: string | null | undefined;
-            short?: string | null | undefined;
-        };
-        updatedAt?: string | null | undefined;
-    }, unknown>>, z.ZodType<{
-        articleCount?: number | null | undefined;
-        association: {
-            associationId: number;
-            createdAt?: string | null | undefined;
-            creator?: string | null | undefined;
-            endDate?: string | null | undefined;
-            entityAddress: {
-                address?: number | null | undefined;
-                addressLine1?: string | null | undefined;
-                addressLine2?: string | null | undefined;
-                association?: {
-                    endDate?: string | null | undefined;
-                    id: number;
-                    isCurrent: boolean;
-                    role?: "domicile" | "dominant" | "origin" | null | undefined;
-                    startDate?: string | null | undefined;
-                }[] | undefined;
-                city?: {
-                    id?: number | null | undefined;
-                    name: string;
-                } | null | undefined;
-                country?: {
-                    countryCodeChar2?: string | null | undefined;
-                    countryCodeChar3?: string | null | undefined;
-                    id?: number | null | undefined;
-                    name: string;
-                    unRegion?: string | null | undefined;
-                    unSubregion?: string | null | undefined;
-                } | null | undefined;
-                countryAbbrev?: string | null | undefined;
-                createdAt?: string | null | undefined;
-                fullAddress?: string | null | undefined;
-                id?: number | null | undefined;
-                isCurrent?: boolean | null | undefined;
-                isHq?: boolean | null | undefined;
-                isPrimary?: boolean | null | undefined;
-                latitude?: number | null | undefined;
-                longitude?: number | null | undefined;
-                postalCode?: string | null | undefined;
-                state?: {
-                    id?: number | null | undefined;
-                    name: string;
-                    stateAbbrev?: string | null | undefined;
-                } | null | undefined;
-                stateAbbrev?: string | null | undefined;
-                street?: string | null | undefined;
-                updatedAt?: string | null | undefined;
-            }[];
-            entityId: string;
-            entityIsHidden?: boolean | null | undefined;
-            entityLogo: {
-                isMonogram: boolean;
-                logo?: string | null | undefined;
-                logoSquare?: string | null | undefined;
-            };
-            entityName?: string | null | undefined;
-            entityOperatingStatus?: string | null | undefined;
-            entityShowOnSitemap?: boolean | null | undefined;
-            entitySlug: string;
-            entityType?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
-            entityUrlLink: {
-                crawlCdnProvider?: "akamai" | "awsCloudfront" | "azureCdn" | "bunny" | "cdn77" | "cdnetworks" | "cloudflare" | "digitalocean" | "fastly" | "gcore" | "googlecloudCdn" | "incapsula" | "keycdn" | "leaseweb" | "netlify" | "none" | "stackpath" | "sucuri" | "unknown" | "vercel" | null | undefined;
-                crawlRenderMode?: "jsEnhanced" | "jsRequired" | "static" | null | undefined;
-                createdAt?: string | null | undefined;
-                id?: number | null | undefined;
-                isCurrent?: boolean | null | undefined;
-                isPrimary?: boolean | null | undefined;
-                owner?: {
-                    entityId?: string | null | undefined;
-                    personId?: string | null | undefined;
-                } | null | undefined;
-                source?: {
-                    changedAt?: string | null | undefined;
-                    dataSourceUpdatedAt?: string | null | undefined;
-                    detail?: string | null | undefined;
-                    kind?: string | null | undefined;
-                    pendingApproval?: number | null | undefined;
-                    sourceId?: string | null | undefined;
-                    status?: string | null | undefined;
-                } | null | undefined;
-                sourceId?: string | null | undefined;
-                status?: string | null | undefined;
-                statusChecked?: string | null | undefined;
-                updatedAt?: string | null | undefined;
-                url: string;
-                urlType: "alternativeto" | "angellist" | "appstore" | "awsmarketplace" | "bloomberg" | "capterra" | "changelog" | "chromewebstore" | "crates" | "crunchbase" | "discord" | "dockerhub" | "documentation" | "facebook" | "forum" | "g2" | "gartnerpeerinsights" | "getapp" | "github" | "glassdoor" | "googleplay" | "homebrew" | "hubspotmarketplace" | "instagram" | "linkedin" | "maven" | "morningstar" | "nasdaq" | "npm" | "nyse" | "pitchbook" | "producthunt" | "pypi" | "roadmap" | "salesforceappexchange" | "slackappdirectory" | "sourceforge" | "statuspage" | "subreddit" | "support" | "theorg" | "tiktok" | "trustpilot" | "trustradius" | "twitter" | "vscodemarketplace" | "website" | "wellfound" | "wikipedia" | "ycombinator" | "youtube";
-            }[];
-            isCurrent?: boolean | null | undefined;
-            personAddress: {
-                address?: number | null | undefined;
-                addressLine1?: string | null | undefined;
-                addressLine2?: string | null | undefined;
-                association?: {
-                    endDate?: string | null | undefined;
-                    id: number;
-                    isCurrent: boolean;
-                    role?: "domicile" | "dominant" | "origin" | null | undefined;
-                    startDate?: string | null | undefined;
-                }[] | undefined;
-                city?: {
-                    id?: number | null | undefined;
-                    name: string;
-                } | null | undefined;
-                country?: {
-                    countryCodeChar2?: string | null | undefined;
-                    countryCodeChar3?: string | null | undefined;
-                    id?: number | null | undefined;
-                    name: string;
-                    unRegion?: string | null | undefined;
-                    unSubregion?: string | null | undefined;
-                } | null | undefined;
-                countryAbbrev?: string | null | undefined;
-                createdAt?: string | null | undefined;
-                fullAddress?: string | null | undefined;
-                id?: number | null | undefined;
-                isCurrent?: boolean | null | undefined;
-                isHq?: boolean | null | undefined;
-                isPrimary?: boolean | null | undefined;
-                latitude?: number | null | undefined;
-                longitude?: number | null | undefined;
-                postalCode?: string | null | undefined;
-                state?: {
-                    id?: number | null | undefined;
-                    name: string;
-                    stateAbbrev?: string | null | undefined;
-                } | null | undefined;
-                stateAbbrev?: string | null | undefined;
-                street?: string | null | undefined;
-                updatedAt?: string | null | undefined;
-            }[];
-            personId: string;
-            personImage: {
-                isMonogram: boolean;
-                picture?: string | null | undefined;
-            };
-            personName: string;
-            personSlug: string;
-            personUrlLink: {
-                crawlCdnProvider?: "akamai" | "awsCloudfront" | "azureCdn" | "bunny" | "cdn77" | "cdnetworks" | "cloudflare" | "digitalocean" | "fastly" | "gcore" | "googlecloudCdn" | "incapsula" | "keycdn" | "leaseweb" | "netlify" | "none" | "stackpath" | "sucuri" | "unknown" | "vercel" | null | undefined;
-                crawlRenderMode?: "jsEnhanced" | "jsRequired" | "static" | null | undefined;
-                createdAt?: string | null | undefined;
-                id?: number | null | undefined;
-                isCurrent?: boolean | null | undefined;
-                isPrimary?: boolean | null | undefined;
-                owner?: {
-                    entityId?: string | null | undefined;
-                    personId?: string | null | undefined;
-                } | null | undefined;
-                source?: {
-                    changedAt?: string | null | undefined;
-                    dataSourceUpdatedAt?: string | null | undefined;
-                    detail?: string | null | undefined;
-                    kind?: string | null | undefined;
-                    pendingApproval?: number | null | undefined;
-                    sourceId?: string | null | undefined;
-                    status?: string | null | undefined;
-                } | null | undefined;
-                sourceId?: string | null | undefined;
-                status?: string | null | undefined;
-                statusChecked?: string | null | undefined;
-                updatedAt?: string | null | undefined;
-                url: string;
-                urlType: "alternativeto" | "angellist" | "appstore" | "awsmarketplace" | "bloomberg" | "capterra" | "changelog" | "chromewebstore" | "crates" | "crunchbase" | "discord" | "dockerhub" | "documentation" | "facebook" | "forum" | "g2" | "gartnerpeerinsights" | "getapp" | "github" | "glassdoor" | "googleplay" | "homebrew" | "hubspotmarketplace" | "instagram" | "linkedin" | "maven" | "morningstar" | "nasdaq" | "npm" | "nyse" | "pitchbook" | "producthunt" | "pypi" | "roadmap" | "salesforceappexchange" | "slackappdirectory" | "sourceforge" | "statuspage" | "subreddit" | "support" | "theorg" | "tiktok" | "trustpilot" | "trustradius" | "twitter" | "vscodemarketplace" | "website" | "wellfound" | "wikipedia" | "ycombinator" | "youtube";
-            }[];
-            score?: number | null | undefined;
-            startDate?: string | null | undefined;
-            titleFunction?: string | null | undefined;
-            titleId?: number | null | undefined;
-            titleLevel?: string | null | undefined;
-            titleName?: string | null | undefined;
-            updatedAt?: string | null | undefined;
-        }[];
-        core: {
-            createdAt?: string | null | undefined;
-            gender?: string | null | undefined;
-            id: string;
-            image: {
-                isMonogram: boolean;
-                picture?: string | null | undefined;
-            };
-            lastModifiedAt?: string | null | undefined;
-            nameAlias: {
-                displayable?: boolean | null | undefined;
-                name: string;
-                type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
-            }[];
-            nameFirst?: string | null | undefined;
-            nameFull: string;
-            nameLast?: string | null | undefined;
-            nameMiddle?: string | null | undefined;
-            nickname?: string | null | undefined;
-            publicId?: string | null | undefined;
-            semanticMatch?: {
-                computedAt: string;
-                cosineDistance: number;
-                cosineScore: number;
-                modelVersion: string;
-                rank: number;
-                sourceHash: string;
-                sourceId: string;
-                sourceJson: string;
-                sourceText: string;
-                sourceType: "agentHelpDoc" | "blogPost" | "classificationCode" | "classificationTag" | "entity" | "newsArticle" | "person" | "product" | "service" | "text";
-            } | null | undefined;
-            slug: string;
-            source: {
-                changedAt?: string | null | undefined;
-                dataSourceUpdatedAt?: string | null | undefined;
-                detail?: string | null | undefined;
-                kind?: string | null | undefined;
-                pendingApproval?: number | null | undefined;
-                sourceId?: string | null | undefined;
-                status?: string | null | undefined;
-            };
-            status?: {
-                isHidden: boolean;
-                showOnSitemap: boolean;
-            } | undefined;
-            suffix?: string | null | undefined;
-            text: {
-                expanded?: string | null | undefined;
-                generatedDescription?: string | null | undefined;
-                short?: string | null | undefined;
-            };
-            updatedAt?: string | null | undefined;
-        };
-        enrichment: {
-            address: {
-                address?: number | null | undefined;
-                addressLine1?: string | null | undefined;
-                addressLine2?: string | null | undefined;
-                association?: {
-                    endDate?: string | null | undefined;
-                    id: number;
-                    isCurrent: boolean;
-                    role?: "domicile" | "dominant" | "origin" | null | undefined;
-                    startDate?: string | null | undefined;
-                }[] | undefined;
-                city?: {
-                    id?: number | null | undefined;
-                    name: string;
-                } | null | undefined;
-                country?: {
-                    countryCodeChar2?: string | null | undefined;
-                    countryCodeChar3?: string | null | undefined;
-                    id?: number | null | undefined;
-                    name: string;
-                    unRegion?: string | null | undefined;
-                    unSubregion?: string | null | undefined;
-                } | null | undefined;
-                countryAbbrev?: string | null | undefined;
-                createdAt?: string | null | undefined;
-                fullAddress?: string | null | undefined;
-                id?: number | null | undefined;
-                isCurrent?: boolean | null | undefined;
-                isHq?: boolean | null | undefined;
-                isPrimary?: boolean | null | undefined;
-                latitude?: number | null | undefined;
-                longitude?: number | null | undefined;
-                postalCode?: string | null | undefined;
-                state?: {
-                    id?: number | null | undefined;
-                    name: string;
-                    stateAbbrev?: string | null | undefined;
-                } | null | undefined;
-                stateAbbrev?: string | null | undefined;
-                street?: string | null | undefined;
-                updatedAt?: string | null | undefined;
-            }[];
-            urlLink: {
-                crawlCdnProvider?: "akamai" | "awsCloudfront" | "azureCdn" | "bunny" | "cdn77" | "cdnetworks" | "cloudflare" | "digitalocean" | "fastly" | "gcore" | "googlecloudCdn" | "incapsula" | "keycdn" | "leaseweb" | "netlify" | "none" | "stackpath" | "sucuri" | "unknown" | "vercel" | null | undefined;
-                crawlRenderMode?: "jsEnhanced" | "jsRequired" | "static" | null | undefined;
-                createdAt?: string | null | undefined;
-                id?: number | null | undefined;
-                isCurrent?: boolean | null | undefined;
-                isPrimary?: boolean | null | undefined;
-                owner?: {
-                    entityId?: string | null | undefined;
-                    personId?: string | null | undefined;
-                } | null | undefined;
-                source?: {
-                    changedAt?: string | null | undefined;
-                    dataSourceUpdatedAt?: string | null | undefined;
-                    detail?: string | null | undefined;
-                    kind?: string | null | undefined;
-                    pendingApproval?: number | null | undefined;
-                    sourceId?: string | null | undefined;
-                    status?: string | null | undefined;
-                } | null | undefined;
-                sourceId?: string | null | undefined;
-                status?: string | null | undefined;
-                statusChecked?: string | null | undefined;
-                updatedAt?: string | null | undefined;
-                url: string;
-                urlType: "alternativeto" | "angellist" | "appstore" | "awsmarketplace" | "bloomberg" | "capterra" | "changelog" | "chromewebstore" | "crates" | "crunchbase" | "discord" | "dockerhub" | "documentation" | "facebook" | "forum" | "g2" | "gartnerpeerinsights" | "getapp" | "github" | "glassdoor" | "googleplay" | "homebrew" | "hubspotmarketplace" | "instagram" | "linkedin" | "maven" | "morningstar" | "nasdaq" | "npm" | "nyse" | "pitchbook" | "producthunt" | "pypi" | "roadmap" | "salesforceappexchange" | "slackappdirectory" | "sourceforge" | "statuspage" | "subreddit" | "support" | "theorg" | "tiktok" | "trustpilot" | "trustradius" | "twitter" | "vscodemarketplace" | "website" | "wellfound" | "wikipedia" | "ycombinator" | "youtube";
-            }[];
-        };
-        investment: {
-            amount?: number | null | undefined;
-            company: {
-                entity: {
-                    createdAt?: string | null | undefined;
-                    defaultCurrency?: string | null | undefined;
-                    foundedYear?: number | null | undefined;
-                    id: string;
-                    image: {
-                        isMonogram: boolean;
-                        logo?: string | null | undefined;
-                        logoSquare?: string | null | undefined;
-                    };
-                    lastModifiedAt?: string | null | undefined;
-                    nameAlias: {
-                        displayable?: boolean | null | undefined;
-                        name: string;
-                        type?: "alternativeDba" | "relatedLegal" | null | undefined;
-                    }[];
-                    nameBrand: string;
-                    nameLegal?: string | null | undefined;
-                    operatingStatus?: string | null | undefined;
-                    publicId?: string | null | undefined;
-                    publicUrl?: string | null | undefined;
-                    sitemap?: {
-                        hasAcquisitions?: boolean | undefined;
-                        hasAnalysis: boolean;
-                        hasEmployees: boolean;
-                        hasFundraising: boolean;
-                        hasNews: boolean;
-                        productServiceSlug: string[];
-                    } | null | undefined;
-                    slug: string;
-                    source?: {
-                        changedAt?: string | null | undefined;
-                        dataSourceUpdatedAt?: string | null | undefined;
-                        detail?: string | null | undefined;
-                        kind?: string | null | undefined;
-                        pendingApproval?: number | null | undefined;
-                        sourceId?: string | null | undefined;
-                        status?: string | null | undefined;
-                    } | null | undefined;
-                    status?: {
-                        isFeatured: boolean;
-                        isHidden: boolean;
-                        isVerified: boolean;
-                        showOnSitemap: boolean;
-                    } | undefined;
-                    typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
-                    updatedAt?: string | null | undefined;
-                };
-            };
-            date?: string | null | undefined;
-            fundraiseTransaction?: {
-                amountRaised?: number | null | undefined;
-                dateAnnounced?: string | null | undefined;
-                id: string;
-                image: {
-                    isMonogram: boolean;
-                    logo?: string | null | undefined;
-                    logoSquare?: string | null | undefined;
-                };
-                investorCount?: number | null | undefined;
-                nameBrand: string;
-                round?: string | null | undefined;
-                status?: string | null | undefined;
-                valuationPostMoney?: number | null | undefined;
-            } | null | undefined;
-            fundraiseTransactionId: string;
-            id: string;
-            investmentDate: string;
-            investorAttribution?: {
-                amountInvested?: number | null | undefined;
-                attributionType: "direct" | "managedFund";
-                beneficialEntityId?: string | null | undefined;
-                fundManagerRelationshipId?: number | null | undefined;
-                joinId: string;
-                leadInvestor: boolean;
-                recordedEntityId?: string | null | undefined;
-                round?: {
-                    round: string;
-                } | null | undefined;
-                transactionId: string;
-            } | null | undefined;
-            round?: string | null | undefined;
-        }[];
-        nameAlias: {
-            displayable?: boolean | null | undefined;
-            name: string;
-            type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
-        }[];
-        pendingApproval?: number | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
-        articleCount?: number | null | undefined;
-        association: {
-            associationId: number;
-            createdAt?: string | null | undefined;
-            creator?: string | null | undefined;
-            endDate?: string | null | undefined;
-            entityAddress: {
-                address?: number | null | undefined;
-                addressLine1?: string | null | undefined;
-                addressLine2?: string | null | undefined;
-                association?: {
-                    endDate?: string | null | undefined;
-                    id: number;
-                    isCurrent: boolean;
-                    role?: "domicile" | "dominant" | "origin" | null | undefined;
-                    startDate?: string | null | undefined;
-                }[] | undefined;
-                city?: {
-                    id?: number | null | undefined;
-                    name: string;
-                } | null | undefined;
-                country?: {
-                    countryCodeChar2?: string | null | undefined;
-                    countryCodeChar3?: string | null | undefined;
-                    id?: number | null | undefined;
-                    name: string;
-                    unRegion?: string | null | undefined;
-                    unSubregion?: string | null | undefined;
-                } | null | undefined;
-                countryAbbrev?: string | null | undefined;
-                createdAt?: string | null | undefined;
-                fullAddress?: string | null | undefined;
-                id?: number | null | undefined;
-                isCurrent?: boolean | null | undefined;
-                isHq?: boolean | null | undefined;
-                isPrimary?: boolean | null | undefined;
-                latitude?: number | null | undefined;
-                longitude?: number | null | undefined;
-                postalCode?: string | null | undefined;
-                state?: {
-                    id?: number | null | undefined;
-                    name: string;
-                    stateAbbrev?: string | null | undefined;
-                } | null | undefined;
-                stateAbbrev?: string | null | undefined;
-                street?: string | null | undefined;
-                updatedAt?: string | null | undefined;
-            }[];
-            entityId: string;
-            entityIsHidden?: boolean | null | undefined;
-            entityLogo: {
-                isMonogram: boolean;
-                logo?: string | null | undefined;
-                logoSquare?: string | null | undefined;
-            };
-            entityName?: string | null | undefined;
-            entityOperatingStatus?: string | null | undefined;
-            entityShowOnSitemap?: boolean | null | undefined;
-            entitySlug: string;
-            entityType?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
-            entityUrlLink: {
-                crawlCdnProvider?: "akamai" | "awsCloudfront" | "azureCdn" | "bunny" | "cdn77" | "cdnetworks" | "cloudflare" | "digitalocean" | "fastly" | "gcore" | "googlecloudCdn" | "incapsula" | "keycdn" | "leaseweb" | "netlify" | "none" | "stackpath" | "sucuri" | "unknown" | "vercel" | null | undefined;
-                crawlRenderMode?: "jsEnhanced" | "jsRequired" | "static" | null | undefined;
-                createdAt?: string | null | undefined;
-                id?: number | null | undefined;
-                isCurrent?: boolean | null | undefined;
-                isPrimary?: boolean | null | undefined;
-                owner?: {
-                    entityId?: string | null | undefined;
-                    personId?: string | null | undefined;
-                } | null | undefined;
-                source?: {
-                    changedAt?: string | null | undefined;
-                    dataSourceUpdatedAt?: string | null | undefined;
-                    detail?: string | null | undefined;
-                    kind?: string | null | undefined;
-                    pendingApproval?: number | null | undefined;
-                    sourceId?: string | null | undefined;
-                    status?: string | null | undefined;
-                } | null | undefined;
-                sourceId?: string | null | undefined;
-                status?: string | null | undefined;
-                statusChecked?: string | null | undefined;
-                updatedAt?: string | null | undefined;
-                url: string;
-                urlType: "alternativeto" | "angellist" | "appstore" | "awsmarketplace" | "bloomberg" | "capterra" | "changelog" | "chromewebstore" | "crates" | "crunchbase" | "discord" | "dockerhub" | "documentation" | "facebook" | "forum" | "g2" | "gartnerpeerinsights" | "getapp" | "github" | "glassdoor" | "googleplay" | "homebrew" | "hubspotmarketplace" | "instagram" | "linkedin" | "maven" | "morningstar" | "nasdaq" | "npm" | "nyse" | "pitchbook" | "producthunt" | "pypi" | "roadmap" | "salesforceappexchange" | "slackappdirectory" | "sourceforge" | "statuspage" | "subreddit" | "support" | "theorg" | "tiktok" | "trustpilot" | "trustradius" | "twitter" | "vscodemarketplace" | "website" | "wellfound" | "wikipedia" | "ycombinator" | "youtube";
-            }[];
-            isCurrent?: boolean | null | undefined;
-            personAddress: {
-                address?: number | null | undefined;
-                addressLine1?: string | null | undefined;
-                addressLine2?: string | null | undefined;
-                association?: {
-                    endDate?: string | null | undefined;
-                    id: number;
-                    isCurrent: boolean;
-                    role?: "domicile" | "dominant" | "origin" | null | undefined;
-                    startDate?: string | null | undefined;
-                }[] | undefined;
-                city?: {
-                    id?: number | null | undefined;
-                    name: string;
-                } | null | undefined;
-                country?: {
-                    countryCodeChar2?: string | null | undefined;
-                    countryCodeChar3?: string | null | undefined;
-                    id?: number | null | undefined;
-                    name: string;
-                    unRegion?: string | null | undefined;
-                    unSubregion?: string | null | undefined;
-                } | null | undefined;
-                countryAbbrev?: string | null | undefined;
-                createdAt?: string | null | undefined;
-                fullAddress?: string | null | undefined;
-                id?: number | null | undefined;
-                isCurrent?: boolean | null | undefined;
-                isHq?: boolean | null | undefined;
-                isPrimary?: boolean | null | undefined;
-                latitude?: number | null | undefined;
-                longitude?: number | null | undefined;
-                postalCode?: string | null | undefined;
-                state?: {
-                    id?: number | null | undefined;
-                    name: string;
-                    stateAbbrev?: string | null | undefined;
-                } | null | undefined;
-                stateAbbrev?: string | null | undefined;
-                street?: string | null | undefined;
-                updatedAt?: string | null | undefined;
-            }[];
-            personId: string;
-            personImage: {
-                isMonogram: boolean;
-                picture?: string | null | undefined;
-            };
-            personName: string;
-            personSlug: string;
-            personUrlLink: {
-                crawlCdnProvider?: "akamai" | "awsCloudfront" | "azureCdn" | "bunny" | "cdn77" | "cdnetworks" | "cloudflare" | "digitalocean" | "fastly" | "gcore" | "googlecloudCdn" | "incapsula" | "keycdn" | "leaseweb" | "netlify" | "none" | "stackpath" | "sucuri" | "unknown" | "vercel" | null | undefined;
-                crawlRenderMode?: "jsEnhanced" | "jsRequired" | "static" | null | undefined;
-                createdAt?: string | null | undefined;
-                id?: number | null | undefined;
-                isCurrent?: boolean | null | undefined;
-                isPrimary?: boolean | null | undefined;
-                owner?: {
-                    entityId?: string | null | undefined;
-                    personId?: string | null | undefined;
-                } | null | undefined;
-                source?: {
-                    changedAt?: string | null | undefined;
-                    dataSourceUpdatedAt?: string | null | undefined;
-                    detail?: string | null | undefined;
-                    kind?: string | null | undefined;
-                    pendingApproval?: number | null | undefined;
-                    sourceId?: string | null | undefined;
-                    status?: string | null | undefined;
-                } | null | undefined;
-                sourceId?: string | null | undefined;
-                status?: string | null | undefined;
-                statusChecked?: string | null | undefined;
-                updatedAt?: string | null | undefined;
-                url: string;
-                urlType: "alternativeto" | "angellist" | "appstore" | "awsmarketplace" | "bloomberg" | "capterra" | "changelog" | "chromewebstore" | "crates" | "crunchbase" | "discord" | "dockerhub" | "documentation" | "facebook" | "forum" | "g2" | "gartnerpeerinsights" | "getapp" | "github" | "glassdoor" | "googleplay" | "homebrew" | "hubspotmarketplace" | "instagram" | "linkedin" | "maven" | "morningstar" | "nasdaq" | "npm" | "nyse" | "pitchbook" | "producthunt" | "pypi" | "roadmap" | "salesforceappexchange" | "slackappdirectory" | "sourceforge" | "statuspage" | "subreddit" | "support" | "theorg" | "tiktok" | "trustpilot" | "trustradius" | "twitter" | "vscodemarketplace" | "website" | "wellfound" | "wikipedia" | "ycombinator" | "youtube";
-            }[];
-            score?: number | null | undefined;
-            startDate?: string | null | undefined;
-            titleFunction?: string | null | undefined;
-            titleId?: number | null | undefined;
-            titleLevel?: string | null | undefined;
-            titleName?: string | null | undefined;
-            updatedAt?: string | null | undefined;
-        }[];
-        core: {
-            createdAt?: string | null | undefined;
-            gender?: string | null | undefined;
-            id: string;
-            image: {
-                isMonogram: boolean;
-                picture?: string | null | undefined;
-            };
-            lastModifiedAt?: string | null | undefined;
-            nameAlias: {
-                displayable?: boolean | null | undefined;
-                name: string;
-                type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
-            }[];
-            nameFirst?: string | null | undefined;
-            nameFull: string;
-            nameLast?: string | null | undefined;
-            nameMiddle?: string | null | undefined;
-            nickname?: string | null | undefined;
-            publicId?: string | null | undefined;
-            semanticMatch?: {
-                computedAt: string;
-                cosineDistance: number;
-                cosineScore: number;
-                modelVersion: string;
-                rank: number;
-                sourceHash: string;
-                sourceId: string;
-                sourceJson: string;
-                sourceText: string;
-                sourceType: "agentHelpDoc" | "blogPost" | "classificationCode" | "classificationTag" | "entity" | "newsArticle" | "person" | "product" | "service" | "text";
-            } | null | undefined;
-            slug: string;
-            source: {
-                changedAt?: string | null | undefined;
-                dataSourceUpdatedAt?: string | null | undefined;
-                detail?: string | null | undefined;
-                kind?: string | null | undefined;
-                pendingApproval?: number | null | undefined;
-                sourceId?: string | null | undefined;
-                status?: string | null | undefined;
-            };
-            status?: {
-                isHidden: boolean;
-                showOnSitemap: boolean;
-            } | undefined;
-            suffix?: string | null | undefined;
-            text: {
-                expanded?: string | null | undefined;
-                generatedDescription?: string | null | undefined;
-                short?: string | null | undefined;
-            };
-            updatedAt?: string | null | undefined;
-        };
-        enrichment: {
-            address: {
-                address?: number | null | undefined;
-                addressLine1?: string | null | undefined;
-                addressLine2?: string | null | undefined;
-                association?: {
-                    endDate?: string | null | undefined;
-                    id: number;
-                    isCurrent: boolean;
-                    role?: "domicile" | "dominant" | "origin" | null | undefined;
-                    startDate?: string | null | undefined;
-                }[] | undefined;
-                city?: {
-                    id?: number | null | undefined;
-                    name: string;
-                } | null | undefined;
-                country?: {
-                    countryCodeChar2?: string | null | undefined;
-                    countryCodeChar3?: string | null | undefined;
-                    id?: number | null | undefined;
-                    name: string;
-                    unRegion?: string | null | undefined;
-                    unSubregion?: string | null | undefined;
-                } | null | undefined;
-                countryAbbrev?: string | null | undefined;
-                createdAt?: string | null | undefined;
-                fullAddress?: string | null | undefined;
-                id?: number | null | undefined;
-                isCurrent?: boolean | null | undefined;
-                isHq?: boolean | null | undefined;
-                isPrimary?: boolean | null | undefined;
-                latitude?: number | null | undefined;
-                longitude?: number | null | undefined;
-                postalCode?: string | null | undefined;
-                state?: {
-                    id?: number | null | undefined;
-                    name: string;
-                    stateAbbrev?: string | null | undefined;
-                } | null | undefined;
-                stateAbbrev?: string | null | undefined;
-                street?: string | null | undefined;
-                updatedAt?: string | null | undefined;
-            }[];
-            urlLink: {
-                crawlCdnProvider?: "akamai" | "awsCloudfront" | "azureCdn" | "bunny" | "cdn77" | "cdnetworks" | "cloudflare" | "digitalocean" | "fastly" | "gcore" | "googlecloudCdn" | "incapsula" | "keycdn" | "leaseweb" | "netlify" | "none" | "stackpath" | "sucuri" | "unknown" | "vercel" | null | undefined;
-                crawlRenderMode?: "jsEnhanced" | "jsRequired" | "static" | null | undefined;
-                createdAt?: string | null | undefined;
-                id?: number | null | undefined;
-                isCurrent?: boolean | null | undefined;
-                isPrimary?: boolean | null | undefined;
-                owner?: {
-                    entityId?: string | null | undefined;
-                    personId?: string | null | undefined;
-                } | null | undefined;
-                source?: {
-                    changedAt?: string | null | undefined;
-                    dataSourceUpdatedAt?: string | null | undefined;
-                    detail?: string | null | undefined;
-                    kind?: string | null | undefined;
-                    pendingApproval?: number | null | undefined;
-                    sourceId?: string | null | undefined;
-                    status?: string | null | undefined;
-                } | null | undefined;
-                sourceId?: string | null | undefined;
-                status?: string | null | undefined;
-                statusChecked?: string | null | undefined;
-                updatedAt?: string | null | undefined;
-                url: string;
-                urlType: "alternativeto" | "angellist" | "appstore" | "awsmarketplace" | "bloomberg" | "capterra" | "changelog" | "chromewebstore" | "crates" | "crunchbase" | "discord" | "dockerhub" | "documentation" | "facebook" | "forum" | "g2" | "gartnerpeerinsights" | "getapp" | "github" | "glassdoor" | "googleplay" | "homebrew" | "hubspotmarketplace" | "instagram" | "linkedin" | "maven" | "morningstar" | "nasdaq" | "npm" | "nyse" | "pitchbook" | "producthunt" | "pypi" | "roadmap" | "salesforceappexchange" | "slackappdirectory" | "sourceforge" | "statuspage" | "subreddit" | "support" | "theorg" | "tiktok" | "trustpilot" | "trustradius" | "twitter" | "vscodemarketplace" | "website" | "wellfound" | "wikipedia" | "ycombinator" | "youtube";
-            }[];
-        };
-        investment: {
-            amount?: number | null | undefined;
-            company: {
-                entity: {
-                    createdAt?: string | null | undefined;
-                    defaultCurrency?: string | null | undefined;
-                    foundedYear?: number | null | undefined;
-                    id: string;
-                    image: {
-                        isMonogram: boolean;
-                        logo?: string | null | undefined;
-                        logoSquare?: string | null | undefined;
-                    };
-                    lastModifiedAt?: string | null | undefined;
-                    nameAlias: {
-                        displayable?: boolean | null | undefined;
-                        name: string;
-                        type?: "alternativeDba" | "relatedLegal" | null | undefined;
-                    }[];
-                    nameBrand: string;
-                    nameLegal?: string | null | undefined;
-                    operatingStatus?: string | null | undefined;
-                    publicId?: string | null | undefined;
-                    publicUrl?: string | null | undefined;
-                    sitemap?: {
-                        hasAcquisitions?: boolean | undefined;
-                        hasAnalysis: boolean;
-                        hasEmployees: boolean;
-                        hasFundraising: boolean;
-                        hasNews: boolean;
-                        productServiceSlug: string[];
-                    } | null | undefined;
-                    slug: string;
-                    source?: {
-                        changedAt?: string | null | undefined;
-                        dataSourceUpdatedAt?: string | null | undefined;
-                        detail?: string | null | undefined;
-                        kind?: string | null | undefined;
-                        pendingApproval?: number | null | undefined;
-                        sourceId?: string | null | undefined;
-                        status?: string | null | undefined;
-                    } | null | undefined;
-                    status?: {
-                        isFeatured: boolean;
-                        isHidden: boolean;
-                        isVerified: boolean;
-                        showOnSitemap: boolean;
-                    } | undefined;
-                    typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
-                    updatedAt?: string | null | undefined;
-                };
-            };
-            date?: string | null | undefined;
-            fundraiseTransaction?: {
-                amountRaised?: number | null | undefined;
-                dateAnnounced?: string | null | undefined;
-                id: string;
-                image: {
-                    isMonogram: boolean;
-                    logo?: string | null | undefined;
-                    logoSquare?: string | null | undefined;
-                };
-                investorCount?: number | null | undefined;
-                nameBrand: string;
-                round?: string | null | undefined;
-                status?: string | null | undefined;
-                valuationPostMoney?: number | null | undefined;
-            } | null | undefined;
-            fundraiseTransactionId: string;
-            id: string;
-            investmentDate: string;
-            investorAttribution?: {
-                amountInvested?: number | null | undefined;
-                attributionType: "direct" | "managedFund";
-                beneficialEntityId?: string | null | undefined;
-                fundManagerRelationshipId?: number | null | undefined;
-                joinId: string;
-                leadInvestor: boolean;
-                recordedEntityId?: string | null | undefined;
-                round?: {
-                    round: string;
-                } | null | undefined;
-                transactionId: string;
-            } | null | undefined;
-            round?: string | null | undefined;
-        }[];
-        nameAlias: {
-            displayable?: boolean | null | undefined;
-            name: string;
-            type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
-        }[];
-        pendingApproval?: number | null | undefined;
-    }, unknown>>]>>>;
-    empty: z.ZodOptional<z.ZodBoolean>;
-    first: z.ZodOptional<z.ZodBoolean>;
-    last: z.ZodOptional<z.ZodBoolean>;
-    number: z.ZodOptional<z.ZodInt>;
-    numberOfElements: z.ZodOptional<z.ZodInt>;
-    pageable: z.ZodOptional<z.ZodObject<{
-        offset: z.ZodOptional<z.ZodNumber>;
-        paged: z.ZodOptional<z.ZodBoolean>;
-        pageNumber: z.ZodOptional<z.ZodInt>;
-        pageSize: z.ZodOptional<z.ZodInt>;
-        sort: z.ZodOptional<z.ZodObject<{
-            empty: z.ZodOptional<z.ZodBoolean>;
-            sorted: z.ZodOptional<z.ZodBoolean>;
-            unsorted: z.ZodOptional<z.ZodBoolean>;
-        }, z.core.$strip>>;
-        unpaged: z.ZodOptional<z.ZodBoolean>;
-    }, z.core.$strip>>;
-    size: z.ZodOptional<z.ZodInt>;
-    sort: z.ZodOptional<z.ZodObject<{
-        empty: z.ZodOptional<z.ZodBoolean>;
-        sorted: z.ZodOptional<z.ZodBoolean>;
-        unsorted: z.ZodOptional<z.ZodBoolean>;
-    }, z.core.$strip>>;
-    totalElements: z.ZodOptional<z.ZodNumber>;
-    totalPages: z.ZodOptional<z.ZodInt>;
-}, z.core.$strip>;
-type PageEntityPersonDefinition = z.infer<typeof PageEntityPersonSchemaDefinition>;
-/**
- * @openapiSchema PageEntityPerson
- * @endpoint GET /v1/entities/{entityId}/people
- * @contractShape pagination.page-entity-person
- * @contractRole canonical
- * @ownerModule pagination/schemas.ts
- */
-export declare const PageEntityPersonSchema: z.ZodType<PageEntityPersonDefinition>;
-export type PageEntityPerson = z.infer<typeof PageEntityPersonSchema>;
 declare const PageEntityPersonAssociationSchemaDefinition: z.ZodObject<{
     content: z.ZodOptional<z.ZodArray<z.ZodObject<{
         associationId: z.ZodInt;
@@ -8565,6 +7641,7 @@ declare const PageEntityPersonAssociationSchemaDefinition: z.ZodObject<{
 type PageEntityPersonAssociationDefinition = z.infer<typeof PageEntityPersonAssociationSchemaDefinition>;
 /**
  * @openapiSchema PageEntityPersonAssociation
+ * @endpoint GET /v1/entities/{entityId}/people
  * @endpoint GET /v1/people/{personId}/entities
  * @contractShape pagination.page-entity-person-association
  * @contractRole canonical
@@ -8857,71 +7934,58 @@ type PageEntityResearchDetailDefinition = z.infer<typeof PageEntityResearchDetai
 export declare const PageEntityResearchDetailSchema: z.ZodType<PageEntityResearchDetailDefinition>;
 export type PageEntityResearchDetail = z.infer<typeof PageEntityResearchDetailSchema>;
 declare const PageEntityResearchSnippetSchemaDefinition: z.ZodObject<{
-    content: z.ZodOptional<z.ZodArray<z.ZodType<{
-        compliance?: {
-            characterCount: number;
-            meetsRequirements: boolean;
-            violation: string[];
-            wordCount: number;
-        } | null | undefined;
-        createdAt?: string | null | undefined;
-        entityId: string;
-        id: number;
-        isCurrent: boolean;
-        isPrimary: boolean;
-        source?: string | null | undefined;
-        sourceRecord?: {
-            changedAt?: string | null | undefined;
-            operation?: "CREATE" | "DELETE" | "UPDATE" | null | undefined;
-            provenanceSource?: {
-                actorType?: "agent" | "employee" | undefined;
-                agentChassis?: string | null | undefined;
-                agentModel?: string | null | undefined;
-                sourceDetail: string;
-                sourceProvider?: string | null | undefined;
-                sourceProviderId?: string | null | undefined;
-                sourceProviderSlug?: string | null | undefined;
-                sourceType: "api" | "aventureStaff" | "blogArticle" | "firstPartyWebsite" | "import" | "llm" | "manual" | "newsArticle" | "relatedPartyWebsite" | "requestChangeForm" | "thirdPartyWebsite";
-            } | null | undefined;
-            source?: string | null | undefined;
-        } | null | undefined;
-        text: string;
-        textType: string;
-        updatedAt?: string | null | undefined;
-        visible: boolean;
-    }, unknown, z.core.$ZodTypeInternals<{
-        compliance?: {
-            characterCount: number;
-            meetsRequirements: boolean;
-            violation: string[];
-            wordCount: number;
-        } | null | undefined;
-        createdAt?: string | null | undefined;
-        entityId: string;
-        id: number;
-        isCurrent: boolean;
-        isPrimary: boolean;
-        source?: string | null | undefined;
-        sourceRecord?: {
-            changedAt?: string | null | undefined;
-            operation?: "CREATE" | "DELETE" | "UPDATE" | null | undefined;
-            provenanceSource?: {
-                actorType?: "agent" | "employee" | undefined;
-                agentChassis?: string | null | undefined;
-                agentModel?: string | null | undefined;
-                sourceDetail: string;
-                sourceProvider?: string | null | undefined;
-                sourceProviderId?: string | null | undefined;
-                sourceProviderSlug?: string | null | undefined;
-                sourceType: "api" | "aventureStaff" | "blogArticle" | "firstPartyWebsite" | "import" | "llm" | "manual" | "newsArticle" | "relatedPartyWebsite" | "requestChangeForm" | "thirdPartyWebsite";
-            } | null | undefined;
-            source?: string | null | undefined;
-        } | null | undefined;
-        text: string;
-        textType: string;
-        updatedAt?: string | null | undefined;
-        visible: boolean;
-    }, unknown>>>>;
+    content: z.ZodOptional<z.ZodArray<z.ZodObject<{
+        compliance: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+            characterCount: z.ZodInt;
+            meetsRequirements: z.ZodBoolean;
+            violation: z.ZodArray<z.ZodString>;
+            wordCount: z.ZodInt;
+        }, z.core.$strip>>>;
+        createdAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+        entityId: z.ZodUUID;
+        id: z.ZodInt;
+        isCurrent: z.ZodBoolean;
+        isPrimary: z.ZodBoolean;
+        source: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        sourceRecord: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+            changedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+            operation: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
+                CREATE: "CREATE";
+                DELETE: "DELETE";
+                UPDATE: "UPDATE";
+            }>>>;
+            provenanceSource: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+                actorType: z.ZodOptional<z.ZodEnum<{
+                    agent: "agent";
+                    employee: "employee";
+                }>>;
+                agentChassis: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+                agentModel: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+                sourceDetail: z.ZodString;
+                sourceProvider: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+                sourceProviderId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+                sourceProviderSlug: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+                sourceType: z.ZodEnum<{
+                    api: "api";
+                    aventureStaff: "aventureStaff";
+                    blogArticle: "blogArticle";
+                    firstPartyWebsite: "firstPartyWebsite";
+                    import: "import";
+                    llm: "llm";
+                    manual: "manual";
+                    newsArticle: "newsArticle";
+                    relatedPartyWebsite: "relatedPartyWebsite";
+                    requestChangeForm: "requestChangeForm";
+                    thirdPartyWebsite: "thirdPartyWebsite";
+                }>;
+            }, z.core.$strip>>>;
+            source: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        }, z.core.$strip>>>;
+        text: z.ZodString;
+        textType: z.ZodString;
+        updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+        visible: z.ZodBoolean;
+    }, z.core.$strip>>>;
     empty: z.ZodOptional<z.ZodBoolean>;
     first: z.ZodOptional<z.ZodBoolean>;
     last: z.ZodOptional<z.ZodBoolean>;
@@ -10852,78 +9916,6 @@ type PageLocationDirectoryEntryDefinition = z.infer<typeof PageLocationDirectory
  */
 export declare const PageLocationDirectoryEntrySchema: z.ZodType<PageLocationDirectoryEntryDefinition>;
 export type PageLocationDirectoryEntry = z.infer<typeof PageLocationDirectoryEntrySchema>;
-declare const PageMediaCrawlScreenshotSchemaDefinition: z.ZodObject<{
-    content: z.ZodOptional<z.ZodArray<z.ZodType<{
-        contentType: string;
-        crawledAt: string;
-        createdAt: string;
-        fileSize?: number | null | undefined;
-        id: number;
-        owner?: {
-            entityId?: string | null | undefined;
-            personId?: string | null | undefined;
-        } | null | undefined;
-        position: number;
-        s3Key: string;
-        updatedAt: string;
-        url: string;
-        urlId?: number | null | undefined;
-        viewportHeight?: number | null | undefined;
-        viewportWidth?: number | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
-        contentType: string;
-        crawledAt: string;
-        createdAt: string;
-        fileSize?: number | null | undefined;
-        id: number;
-        owner?: {
-            entityId?: string | null | undefined;
-            personId?: string | null | undefined;
-        } | null | undefined;
-        position: number;
-        s3Key: string;
-        updatedAt: string;
-        url: string;
-        urlId?: number | null | undefined;
-        viewportHeight?: number | null | undefined;
-        viewportWidth?: number | null | undefined;
-    }, unknown>>>>;
-    empty: z.ZodOptional<z.ZodBoolean>;
-    first: z.ZodOptional<z.ZodBoolean>;
-    last: z.ZodOptional<z.ZodBoolean>;
-    number: z.ZodOptional<z.ZodInt>;
-    numberOfElements: z.ZodOptional<z.ZodInt>;
-    pageable: z.ZodOptional<z.ZodObject<{
-        offset: z.ZodOptional<z.ZodNumber>;
-        paged: z.ZodOptional<z.ZodBoolean>;
-        pageNumber: z.ZodOptional<z.ZodInt>;
-        pageSize: z.ZodOptional<z.ZodInt>;
-        sort: z.ZodOptional<z.ZodObject<{
-            empty: z.ZodOptional<z.ZodBoolean>;
-            sorted: z.ZodOptional<z.ZodBoolean>;
-            unsorted: z.ZodOptional<z.ZodBoolean>;
-        }, z.core.$strip>>;
-        unpaged: z.ZodOptional<z.ZodBoolean>;
-    }, z.core.$strip>>;
-    size: z.ZodOptional<z.ZodInt>;
-    sort: z.ZodOptional<z.ZodObject<{
-        empty: z.ZodOptional<z.ZodBoolean>;
-        sorted: z.ZodOptional<z.ZodBoolean>;
-        unsorted: z.ZodOptional<z.ZodBoolean>;
-    }, z.core.$strip>>;
-    totalElements: z.ZodOptional<z.ZodNumber>;
-    totalPages: z.ZodOptional<z.ZodInt>;
-}, z.core.$strip>;
-type PageMediaCrawlScreenshotDefinition = z.infer<typeof PageMediaCrawlScreenshotSchemaDefinition>;
-/**
- * @openapiSchema PageMediaCrawlScreenshot
- * @endpoint GET /v1/media/screenshots
- * @contractShape pagination.page-media-crawl-screenshot
- * @contractRole canonical
- * @ownerModule pagination/schemas.ts
- */
-export declare const PageMediaCrawlScreenshotSchema: z.ZodType<PageMediaCrawlScreenshotDefinition>;
-export type PageMediaCrawlScreenshot = z.infer<typeof PageMediaCrawlScreenshotSchema>;
 declare const PageMediaLogoAuditJobSchemaDefinition: z.ZodObject<{
     content: z.ZodOptional<z.ZodArray<z.ZodType<{
         checked: number;
@@ -10988,6 +9980,78 @@ type PageMediaLogoAuditJobDefinition = z.infer<typeof PageMediaLogoAuditJobSchem
  */
 export declare const PageMediaLogoAuditJobSchema: z.ZodType<PageMediaLogoAuditJobDefinition>;
 export type PageMediaLogoAuditJob = z.infer<typeof PageMediaLogoAuditJobSchema>;
+declare const PageMediaScreenshotSchemaDefinition: z.ZodObject<{
+    content: z.ZodOptional<z.ZodArray<z.ZodType<{
+        contentType: string;
+        crawledAt: string;
+        createdAt: string;
+        fileSize?: number | null | undefined;
+        id: number;
+        owner?: {
+            entityId?: string | null | undefined;
+            personId?: string | null | undefined;
+        } | null | undefined;
+        position: number;
+        s3Key: string;
+        updatedAt: string;
+        url: string;
+        urlId?: number | null | undefined;
+        viewportHeight?: number | null | undefined;
+        viewportWidth?: number | null | undefined;
+    }, unknown, z.core.$ZodTypeInternals<{
+        contentType: string;
+        crawledAt: string;
+        createdAt: string;
+        fileSize?: number | null | undefined;
+        id: number;
+        owner?: {
+            entityId?: string | null | undefined;
+            personId?: string | null | undefined;
+        } | null | undefined;
+        position: number;
+        s3Key: string;
+        updatedAt: string;
+        url: string;
+        urlId?: number | null | undefined;
+        viewportHeight?: number | null | undefined;
+        viewportWidth?: number | null | undefined;
+    }, unknown>>>>;
+    empty: z.ZodOptional<z.ZodBoolean>;
+    first: z.ZodOptional<z.ZodBoolean>;
+    last: z.ZodOptional<z.ZodBoolean>;
+    number: z.ZodOptional<z.ZodInt>;
+    numberOfElements: z.ZodOptional<z.ZodInt>;
+    pageable: z.ZodOptional<z.ZodObject<{
+        offset: z.ZodOptional<z.ZodNumber>;
+        paged: z.ZodOptional<z.ZodBoolean>;
+        pageNumber: z.ZodOptional<z.ZodInt>;
+        pageSize: z.ZodOptional<z.ZodInt>;
+        sort: z.ZodOptional<z.ZodObject<{
+            empty: z.ZodOptional<z.ZodBoolean>;
+            sorted: z.ZodOptional<z.ZodBoolean>;
+            unsorted: z.ZodOptional<z.ZodBoolean>;
+        }, z.core.$strip>>;
+        unpaged: z.ZodOptional<z.ZodBoolean>;
+    }, z.core.$strip>>;
+    size: z.ZodOptional<z.ZodInt>;
+    sort: z.ZodOptional<z.ZodObject<{
+        empty: z.ZodOptional<z.ZodBoolean>;
+        sorted: z.ZodOptional<z.ZodBoolean>;
+        unsorted: z.ZodOptional<z.ZodBoolean>;
+    }, z.core.$strip>>;
+    totalElements: z.ZodOptional<z.ZodNumber>;
+    totalPages: z.ZodOptional<z.ZodInt>;
+}, z.core.$strip>;
+type PageMediaScreenshotDefinition = z.infer<typeof PageMediaScreenshotSchemaDefinition>;
+/**
+ * @openapiSchema PageMediaScreenshot
+ * @endpoint GET /v1/media/screenshots
+ * @contractShape pagination.page-media-screenshot
+ * @contractRole canonical
+ * @ownerModule pagination/schemas.ts
+ */
+export declare const PageMediaScreenshotSchema: z.ZodType<PageMediaScreenshotDefinition>;
+export type PageMediaScreenshot = z.infer<typeof PageMediaScreenshotSchema>;
 declare const PageNewsSchemaDefinition: z.ZodObject<{
     content: z.ZodOptional<z.ZodArray<z.ZodType<{
         author?: string | null | undefined;
@@ -11081,19 +10145,13 @@ type PageNewsDefinition = z.infer<typeof PageNewsSchemaDefinition>;
 export declare const PageNewsSchema: z.ZodType<PageNewsDefinition>;
 export type PageNews = z.infer<typeof PageNewsSchema>;
 declare const PageNewsCandidateScoreSchemaDefinition: z.ZodObject<{
-    content: z.ZodOptional<z.ZodArray<z.ZodType<{
-        externalId?: string | null | undefined;
-        id: number;
-        reason: string[];
-        score: number;
-        slug?: string | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
-        externalId?: string | null | undefined;
-        id: number;
-        reason: string[];
-        score: number;
-        slug?: string | null | undefined;
-    }, unknown>>>>;
+    content: z.ZodOptional<z.ZodArray<z.ZodObject<{
+        externalId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        id: z.ZodInt;
+        reason: z.ZodArray<z.ZodString>;
+        score: z.ZodInt;
+        slug: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    }, z.core.$strip>>>;
     empty: z.ZodOptional<z.ZodBoolean>;
     first: z.ZodOptional<z.ZodBoolean>;
     last: z.ZodOptional<z.ZodBoolean>;

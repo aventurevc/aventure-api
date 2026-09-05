@@ -22,8 +22,6 @@ type EntityNameAliasPersonAliasTypeDefinition = z.infer<typeof EntityNameAliasPe
  * @endpoint GET /v1/people/detail/similar
  * @endpoint GET /v1/people/duplicate-check
  * @endpoint GET /v1/search/link
- * @endpoint GET /v1/entities/{entityId}/people
- * @endpoint GET /v1/entities/{entityId}/people/{associationId}
  * @endpoint POST /v1/entities/batch
  * @endpoint POST /v1/entities/detail
  * @endpoint POST /v1/entities/detail/batch

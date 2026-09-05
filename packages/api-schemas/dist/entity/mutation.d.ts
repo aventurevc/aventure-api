@@ -3,7 +3,6 @@ import { z } from "zod/v4";
  * Create or update core entity fields: names, slug, type, operating status, visibility, currency, founding year, and aliases.
  *
  * @openapiSchema EntityMutation
- * @endpoint GET /v1/entities/{entityId}/operating-status
  * @endpoint POST /v1/entities/{entityId}/operating-status
  * @endpoint POST /v1/entities/detail
  * @endpoint POST /v1/entities/detail/full
@@ -39,6 +38,7 @@ export declare const EntityMutationSchema: z.ZodObject<{
         Acquired: "Acquired";
         "Acquired Subsidiary": "Acquired Subsidiary";
         Closed: "Closed";
+        "Closed (Acquihire)": "Closed (Acquihire)";
         Inactive: "Inactive";
         Operating: "Operating";
     }>>>;

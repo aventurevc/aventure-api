@@ -50,6 +50,7 @@ declare const WebPersonProfileSchemaDefinition: z.ZodObject<{
     currentCompany: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     currentCompanyLocation: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     currentCompanySlug: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    currentCompanyUrl: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     currentTitle: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     education: z.ZodArray<z.ZodType<{
         endYear?: string | null | undefined;

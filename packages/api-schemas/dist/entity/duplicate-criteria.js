@@ -2,9 +2,9 @@
 import { z } from "zod/v4";
 import { DuplicateUrlCandidateSchema } from "../duplicate/url-candidate.js";
 import { EntityTypeSchema } from "./type.js";
-import { EntityUrlMatchModeSchema } from "./url-match-mode.js";
 import { EntityUrlMatchStrictnessSchema } from "./url-match-strictness.js";
 import { EntityUrlTypeSchema } from "./url-type.js";
+import { UrlMatchModeSchema } from "../url/match-mode.js";
 const EntityDuplicateCriteriaSchemaDefinition = z.object({
     /** Entity id to exclude from duplicate candidates; not a lookup id */
     excludeId: z.uuid().nullish(),
@@ -31,7 +31,7 @@ const EntityDuplicateCriteriaSchemaDefinition = z.object({
     /** URL domain match */
     urlDomain: z.string().nullish(),
     /** URL match mode */
-    urlMatchMode: EntityUrlMatchModeSchema.nullish(),
+    urlMatchMode: UrlMatchModeSchema.nullish(),
     /** Optional URL match strictness. Omit for strict matching. Send loose or any only when the caller intentionally widens URL matching. */
     urlStrictness: EntityUrlMatchStrictnessSchema.nullish(),
     /** URL type */

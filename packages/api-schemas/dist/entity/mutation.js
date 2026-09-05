@@ -7,7 +7,6 @@ import { EntityStatusMutationSchema } from "./status-mutation.js";
  * Create or update core entity fields: names, slug, type, operating status, visibility, currency, founding year, and aliases.
  *
  * @openapiSchema EntityMutation
- * @endpoint GET /v1/entities/{entityId}/operating-status
  * @endpoint POST /v1/entities/{entityId}/operating-status
  * @endpoint POST /v1/entities/detail
  * @endpoint POST /v1/entities/detail/full
@@ -38,7 +37,7 @@ export const EntityMutationSchema = z.object({
     nameLegal: z.string().nullish(),
     /** Preferred detail-update slug rename field. Omit on create; when slug is also sent both fields must normalize to the same value. */
     newSlug: z.string().nullish(),
-    /** Operating status. Required on create; omitted update values preserve existing status. Use Acquired Subsidiary when an acquired entity still operates; use Acquired only when it is terminal, folded, or closed. Closed and terminal Acquired keep attached person joins current; update association endDate separately with a closing-date estimate. */
+    /** Operating status. Required on create; omitted update values preserve existing status. Use Acquired Subsidiary when an acquired entity still operates; use Closed (Acquihire) when an acquired entity was shut down for its team, rendering like Closed everywhere; use Acquired only when it is terminal, folded, or closed. Closed and terminal Acquired keep attached person joins current; update association endDate separately with a closing-date estimate. */
     operatingStatus: EntityOperatingStatusSchema.nullish(),
     /** Entity URL slug. Create may omit it when the server can derive one; detail updates may rename through this field or newSlug. Company-class slugs are one shared namespace and must end with the HQ location suffix (brand-city-state-country); a held slug returns 409. Product and Service slugs derive from nameBrand, stay scoped to the provider pair, and may repeat across providers; reusing a slug under the same provider or one held by a non-product entity returns 409. */
     slug: z.string().nullish(),

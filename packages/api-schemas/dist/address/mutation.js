@@ -1,7 +1,23 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
-import { AddressAssociationRoleSchema } from "../address/association-role.js";
-const PersonAddressMutationSchemaDefinition = z.object({
+import { AddressAssociationRoleSchema } from "./association-role.js";
+/**
+ * Create or update an entity or person address association. Structured fields are canonical; fullAddress is server-synthesized and cannot be written. City-level rows require researchExhausted=true after address research is exhausted. Placeholder values and URLs in address text are rejected. Text fields are normalized: surrounding whitespace and separators are trimmed and caseless values (all-lowercase or ALL-CAPS) are title-cased. Latitude and longitude are written as a pair: an explicit pair also updates coordinates on the resolved address row, while omitted coordinates derive from the resolved location and never carry over from a previously stored address.
+ *
+ * @openapiSchema AddressMutation
+ * @endpoint POST /v1/entities/{entityId}/addresses
+ * @endpoint POST /v1/entities/detail/full
+ * @endpoint POST /v1/people/{personId}/addresses
+ * @endpoint PATCH /v1/entities/{entityId}/addresses/{addressJoinId}
+ * @endpoint PATCH /v1/people/{personId}/addresses/{addressJoinId}
+ * @endpoint PUT /v1/entities/{entityId}/addresses/{addressJoinId}
+ * @endpoint PUT /v1/people/{personId}/addresses/{addressJoinId}
+ * @usedBySchema EntityFullMutationSchema
+ * @contractShape address.mutation
+ * @contractRole canonical
+ * @ownerSourceFile src/main/kotlin/vc/aventure/domain/model/address/AddressMutation.kt
+ */
+export const AddressMutationSchema = z.object({
     /** Address line 1. */
     addressLine1: z.string().max(255).nullish(),
     /** Address line 2 (suite, floor, etc.) */
@@ -14,7 +30,7 @@ const PersonAddressMutationSchemaDefinition = z.object({
     countryName: z.string().nullish(),
     /** Last known day this address association applied. */
     endDate: z.iso.date().nullish(),
-    /** Whether this address association is currently relevant. */
+    /** Deprecated legacy flag marking whether the address is currently in use. */
     isCurrent: z.boolean().nullish(),
     /** Latitude in decimal degrees */
     latitude: z.number().nullish(),
@@ -33,16 +49,4 @@ const PersonAddressMutationSchemaDefinition = z.object({
     /** State or region name, resolved within the selected country when that country requires one. */
     stateName: z.string().max(50).nullish(),
 });
-/**
- * Create a person address association. Structured fields are canonical; fullAddress is server-synthesized and cannot be written. City-level rows require researchExhausted=true after address research is exhausted. Text fields are normalized: surrounding whitespace and separators are trimmed and all-lowercase values are title-cased. Latitude and longitude are written as a pair: an explicit pair also updates coordinates on the resolved address row, while omitted coordinates derive from the resolved location.
- *
- * @openapiSchema PersonAddressMutation
- * @endpoint POST /v1/people/{personId}/addresses
- * @endpoint PATCH /v1/people/{personId}/addresses/{addressJoinId}
- * @endpoint PUT /v1/people/{personId}/addresses/{addressJoinId}
- * @contractShape person.address-mutation
- * @contractRole canonical
- * @ownerSourceFile src/main/kotlin/vc/aventure/domain/model/address/PersonAddressMutation.kt
- */
-export const PersonAddressMutationSchema = PersonAddressMutationSchemaDefinition;
-//# sourceMappingURL=address-mutation.js.map
+//# sourceMappingURL=mutation.js.map

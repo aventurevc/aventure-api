@@ -5,13 +5,13 @@
       "email": "team@aventure.vc",
       "name": "aVenture"
     },
-    "description": "Spring Boot 4.x w/ Java 25 & Postgres 17 (Supabase) back-end API",
-    "title": "aVenture API",
-    "version": "0.7.261"
+    "description": "Public API docs for aVenture.vc, private company research data on their staff/team, products & services, fundraising and investors, and more.",
+    "title": "aVenture Public API Docs",
+    "version": "0.7.263"
   },
   "externalDocs": {
-    "description": "Repository",
-    "url": "https://github.com/aventurevc/back-end"
+    "description": "Documentation and GitHub repositories: [aventure-docs](https://github.com/aventurevc/aventure-docs), [aventure-cli](https://github.com/aventurevc/aventure-cli), [aventure-mcp](https://github.com/aventurevc/aventure-mcp), [aventure-api](https://github.com/aventurevc/aventure-api).",
+    "url": "https://docs.aventure.vc"
   },
   "servers": [
     {
@@ -240,7 +240,7 @@
   "paths": {
     "/v1/agents/chassis": {
       "get": {
-        "description": "Returns the sorted agent runtime chassis tokens accepted by the API.",
+        "description": "Returns the sorted agent runtime chassis tokens accepted by the API to administrators.",
         "operationId": "listAgentChassis",
         "responses": {
           "200": {
@@ -330,9 +330,6 @@
           },
           {
             "adminApiKeyAuth": []
-          },
-          {
-            "clientSecretAuth": []
           }
         ],
         "summary": "List accepted agent chassis",
@@ -1466,6 +1463,7 @@
             "required": false,
             "schema": {
               "type": "integer",
+              "format": "int32",
               "default": 0,
               "minimum": 0
             }
@@ -1477,20 +1475,9 @@
             "required": false,
             "schema": {
               "type": "integer",
+              "format": "int32",
               "default": 25,
               "minimum": 1
-            }
-          },
-          {
-            "description": "Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported.",
-            "in": "query",
-            "name": "sort",
-            "required": false,
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
             }
           }
         ],
@@ -1619,6 +1606,7 @@
             "required": false,
             "schema": {
               "type": "integer",
+              "format": "int32",
               "default": 0,
               "minimum": 0
             }
@@ -1630,20 +1618,9 @@
             "required": false,
             "schema": {
               "type": "integer",
+              "format": "int32",
               "default": 25,
               "minimum": 1
-            }
-          },
-          {
-            "description": "Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported.",
-            "in": "query",
-            "name": "sort",
-            "required": false,
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
             }
           }
         ],
@@ -2072,7 +2049,7 @@
         "operationId": "getOwnerActivity",
         "parameters": [
           {
-            "description": "Maximum owner rows to return; capped server-side at 500",
+            "description": "Maximum owner rows to return; default 200, maximum 500.",
             "in": "query",
             "name": "limit",
             "required": false,
@@ -2658,7 +2635,7 @@
             }
           },
           {
-            "description": "Maximum nearest neighbors to return; values above 100 are clamped",
+            "description": "Maximum nearest neighbors to return; default 10, configured maximum 50; larger values are clamped.",
             "in": "query",
             "name": "limit",
             "required": false,
@@ -3045,7 +3022,7 @@
             }
           },
           {
-            "description": "Maximum items to enqueue for this sweep (1-500, clamped)",
+            "description": "Maximum items to enqueue for this sweep; default 10, clamped to 1..500.",
             "in": "query",
             "name": "limit",
             "required": false,
@@ -3177,7 +3154,7 @@
             }
           },
           {
-            "description": "Maximum stale source ids to return (1-500)",
+            "description": "Maximum stale source ids to return; default 100, valid range 1..500.",
             "in": "query",
             "name": "limit",
             "required": false,
@@ -3622,7 +3599,7 @@
             }
           },
           {
-            "description": "Max source ids to return (1-500; default 100).",
+            "description": "Maximum source ids to return; default 100, valid range 1..500.",
             "in": "query",
             "name": "limit",
             "required": false,
@@ -4269,7 +4246,7 @@
             "name": "urlMatchMode",
             "required": false,
             "schema": {
-              "$ref": "#/components/schemas/EntityUrlMatchMode"
+              "$ref": "#/components/schemas/UrlMatchMode"
             }
           },
           {
@@ -11033,665 +11010,6 @@
         "x-aventure-tool": {
           "cli": "entities fundraise investor-joins replace"
         }
-      },
-      "patch": {
-        "description": "Patches the investor, lead flag, or amountInvested attribution for a fundraise investor join. amountInvested is a plain decimal number in the fundraise transaction currency. API and MCP request bodies use JSON numbers such as 220000 or 123456.78; aventure-cli uses --amount-invested 220000 or --amount-invested 123456.78. Do not send currency signs, currency codes, comma grouping, quoted numeric strings, or abbreviations such as 220k or 0.22M. PATCH with amountInvested:null clears the value. Use --entity-id or --entity-slug for the fundraising/portfolio company that raised the round — always a company, never the fund or investment firm that supplied the capital. For an Investment Firm's outgoing investment, pass the portfolio company that received the money here and identify the firm with --investor-entity-id or --investor-entity-slug. Use transactionId for the round id, or round plus dateAnnounced when transactionId is unknown. Investor entity/person selectors reference existing records only. Create a referenced investor entity first with POST /v1/entities/detail or a referenced investor person first with POST /v1/people/detail, then create the join.",
-        "operationId": "patchFundraiseInvestorJoin",
-        "parameters": [
-          {
-            "description": "Owner-scoped resource UUID selector.",
-            "example": "04e2bf9c-a100-72ad-83ff-ba69c647b30b",
-            "in": "query",
-            "name": "id",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          },
-          {
-            "description": "Owner-scoped resource slug selector.",
-            "example": "acme-corp",
-            "in": "query",
-            "name": "slug",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "description": "Canonical lowercase URL slug for the resource",
-              "example": "aventure-vc",
-              "maxLength": 255,
-              "pattern": "^[a-z0-9_-]+$",
-              "x-source-file": "src/main/kotlin/vc/aventure/domain/model/identity/Slug.kt"
-            }
-          },
-          {
-            "description": "Join identifier. When present, lookup ignores transaction and investor query parameters.",
-            "in": "query",
-            "name": "joinId",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "format": "uuid",
-              "description": "Join identifier. When present, lookup ignores transaction and investor query parameters."
-            }
-          },
-          {
-            "description": "Fundraise round transaction id. The target entity id/slug is the entity that raised the round; for an Investment Firm investment, use the portfolio/fundraising company as target and identify the firm with investorEntityId or investorEntitySlug. When omitted, lookup uses the target entity plus round/dateAnnounced.",
-            "in": "query",
-            "name": "transactionId",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "format": "uuid",
-              "description": "Fundraise round transaction id. The target entity id/slug is the entity that raised the round; for an Investment Firm investment, use the portfolio/fundraising company as target and identify the firm with investorEntityId or investorEntitySlug. When omitted, lookup uses the target entity plus round/dateAnnounced."
-            }
-          },
-          {
-            "description": "Raw fundraise round label used when transactionId is omitted",
-            "in": "query",
-            "name": "round",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "description": "Raw fundraise round label used when transactionId is omitted"
-            }
-          },
-          {
-            "description": "Exact announced timestamp used to disambiguate same-label rounds",
-            "in": "query",
-            "name": "dateAnnounced",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "format": "date-time",
-              "description": "Exact announced timestamp used to disambiguate same-label rounds"
-            }
-          },
-          {
-            "description": "Existing investor entity identifier. The entity must already exist; create a referenced investor entity first with POST /v1/entities/detail.",
-            "in": "query",
-            "name": "investorEntityId",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "format": "uuid",
-              "description": "Existing investor entity identifier. The entity must already exist; create a referenced investor entity first with POST /v1/entities/detail."
-            }
-          },
-          {
-            "description": "Existing investor entity slug when investorEntityId is omitted. The entity must already exist; create it first with POST /v1/entities/detail.",
-            "in": "query",
-            "name": "investorEntitySlug",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "description": "Existing investor entity slug when investorEntityId is omitted. The entity must already exist; create it first with POST /v1/entities/detail."
-            }
-          },
-          {
-            "description": "Existing investor person identifier. The person must already exist; create a referenced investor person first with POST /v1/people/detail.",
-            "in": "query",
-            "name": "investorPersonId",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "format": "uuid",
-              "description": "Existing investor person identifier. The person must already exist; create a referenced investor person first with POST /v1/people/detail."
-            }
-          },
-          {
-            "description": "Existing investor person slug when investorPersonId is omitted. The person must already exist; create it first with POST /v1/people/detail.",
-            "in": "query",
-            "name": "investorPersonSlug",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "description": "Existing investor person slug when investorPersonId is omitted. The person must already exist; create it first with POST /v1/people/detail."
-            }
-          },
-          {
-            "description": "Write provenance source type.",
-            "in": "query",
-            "name": "sourceType",
-            "required": true,
-            "schema": {
-              "$ref": "#/components/schemas/DatasourceWritableDataSourceType",
-              "example": "aventureStaff"
-            }
-          },
-          {
-            "description": "Source detail or reviewer reference for the write.",
-            "example": "aventure.vc",
-            "in": "query",
-            "name": "sourceDetail",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "description": "Source detail or reviewer reference for the write.",
-              "example": "aventure.vc"
-            }
-          },
-          {
-            "description": "Provider name for provider-native IDs or slugs.",
-            "example": "TechCrunch",
-            "in": "query",
-            "name": "sourceProvider",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "description": "Provider name for provider-native IDs or slugs.",
-              "example": "TechCrunch"
-            }
-          },
-          {
-            "description": "Provider-native source ID.",
-            "example": "tc-2026-05-20-example-round",
-            "in": "query",
-            "name": "sourceProviderId",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "description": "Provider-native source ID.",
-              "example": "tc-2026-05-20-example-round"
-            }
-          },
-          {
-            "description": "Provider-native source slug.",
-            "example": "example-round",
-            "in": "query",
-            "name": "sourceProviderSlug",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "description": "Provider-native source slug.",
-              "example": "example-round"
-            }
-          },
-          {
-            "description": "Actor type; inferred as agent when agentChassis and agentModel are supplied, or as employee from an authenticated user JWT session.",
-            "example": "agent",
-            "in": "query",
-            "name": "actorType",
-            "required": false,
-            "schema": {
-              "$ref": "#/components/schemas/DatasourceProvenanceActorType"
-            }
-          },
-          {
-            "description": "Agent chassis token for agent-authored writes.",
-            "example": "codex-cli",
-            "in": "query",
-            "name": "agentChassis",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "description": "Agent chassis token for agent-authored writes.",
-              "example": "codex-cli"
-            }
-          },
-          {
-            "description": "Agent model id for agent-authored writes.",
-            "in": "query",
-            "name": "agentModel",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "description": "Agent model id for agent-authored writes."
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/merge-patch+json": {
-              "schema": {
-                "$ref": "#/components/schemas/EntityFundraiseInvestorJoinMutation"
-              }
-            }
-          },
-          "description": "Investor join fields to update (RFC 7396 merge patch). Use amountInvested as a plain JSON number, or amountInvested:null to clear it.",
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/EntityFundraiseInvestorJoin"
-                }
-              }
-            },
-            "description": "OK"
-          },
-          "400": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Bad Request"
-          },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
-          "406": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Not Acceptable"
-          },
-          "409": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Conflict"
-          },
-          "415": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unsupported Media Type"
-          },
-          "422": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unprocessable Content"
-          },
-          "429": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Too Many Requests"
-          },
-          "500": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Internal Server Error"
-          },
-          "503": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Service Unavailable"
-          }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          },
-          {
-            "adminApiKeyAuth": []
-          }
-        ],
-        "summary": "Patch fundraise investor join",
-        "tags": [
-          "Entity Fundraise"
-        ],
-        "x-aventure-tool": {
-          "cli": "entities fundraise investor-joins update"
-        }
-      },
-      "delete": {
-        "description": "Hard-deletes an investor join from a fundraise round and returns the deleted join as confirmation. Use --entity-id or --entity-slug for the fundraising/portfolio company that raised the round — always a company, never the fund or investment firm that supplied the capital. For an Investment Firm's outgoing investment, pass the portfolio company that received the money here and identify the firm with --investor-entity-id or --investor-entity-slug. Use transactionId for the round id, or round plus dateAnnounced when transactionId is unknown.",
-        "operationId": "deleteFundraiseInvestorJoin",
-        "parameters": [
-          {
-            "description": "Owner-scoped resource UUID selector.",
-            "example": "04e2bf9c-a100-72ad-83ff-ba69c647b30b",
-            "in": "query",
-            "name": "id",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          },
-          {
-            "description": "Owner-scoped resource slug selector.",
-            "example": "acme-corp",
-            "in": "query",
-            "name": "slug",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "description": "Canonical lowercase URL slug for the resource",
-              "example": "aventure-vc",
-              "maxLength": 255,
-              "pattern": "^[a-z0-9_-]+$",
-              "x-source-file": "src/main/kotlin/vc/aventure/domain/model/identity/Slug.kt"
-            }
-          },
-          {
-            "description": "Join identifier. When present, lookup ignores transaction and investor query parameters.",
-            "in": "query",
-            "name": "joinId",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "format": "uuid",
-              "description": "Join identifier. When present, lookup ignores transaction and investor query parameters."
-            }
-          },
-          {
-            "description": "Fundraise round transaction id. The target entity id/slug is the entity that raised the round; for an Investment Firm investment, use the portfolio/fundraising company as target and identify the firm with investorEntityId or investorEntitySlug. When omitted, lookup uses the target entity plus round/dateAnnounced.",
-            "in": "query",
-            "name": "transactionId",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "format": "uuid",
-              "description": "Fundraise round transaction id. The target entity id/slug is the entity that raised the round; for an Investment Firm investment, use the portfolio/fundraising company as target and identify the firm with investorEntityId or investorEntitySlug. When omitted, lookup uses the target entity plus round/dateAnnounced."
-            }
-          },
-          {
-            "description": "Raw fundraise round label used when transactionId is omitted",
-            "in": "query",
-            "name": "round",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "description": "Raw fundraise round label used when transactionId is omitted"
-            }
-          },
-          {
-            "description": "Exact announced timestamp used to disambiguate same-label rounds",
-            "in": "query",
-            "name": "dateAnnounced",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "format": "date-time",
-              "description": "Exact announced timestamp used to disambiguate same-label rounds"
-            }
-          },
-          {
-            "description": "Existing investor entity identifier. The entity must already exist; create a referenced investor entity first with POST /v1/entities/detail.",
-            "in": "query",
-            "name": "investorEntityId",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "format": "uuid",
-              "description": "Existing investor entity identifier. The entity must already exist; create a referenced investor entity first with POST /v1/entities/detail."
-            }
-          },
-          {
-            "description": "Existing investor entity slug when investorEntityId is omitted. The entity must already exist; create it first with POST /v1/entities/detail.",
-            "in": "query",
-            "name": "investorEntitySlug",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "description": "Existing investor entity slug when investorEntityId is omitted. The entity must already exist; create it first with POST /v1/entities/detail."
-            }
-          },
-          {
-            "description": "Existing investor person identifier. The person must already exist; create a referenced investor person first with POST /v1/people/detail.",
-            "in": "query",
-            "name": "investorPersonId",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "format": "uuid",
-              "description": "Existing investor person identifier. The person must already exist; create a referenced investor person first with POST /v1/people/detail."
-            }
-          },
-          {
-            "description": "Existing investor person slug when investorPersonId is omitted. The person must already exist; create it first with POST /v1/people/detail.",
-            "in": "query",
-            "name": "investorPersonSlug",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "description": "Existing investor person slug when investorPersonId is omitted. The person must already exist; create it first with POST /v1/people/detail."
-            }
-          },
-          {
-            "description": "Write provenance source type.",
-            "in": "query",
-            "name": "sourceType",
-            "required": true,
-            "schema": {
-              "$ref": "#/components/schemas/DatasourceWritableDataSourceType",
-              "example": "aventureStaff"
-            }
-          },
-          {
-            "description": "Source detail or reviewer reference for the write.",
-            "example": "aventure.vc",
-            "in": "query",
-            "name": "sourceDetail",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "description": "Source detail or reviewer reference for the write.",
-              "example": "aventure.vc"
-            }
-          },
-          {
-            "description": "Provider name for provider-native IDs or slugs.",
-            "example": "TechCrunch",
-            "in": "query",
-            "name": "sourceProvider",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "description": "Provider name for provider-native IDs or slugs.",
-              "example": "TechCrunch"
-            }
-          },
-          {
-            "description": "Provider-native source ID.",
-            "example": "tc-2026-05-20-example-round",
-            "in": "query",
-            "name": "sourceProviderId",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "description": "Provider-native source ID.",
-              "example": "tc-2026-05-20-example-round"
-            }
-          },
-          {
-            "description": "Provider-native source slug.",
-            "example": "example-round",
-            "in": "query",
-            "name": "sourceProviderSlug",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "description": "Provider-native source slug.",
-              "example": "example-round"
-            }
-          },
-          {
-            "description": "Actor type; inferred as agent when agentChassis and agentModel are supplied, or as employee from an authenticated user JWT session.",
-            "example": "agent",
-            "in": "query",
-            "name": "actorType",
-            "required": false,
-            "schema": {
-              "$ref": "#/components/schemas/DatasourceProvenanceActorType"
-            }
-          },
-          {
-            "description": "Agent chassis token for agent-authored writes.",
-            "example": "codex-cli",
-            "in": "query",
-            "name": "agentChassis",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "description": "Agent chassis token for agent-authored writes.",
-              "example": "codex-cli"
-            }
-          },
-          {
-            "description": "Agent model id for agent-authored writes.",
-            "in": "query",
-            "name": "agentModel",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "description": "Agent model id for agent-authored writes."
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/EntityFundraiseInvestorJoin"
-                }
-              }
-            },
-            "description": "OK"
-          },
-          "400": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Bad Request"
-          },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
-          "406": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Not Acceptable"
-          },
-          "409": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Conflict"
-          },
-          "429": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Too Many Requests"
-          },
-          "500": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Internal Server Error"
-          },
-          "503": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Service Unavailable"
-          }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          },
-          {
-            "adminApiKeyAuth": []
-          }
-        ],
-        "summary": "Delete fundraise investor join",
-        "tags": [
-          "Entity Fundraise"
-        ],
-        "x-aventure-tool": {
-          "cli": "entities fundraise investor-joins delete"
-        }
       }
     },
     "/v1/entities/detail/fundraise-investor-joins/{joinId}": {
@@ -13938,6 +13256,7 @@
             "required": false,
             "schema": {
               "type": "integer",
+              "format": "int32",
               "default": 0,
               "minimum": 0
             }
@@ -13949,20 +13268,9 @@
             "required": false,
             "schema": {
               "type": "integer",
+              "format": "int32",
               "default": 25,
               "minimum": 1
-            }
-          },
-          {
-            "description": "Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported.",
-            "in": "query",
-            "name": "sort",
-            "required": false,
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
             }
           }
         ],
@@ -15039,11 +14347,7 @@
             "name": "deleteMode",
             "required": false,
             "schema": {
-              "type": "string",
-              "default": "hard",
-              "enum": [
-                "hard"
-              ]
+              "$ref": "#/components/schemas/NewsDeleteMode"
             }
           },
           {
@@ -15307,18 +14611,6 @@
               "type": "integer",
               "format": "int32",
               "default": 25
-            }
-          },
-          {
-            "description": "Sorting is not supported",
-            "in": "query",
-            "name": "sort",
-            "required": false,
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
             }
           }
         ],
@@ -15830,6 +15122,7 @@
             "required": false,
             "schema": {
               "type": "integer",
+              "format": "int32",
               "default": 0,
               "minimum": 0
             }
@@ -15841,20 +15134,9 @@
             "required": false,
             "schema": {
               "type": "integer",
+              "format": "int32",
               "default": 10,
               "minimum": 1
-            }
-          },
-          {
-            "description": "Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported.",
-            "in": "query",
-            "name": "sort",
-            "required": false,
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
             }
           }
         ],
@@ -15992,6 +15274,7 @@
             "required": false,
             "schema": {
               "type": "integer",
+              "format": "int32",
               "default": 0,
               "minimum": 0
             }
@@ -16003,20 +15286,9 @@
             "required": false,
             "schema": {
               "type": "integer",
+              "format": "int32",
               "default": 10,
               "minimum": 1
-            }
-          },
-          {
-            "description": "Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported.",
-            "in": "query",
-            "name": "sort",
-            "required": false,
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
             }
           }
         ],
@@ -16241,7 +15513,7 @@
             "name": "urlMatchMode",
             "required": false,
             "schema": {
-              "$ref": "#/components/schemas/EntityUrlMatchMode"
+              "$ref": "#/components/schemas/UrlMatchMode"
             }
           },
           {
@@ -16298,18 +15570,6 @@
             "schema": {
               "type": "integer",
               "format": "int32"
-            }
-          },
-          {
-            "description": "Sorting is not supported",
-            "in": "query",
-            "name": "sort",
-            "required": false,
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
             }
           },
           {
@@ -16439,18 +15699,6 @@
             "schema": {
               "type": "integer",
               "format": "int32"
-            }
-          },
-          {
-            "description": "Sorting is not supported",
-            "in": "query",
-            "name": "sort",
-            "required": false,
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
             }
           },
           {
@@ -16721,7 +15969,7 @@
             "name": "urlMatchMode",
             "required": false,
             "schema": {
-              "$ref": "#/components/schemas/EntityUrlMatchMode"
+              "$ref": "#/components/schemas/UrlMatchMode"
             }
           },
           {
@@ -16778,18 +16026,6 @@
             "schema": {
               "type": "integer",
               "format": "int32"
-            }
-          },
-          {
-            "description": "Sorting is not supported",
-            "in": "query",
-            "name": "sort",
-            "required": false,
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
             }
           },
           {
@@ -16919,18 +16155,6 @@
             "schema": {
               "type": "integer",
               "format": "int32"
-            }
-          },
-          {
-            "description": "Sorting is not supported",
-            "in": "query",
-            "name": "sort",
-            "required": false,
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
             }
           },
           {
@@ -17544,18 +16768,6 @@
             "schema": {
               "type": "integer",
               "format": "int32"
-            }
-          },
-          {
-            "description": "Sorting is not supported",
-            "in": "query",
-            "name": "sort",
-            "required": false,
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
             }
           },
           {
@@ -20036,7 +19248,7 @@
             "name": "urlMatchMode",
             "required": false,
             "schema": {
-              "$ref": "#/components/schemas/EntityUrlMatchMode"
+              "$ref": "#/components/schemas/UrlMatchMode"
             }
           },
           {
@@ -22350,7 +21562,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/EntityAddressMutation"
+                "$ref": "#/components/schemas/AddressMutation"
               }
             }
           },
@@ -22743,7 +21955,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/EntityAddressMutation"
+                "$ref": "#/components/schemas/AddressMutation"
               }
             }
           },
@@ -23005,7 +22217,7 @@
           "content": {
             "application/merge-patch+json": {
               "schema": {
-                "$ref": "#/components/schemas/EntityAddressMutation"
+                "$ref": "#/components/schemas/AddressMutation"
               }
             }
           },
@@ -25139,7 +24351,7 @@
             }
           },
           {
-            "description": "Maximum suggestions to return; capped by the service.",
+            "description": "Maximum suggestions to return; default 12, maximum 50.",
             "in": "query",
             "name": "limit",
             "required": false,
@@ -26694,9 +25906,516 @@
         ]
       }
     },
+    "/v1/entities/{entityId}/fundraise-investor-joins/{joinId}": {
+      "patch": {
+        "description": "Patches the investor, lead flag, or amountInvested attribution for a fundraise investor join. amountInvested is a plain decimal number in the fundraise transaction currency. API and MCP request bodies use JSON numbers such as 220000 or 123456.78; aventure-cli uses --amount-invested 220000 or --amount-invested 123456.78. Do not send currency signs, currency codes, comma grouping, quoted numeric strings, or abbreviations such as 220k or 0.22M. PATCH with amountInvested:null clears the value. Use --entity-id or --entity-slug for the fundraising/portfolio company that raised the round — always a company, never the fund or investment firm that supplied the capital. For an Investment Firm's outgoing investment, pass the portfolio company that received the money here and identify the firm with --investor-entity-id or --investor-entity-slug. Use transactionId for the round id, or round plus dateAnnounced when transactionId is unknown. Investor entity/person selectors reference existing records only. Create a referenced investor entity first with POST /v1/entities/detail or a referenced investor person first with POST /v1/people/detail, then create the join.",
+        "operationId": "patchFundraiseInvestorJoin",
+        "parameters": [
+          {
+            "description": "Entity UUID",
+            "in": "path",
+            "name": "entityId",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "description": "Canonical entity UUID",
+              "x-source-file": "src/main/kotlin/vc/aventure/domain/model/identity/EntityId.kt"
+            }
+          },
+          {
+            "description": "Fundraise investor join identifier",
+            "in": "path",
+            "name": "joinId",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "description": "Type-safe identifier for fundraise investor joins",
+              "x-source-file": "src/main/kotlin/vc/aventure/domain/model/identity/FundraiseInvestorJoinId.kt"
+            }
+          },
+          {
+            "description": "Write provenance source type.",
+            "in": "query",
+            "name": "sourceType",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/DatasourceWritableDataSourceType",
+              "example": "aventureStaff"
+            }
+          },
+          {
+            "description": "Source detail or reviewer reference for the write.",
+            "example": "aventure.vc",
+            "in": "query",
+            "name": "sourceDetail",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "Source detail or reviewer reference for the write.",
+              "example": "aventure.vc"
+            }
+          },
+          {
+            "description": "Provider name for provider-native IDs or slugs.",
+            "example": "TechCrunch",
+            "in": "query",
+            "name": "sourceProvider",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Provider name for provider-native IDs or slugs.",
+              "example": "TechCrunch"
+            }
+          },
+          {
+            "description": "Provider-native source ID.",
+            "example": "tc-2026-05-20-example-round",
+            "in": "query",
+            "name": "sourceProviderId",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Provider-native source ID.",
+              "example": "tc-2026-05-20-example-round"
+            }
+          },
+          {
+            "description": "Provider-native source slug.",
+            "example": "example-round",
+            "in": "query",
+            "name": "sourceProviderSlug",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Provider-native source slug.",
+              "example": "example-round"
+            }
+          },
+          {
+            "description": "Actor type; inferred as agent when agentChassis and agentModel are supplied, or as employee from an authenticated user JWT session.",
+            "example": "agent",
+            "in": "query",
+            "name": "actorType",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/DatasourceProvenanceActorType"
+            }
+          },
+          {
+            "description": "Agent chassis token for agent-authored writes.",
+            "example": "codex-cli",
+            "in": "query",
+            "name": "agentChassis",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Agent chassis token for agent-authored writes.",
+              "example": "codex-cli"
+            }
+          },
+          {
+            "description": "Agent model id for agent-authored writes.",
+            "in": "query",
+            "name": "agentModel",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Agent model id for agent-authored writes."
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/merge-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/EntityFundraiseInvestorJoinMutation"
+              }
+            }
+          },
+          "description": "Investor join fields to update (RFC 7396 merge patch). Use amountInvested as a plain JSON number, or amountInvested:null to clear it.",
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EntityFundraiseInvestorJoin"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "406": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Acceptable"
+          },
+          "409": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "415": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unsupported Media Type"
+          },
+          "422": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "500": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          },
+          {
+            "adminApiKeyAuth": []
+          }
+        ],
+        "summary": "Patch fundraise investor join",
+        "tags": [
+          "Entity Fundraise"
+        ],
+        "x-aventure-tool": {
+          "cli": "entities fundraise investor-joins update"
+        }
+      },
+      "delete": {
+        "description": "Hard-deletes an investor join from a fundraise round and returns the deleted join as confirmation. Use --entity-id or --entity-slug for the fundraising/portfolio company that raised the round — always a company, never the fund or investment firm that supplied the capital. For an Investment Firm's outgoing investment, pass the portfolio company that received the money here and identify the firm with --investor-entity-id or --investor-entity-slug. Use transactionId for the round id, or round plus dateAnnounced when transactionId is unknown.",
+        "operationId": "deleteFundraiseInvestorJoin",
+        "parameters": [
+          {
+            "description": "Entity UUID",
+            "in": "path",
+            "name": "entityId",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "description": "Canonical entity UUID",
+              "x-source-file": "src/main/kotlin/vc/aventure/domain/model/identity/EntityId.kt"
+            }
+          },
+          {
+            "description": "Fundraise investor join identifier",
+            "in": "path",
+            "name": "joinId",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "description": "Type-safe identifier for fundraise investor joins",
+              "x-source-file": "src/main/kotlin/vc/aventure/domain/model/identity/FundraiseInvestorJoinId.kt"
+            }
+          },
+          {
+            "description": "Write provenance source type.",
+            "in": "query",
+            "name": "sourceType",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/DatasourceWritableDataSourceType",
+              "example": "aventureStaff"
+            }
+          },
+          {
+            "description": "Source detail or reviewer reference for the write.",
+            "example": "aventure.vc",
+            "in": "query",
+            "name": "sourceDetail",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "Source detail or reviewer reference for the write.",
+              "example": "aventure.vc"
+            }
+          },
+          {
+            "description": "Provider name for provider-native IDs or slugs.",
+            "example": "TechCrunch",
+            "in": "query",
+            "name": "sourceProvider",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Provider name for provider-native IDs or slugs.",
+              "example": "TechCrunch"
+            }
+          },
+          {
+            "description": "Provider-native source ID.",
+            "example": "tc-2026-05-20-example-round",
+            "in": "query",
+            "name": "sourceProviderId",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Provider-native source ID.",
+              "example": "tc-2026-05-20-example-round"
+            }
+          },
+          {
+            "description": "Provider-native source slug.",
+            "example": "example-round",
+            "in": "query",
+            "name": "sourceProviderSlug",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Provider-native source slug.",
+              "example": "example-round"
+            }
+          },
+          {
+            "description": "Actor type; inferred as agent when agentChassis and agentModel are supplied, or as employee from an authenticated user JWT session.",
+            "example": "agent",
+            "in": "query",
+            "name": "actorType",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/DatasourceProvenanceActorType"
+            }
+          },
+          {
+            "description": "Agent chassis token for agent-authored writes.",
+            "example": "codex-cli",
+            "in": "query",
+            "name": "agentChassis",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Agent chassis token for agent-authored writes.",
+              "example": "codex-cli"
+            }
+          },
+          {
+            "description": "Agent model id for agent-authored writes.",
+            "in": "query",
+            "name": "agentModel",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Agent model id for agent-authored writes."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EntityFundraiseInvestorJoin"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "406": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Acceptable"
+          },
+          "409": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "500": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          },
+          {
+            "adminApiKeyAuth": []
+          }
+        ],
+        "summary": "Delete fundraise investor join",
+        "tags": [
+          "Entity Fundraise"
+        ],
+        "x-aventure-tool": {
+          "cli": "entities fundraise investor-joins delete"
+        }
+      }
+    },
     "/v1/entities/{entityId}/operating-status": {
       "get": {
-        "description": "Returns current operatingStatus as EntityMutation. Write auth required.",
+        "description": "Returns the current entity operating status. Write auth required.",
         "operationId": "getOperatingStatus",
         "parameters": [
           {
@@ -26717,7 +26436,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/EntityMutation"
+                  "$ref": "#/components/schemas/EntityOperatingStatusDetail"
                 }
               }
             },
@@ -26818,7 +26537,7 @@
         ]
       },
       "post": {
-        "description": "Requires EntityMutation.operatingStatus plus ProvenanceSource query parameters. LLM-authored writes should send sourceType=llm, sourceDetail such as web-search:https://example.com/source, agentChassis, and agentModel. actorType is optional only at the HTTP/OpenAPI layer because the web boundary infers actorType=agent from that complete pair or actorType=employee from authenticated employee metadata before the domain factory and persistence write lane enforce actor context. Terminal statuses create numberOfEmployees=0 at asOfDate/default yesterday and deactivate website URLs. Closed and terminal Acquired do not deactivate attached person joins; those joins remain current because isCurrent describes the title association. The response emits PERSON_ASSOCIATION_END_DATE_RECOMMENDED and callers should update each attached person association endDate with a closing-date estimate.",
+        "description": "Requires EntityMutation.operatingStatus plus ProvenanceSource query parameters. LLM-authored writes should send sourceType=llm, sourceDetail such as web-search:https://example.com/source, agentChassis, and agentModel. actorType is optional only at the HTTP/OpenAPI layer because the web boundary infers actorType=agent from that complete pair or actorType=employee from authenticated employee metadata before the domain factory and persistence write lane enforce actor context. Terminal statuses create numberOfEmployees=0 at asOfDate/default yesterday and deactivate website URLs. Closed, Closed (Acquihire), and terminal Acquired do not deactivate attached person joins; those joins remain current because isCurrent describes the title association. The response emits PERSON_ASSOCIATION_END_DATE_RECOMMENDED and callers should update each attached person association endDate with a closing-date estimate.",
         "operationId": "createOperatingStatus",
         "parameters": [
           {
@@ -27080,7 +26799,7 @@
         ]
       },
       "put": {
-        "description": "Requires EntityMutation.operatingStatus plus ProvenanceSource query parameters. LLM-authored writes should send sourceType=llm, sourceDetail such as web-search:https://example.com/source, agentChassis, and agentModel. actorType is optional only at the HTTP/OpenAPI layer because the web boundary infers actorType=agent from that complete pair or actorType=employee from authenticated employee metadata before the domain factory and persistence write lane enforce actor context. Terminal statuses create numberOfEmployees=0 at asOfDate/default yesterday and deactivate website URLs. Closed and terminal Acquired do not deactivate attached person joins; those joins remain current because isCurrent describes the title association. The response emits PERSON_ASSOCIATION_END_DATE_RECOMMENDED and callers should update each attached person association endDate with a closing-date estimate.",
+        "description": "Requires EntityMutation.operatingStatus plus ProvenanceSource query parameters. LLM-authored writes should send sourceType=llm, sourceDetail such as web-search:https://example.com/source, agentChassis, and agentModel. actorType is optional only at the HTTP/OpenAPI layer because the web boundary infers actorType=agent from that complete pair or actorType=employee from authenticated employee metadata before the domain factory and persistence write lane enforce actor context. Terminal statuses create numberOfEmployees=0 at asOfDate/default yesterday and deactivate website URLs. Closed, Closed (Acquihire), and terminal Acquired do not deactivate attached person joins; those joins remain current because isCurrent describes the title association. The response emits PERSON_ASSOCIATION_END_DATE_RECOMMENDED and callers should update each attached person association endDate with a closing-date estimate.",
         "operationId": "upsertOperatingStatus",
         "parameters": [
           {
@@ -27342,7 +27061,7 @@
         ]
       },
       "patch": {
-        "description": "Requires EntityMutation.operatingStatus plus ProvenanceSource query parameters. LLM-authored writes should send sourceType=llm, sourceDetail such as web-search:https://example.com/source, agentChassis, and agentModel. actorType is optional only at the HTTP/OpenAPI layer because the web boundary infers actorType=agent from that complete pair or actorType=employee from authenticated employee metadata before the domain factory and persistence write lane enforce actor context. Terminal statuses create numberOfEmployees=0 at asOfDate/default yesterday and deactivate website URLs. Closed and terminal Acquired do not deactivate attached person joins; those joins remain current because isCurrent describes the title association. The response emits PERSON_ASSOCIATION_END_DATE_RECOMMENDED and callers should update each attached person association endDate with a closing-date estimate.",
+        "description": "Requires EntityMutation.operatingStatus plus ProvenanceSource query parameters. LLM-authored writes should send sourceType=llm, sourceDetail such as web-search:https://example.com/source, agentChassis, and agentModel. actorType is optional only at the HTTP/OpenAPI layer because the web boundary infers actorType=agent from that complete pair or actorType=employee from authenticated employee metadata before the domain factory and persistence write lane enforce actor context. Terminal statuses create numberOfEmployees=0 at asOfDate/default yesterday and deactivate website URLs. Closed, Closed (Acquihire), and terminal Acquired do not deactivate attached person joins; those joins remain current because isCurrent describes the title association. The response emits PERSON_ASSOCIATION_END_DATE_RECOMMENDED and callers should update each attached person association endDate with a closing-date estimate.",
         "operationId": "patchOperatingStatus",
         "parameters": [
           {
@@ -27815,15 +27534,6 @@
             }
           },
           {
-            "description": "Projection: `core` (default) returns person identity only and omits association fields. `association` returns PersonDetail rows with the matching join under `association[]`; read title and period fields from `association[].titleName`, `association[].startDate`, and `association[].endDate`. Person sitemap visibility is owned by people detail/status reads, not this list projection.",
-            "in": "query",
-            "name": "as",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "description": "Person slug fallback for entity-keyed writes",
             "in": "query",
             "name": "personSlug",
@@ -27899,7 +27609,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PageEntityPerson"
+                  "$ref": "#/components/schemas/PageEntityPersonAssociation"
                 }
               }
             },
@@ -28094,15 +27804,6 @@
             }
           },
           {
-            "description": "Projection: `core` (default) returns person identity only and omits association fields. `association` returns PersonDetail rows with the matching join under `association[]`; read title and period fields from `association[].titleName`, `association[].startDate`, and `association[].endDate`. Person sitemap visibility is owned by people detail/status reads, not this list projection.",
-            "in": "query",
-            "name": "as",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "description": "Person slug fallback for entity-keyed writes",
             "in": "query",
             "name": "personSlug",
@@ -28144,7 +27845,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PersonDetail"
+                  "$ref": "#/components/schemas/EntityPersonAssociation"
                 }
               }
             },
@@ -28260,7 +27961,7 @@
             }
           },
           {
-            "description": "Maximum suggestions to return; capped by the service.",
+            "description": "Maximum suggestions to return; default 12, maximum 50.",
             "in": "query",
             "name": "limit",
             "required": false,
@@ -28453,7 +28154,7 @@
             "required": false,
             "schema": {
               "type": "integer",
-              "default": 0,
+              "format": "int32",
               "minimum": 0
             }
           },
@@ -28464,20 +28165,8 @@
             "required": false,
             "schema": {
               "type": "integer",
-              "default": 20,
+              "format": "int32",
               "minimum": 1
-            }
-          },
-          {
-            "description": "Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported.",
-            "in": "query",
-            "name": "sort",
-            "required": false,
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
             }
           }
         ],
@@ -28857,7 +28546,7 @@
             }
           },
           {
-            "description": "Maximum suggestions to return; capped by the service.",
+            "description": "Maximum suggestions to return; default 12, maximum 50.",
             "in": "query",
             "name": "limit",
             "required": false,
@@ -29470,18 +29159,6 @@
               "type": "integer",
               "format": "int32",
               "default": 25
-            }
-          },
-          {
-            "description": "Sorting is not supported",
-            "in": "query",
-            "name": "sort",
-            "required": false,
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
             }
           },
           {
@@ -38119,18 +37796,6 @@
               "format": "int32",
               "default": 50
             }
-          },
-          {
-            "description": "Sorting is not supported",
-            "in": "query",
-            "name": "sort",
-            "required": false,
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            }
           }
         ],
         "responses": {
@@ -39494,6 +39159,7 @@
             "required": false,
             "schema": {
               "type": "integer",
+              "format": "int32",
               "default": 0,
               "minimum": 0
             }
@@ -39505,20 +39171,9 @@
             "required": false,
             "schema": {
               "type": "integer",
+              "format": "int32",
               "default": 20,
               "minimum": 1
-            }
-          },
-          {
-            "description": "Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported.",
-            "in": "query",
-            "name": "sort",
-            "required": false,
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
             }
           }
         ],
@@ -39527,7 +39182,7 @@
             "content": {
               "*/*": {
                 "schema": {
-                  "$ref": "#/components/schemas/PageMediaCrawlScreenshot"
+                  "$ref": "#/components/schemas/PageMediaScreenshot"
                 }
               }
             },
@@ -39636,7 +39291,7 @@
             "content": {
               "*/*": {
                 "schema": {
-                  "$ref": "#/components/schemas/MediaCrawlScreenshot"
+                  "$ref": "#/components/schemas/MediaScreenshot"
                 }
               }
             },
@@ -41580,11 +41235,7 @@
             "name": "deleteMode",
             "required": false,
             "schema": {
-              "type": "string",
-              "default": "hard",
-              "enum": [
-                "hard"
-              ]
+              "$ref": "#/components/schemas/NewsDeleteMode"
             }
           },
           {
@@ -41880,7 +41531,7 @@
             "name": "urlMatchMode",
             "required": false,
             "schema": {
-              "$ref": "#/components/schemas/EntityUrlMatchMode"
+              "$ref": "#/components/schemas/UrlMatchMode"
             }
           },
           {
@@ -41915,18 +41566,6 @@
             "schema": {
               "type": "integer",
               "format": "int32"
-            }
-          },
-          {
-            "description": "Sorting is not supported",
-            "in": "query",
-            "name": "sort",
-            "required": false,
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
             }
           }
         ],
@@ -42046,18 +41685,6 @@
             "schema": {
               "type": "integer",
               "format": "int32"
-            }
-          },
-          {
-            "description": "Sorting is not supported",
-            "in": "query",
-            "name": "sort",
-            "required": false,
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
             }
           }
         ],
@@ -42286,7 +41913,7 @@
             "name": "urlMatchMode",
             "required": false,
             "schema": {
-              "$ref": "#/components/schemas/EntityUrlMatchMode"
+              "$ref": "#/components/schemas/UrlMatchMode"
             }
           },
           {
@@ -42321,18 +41948,6 @@
             "schema": {
               "type": "integer",
               "format": "int32"
-            }
-          },
-          {
-            "description": "Sorting is not supported",
-            "in": "query",
-            "name": "sort",
-            "required": false,
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
             }
           }
         ],
@@ -42452,18 +42067,6 @@
             "schema": {
               "type": "integer",
               "format": "int32"
-            }
-          },
-          {
-            "description": "Sorting is not supported",
-            "in": "query",
-            "name": "sort",
-            "required": false,
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
             }
           }
         ],
@@ -42949,6 +42552,7 @@
             "required": false,
             "schema": {
               "type": "integer",
+              "format": "int32",
               "default": 0,
               "minimum": 0
             }
@@ -42960,20 +42564,9 @@
             "required": false,
             "schema": {
               "type": "integer",
+              "format": "int32",
               "default": 12,
               "minimum": 1
-            }
-          },
-          {
-            "description": "Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported.",
-            "in": "query",
-            "name": "sort",
-            "required": false,
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
             }
           }
         ],
@@ -43122,6 +42715,7 @@
             "required": false,
             "schema": {
               "type": "integer",
+              "format": "int32",
               "default": 0,
               "minimum": 0
             }
@@ -43133,20 +42727,9 @@
             "required": false,
             "schema": {
               "type": "integer",
+              "format": "int32",
               "default": 4,
               "minimum": 1
-            }
-          },
-          {
-            "description": "Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported.",
-            "in": "query",
-            "name": "sort",
-            "required": false,
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
             }
           }
         ],
@@ -43268,6 +42851,7 @@
             "required": false,
             "schema": {
               "type": "integer",
+              "format": "int32",
               "default": 0,
               "minimum": 0
             }
@@ -43279,20 +42863,9 @@
             "required": false,
             "schema": {
               "type": "integer",
+              "format": "int32",
               "default": 10,
               "minimum": 1
-            }
-          },
-          {
-            "description": "Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported.",
-            "in": "query",
-            "name": "sort",
-            "required": false,
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
             }
           }
         ],
@@ -47508,6 +47081,7 @@
             "required": false,
             "schema": {
               "type": "integer",
+              "format": "int32",
               "default": 0,
               "minimum": 0
             }
@@ -47519,20 +47093,9 @@
             "required": false,
             "schema": {
               "type": "integer",
+              "format": "int32",
               "default": 25,
               "minimum": 1
-            }
-          },
-          {
-            "description": "Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported.",
-            "in": "query",
-            "name": "sort",
-            "required": false,
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
             }
           }
         ],
@@ -48578,11 +48141,7 @@
             "name": "deleteMode",
             "required": false,
             "schema": {
-              "type": "string",
-              "default": "hard",
-              "enum": [
-                "hard"
-              ]
+              "$ref": "#/components/schemas/NewsDeleteMode"
             }
           },
           {
@@ -48851,6 +48410,7 @@
             "required": false,
             "schema": {
               "type": "integer",
+              "format": "int32",
               "default": 0,
               "minimum": 0
             }
@@ -48862,20 +48422,9 @@
             "required": false,
             "schema": {
               "type": "integer",
+              "format": "int32",
               "default": 10,
               "minimum": 1
-            }
-          },
-          {
-            "description": "Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported.",
-            "in": "query",
-            "name": "sort",
-            "required": false,
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
             }
           }
         ],
@@ -49078,7 +48627,7 @@
             "name": "urlMatchMode",
             "required": false,
             "schema": {
-              "$ref": "#/components/schemas/EntityUrlMatchMode"
+              "$ref": "#/components/schemas/UrlMatchMode"
             }
           },
           {
@@ -49124,18 +48673,6 @@
             "schema": {
               "type": "integer",
               "format": "int32"
-            }
-          },
-          {
-            "description": "Sorting is not supported",
-            "in": "query",
-            "name": "sort",
-            "required": false,
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
             }
           },
           {
@@ -49265,18 +48802,6 @@
             "schema": {
               "type": "integer",
               "format": "int32"
-            }
-          },
-          {
-            "description": "Sorting is not supported",
-            "in": "query",
-            "name": "sort",
-            "required": false,
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
             }
           },
           {
@@ -49525,7 +49050,7 @@
             "name": "urlMatchMode",
             "required": false,
             "schema": {
-              "$ref": "#/components/schemas/EntityUrlMatchMode"
+              "$ref": "#/components/schemas/UrlMatchMode"
             }
           },
           {
@@ -49571,18 +49096,6 @@
             "schema": {
               "type": "integer",
               "format": "int32"
-            }
-          },
-          {
-            "description": "Sorting is not supported",
-            "in": "query",
-            "name": "sort",
-            "required": false,
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
             }
           },
           {
@@ -49712,18 +49225,6 @@
             "schema": {
               "type": "integer",
               "format": "int32"
-            }
-          },
-          {
-            "description": "Sorting is not supported",
-            "in": "query",
-            "name": "sort",
-            "required": false,
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
             }
           },
           {
@@ -50115,18 +49616,6 @@
             "schema": {
               "type": "integer",
               "format": "int32"
-            }
-          },
-          {
-            "description": "Sorting is not supported",
-            "in": "query",
-            "name": "sort",
-            "required": false,
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
             }
           }
         ],
@@ -51092,7 +50581,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/PersonAddressMutation"
+                "$ref": "#/components/schemas/AddressMutation"
               }
             }
           },
@@ -51485,7 +50974,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/PersonAddressMutation"
+                "$ref": "#/components/schemas/AddressMutation"
               }
             }
           },
@@ -51747,11 +51236,11 @@
           "content": {
             "application/merge-patch+json": {
               "schema": {
-                "$ref": "#/components/schemas/PersonAddressMutation"
+                "$ref": "#/components/schemas/AddressMutation"
               }
             }
           },
-          "description": "Sparse PersonAddressMutation fields to merge into the selected person association and its physical address.",
+          "description": "Sparse AddressMutation fields to merge into the selected person association and its physical address.",
           "required": true
         },
         "responses": {
@@ -54160,15 +53649,6 @@
             }
           },
           {
-            "description": "Projection: `core` (default) returns person identity only and omits association fields. `association` returns PersonDetail rows with the matching join under `association[]`; read title and period fields from `association[].titleName`, `association[].startDate`, and `association[].endDate`. Person sitemap visibility is owned by people detail/status reads, not this list projection.",
-            "in": "query",
-            "name": "as",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "description": "Person slug fallback for entity-keyed writes",
             "in": "query",
             "name": "personSlug",
@@ -54703,15 +54183,6 @@
             "required": false,
             "schema": {
               "type": "boolean"
-            }
-          },
-          {
-            "description": "Projection: `core` (default) returns person identity only and omits association fields. `association` returns PersonDetail rows with the matching join under `association[]`; read title and period fields from `association[].titleName`, `association[].startDate`, and `association[].endDate`. Person sitemap visibility is owned by people detail/status reads, not this list projection.",
-            "in": "query",
-            "name": "as",
-            "required": false,
-            "schema": {
-              "type": "string"
             }
           },
           {
@@ -60968,6 +60439,7 @@
             "required": false,
             "schema": {
               "type": "integer",
+              "format": "int32",
               "default": 0,
               "minimum": 0
             }
@@ -60979,23 +60451,9 @@
             "required": false,
             "schema": {
               "type": "integer",
+              "format": "int32",
               "default": 25,
               "minimum": 1
-            }
-          },
-          {
-            "description": "Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported.",
-            "in": "query",
-            "name": "sort",
-            "required": false,
-            "schema": {
-              "type": "array",
-              "default": [
-                "effectiveAt,DESC"
-              ],
-              "items": {
-                "type": "string"
-              }
             }
           }
         ],
@@ -61498,7 +60956,7 @@
             "required": false,
             "schema": {
               "type": "integer",
-              "default": 0,
+              "format": "int32",
               "minimum": 0
             }
           },
@@ -61509,20 +60967,8 @@
             "required": false,
             "schema": {
               "type": "integer",
-              "default": 20,
+              "format": "int32",
               "minimum": 1
-            }
-          },
-          {
-            "description": "Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported.",
-            "in": "query",
-            "name": "sort",
-            "required": false,
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
             }
           }
         ],
@@ -61690,7 +61136,7 @@
             "required": false,
             "schema": {
               "type": "integer",
-              "default": 0,
+              "format": "int32",
               "minimum": 0
             }
           },
@@ -61701,20 +61147,8 @@
             "required": false,
             "schema": {
               "type": "integer",
-              "default": 20,
+              "format": "int32",
               "minimum": 1
-            }
-          },
-          {
-            "description": "Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported.",
-            "in": "query",
-            "name": "sort",
-            "required": false,
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
             }
           }
         ],
@@ -63808,6 +63242,151 @@
           "name"
         ],
         "x-source-file": "src/main/kotlin/vc/aventure/domain/model/address/AddressCountry.kt"
+      },
+      "AddressMutation": {
+        "type": "object",
+        "description": "Create or update an entity or person address association. Structured fields are canonical; fullAddress is server-synthesized and cannot be written. City-level rows require researchExhausted=true after address research is exhausted. Placeholder values and URLs in address text are rejected. Text fields are normalized: surrounding whitespace and separators are trimmed and caseless values (all-lowercase or ALL-CAPS) are title-cased. Latitude and longitude are written as a pair: an explicit pair also updates coordinates on the resolved address row, while omitted coordinates derive from the resolved location and never carry over from a previously stored address.",
+        "properties": {
+          "addressLine1": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Address line 1.",
+            "example": "2 Kingsland Rd",
+            "maxLength": 255,
+            "minLength": 0
+          },
+          "addressLine2": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Address line 2 (suite, floor, etc.)",
+            "example": "Unit 4",
+            "maxLength": 100,
+            "minLength": 0
+          },
+          "cityName": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "City name, resolved within the selected country; include state or region only when that country requires it.",
+            "example": "London",
+            "maxLength": 200,
+            "minLength": 0
+          },
+          "countryCode": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "ISO-3166 alpha-2 country code.",
+            "example": "GB",
+            "maxLength": 2,
+            "minLength": 2
+          },
+          "countryName": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Country name lookup.",
+            "example": "United Kingdom"
+          },
+          "endDate": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date",
+            "description": "Last known day this address association applied."
+          },
+          "isCurrent": {
+            "type": [
+              "boolean",
+              "null"
+            ],
+            "deprecated": true,
+            "description": "Deprecated legacy flag marking whether the address is currently in use.",
+            "example": true
+          },
+          "latitude": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "format": "double",
+            "description": "Latitude in decimal degrees"
+          },
+          "longitude": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "format": "double",
+            "description": "Longitude in decimal degrees"
+          },
+          "postalCode": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Postal or ZIP code.",
+            "example": "E2 8AA",
+            "maxLength": 20,
+            "minLength": 0
+          },
+          "researchExhausted": {
+            "type": [
+              "boolean",
+              "null"
+            ],
+            "description": "Allow a city-level or coarser row only when source research proves no address-line, postal, or coordinate-specific address exists.",
+            "writeOnly": true
+          },
+          "role": {
+            "description": "Address association role. Domicile is a legal or registered seat, dominant is the predominant display location, origin is a founding or historical location; null means unclassified.",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/AddressAssociationRole"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "startDate": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date",
+            "description": "First known day this address association applied."
+          },
+          "stateAbbrev": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "State or region abbreviation for countries that require one.",
+            "example": "CA",
+            "maxLength": 20,
+            "minLength": 0
+          },
+          "stateName": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "State or region name, resolved within the selected country when that country requires one.",
+            "example": "England",
+            "maxLength": 50,
+            "minLength": 0
+          }
+        },
+        "x-source-file": "src/main/kotlin/vc/aventure/domain/model/address/AddressMutation.kt"
       },
       "AddressState": {
         "type": "object",
@@ -66671,7 +66250,7 @@
               "string",
               "null"
             ],
-            "description": "Current operating status. Use Acquired Subsidiary when the entity was acquired and still operates; use Acquired only when it is terminal, folded, or closed."
+            "description": "Current operating status. Use Acquired Subsidiary when the entity was acquired and still operates; use Closed (Acquihire) when the entity was acquired for its team and shut down, rendering like Closed everywhere; use Acquired only when it is terminal, folded, or closed."
           },
           "publicId": {
             "type": [
@@ -66791,7 +66370,7 @@
       },
       "EntityAcquisition": {
         "type": "object",
-        "description": "Canonical acquisition event: scoped entity is acquired, acquirerEntity is buyer, and status is read stage -- Acquisition before operating-status change, Acquired Subsidiary for active completed brands, Acquired for terminal/folded/closed.",
+        "description": "Canonical acquisition event: scoped entity is acquired, acquirerEntity is buyer, and status is read stage -- Acquisition before operating-status change, Acquired Subsidiary for active completed brands, Acquired for terminal/folded/closed (including Closed (Acquihire)).",
         "properties": {
           "acquiredEntity": {
             "$ref": "#/components/schemas/Entity",
@@ -66885,7 +66464,7 @@
           },
           "status": {
             "$ref": "#/components/schemas/EntityAcquisitionStage",
-            "description": "Read stage, not transactionStatus: Acquisition before operating-status change; Acquired Subsidiary for active completed acquisitions; Acquired for terminal/folded/closed."
+            "description": "Read stage, not transactionStatus: Acquisition before operating-status change; Acquired Subsidiary for active completed acquisitions; Acquired for terminal/folded/closed (including Closed (Acquihire))."
           },
           "transactionStatus": {
             "oneOf": [
@@ -67037,176 +66616,13 @@
       },
       "EntityAcquisitionStage": {
         "type": "string",
-        "description": "Acquisition stage/status values used by acquisition APIs and fundraise rollups. Acquisition is neutral before operating-status change; Acquired Subsidiary is completed and still operating; Acquired is terminal or folded.",
+        "description": "Acquisition stage/status values used by acquisition APIs and fundraise rollups. Acquisition is neutral before operating-status change; Acquired Subsidiary is completed and still operating; Acquired is terminal or folded, including Closed (Acquihire).",
         "enum": [
           "Acquisition",
           "Acquired",
           "Acquired Subsidiary"
         ],
         "x-source-file": "src/main/kotlin/vc/aventure/domain/model/entity/EntityAcquisition.kt"
-      },
-      "EntityAddressMutation": {
-        "type": "object",
-        "description": "Create or update entity addresses such as headquarters and offices. Structured fields are canonical; fullAddress is server-synthesized and cannot be written. City-level rows require researchExhausted=true after address research is exhausted. Placeholder values and URLs in address text are rejected. Text fields are normalized: surrounding whitespace and separators are trimmed and caseless values (all-lowercase or ALL-CAPS) are title-cased. Latitude and longitude are written as a pair: an explicit pair also updates coordinates on the resolved address row, while omitted coordinates derive from the resolved location and never carry over from a previously stored address.",
-        "properties": {
-          "addressLine1": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "description": "Address line 1.",
-            "example": "2 Kingsland Rd",
-            "maxLength": 255,
-            "minLength": 0
-          },
-          "addressLine2": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "description": "Address line 2 (suite, floor, etc.)",
-            "example": "Unit 4",
-            "maxLength": 100,
-            "minLength": 0
-          },
-          "cityName": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "description": "City name, resolved within the selected country; include state or region only when that country requires it.",
-            "example": "London",
-            "maxLength": 200,
-            "minLength": 0
-          },
-          "countryCode": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "description": "ISO-3166 alpha-2 country code.",
-            "example": "GB",
-            "maxLength": 2,
-            "minLength": 2
-          },
-          "countryName": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "description": "Country name lookup.",
-            "example": "United Kingdom"
-          },
-          "endDate": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "format": "date",
-            "description": "Last known day this address association applied."
-          },
-          "isCurrent": {
-            "type": [
-              "boolean",
-              "null"
-            ],
-            "deprecated": true,
-            "description": "Deprecated legacy flag marking whether the address is currently in use.",
-            "example": true
-          },
-          "isHq": {
-            "type": [
-              "boolean",
-              "null"
-            ],
-            "deprecated": true,
-            "description": "Deprecated compatibility flag for a legal or registered seat.",
-            "example": true
-          },
-          "isPrimary": {
-            "type": [
-              "boolean",
-              "null"
-            ],
-            "deprecated": true,
-            "description": "Deprecated compatibility flag for the predominant display location.",
-            "example": true
-          },
-          "latitude": {
-            "type": [
-              "number",
-              "null"
-            ],
-            "format": "double",
-            "description": "Latitude in decimal degrees"
-          },
-          "longitude": {
-            "type": [
-              "number",
-              "null"
-            ],
-            "format": "double",
-            "description": "Longitude in decimal degrees"
-          },
-          "postalCode": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "description": "Postal or ZIP code.",
-            "example": "E2 8AA",
-            "maxLength": 20,
-            "minLength": 0
-          },
-          "researchExhausted": {
-            "type": [
-              "boolean",
-              "null"
-            ],
-            "description": "Allow a city-level or coarser row only when source research proves no address-line, postal, or coordinate-specific address exists.",
-            "writeOnly": true
-          },
-          "role": {
-            "description": "Address association role. Domicile is a legal or registered seat, dominant is the predominant display location, origin is a founding or historical location; null means unclassified.",
-            "oneOf": [
-              {
-                "$ref": "#/components/schemas/AddressAssociationRole"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
-          "startDate": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "format": "date",
-            "description": "First known day this address association applied."
-          },
-          "stateAbbrev": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "description": "State or region abbreviation for countries that require one.",
-            "example": "CA",
-            "maxLength": 20,
-            "minLength": 0
-          },
-          "stateName": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "description": "State or region name, resolved within the selected country when that country requires one.",
-            "example": "England",
-            "maxLength": 50,
-            "minLength": 0
-          }
-        },
-        "x-source-file": "src/main/kotlin/vc/aventure/domain/model/address/AddressMutation.kt"
       },
       "EntityAliasType": {
         "type": "string",
@@ -67661,9 +67077,10 @@
       },
       "EntityDetailBatch": {
         "type": "object",
+        "additionalProperties": false,
         "description": "Batch request for entity detail retrieval by id, slug, or current joined URL",
         "properties": {
-          "id": {
+          "entityId": {
             "type": "array",
             "description": "Entity UUID values",
             "items": {
@@ -67906,7 +67323,7 @@
             "example": "hostPath",
             "oneOf": [
               {
-                "$ref": "#/components/schemas/EntityUrlMatchMode"
+                "$ref": "#/components/schemas/UrlMatchMode"
               },
               {
                 "type": "null"
@@ -68262,7 +67679,7 @@
             "example": "example.com"
           },
           "urlMatchMode": {
-            "$ref": "#/components/schemas/EntityUrlMatchMode",
+            "$ref": "#/components/schemas/UrlMatchMode",
             "description": "URL matching mode: hostPath uses host and path; domain uses the root domain.",
             "example": "domain"
           },
@@ -68829,9 +68246,9 @@
               "array",
               "null"
             ],
-            "description": "Address rows created with the entity. Provide this as a top-level array on the full-create body alongside text, not nested under create.entity. Company-class entities need one current HQ address row (isHq=true); products and services may omit addresses.",
+            "description": "Address rows created with the entity. Provide this as a top-level array on the full-create body alongside text, not nested under create.entity. Company-class entities need one current domicile address row; products and services may omit addresses.",
             "items": {
-              "$ref": "#/components/schemas/EntityAddressMutation"
+              "$ref": "#/components/schemas/AddressMutation"
             }
           },
           "classification": {
@@ -69890,7 +69307,7 @@
             "example": "spec-test-entity-inc"
           },
           "operatingStatus": {
-            "description": "Operating status. Required on create; omitted update values preserve existing status. Use Acquired Subsidiary when an acquired entity still operates; use Acquired only when it is terminal, folded, or closed. Closed and terminal Acquired keep attached person joins current; update association endDate separately with a closing-date estimate.",
+            "description": "Operating status. Required on create; omitted update values preserve existing status. Use Acquired Subsidiary when an acquired entity still operates; use Closed (Acquihire) when an acquired entity was shut down for its team, rendering like Closed everywhere; use Acquired only when it is terminal, folded, or closed. Closed and terminal Acquired keep attached person joins current; update association endDate separately with a closing-date estimate.",
             "example": "Operating",
             "oneOf": [
               {
@@ -70019,14 +69436,33 @@
       },
       "EntityOperatingStatus": {
         "type": "string",
-        "description": "Operating state accepted by entity mutation endpoints. Acquired Subsidiary means the entity was acquired and still operates; Acquired means the entity is terminal, folded into the buyer, or closed.",
+        "description": "Operating state accepted by entity mutation endpoints. Acquired Subsidiary means the entity was acquired and still operates; Closed (Acquihire) means the entity was acquired for its team and is terminal, rendering like Closed everywhere; Acquired means the entity is terminal, folded into the buyer, or closed.",
         "enum": [
           "Operating",
           "Acquired",
           "Acquired Subsidiary",
           "Closed",
+          "Closed (Acquihire)",
           "Inactive"
         ],
+        "x-source-file": "src/main/kotlin/vc/aventure/domain/model/entity/EntityOperatingStatus.kt"
+      },
+      "EntityOperatingStatusDetail": {
+        "type": "object",
+        "description": "Current operating status for one entity.",
+        "properties": {
+          "operatingStatus": {
+            "description": "Current operating status; null when no status has been assigned.",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/EntityOperatingStatus"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
         "x-source-file": "src/main/kotlin/vc/aventure/domain/model/entity/EntityOperatingStatus.kt"
       },
       "EntityOperatingStatusSignal": {
@@ -70123,9 +69559,6 @@
           "verdict"
         ],
         "x-source-file": "src/main/kotlin/vc/aventure/domain/model/entity/EntityOperatingStatusSignal.kt"
-      },
-      "EntityPerson": {
-        "x-source-file": "src/main/kotlin/vc/aventure/domain/model/person/EntityPerson.kt"
       },
       "EntityPersonAssociation": {
         "type": "object",
@@ -71988,15 +71421,6 @@
         },
         "x-source-file": "src/main/kotlin/vc/aventure/domain/model/url/UrlLinkMutation.kt"
       },
-      "EntityUrlMatchMode": {
-        "type": "string",
-        "description": "URL matching mode for URL-backed filters and duplicate checks.",
-        "enum": [
-          "hostPath",
-          "domain"
-        ],
-        "x-source-file": "src/main/kotlin/vc/aventure/domain/model/url/UrlMatchMode.kt"
-      },
       "EntityUrlMatchStrictness": {
         "type": "string",
         "description": "URL strictness for duplicate detection. strict is the default when omitted. loose and any are explicit caller opt-ins for broader matching. Clients that want progressive widening should retry intentionally rather than relying on server fallback.",
@@ -72890,92 +72314,6 @@
         ],
         "x-source-file": "src/main/kotlin/vc/aventure/domain/model/media/LogoAccuracy.kt"
       },
-      "MediaCrawlScreenshot": {
-        "type": "object",
-        "description": "Domain record for crawl screenshot metadata - also the API response type",
-        "properties": {
-          "contentType": {
-            "type": "string"
-          },
-          "crawledAt": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "fileSize": {
-            "type": [
-              "integer",
-              "null"
-            ],
-            "format": "int32"
-          },
-          "id": {
-            "type": "integer",
-            "format": "int64",
-            "description": "Type-safe identifier for crawl screenshots",
-            "x-source-file": "src/main/kotlin/vc/aventure/domain/model/identity/CrawlScreenshotId.kt"
-          },
-          "owner": {
-            "oneOf": [
-              {
-                "$ref": "#/components/schemas/EntityPersonOwner"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
-          "position": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "s3Key": {
-            "type": "string"
-          },
-          "updatedAt": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "url": {
-            "type": "string"
-          },
-          "urlId": {
-            "type": [
-              "integer",
-              "null"
-            ],
-            "format": "int32"
-          },
-          "viewportHeight": {
-            "type": [
-              "integer",
-              "null"
-            ],
-            "format": "int32"
-          },
-          "viewportWidth": {
-            "type": [
-              "integer",
-              "null"
-            ],
-            "format": "int32"
-          }
-        },
-        "required": [
-          "contentType",
-          "crawledAt",
-          "createdAt",
-          "id",
-          "position",
-          "s3Key",
-          "updatedAt",
-          "url"
-        ],
-        "x-source-file": "src/main/kotlin/vc/aventure/domain/model/media/CrawlScreenshot.kt"
-      },
       "MediaImportResult": {
         "type": "object",
         "description": "Automatic media discovery result. Preview returns the selected external source image URL; import returns the attached managed media asset as well.",
@@ -73257,6 +72595,92 @@
         ],
         "x-source-file": "src/main/kotlin/vc/aventure/domain/model/media/MediaRetrofitRun.kt"
       },
+      "MediaScreenshot": {
+        "type": "object",
+        "description": "Domain record for crawl screenshot metadata - also the API response type",
+        "properties": {
+          "contentType": {
+            "type": "string"
+          },
+          "crawledAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "fileSize": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int32"
+          },
+          "id": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Type-safe identifier for crawl screenshots",
+            "x-source-file": "src/main/kotlin/vc/aventure/domain/model/identity/CrawlScreenshotId.kt"
+          },
+          "owner": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/EntityPersonOwner"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "position": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "s3Key": {
+            "type": "string"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "url": {
+            "type": "string"
+          },
+          "urlId": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int32"
+          },
+          "viewportHeight": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int32"
+          },
+          "viewportWidth": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int32"
+          }
+        },
+        "required": [
+          "contentType",
+          "crawledAt",
+          "createdAt",
+          "id",
+          "position",
+          "s3Key",
+          "updatedAt",
+          "url"
+        ],
+        "x-source-file": "src/main/kotlin/vc/aventure/domain/model/media/CrawlScreenshot.kt"
+      },
       "MediaUpload": {
         "type": "object",
         "description": "Managed media asset reference with resolved CDN URL and target metadata",
@@ -73505,6 +72929,15 @@
         ],
         "x-source-file": "src/main/kotlin/vc/aventure/domain/model/search/NewsCandidateScore.kt"
       },
+      "NewsDeleteMode": {
+        "type": "string",
+        "default": "hard",
+        "description": "Supported news deletion behavior.",
+        "enum": [
+          "hard"
+        ],
+        "x-source-file": "src/main/kotlin/vc/aventure/adapters/inbound/web/news/controller/SharedNewsController.kt"
+      },
       "NewsDetail": {
         "type": "object",
         "description": "Canonical news detail owner",
@@ -73641,7 +73074,7 @@
             "example": "hostPath",
             "oneOf": [
               {
-                "$ref": "#/components/schemas/EntityUrlMatchMode"
+                "$ref": "#/components/schemas/UrlMatchMode"
               },
               {
                 "type": "null"
@@ -74932,59 +74365,6 @@
           }
         }
       },
-      "PageEntityPerson": {
-        "type": "object",
-        "properties": {
-          "content": {
-            "type": "array",
-            "items": {
-              "oneOf": [
-                {
-                  "$ref": "#/components/schemas/Person"
-                },
-                {
-                  "$ref": "#/components/schemas/PersonDetail"
-                }
-              ]
-            }
-          },
-          "empty": {
-            "type": "boolean"
-          },
-          "first": {
-            "type": "boolean"
-          },
-          "last": {
-            "type": "boolean"
-          },
-          "number": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "numberOfElements": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "pageable": {
-            "$ref": "#/components/schemas/PageableObject"
-          },
-          "size": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "sort": {
-            "$ref": "#/components/schemas/SortObject"
-          },
-          "totalElements": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "totalPages": {
-            "type": "integer",
-            "format": "int32"
-          }
-        }
-      },
       "PageEntityPersonAssociation": {
         "type": "object",
         "properties": {
@@ -75445,13 +74825,13 @@
           }
         }
       },
-      "PageMediaCrawlScreenshot": {
+      "PageMediaLogoAuditJob": {
         "type": "object",
         "properties": {
           "content": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/MediaCrawlScreenshot"
+              "$ref": "#/components/schemas/MediaLogoAuditJob"
             }
           },
           "empty": {
@@ -75491,13 +74871,13 @@
           }
         }
       },
-      "PageMediaLogoAuditJob": {
+      "PageMediaScreenshot": {
         "type": "object",
         "properties": {
           "content": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/MediaLogoAuditJob"
+              "$ref": "#/components/schemas/MediaScreenshot"
             }
           },
           "empty": {
@@ -76210,132 +75590,125 @@
         }
       },
       "Person": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/EntityPerson"
-          },
-          {
-            "type": "object",
-            "properties": {
-              "createdAt": {
-                "type": [
-                  "string",
-                  "null"
-                ],
-                "format": "date-time",
-                "description": "Record creation timestamp"
-              },
-              "gender": {
-                "type": [
-                  "string",
-                  "null"
-                ]
-              },
-              "id": {
-                "type": "string",
-                "format": "uuid",
-                "description": "Canonical person UUID",
-                "x-source-file": "src/main/kotlin/vc/aventure/domain/model/identity/PersonId.kt"
-              },
-              "image": {
-                "$ref": "#/components/schemas/PersonImage"
-              },
-              "lastModifiedAt": {
-                "type": [
-                  "string",
-                  "null"
-                ],
-                "format": "date-time",
-                "description": "Provenance-grounded last-modified watermark (schema.org dateModified): the latest effective time across all writes attributed to this person."
-              },
-              "nameAlias": {
-                "type": "array",
-                "description": "Display and search aliases for this person",
-                "items": {
-                  "$ref": "#/components/schemas/EntityNameAliasPersonAliasType"
-                }
-              },
-              "nameFirst": {
-                "type": [
-                  "string",
-                  "null"
-                ]
-              },
-              "nameFull": {
-                "type": "string"
-              },
-              "nameLast": {
-                "type": [
-                  "string",
-                  "null"
-                ]
-              },
-              "nameMiddle": {
-                "type": [
-                  "string",
-                  "null"
-                ]
-              },
-              "nickname": {
-                "type": [
-                  "string",
-                  "null"
-                ]
-              },
-              "publicId": {
-                "type": [
-                  "string",
-                  "null"
-                ],
-                "description": "Stable, immutable public handle (e.g. `pV1StGXR8Z5ab`). Never changes once assigned, unlike the slug. Null on projections that do not select it and on rows still awaiting handle backfill.",
-                "example": "pV1StGXR8Z5ab",
-                "pattern": "^p[0-9A-Za-z]{12}$",
-                "x-source-file": "src/main/kotlin/vc/aventure/domain/model/identity/PersonPublicId.kt"
-              },
-              "semanticMatch": {
-                "description": "Semantic embedding match evidence populated only for semantic people reads.",
-                "oneOf": [
-                  {
-                    "$ref": "#/components/schemas/ContentEmbeddingMatch"
-                  },
-                  {
-                    "type": "null"
-                  }
-                ]
-              },
-              "slug": {
-                "type": "string",
-                "description": "Canonical lowercase URL slug for the resource",
-                "example": "aventure-vc",
-                "maxLength": 255,
-                "pattern": "^[a-z0-9_-]+$",
-                "x-source-file": "src/main/kotlin/vc/aventure/domain/model/identity/Slug.kt"
-              },
-              "source": {
-                "$ref": "#/components/schemas/DatasourceSourceMetadata"
-              },
-              "suffix": {
-                "type": [
-                  "string",
-                  "null"
-                ]
-              },
-              "text": {
-                "$ref": "#/components/schemas/EntityTextBundle",
-                "description": "Grouped person text content"
-              },
-              "updatedAt": {
-                "type": [
-                  "string",
-                  "null"
-                ],
-                "format": "date-time",
-                "description": "Last modification timestamp"
-              }
-            }
-          }
-        ],
+        "type": "object",
         "description": "Canonical person core record",
+        "properties": {
+          "createdAt": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time",
+            "description": "Record creation timestamp"
+          },
+          "gender": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Canonical person UUID",
+            "x-source-file": "src/main/kotlin/vc/aventure/domain/model/identity/PersonId.kt"
+          },
+          "image": {
+            "$ref": "#/components/schemas/PersonImage"
+          },
+          "lastModifiedAt": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time",
+            "description": "Provenance-grounded last-modified watermark (schema.org dateModified): the latest effective time across all writes attributed to this person."
+          },
+          "nameAlias": {
+            "type": "array",
+            "description": "Display and search aliases for this person",
+            "items": {
+              "$ref": "#/components/schemas/EntityNameAliasPersonAliasType"
+            }
+          },
+          "nameFirst": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "nameFull": {
+            "type": "string"
+          },
+          "nameLast": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "nameMiddle": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "nickname": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "publicId": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Stable, immutable public handle (e.g. `pV1StGXR8Z5ab`). Never changes once assigned, unlike the slug. Null on projections that do not select it and on rows still awaiting handle backfill.",
+            "example": "pV1StGXR8Z5ab",
+            "pattern": "^p[0-9A-Za-z]{12}$",
+            "x-source-file": "src/main/kotlin/vc/aventure/domain/model/identity/PersonPublicId.kt"
+          },
+          "semanticMatch": {
+            "description": "Semantic embedding match evidence populated only for semantic people reads.",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/ContentEmbeddingMatch"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "slug": {
+            "type": "string",
+            "description": "Canonical lowercase URL slug for the resource",
+            "example": "aventure-vc",
+            "maxLength": 255,
+            "pattern": "^[a-z0-9_-]+$",
+            "x-source-file": "src/main/kotlin/vc/aventure/domain/model/identity/Slug.kt"
+          },
+          "source": {
+            "$ref": "#/components/schemas/DatasourceSourceMetadata"
+          },
+          "suffix": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "text": {
+            "$ref": "#/components/schemas/EntityTextBundle",
+            "description": "Grouped person text content"
+          },
+          "updatedAt": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time",
+            "description": "Last modification timestamp"
+          }
+        },
         "required": [
           "id",
           "image",
@@ -76346,149 +75719,6 @@
           "text"
         ],
         "x-source-file": "src/main/kotlin/vc/aventure/domain/model/person/Person.kt"
-      },
-      "PersonAddressMutation": {
-        "type": "object",
-        "description": "Create a person address association. Structured fields are canonical; fullAddress is server-synthesized and cannot be written. City-level rows require researchExhausted=true after address research is exhausted. Text fields are normalized: surrounding whitespace and separators are trimmed and all-lowercase values are title-cased. Latitude and longitude are written as a pair: an explicit pair also updates coordinates on the resolved address row, while omitted coordinates derive from the resolved location.",
-        "properties": {
-          "addressLine1": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "description": "Address line 1.",
-            "example": "2 Kingsland Rd",
-            "maxLength": 255,
-            "minLength": 0
-          },
-          "addressLine2": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "description": "Address line 2 (suite, floor, etc.)",
-            "example": "Unit 4",
-            "maxLength": 100,
-            "minLength": 0
-          },
-          "cityName": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "description": "City name, resolved within the selected country; include state or region only when that country requires it.",
-            "example": "London",
-            "maxLength": 200,
-            "minLength": 0
-          },
-          "countryCode": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "description": "ISO-3166 alpha-2 country code.",
-            "example": "GB",
-            "maxLength": 2,
-            "minLength": 2
-          },
-          "countryName": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "description": "Country name lookup.",
-            "example": "United Kingdom"
-          },
-          "endDate": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "format": "date",
-            "description": "Last known day this address association applied."
-          },
-          "isCurrent": {
-            "type": [
-              "boolean",
-              "null"
-            ],
-            "description": "Whether this address association is currently relevant."
-          },
-          "latitude": {
-            "type": [
-              "number",
-              "null"
-            ],
-            "format": "double",
-            "description": "Latitude in decimal degrees"
-          },
-          "longitude": {
-            "type": [
-              "number",
-              "null"
-            ],
-            "format": "double",
-            "description": "Longitude in decimal degrees"
-          },
-          "postalCode": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "description": "Postal or ZIP code.",
-            "example": "E2 8AA",
-            "maxLength": 20,
-            "minLength": 0
-          },
-          "researchExhausted": {
-            "type": [
-              "boolean",
-              "null"
-            ],
-            "description": "Allow a city-level or coarser row only when source research proves no address-line, postal, or coordinate-specific address exists.",
-            "writeOnly": true
-          },
-          "role": {
-            "description": "Address association role. Domicile is a legal or registered seat, dominant is the predominant display location, origin is a founding or historical location; null means unclassified.",
-            "oneOf": [
-              {
-                "$ref": "#/components/schemas/AddressAssociationRole"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
-          "startDate": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "format": "date",
-            "description": "First known day this address association applied."
-          },
-          "stateAbbrev": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "description": "State or region abbreviation for countries that require one.",
-            "example": "CA",
-            "maxLength": 20,
-            "minLength": 0
-          },
-          "stateName": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "description": "State or region name, resolved within the selected country when that country requires one.",
-            "example": "England",
-            "maxLength": 50,
-            "minLength": 0
-          }
-        },
-        "x-source-file": "src/main/kotlin/vc/aventure/domain/model/address/PersonAddressMutation.kt"
       },
       "PersonAliasType": {
         "type": "string",
@@ -76524,58 +75754,51 @@
         "x-source-file": "src/main/kotlin/vc/aventure/domain/model/person/PersonCreate.kt"
       },
       "PersonDetail": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/EntityPerson"
-          },
-          {
-            "type": "object",
-            "properties": {
-              "articleCount": {
-                "type": [
-                  "integer",
-                  "null"
-                ],
-                "format": "int32"
-              },
-              "association": {
-                "type": "array",
-                "description": "Entity associations for this person",
-                "items": {
-                  "$ref": "#/components/schemas/EntityPersonAssociation"
-                }
-              },
-              "core": {
-                "$ref": "#/components/schemas/Person"
-              },
-              "enrichment": {
-                "$ref": "#/components/schemas/PersonEnrichment"
-              },
-              "investment": {
-                "type": "array",
-                "description": "Investments associated with this person",
-                "items": {
-                  "$ref": "#/components/schemas/PersonInvestment"
-                }
-              },
-              "nameAlias": {
-                "type": "array",
-                "description": "Display and search aliases for this person",
-                "items": {
-                  "$ref": "#/components/schemas/EntityNameAliasPersonAliasType"
-                }
-              },
-              "pendingApproval": {
-                "type": [
-                  "integer",
-                  "null"
-                ],
-                "format": "int32"
-              }
-            }
-          }
-        ],
+        "type": "object",
         "description": "Composed person wrapper: core identity + enrichment + associations + investments. Access core fields via .core (for example .core.slug or .core.nameFull).",
+        "properties": {
+          "articleCount": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int32"
+          },
+          "association": {
+            "type": "array",
+            "description": "Entity associations for this person",
+            "items": {
+              "$ref": "#/components/schemas/EntityPersonAssociation"
+            }
+          },
+          "core": {
+            "$ref": "#/components/schemas/Person"
+          },
+          "enrichment": {
+            "$ref": "#/components/schemas/PersonEnrichment"
+          },
+          "investment": {
+            "type": "array",
+            "description": "Investments associated with this person",
+            "items": {
+              "$ref": "#/components/schemas/PersonInvestment"
+            }
+          },
+          "nameAlias": {
+            "type": "array",
+            "description": "Display and search aliases for this person",
+            "items": {
+              "$ref": "#/components/schemas/EntityNameAliasPersonAliasType"
+            }
+          },
+          "pendingApproval": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int32"
+          }
+        },
         "required": [
           "association",
           "core",
@@ -76588,21 +75811,12 @@
       "PersonDetailBatch": {
         "type": "object",
         "additionalProperties": false,
-        "description": "Batch request for person detail enrichment. Each selector array accepts at most 200 values, and at most 200 selectors may be submitted across id, slug, and url.",
+        "description": "Batch request for person detail enrichment. Each selector array accepts at most 200 values, and at most 200 selectors may be submitted across personId, slug, and url.",
         "properties": {
           "hasImageFirst": {
             "type": "boolean",
             "default": false,
             "description": "Sort results by image presence"
-          },
-          "id": {
-            "type": "array",
-            "description": "Person UUID values",
-            "items": {
-              "type": "string"
-            },
-            "maxItems": 200,
-            "minItems": 0
           },
           "includeAddress": {
             "type": "boolean",
@@ -76629,6 +75843,16 @@
             "type": "boolean",
             "default": true,
             "description": "Permit monogram fallbacks"
+          },
+          "personId": {
+            "type": "array",
+            "description": "Person UUID values",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "maxItems": 200,
+            "minItems": 0
           },
           "slug": {
             "type": "array",
@@ -76739,7 +75963,7 @@
             "example": "hostPath",
             "oneOf": [
               {
-                "$ref": "#/components/schemas/EntityUrlMatchMode"
+                "$ref": "#/components/schemas/UrlMatchMode"
               },
               {
                 "type": "null"
@@ -80018,6 +79242,15 @@
           "urlId"
         ],
         "x-source-file": "src/main/kotlin/vc/aventure/domain/model/url/UrlDuplicateConflict.kt"
+      },
+      "UrlMatchMode": {
+        "type": "string",
+        "description": "URL matching mode for URL-backed filters and duplicate checks.",
+        "enum": [
+          "hostPath",
+          "domain"
+        ],
+        "x-source-file": "src/main/kotlin/vc/aventure/domain/model/url/UrlMatchMode.kt"
       },
       "UrlSlugRedirect": {
         "type": "object",

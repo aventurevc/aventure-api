@@ -34,6 +34,7 @@ declare const WebProfileScrapeResultSchemaDefinition: z.ZodObject<{
         currentCompany?: string | null | undefined;
         currentCompanyLocation?: string | null | undefined;
         currentCompanySlug?: string | null | undefined;
+        currentCompanyUrl?: string | null | undefined;
         currentTitle?: string | null | undefined;
         education: {
             endYear?: string | null | undefined;
@@ -112,6 +113,7 @@ declare const WebProfileScrapeResultSchemaDefinition: z.ZodObject<{
         currentCompany?: string | null | undefined;
         currentCompanyLocation?: string | null | undefined;
         currentCompanySlug?: string | null | undefined;
+        currentCompanyUrl?: string | null | undefined;
         currentTitle?: string | null | undefined;
         education: {
             endYear?: string | null | undefined;

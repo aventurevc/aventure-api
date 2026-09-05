@@ -115,7 +115,6 @@ import { SortObjectSchema } from "../sort/object.js";
  * @usedBySchema PageEntityListSchema
  * @usedBySchema PageEntityListSummarySchema
  * @usedBySchema PageEntityPersonAssociationSchema
- * @usedBySchema PageEntityPersonSchema
  * @usedBySchema PageEntityRelationshipSchema
  * @usedBySchema PageEntityResearchDetailSchema
  * @usedBySchema PageEntityResearchSnippetSchema
@@ -131,8 +130,8 @@ import { SortObjectSchema } from "../sort/object.js";
  * @usedBySchema PageHarnessRunSchema
  * @usedBySchema PageJobSchema
  * @usedBySchema PageLocationDirectoryEntrySchema
- * @usedBySchema PageMediaCrawlScreenshotSchema
  * @usedBySchema PageMediaLogoAuditJobSchema
+ * @usedBySchema PageMediaScreenshotSchema
  * @usedBySchema PageNewsCandidateScoreSchema
  * @usedBySchema PageNewsDetailSchema
  * @usedBySchema PageNewsLinkerCandidateSchema

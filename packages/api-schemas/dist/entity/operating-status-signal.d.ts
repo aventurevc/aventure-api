@@ -32,6 +32,7 @@ declare const EntityOperatingStatusSignalSchemaDefinition: z.ZodObject<{
         Acquired: "Acquired";
         "Acquired Subsidiary": "Acquired Subsidiary";
         Closed: "Closed";
+        "Closed (Acquihire)": "Closed (Acquihire)";
         Inactive: "Inactive";
         Operating: "Operating";
     }>>>;
@@ -44,6 +45,7 @@ declare const EntityOperatingStatusSignalSchemaDefinition: z.ZodObject<{
         Acquired: "Acquired";
         "Acquired Subsidiary": "Acquired Subsidiary";
         Closed: "Closed";
+        "Closed (Acquihire)": "Closed (Acquihire)";
         Inactive: "Inactive";
         Operating: "Operating";
     }>>>;

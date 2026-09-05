@@ -114,7 +114,6 @@ import { z } from "zod/v4";
  * @usedBySchema PageEntityListSchema
  * @usedBySchema PageEntityListSummarySchema
  * @usedBySchema PageEntityPersonAssociationSchema
- * @usedBySchema PageEntityPersonSchema
  * @usedBySchema PageEntityRelationshipSchema
  * @usedBySchema PageEntityResearchDetailSchema
  * @usedBySchema PageEntityResearchSnippetSchema
@@ -130,8 +129,8 @@ import { z } from "zod/v4";
  * @usedBySchema PageHarnessRunSchema
  * @usedBySchema PageJobSchema
  * @usedBySchema PageLocationDirectoryEntrySchema
- * @usedBySchema PageMediaCrawlScreenshotSchema
  * @usedBySchema PageMediaLogoAuditJobSchema
+ * @usedBySchema PageMediaScreenshotSchema
  * @usedBySchema PageNewsCandidateScoreSchema
  * @usedBySchema PageNewsDetailSchema
  * @usedBySchema PageNewsLinkerCandidateSchema

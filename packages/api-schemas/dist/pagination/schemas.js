@@ -32,8 +32,8 @@ import { GithubRepoSchema } from "../github/repo.js";
 import { HarnessRunSchema } from "../harness/run.js";
 import { JobSchema } from "../job/job.js";
 import { LocationDirectoryEntrySchema } from "../location/directory-entry.js";
-import { MediaCrawlScreenshotSchema } from "../media/crawl-screenshot.js";
 import { MediaLogoAuditJobSchema } from "../media/logo-audit-job.js";
+import { MediaScreenshotSchema } from "../media/screenshot.js";
 import { NewsCandidateScoreSchema } from "../news/candidate-score.js";
 import { NewsDetailSchema } from "../news/detail.js";
 import { NewsLinkerCandidateSchema } from "../news/linker-candidate.js";
@@ -449,27 +449,6 @@ const PageEntityListSummarySchemaDefinition = z.object({
  * @ownerModule pagination/schemas.ts
  */
 export const PageEntityListSummarySchema = PageEntityListSummarySchemaDefinition;
-const PageEntityPersonSchemaDefinition = z.object({
-    content: z.array(z.union([PersonSchema, PersonDetailSchema])).optional(),
-    empty: z.boolean().optional(),
-    first: z.boolean().optional(),
-    last: z.boolean().optional(),
-    number: z.int().optional(),
-    numberOfElements: z.int().optional(),
-    pageable: PageableObjectSchema.optional(),
-    size: z.int().optional(),
-    sort: SortObjectSchema.optional(),
-    totalElements: z.number().int().optional(),
-    totalPages: z.int().optional(),
-});
-/**
- * @openapiSchema PageEntityPerson
- * @endpoint GET /v1/entities/{entityId}/people
- * @contractShape pagination.page-entity-person
- * @contractRole canonical
- * @ownerModule pagination/schemas.ts
- */
-export const PageEntityPersonSchema = PageEntityPersonSchemaDefinition;
 const PageEntityPersonAssociationSchemaDefinition = z.object({
     content: z.array(EntityPersonAssociationSchema).optional(),
     empty: z.boolean().optional(),
@@ -485,6 +464,7 @@ const PageEntityPersonAssociationSchemaDefinition = z.object({
 });
 /**
  * @openapiSchema PageEntityPersonAssociation
+ * @endpoint GET /v1/entities/{entityId}/people
  * @endpoint GET /v1/people/{personId}/entities
  * @contractShape pagination.page-entity-person-association
  * @contractRole canonical
@@ -790,27 +770,6 @@ const PageLocationDirectoryEntrySchemaDefinition = z.object({
  * @ownerModule pagination/schemas.ts
  */
 export const PageLocationDirectoryEntrySchema = PageLocationDirectoryEntrySchemaDefinition;
-const PageMediaCrawlScreenshotSchemaDefinition = z.object({
-    content: z.array(MediaCrawlScreenshotSchema).optional(),
-    empty: z.boolean().optional(),
-    first: z.boolean().optional(),
-    last: z.boolean().optional(),
-    number: z.int().optional(),
-    numberOfElements: z.int().optional(),
-    pageable: PageableObjectSchema.optional(),
-    size: z.int().optional(),
-    sort: SortObjectSchema.optional(),
-    totalElements: z.number().int().optional(),
-    totalPages: z.int().optional(),
-});
-/**
- * @openapiSchema PageMediaCrawlScreenshot
- * @endpoint GET /v1/media/screenshots
- * @contractShape pagination.page-media-crawl-screenshot
- * @contractRole canonical
- * @ownerModule pagination/schemas.ts
- */
-export const PageMediaCrawlScreenshotSchema = PageMediaCrawlScreenshotSchemaDefinition;
 const PageMediaLogoAuditJobSchemaDefinition = z.object({
     content: z.array(MediaLogoAuditJobSchema).optional(),
     empty: z.boolean().optional(),
@@ -832,6 +791,27 @@ const PageMediaLogoAuditJobSchemaDefinition = z.object({
  * @ownerModule pagination/schemas.ts
  */
 export const PageMediaLogoAuditJobSchema = PageMediaLogoAuditJobSchemaDefinition;
+const PageMediaScreenshotSchemaDefinition = z.object({
+    content: z.array(MediaScreenshotSchema).optional(),
+    empty: z.boolean().optional(),
+    first: z.boolean().optional(),
+    last: z.boolean().optional(),
+    number: z.int().optional(),
+    numberOfElements: z.int().optional(),
+    pageable: PageableObjectSchema.optional(),
+    size: z.int().optional(),
+    sort: SortObjectSchema.optional(),
+    totalElements: z.number().int().optional(),
+    totalPages: z.int().optional(),
+});
+/**
+ * @openapiSchema PageMediaScreenshot
+ * @endpoint GET /v1/media/screenshots
+ * @contractShape pagination.page-media-screenshot
+ * @contractRole canonical
+ * @ownerModule pagination/schemas.ts
+ */
+export const PageMediaScreenshotSchema = PageMediaScreenshotSchemaDefinition;
 const PageNewsSchemaDefinition = z.object({
     content: z.array(NewsSchema).optional(),
     empty: z.boolean().optional(),

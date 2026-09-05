@@ -31,9 +31,9 @@ type EntityFundraiseInvestorJoinDefinition = z.infer<typeof EntityFundraiseInves
  * @endpoint GET /v1/entities/detail/fundraise-investor-joins
  * @endpoint GET /v1/entities/detail/fundraise-investor-joins/{joinId}
  * @endpoint POST /v1/entities/detail/fundraise-investor-joins
- * @endpoint PATCH /v1/entities/detail/fundraise-investor-joins
+ * @endpoint PATCH /v1/entities/{entityId}/fundraise-investor-joins/{joinId}
  * @endpoint PUT /v1/entities/detail/fundraise-investor-joins
- * @endpoint DELETE /v1/entities/detail/fundraise-investor-joins
+ * @endpoint DELETE /v1/entities/{entityId}/fundraise-investor-joins/{joinId}
  * @usedBySchema PageEntityFundraiseInvestorJoinSchema
  * @contractShape entity.fundraise-investor-join
  * @contractRole canonical

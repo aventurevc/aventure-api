@@ -3,7 +3,6 @@ import { z } from "zod/v4";
  * Entity mutation-side visibility fragment. On create, omitted status defaults to hidden from public list/detail reads, not featured, not verified, and omitted from the sitemap. On update, omitted nested fields leave existing flags unchanged.
  *
  * @openapiSchema EntityStatusMutation
- * @endpoint GET /v1/entities/{entityId}/operating-status
  * @endpoint POST /v1/entities/{entityId}/operating-status
  * @endpoint POST /v1/entities/detail
  * @endpoint POST /v1/entities/detail/full

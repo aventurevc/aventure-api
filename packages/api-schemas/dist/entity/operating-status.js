@@ -1,7 +1,7 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
 /**
- * Operating state accepted by entity mutation endpoints. Acquired Subsidiary means the entity was acquired and still operates; Acquired means the entity is terminal, folded into the buyer, or closed.
+ * Operating state accepted by entity mutation endpoints. Acquired Subsidiary means the entity was acquired and still operates; Closed (Acquihire) means the entity was acquired for its team and is terminal, rendering like Closed everywhere; Acquired means the entity is terminal, folded into the buyer, or closed.
  *
  * @openapiSchema EntityOperatingStatus
  * @endpoint GET /v1/entities/{entityId}/operating-status
@@ -16,6 +16,7 @@ import { z } from "zod/v4";
  * @endpoint PUT /v1/entities/{entityId}/operating-status
  * @endpoint PUT /v1/entities/detail
  * @usedBySchema EntityMutationSchema
+ * @usedBySchema EntityOperatingStatusDetailSchema
  * @usedBySchema EntityOperatingStatusSignalSchema
  * @contractShape entity.operating-status
  * @contractRole canonical
@@ -26,6 +27,7 @@ export const EntityOperatingStatusSchema = z.enum([
     "Acquired",
     "Acquired Subsidiary",
     "Closed",
+    "Closed (Acquihire)",
     "Inactive",
 ]);
 //# sourceMappingURL=operating-status.js.map

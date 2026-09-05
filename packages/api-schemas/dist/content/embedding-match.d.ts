@@ -13,8 +13,6 @@ import { z } from "zod/v4";
  * @endpoint GET /v1/people/detail/similar
  * @endpoint GET /v1/people/duplicate-check
  * @endpoint GET /v1/search/link
- * @endpoint GET /v1/entities/{entityId}/people
- * @endpoint GET /v1/entities/{entityId}/people/{associationId}
  * @endpoint GET /v1/entities/{entityId}/products/suggestions
  * @endpoint GET /v1/entities/{entityId}/relationships/suggestions
  * @endpoint POST /v1/entities

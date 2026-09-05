@@ -24,8 +24,6 @@ const PersonInvestmentSchemaDefinition = z.object({
  * @endpoint GET /v1/entities/detail/investors
  * @endpoint GET /v1/entities/detail/person-investors
  * @endpoint GET /v1/people/detail
- * @endpoint GET /v1/entities/{entityId}/people
- * @endpoint GET /v1/entities/{entityId}/people/{associationId}
  * @endpoint POST /v1/entities/batch
  * @endpoint POST /v1/entities/detail
  * @endpoint POST /v1/entities/detail/batch

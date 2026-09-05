@@ -1,5 +1,6 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
+import { NotificationSettingTypeSchema } from "./setting-type.js";
 const NotificationSettingSchemaDefinition = z.object({
     /** Settings section this notification belongs to */
     category: z.enum(["ACCOUNT", "RESEARCH"]),
@@ -7,7 +8,7 @@ const NotificationSettingSchemaDefinition = z.object({
     enabled: z.boolean(),
     /** Human-readable setting label */
     label: z.string(),
-    type: z.enum(["LOGIN_EVERY", "LOGIN_NEW_DEVICE", "RESEARCH_NEW_COMPANY", "RESEARCH_NEW_FUND"]),
+    type: NotificationSettingTypeSchema,
 });
 /**
  * Per-user notification setting with resolved enablement

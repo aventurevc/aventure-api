@@ -1,6 +1,6 @@
 import { z } from "zod/v4";
 /**
- * Operating state accepted by entity mutation endpoints. Acquired Subsidiary means the entity was acquired and still operates; Acquired means the entity is terminal, folded into the buyer, or closed.
+ * Operating state accepted by entity mutation endpoints. Acquired Subsidiary means the entity was acquired and still operates; Closed (Acquihire) means the entity was acquired for its team and is terminal, rendering like Closed everywhere; Acquired means the entity is terminal, folded into the buyer, or closed.
  *
  * @openapiSchema EntityOperatingStatus
  * @endpoint GET /v1/entities/{entityId}/operating-status
@@ -15,6 +15,7 @@ import { z } from "zod/v4";
  * @endpoint PUT /v1/entities/{entityId}/operating-status
  * @endpoint PUT /v1/entities/detail
  * @usedBySchema EntityMutationSchema
+ * @usedBySchema EntityOperatingStatusDetailSchema
  * @usedBySchema EntityOperatingStatusSignalSchema
  * @contractShape entity.operating-status
  * @contractRole canonical
@@ -24,6 +25,7 @@ export declare const EntityOperatingStatusSchema: z.ZodEnum<{
     Acquired: "Acquired";
     "Acquired Subsidiary": "Acquired Subsidiary";
     Closed: "Closed";
+    "Closed (Acquihire)": "Closed (Acquihire)";
     Inactive: "Inactive";
     Operating: "Operating";
 }>;

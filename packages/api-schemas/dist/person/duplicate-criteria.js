@@ -1,9 +1,9 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
 import { DuplicateUrlCandidateSchema } from "../duplicate/url-candidate.js";
-import { EntityUrlMatchModeSchema } from "../entity/url-match-mode.js";
 import { EntityUrlMatchStrictnessSchema } from "../entity/url-match-strictness.js";
 import { EntityUrlTypeSchema } from "../entity/url-type.js";
+import { UrlMatchModeSchema } from "../url/match-mode.js";
 const PersonDuplicateCriteriaSchemaDefinition = z.object({
     /** Current person id to omit from post-bootstrap duplicate audits while same-name candidates are reviewed. */
     excludeId: z.uuid().nullish(),
@@ -24,7 +24,7 @@ const PersonDuplicateCriteriaSchemaDefinition = z.object({
     /** URL domain match */
     urlDomain: z.string().nullish(),
     /** URL match mode */
-    urlMatchMode: EntityUrlMatchModeSchema.nullish(),
+    urlMatchMode: UrlMatchModeSchema.nullish(),
     /** Optional URL match strictness. Omit for strict matching. Send loose or any only when the caller intentionally widens URL matching. */
     urlStrictness: EntityUrlMatchStrictnessSchema.nullish(),
     /** URL type */

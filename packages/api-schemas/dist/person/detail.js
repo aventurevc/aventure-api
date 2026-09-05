@@ -25,8 +25,6 @@ const PersonDetailSchemaDefinition = z.object({
  * @endpoint GET /v1/entities/detail/investors
  * @endpoint GET /v1/entities/detail/person-investors
  * @endpoint GET /v1/people/detail
- * @endpoint GET /v1/entities/{entityId}/people
- * @endpoint GET /v1/entities/{entityId}/people/{associationId}
  * @endpoint POST /v1/entities/batch
  * @endpoint POST /v1/entities/detail
  * @endpoint POST /v1/entities/detail/batch
@@ -40,7 +38,6 @@ const PersonDetailSchemaDefinition = z.object({
  * @endpoint PUT /v1/entities/detail
  * @endpoint PUT /v1/people/detail
  * @usedBySchema EntityDetailSchema
- * @usedBySchema PageEntityPersonSchema
  * @usedBySchema PagePersonDetailSchema
  * @usedBySchema PersonInvestorParticipationSchema
  * @contractShape person.detail

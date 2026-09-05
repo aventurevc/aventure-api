@@ -177,7 +177,7 @@ declare const EntityAcquisitionSchemaDefinition: z.ZodObject<{
 }, z.core.$strip>;
 type EntityAcquisitionDefinition = z.infer<typeof EntityAcquisitionSchemaDefinition>;
 /**
- * Canonical acquisition event: scoped entity is acquired, acquirerEntity is buyer, and status is read stage -- Acquisition before operating-status change, Acquired Subsidiary for active completed brands, Acquired for terminal/folded/closed.
+ * Canonical acquisition event: scoped entity is acquired, acquirerEntity is buyer, and status is read stage -- Acquisition before operating-status change, Acquired Subsidiary for active completed brands, Acquired for terminal/folded/closed (including Closed (Acquihire)).
  *
  * @openapiSchema EntityAcquisition
  * @endpoint GET /v1/entities/{entityId}/acquisitions

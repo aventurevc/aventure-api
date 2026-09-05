@@ -53,8 +53,7 @@ import { z } from "zod/v4";
  * @endpoint DELETE /v1/people/{personId}/entities/{associationId}
  * @endpoint DELETE /v1/people/{personId}/entities/{associationId}/corporate-title
  * @usedBySchema AddressAssociationSchema
- * @usedBySchema EntityAddressMutationSchema
- * @usedBySchema PersonAddressMutationSchema
+ * @usedBySchema AddressMutationSchema
  * @contractShape address.association-role
  * @contractRole canonical
  * @ownerSourceFile src/main/kotlin/vc/aventure/domain/model/address/Address.kt

@@ -1,5 +1,5 @@
 import { z } from "zod/v4";
-declare const MediaCrawlScreenshotSchemaDefinition: z.ZodObject<{
+declare const MediaScreenshotSchemaDefinition: z.ZodObject<{
     contentType: z.ZodString;
     crawledAt: z.ZodISODateTime;
     createdAt: z.ZodISODateTime;
@@ -17,20 +17,20 @@ declare const MediaCrawlScreenshotSchemaDefinition: z.ZodObject<{
     viewportHeight: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
     viewportWidth: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
 }, z.core.$strip>;
-type MediaCrawlScreenshotDefinition = z.infer<typeof MediaCrawlScreenshotSchemaDefinition>;
+type MediaScreenshotDefinition = z.infer<typeof MediaScreenshotSchemaDefinition>;
 /**
  * Domain record for crawl screenshot metadata - also the API response type
  *
- * @openapiSchema MediaCrawlScreenshot
+ * @openapiSchema MediaScreenshot
  * @endpoint GET /v1/media/screenshots
  * @endpoint GET /v1/media/screenshots/{id}
  * @endpoint POST /v1/media/screenshots
- * @usedBySchema PageMediaCrawlScreenshotSchema
- * @contractShape media.crawl-screenshot
+ * @usedBySchema PageMediaScreenshotSchema
+ * @contractShape media.screenshot
  * @contractRole canonical
  * @ownerSourceFile src/main/kotlin/vc/aventure/domain/model/media/CrawlScreenshot.kt
  */
-export declare const MediaCrawlScreenshotSchema: z.ZodType<MediaCrawlScreenshotDefinition>;
-export type MediaCrawlScreenshot = z.infer<typeof MediaCrawlScreenshotSchema>;
+export declare const MediaScreenshotSchema: z.ZodType<MediaScreenshotDefinition>;
+export type MediaScreenshot = z.infer<typeof MediaScreenshotSchema>;
 export {};
-//# sourceMappingURL=crawl-screenshot.d.ts.map
+//# sourceMappingURL=screenshot.d.ts.map

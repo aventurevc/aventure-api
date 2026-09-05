@@ -1,14 +1,5 @@
 import { z } from "zod/v4";
-/**
- * Multipart JSON body for full entity create. Supply base entity fields, required summary and expanded texts, URL links, and optional classifications, addresses, research details, product/service provider join, or manual logo.
- *
- * @openapiSchema EntityFullMutation
- * @endpoint POST /v1/entities/detail/full
- * @contractShape entity.full-mutation
- * @contractRole canonical
- * @ownerSourceFile src/main/kotlin/vc/aventure/domain/model/entity/EntityFullMutation.kt
- */
-export declare const EntityFullMutationSchema: z.ZodObject<{
+declare const EntityFullMutationSchemaDefinition: z.ZodObject<{
     address: z.ZodOptional<z.ZodNullable<z.ZodArray<z.ZodObject<{
         addressLine1: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         addressLine2: z.ZodOptional<z.ZodNullable<z.ZodString>>;
@@ -17,8 +8,6 @@ export declare const EntityFullMutationSchema: z.ZodObject<{
         countryName: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         endDate: z.ZodOptional<z.ZodNullable<z.ZodISODate>>;
         isCurrent: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
-        isHq: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
-        isPrimary: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
         latitude: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
         longitude: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
         postalCode: z.ZodOptional<z.ZodNullable<z.ZodString>>;
@@ -62,7 +51,7 @@ export declare const EntityFullMutationSchema: z.ZodObject<{
             nameBrand?: string | null | undefined;
             nameLegal?: string | null | undefined;
             newSlug?: string | null | undefined;
-            operatingStatus?: "Acquired" | "Acquired Subsidiary" | "Closed" | "Inactive" | "Operating" | null | undefined;
+            operatingStatus?: "Acquired" | "Acquired Subsidiary" | "Closed" | "Closed (Acquihire)" | "Inactive" | "Operating" | null | undefined;
             slug?: string | null | undefined;
             status?: {
                 isFeatured?: boolean | null | undefined;
@@ -95,7 +84,7 @@ export declare const EntityFullMutationSchema: z.ZodObject<{
             nameBrand?: string | null | undefined;
             nameLegal?: string | null | undefined;
             newSlug?: string | null | undefined;
-            operatingStatus?: "Acquired" | "Acquired Subsidiary" | "Closed" | "Inactive" | "Operating" | null | undefined;
+            operatingStatus?: "Acquired" | "Acquired Subsidiary" | "Closed" | "Closed (Acquihire)" | "Inactive" | "Operating" | null | undefined;
             slug?: string | null | undefined;
             status?: {
                 isFeatured?: boolean | null | undefined;
@@ -159,5 +148,17 @@ export declare const EntityFullMutationSchema: z.ZodObject<{
         textType?: string | null | undefined;
     }, unknown>>>;
 }, z.core.$strip>;
+type EntityFullMutationDefinition = z.infer<typeof EntityFullMutationSchemaDefinition>;
+/**
+ * Multipart JSON body for full entity create. Supply base entity fields, required summary and expanded texts, URL links, and optional classifications, addresses, research details, product/service provider join, or manual logo.
+ *
+ * @openapiSchema EntityFullMutation
+ * @endpoint POST /v1/entities/detail/full
+ * @contractShape entity.full-mutation
+ * @contractRole canonical
+ * @ownerSourceFile src/main/kotlin/vc/aventure/domain/model/entity/EntityFullMutation.kt
+ */
+export declare const EntityFullMutationSchema: z.ZodType<EntityFullMutationDefinition>;
 export type EntityFullMutation = z.infer<typeof EntityFullMutationSchema>;
+export {};
 //# sourceMappingURL=full-mutation.d.ts.map

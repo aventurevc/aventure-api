@@ -4,8 +4,6 @@ const PersonDetailBatchSchemaDefinition = z
     .strictObject({
     /** Sort results by image presence */
     hasImageFirst: z.boolean().default(false).optional(),
-    /** Person UUID values */
-    id: z.array(z.string()).max(200).optional(),
     /** Include address values */
     includeAddress: z.boolean().default(true).optional(),
     /** Include association values */
@@ -16,6 +14,8 @@ const PersonDetailBatchSchemaDefinition = z
     maxAssociations: z.int().default(40).optional(),
     /** Permit monogram fallbacks */
     permitMonogram: z.boolean().default(true).optional(),
+    /** Person UUID values */
+    personId: z.array(z.uuid()).max(200).optional(),
     /** Person slug values */
     slug: z
         .array(z
@@ -27,7 +27,8 @@ const PersonDetailBatchSchemaDefinition = z
     url: z.array(z.string()).max(200).optional(),
 })
     .check(({ value, issues }) => {
-    if ((value.id?.length ?? 0) + (value.slug?.length ?? 0) + (value.url?.length ?? 0) > 200) {
+    if ((value.personId?.length ?? 0) + (value.slug?.length ?? 0) + (value.url?.length ?? 0) >
+        200) {
         issues.push({
             code: "custom",
             origin: "custom",
@@ -38,7 +39,7 @@ const PersonDetailBatchSchemaDefinition = z
     }
 });
 /**
- * Batch request for person detail enrichment. Each selector array accepts at most 200 values, and at most 200 selectors may be submitted across id, slug, and url.
+ * Batch request for person detail enrichment. Each selector array accepts at most 200 values, and at most 200 selectors may be submitted across personId, slug, and url.
  *
  * @openapiSchema PersonDetailBatch
  * @endpoint POST /v1/people/detail/batch

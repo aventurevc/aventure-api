@@ -12,7 +12,7 @@ import { z } from "zod/v4";
  * @usedBySchema EntityUrlLinkSchema
  * @usedBySchema ExternalSocialPostMutationSchema
  * @usedBySchema ExternalSocialPostSchema
- * @usedBySchema MediaCrawlScreenshotSchema
+ * @usedBySchema MediaScreenshotSchema
  * @usedBySchema NewsFilterSchema
  * @usedBySchema ResolvedHandleSchema
  * @usedBySchema UniqueIdSchema

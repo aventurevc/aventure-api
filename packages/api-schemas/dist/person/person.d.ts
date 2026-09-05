@@ -88,8 +88,6 @@ type PersonDefinition = z.infer<typeof PersonSchemaDefinition>;
  * @endpoint GET /v1/people/detail/similar
  * @endpoint GET /v1/people/duplicate-check
  * @endpoint GET /v1/search/link
- * @endpoint GET /v1/entities/{entityId}/people
- * @endpoint GET /v1/entities/{entityId}/people/{associationId}
  * @endpoint POST /v1/entities/batch
  * @endpoint POST /v1/entities/detail
  * @endpoint POST /v1/entities/detail/batch
@@ -106,7 +104,6 @@ type PersonDefinition = z.infer<typeof PersonSchemaDefinition>;
  * @endpoint PATCH /v1/people/detail
  * @endpoint PUT /v1/entities/detail
  * @endpoint PUT /v1/people/detail
- * @usedBySchema PageEntityPersonSchema
  * @usedBySchema PagePersonSchema
  * @usedBySchema PageResultPersonSchema
  * @usedBySchema PersonDetailSchema

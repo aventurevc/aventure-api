@@ -24,13 +24,13 @@ const EntityAcquisitionSchemaDefinition = z.object({
     investorJoinId: z.uuid().nullish(),
     relationshipId: z.int(),
     source: z.string().nullish(),
-    /** Read stage, not transactionStatus: Acquisition before operating-status change; Acquired Subsidiary for active completed acquisitions; Acquired for terminal/folded/closed. */
+    /** Read stage, not transactionStatus: Acquisition before operating-status change; Acquired Subsidiary for active completed acquisitions; Acquired for terminal/folded/closed (including Closed (Acquihire)). */
     status: EntityAcquisitionStageSchema,
     transactionStatus: FundraiseTransactionStatusSchema.nullish(),
     updatedAt: z.iso.datetime({ offset: true }).nullish(),
 });
 /**
- * Canonical acquisition event: scoped entity is acquired, acquirerEntity is buyer, and status is read stage -- Acquisition before operating-status change, Acquired Subsidiary for active completed brands, Acquired for terminal/folded/closed.
+ * Canonical acquisition event: scoped entity is acquired, acquirerEntity is buyer, and status is read stage -- Acquisition before operating-status change, Acquired Subsidiary for active completed brands, Acquired for terminal/folded/closed (including Closed (Acquihire)).
  *
  * @openapiSchema EntityAcquisition
  * @endpoint GET /v1/entities/{entityId}/acquisitions

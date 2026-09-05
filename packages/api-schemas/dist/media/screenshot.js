@@ -1,7 +1,7 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
 import { EntityPersonOwnerSchema } from "../entity/person-owner.js";
-const MediaCrawlScreenshotSchemaDefinition = z.object({
+const MediaScreenshotSchemaDefinition = z.object({
     contentType: z.string(),
     crawledAt: z.iso.datetime({ offset: true }),
     createdAt: z.iso.datetime({ offset: true }),
@@ -20,14 +20,14 @@ const MediaCrawlScreenshotSchemaDefinition = z.object({
 /**
  * Domain record for crawl screenshot metadata - also the API response type
  *
- * @openapiSchema MediaCrawlScreenshot
+ * @openapiSchema MediaScreenshot
  * @endpoint GET /v1/media/screenshots
  * @endpoint GET /v1/media/screenshots/{id}
  * @endpoint POST /v1/media/screenshots
- * @usedBySchema PageMediaCrawlScreenshotSchema
- * @contractShape media.crawl-screenshot
+ * @usedBySchema PageMediaScreenshotSchema
+ * @contractShape media.screenshot
  * @contractRole canonical
  * @ownerSourceFile src/main/kotlin/vc/aventure/domain/model/media/CrawlScreenshot.kt
  */
-export const MediaCrawlScreenshotSchema = MediaCrawlScreenshotSchemaDefinition;
-//# sourceMappingURL=crawl-screenshot.js.map
+export const MediaScreenshotSchema = MediaScreenshotSchemaDefinition;
+//# sourceMappingURL=screenshot.js.map

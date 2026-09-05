@@ -1,12 +1,4 @@
 import { z } from "zod/v4";
-declare const NewsCandidateScoreSchemaDefinition: z.ZodObject<{
-    externalId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-    id: z.ZodInt;
-    reason: z.ZodArray<z.ZodString>;
-    score: z.ZodInt;
-    slug: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-}, z.core.$strip>;
-type NewsCandidateScoreDefinition = z.infer<typeof NewsCandidateScoreSchemaDefinition>;
 /**
  * Duplicate candidate scoring result for news articles. Use id/slug/externalId/reason to decide whether the candidate is the requested article. score ranks review priority; it does not prove absence.
  *
@@ -18,7 +10,12 @@ type NewsCandidateScoreDefinition = z.infer<typeof NewsCandidateScoreSchemaDefin
  * @contractRole canonical
  * @ownerSourceFile src/main/kotlin/vc/aventure/domain/model/search/NewsCandidateScore.kt
  */
-export declare const NewsCandidateScoreSchema: z.ZodType<NewsCandidateScoreDefinition>;
+export declare const NewsCandidateScoreSchema: z.ZodObject<{
+    externalId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    id: z.ZodInt;
+    reason: z.ZodArray<z.ZodString>;
+    score: z.ZodInt;
+    slug: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+}, z.core.$strip>;
 export type NewsCandidateScore = z.infer<typeof NewsCandidateScoreSchema>;
-export {};
 //# sourceMappingURL=candidate-score.d.ts.map

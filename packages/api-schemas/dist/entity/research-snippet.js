@@ -2,25 +2,6 @@
 import { z } from "zod/v4";
 import { ContentComplianceSchema } from "../content/compliance.js";
 import { EntityResearchSourceSchema } from "./research-source.js";
-const EntityResearchSnippetSchemaDefinition = z.object({
-    /** Derived character/word counts and governed-contract compliance for this snippet row; null when not evaluated. */
-    compliance: ContentComplianceSchema.nullish(),
-    createdAt: z.iso.datetime({ offset: true }).nullish(),
-    /** Canonical entity UUID */
-    entityId: z.uuid(),
-    id: z.int(),
-    /** Current row. The live snippet for its type; demoted historical rows read only with includePrivate. */
-    isCurrent: z.boolean(),
-    /** Primary row among the current snippets of its type. */
-    isPrimary: z.boolean(),
-    source: z.string().nullish(),
-    sourceRecord: EntityResearchSourceSchema.nullish(),
-    text: z.string(),
-    textType: z.string(),
-    updatedAt: z.iso.datetime({ offset: true }).nullish(),
-    /** Whether the snippet appears in default reads. Admin/private reads (includePrivate) also return hidden rows. */
-    visible: z.boolean(),
-});
 /**
  * Persisted research snippet row for one entity.
  *
@@ -46,5 +27,23 @@ const EntityResearchSnippetSchemaDefinition = z.object({
  * @contractRole canonical
  * @ownerSourceFile src/main/kotlin/vc/aventure/domain/model/entity/EntityResearchSnippet.kt
  */
-export const EntityResearchSnippetSchema = EntityResearchSnippetSchemaDefinition;
+export const EntityResearchSnippetSchema = z.object({
+    /** Derived character/word counts and governed-contract compliance for this snippet row; null when not evaluated. */
+    compliance: ContentComplianceSchema.nullish(),
+    createdAt: z.iso.datetime({ offset: true }).nullish(),
+    /** Canonical entity UUID */
+    entityId: z.uuid(),
+    id: z.int(),
+    /** Current row. The live snippet for its type; demoted historical rows read only with includePrivate. */
+    isCurrent: z.boolean(),
+    /** Primary row among the current snippets of its type. */
+    isPrimary: z.boolean(),
+    source: z.string().nullish(),
+    sourceRecord: EntityResearchSourceSchema.nullish(),
+    text: z.string(),
+    textType: z.string(),
+    updatedAt: z.iso.datetime({ offset: true }).nullish(),
+    /** Whether the snippet appears in default reads. Admin/private reads (includePrivate) also return hidden rows. */
+    visible: z.boolean(),
+});
 //# sourceMappingURL=research-snippet.js.map

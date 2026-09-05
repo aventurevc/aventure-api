@@ -26,8 +26,6 @@ import { EntityTypeSchema } from "./type.js";
  * @endpoint GET /v1/addresses/locations/{scope}/{slug}
  * @endpoint GET /v1/entities/{entityId}/acquisitions
  * @endpoint GET /v1/entities/{entityId}/acquisitions/{relationshipId}
- * @endpoint GET /v1/entities/{entityId}/people
- * @endpoint GET /v1/entities/{entityId}/people/{associationId}
  * @endpoint GET /v1/entities/{entityId}/products/suggestions
  * @endpoint GET /v1/entities/{entityId}/relationships
  * @endpoint GET /v1/entities/{entityId}/relationships/suggestions
@@ -99,7 +97,7 @@ export const EntitySchema = z.object({
     nameBrand: z.string(),
     /** Registered legal name */
     nameLegal: z.string().nullish(),
-    /** Current operating status. Use Acquired Subsidiary when the entity was acquired and still operates; use Acquired only when it is terminal, folded, or closed. */
+    /** Current operating status. Use Acquired Subsidiary when the entity was acquired and still operates; use Closed (Acquihire) when the entity was acquired for its team and shut down, rendering like Closed everywhere; use Acquired only when it is terminal, folded, or closed. */
     operatingStatus: z.string().nullish(),
     /** Stable, immutable public handle (e.g. `eV1StGXR8Z5a`). Never changes once assigned, unlike the slug. Null on projections that do not select it and on rows still awaiting handle backfill. */
     publicId: z

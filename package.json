@@ -1,6 +1,6 @@
 {
   "name": "@aventurevc/aventure-api",
-  "version": "0.7.261",
+  "version": "0.7.263",
   "description": "Public aVenture API: OpenAPI spec, Zod schemas, and TypeScript client.",
   "license": "Apache-2.0",
   "private": true,

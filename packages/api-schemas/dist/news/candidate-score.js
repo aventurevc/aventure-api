@@ -1,6 +1,17 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
-const NewsCandidateScoreSchemaDefinition = z.object({
+/**
+ * Duplicate candidate scoring result for news articles. Use id/slug/externalId/reason to decide whether the candidate is the requested article. score ranks review priority; it does not prove absence.
+ *
+ * @openapiSchema NewsCandidateScore
+ * @standardProblemResponse
+ * @usedBySchema DuplicateCreateReviewSchema
+ * @usedBySchema PageNewsCandidateScoreSchema
+ * @contractShape news.candidate-score
+ * @contractRole canonical
+ * @ownerSourceFile src/main/kotlin/vc/aventure/domain/model/search/NewsCandidateScore.kt
+ */
+export const NewsCandidateScoreSchema = z.object({
     /** Matched external article identifier when duplicate scoring used one. */
     externalId: z.string().nullish(),
     /** News article id to read or update when this candidate is the requested article. */
@@ -16,16 +27,4 @@ const NewsCandidateScoreSchemaDefinition = z.object({
         .max(255)
         .nullish(),
 });
-/**
- * Duplicate candidate scoring result for news articles. Use id/slug/externalId/reason to decide whether the candidate is the requested article. score ranks review priority; it does not prove absence.
- *
- * @openapiSchema NewsCandidateScore
- * @standardProblemResponse
- * @usedBySchema DuplicateCreateReviewSchema
- * @usedBySchema PageNewsCandidateScoreSchema
- * @contractShape news.candidate-score
- * @contractRole canonical
- * @ownerSourceFile src/main/kotlin/vc/aventure/domain/model/search/NewsCandidateScore.kt
- */
-export const NewsCandidateScoreSchema = NewsCandidateScoreSchemaDefinition;
 //# sourceMappingURL=candidate-score.js.map

@@ -17,6 +17,12 @@ import { z } from "zod/v4";
  * @endpoint GET /v1/entities/{entityId}/research/snippets
  * @endpoint GET /v1/entities/{entityId}/research/snippets/{snippetId}
  * @endpoint POST /v1/app/blog/articles
+ * @endpoint POST /v1/deploy/pairs/{pairName}/promotions
+ * @endpoint POST /v1/deploy/pairs/{pairName}/promotions/exact
+ * @endpoint POST /v1/deploy/pairs/{pairName}/reverts
+ * @endpoint POST /v1/deploy/targets/{targetName}/deployments
+ * @endpoint POST /v1/deploy/targets/{targetName}/promotions
+ * @endpoint POST /v1/deploy/targets/{targetName}/reverts
  * @endpoint POST /v1/entities
  * @endpoint POST /v1/entities/{entityId}/acquisitions
  * @endpoint POST /v1/entities/{entityId}/addresses
@@ -71,6 +77,7 @@ import { z } from "zod/v4";
  * @endpoint PATCH /v1/entities/{entityId}/addresses/{addressJoinId}
  * @endpoint PATCH /v1/entities/{entityId}/blog-posts/{blogPostId}
  * @endpoint PATCH /v1/entities/{entityId}/classifications/{classificationId}
+ * @endpoint PATCH /v1/entities/{entityId}/fundraise-investor-joins/{joinId}
  * @endpoint PATCH /v1/entities/{entityId}/operating-status
  * @endpoint PATCH /v1/entities/{entityId}/slug
  * @endpoint PATCH /v1/entities/{entityId}/status
@@ -81,7 +88,6 @@ import { z } from "zod/v4";
  * @endpoint PATCH /v1/entities/detail
  * @endpoint PATCH /v1/entities/detail/financial/valuation/{detailId}
  * @endpoint PATCH /v1/entities/detail/financial/valuation/{year}/{month}
- * @endpoint PATCH /v1/entities/detail/fundraise-investor-joins
  * @endpoint PATCH /v1/entities/detail/fundraise-rounds/{transactionId}
  * @endpoint PATCH /v1/entities/detail/news/{newsId}
  * @endpoint PATCH /v1/entities/relationships/{relationshipId}
@@ -131,6 +137,7 @@ import { z } from "zod/v4";
  * @endpoint DELETE /v1/entities/{entityId}/addresses/{addressJoinId}
  * @endpoint DELETE /v1/entities/{entityId}/blog-posts/{blogPostId}
  * @endpoint DELETE /v1/entities/{entityId}/classifications/{classificationId}
+ * @endpoint DELETE /v1/entities/{entityId}/fundraise-investor-joins/{joinId}
  * @endpoint DELETE /v1/entities/{entityId}/research/details/{detailId}
  * @endpoint DELETE /v1/entities/{entityId}/research/snippets/{snippetId}
  * @endpoint DELETE /v1/entities/{entityId}/slug/redirects/{redirectId}
@@ -140,7 +147,6 @@ import { z } from "zod/v4";
  * @endpoint DELETE /v1/entities/detail
  * @endpoint DELETE /v1/entities/detail/financial/valuation/{detailId}
  * @endpoint DELETE /v1/entities/detail/financial/valuation/{year}/{month}
- * @endpoint DELETE /v1/entities/detail/fundraise-investor-joins
  * @endpoint DELETE /v1/entities/detail/fundraise-rounds/{transactionId}
  * @endpoint DELETE /v1/entities/detail/news/{newsId}
  * @endpoint DELETE /v1/entities/relationships/{relationshipId}

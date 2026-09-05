@@ -28,7 +28,7 @@ const EntityFundraiseInvestorJoinMutationSchemaDefinition = z.object({
  *
  * @openapiSchema EntityFundraiseInvestorJoinMutation
  * @endpoint POST /v1/entities/detail/fundraise-investor-joins
- * @endpoint PATCH /v1/entities/detail/fundraise-investor-joins
+ * @endpoint PATCH /v1/entities/{entityId}/fundraise-investor-joins/{joinId}
  * @endpoint PUT /v1/entities/detail/fundraise-investor-joins
  * @contractShape entity.fundraise-investor-join-mutation
  * @contractRole canonical

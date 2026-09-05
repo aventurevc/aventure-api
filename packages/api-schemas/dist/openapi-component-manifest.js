@@ -15,6 +15,7 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         modulePath: "address/lookup-context",
         schemaName: "AddressLookupContextSchema",
     },
+    AddressMutation: { modulePath: "address/mutation", schemaName: "AddressMutationSchema" },
     AddressProviderMetadata: {
         modulePath: "address/provider-metadata",
         schemaName: "AddressProviderMetadataSchema",
@@ -514,10 +515,6 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         modulePath: "entity/acquisition-stage",
         schemaName: "EntityAcquisitionStageSchema",
     },
-    EntityAddressMutation: {
-        modulePath: "entity/address-mutation",
-        schemaName: "EntityAddressMutationSchema",
-    },
     EntityAliasType: { modulePath: "entity/alias-type", schemaName: "EntityAliasTypeSchema" },
     EntityClassification: {
         modulePath: "entity/classification",
@@ -709,11 +706,14 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         modulePath: "entity/operating-status",
         schemaName: "EntityOperatingStatusSchema",
     },
+    EntityOperatingStatusDetail: {
+        modulePath: "entity/operating-status-detail",
+        schemaName: "EntityOperatingStatusDetailSchema",
+    },
     EntityOperatingStatusSignal: {
         modulePath: "entity/operating-status-signal",
         schemaName: "EntityOperatingStatusSignalSchema",
     },
-    EntityPerson: { modulePath: "http/json-value", schemaName: "JsonValueSchema" },
     EntityPersonAssociation: {
         modulePath: "entity/person-association",
         schemaName: "EntityPersonAssociationSchema",
@@ -825,10 +825,6 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
     EntityUrlLinkMutation: {
         modulePath: "entity/url-link-mutation",
         schemaName: "EntityUrlLinkMutationSchema",
-    },
-    EntityUrlMatchMode: {
-        modulePath: "entity/url-match-mode",
-        schemaName: "EntityUrlMatchModeSchema",
     },
     EntityUrlMatchStrictness: {
         modulePath: "entity/url-match-strictness",
@@ -950,6 +946,11 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         schemaName: "FundraiseTransactionStatusSchema",
     },
     GithubRepo: { modulePath: "github/repo", schemaName: "GithubRepoSchema" },
+    HarnessModel: { modulePath: "harness/model", schemaName: "HarnessModelSchema" },
+    HarnessModelCatalog: {
+        modulePath: "harness/model-catalog",
+        schemaName: "HarnessModelCatalogSchema",
+    },
     HarnessQueuePosition: {
         modulePath: "harness/queue-position",
         schemaName: "HarnessQueuePositionSchema",
@@ -1111,10 +1112,6 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         modulePath: "logo/accuracy-reference",
         schemaName: "LogoAccuracyReferenceSchema",
     },
-    MediaCrawlScreenshot: {
-        modulePath: "media/crawl-screenshot",
-        schemaName: "MediaCrawlScreenshotSchema",
-    },
     MediaHeroImage: { modulePath: "media/hero-image", schemaName: "MediaHeroImageSchema" },
     MediaImportResult: { modulePath: "media/import-result", schemaName: "MediaImportResultSchema" },
     MediaLogoAuditEnqueue: {
@@ -1131,6 +1128,7 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         schemaName: "MediaRetrofitEnqueueSchema",
     },
     MediaRetrofitJob: { modulePath: "media/retrofit-job", schemaName: "MediaRetrofitJobSchema" },
+    MediaScreenshot: { modulePath: "media/screenshot", schemaName: "MediaScreenshotSchema" },
     MediaUpload: { modulePath: "media/upload", schemaName: "MediaUploadSchema" },
     NaturalSearch: { modulePath: "natural/search", schemaName: "NaturalSearchSchema" },
     NaturalSearchResult: {
@@ -1142,6 +1140,7 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         modulePath: "news/candidate-score",
         schemaName: "NewsCandidateScoreSchema",
     },
+    NewsDeleteMode: { modulePath: "news/delete-mode", schemaName: "NewsDeleteModeSchema" },
     NewsDetail: { modulePath: "news/detail", schemaName: "NewsDetailSchema" },
     NewsDuplicateCheck: {
         modulePath: "news/duplicate-check",
@@ -1185,6 +1184,10 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
     NotificationSettingMutation: {
         modulePath: "notification/setting-mutation",
         schemaName: "NotificationSettingMutationSchema",
+    },
+    NotificationSettingType: {
+        modulePath: "notification/setting-type",
+        schemaName: "NotificationSettingTypeSchema",
     },
     OperatingStatusSignalVerdict: {
         modulePath: "operating/status-signal-verdict",
@@ -1243,7 +1246,6 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         modulePath: "pagination/schemas",
         schemaName: "PageEntityListSummarySchema",
     },
-    PageEntityPerson: { modulePath: "pagination/schemas", schemaName: "PageEntityPersonSchema" },
     PageEntityPersonAssociation: {
         modulePath: "pagination/schemas",
         schemaName: "PageEntityPersonAssociationSchema",
@@ -1286,13 +1288,13 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         modulePath: "pagination/schemas",
         schemaName: "PageLocationDirectoryEntrySchema",
     },
-    PageMediaCrawlScreenshot: {
-        modulePath: "pagination/schemas",
-        schemaName: "PageMediaCrawlScreenshotSchema",
-    },
     PageMediaLogoAuditJob: {
         modulePath: "pagination/schemas",
         schemaName: "PageMediaLogoAuditJobSchema",
+    },
+    PageMediaScreenshot: {
+        modulePath: "pagination/schemas",
+        schemaName: "PageMediaScreenshotSchema",
     },
     PageNews: { modulePath: "pagination/schemas", schemaName: "PageNewsSchema" },
     PageNewsCandidateScore: {
@@ -1353,10 +1355,6 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
     },
     PageWebSite: { modulePath: "pagination/schemas", schemaName: "PageWebSiteSchema" },
     Person: { modulePath: "person/person", schemaName: "PersonSchema" },
-    PersonAddressMutation: {
-        modulePath: "person/address-mutation",
-        schemaName: "PersonAddressMutationSchema",
-    },
     PersonalApiKey: { modulePath: "personal/api-key", schemaName: "PersonalApiKeySchema" },
     PersonAliasType: { modulePath: "person/alias-type", schemaName: "PersonAliasTypeSchema" },
     PersonCreate: { modulePath: "person/create", schemaName: "PersonCreateSchema" },
@@ -1808,6 +1806,7 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         schemaName: "UrlDuplicateConflictSchema",
     },
     UrlDuplicateJoin: { modulePath: "url/duplicate-join", schemaName: "UrlDuplicateJoinSchema" },
+    UrlMatchMode: { modulePath: "url/match-mode", schemaName: "UrlMatchModeSchema" },
     UrlSlugRedirect: { modulePath: "url/slug-redirect", schemaName: "UrlSlugRedirectSchema" },
     UrlSurfaceMisclassificationCatalog: {
         modulePath: "url/surface-misclassification-catalog",

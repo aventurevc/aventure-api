@@ -3,7 +3,7 @@ import { z } from "zod/v4";
 /**
  * URL matching mode for URL-backed filters and duplicate checks.
  *
- * @openapiSchema EntityUrlMatchMode
+ * @openapiSchema UrlMatchMode
  * @endpoint GET /v1/app/saved-views
  * @endpoint GET /v1/entities
  * @endpoint GET /v1/entities/duplicate-check
@@ -43,9 +43,9 @@ import { z } from "zod/v4";
  * @usedBySchema EntityFilterSchema
  * @usedBySchema NewsDuplicateCheckSchema
  * @usedBySchema PersonDuplicateCriteriaSchema
- * @contractShape entity.url-match-mode
+ * @contractShape url.match-mode
  * @contractRole canonical
  * @ownerSourceFile src/main/kotlin/vc/aventure/domain/model/url/UrlMatchMode.kt
  */
-export const EntityUrlMatchModeSchema = z.enum(["hostPath", "domain"]);
-//# sourceMappingURL=url-match-mode.js.map
+export const UrlMatchModeSchema = z.enum(["hostPath", "domain"]);
+//# sourceMappingURL=match-mode.js.map

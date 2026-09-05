@@ -5,9 +5,9 @@ import { EntityFilterLogoOptionSchema } from "./filter-logo-option.js";
 import { EntityFundraiseFilterCriteriaSchema } from "./fundraise-filter-criteria.js";
 import { EntityListQualityGateSchema } from "./list-quality-gate.js";
 import { EntityTypeSchema } from "./type.js";
-import { EntityUrlMatchModeSchema } from "./url-match-mode.js";
 import { EntityUrlTypeSchema } from "./url-type.js";
 import { IntRangeSchema } from "../int/range.js";
+import { UrlMatchModeSchema } from "../url/match-mode.js";
 /**
  * Entity list and search filters. GET flattens these fields as query parameters; POST accepts the same shape as JSON.
  *
@@ -129,7 +129,7 @@ export const EntityFilterSchema = z.strictObject({
     /** Current root domain to match when urlMatchMode=domain. */
     urlDomain: z.string().nullish(),
     /** URL matching mode: hostPath uses host and path; domain uses the root domain. */
-    urlMatchMode: EntityUrlMatchModeSchema.optional(),
+    urlMatchMode: UrlMatchModeSchema.optional(),
     /** Restrict URL matching to one URL type. */
     urlType: EntityUrlTypeSchema.nullish(),
     /** Inclusive founding-year ranges, in calendar years. */
