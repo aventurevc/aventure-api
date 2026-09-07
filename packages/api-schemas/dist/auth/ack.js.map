@@ -1,1 +1,0 @@
-{"version":3,"file":"ack.js","sourceRoot":"","sources":["../../../api-schemas/auth/ack.ts"],"names":[],"mappings":"AAAA,8LAA8L;AAE9L,OAAO,EAAE,CAAC,EAAE,MAAM,QAAQ,CAAC;AAE3B,MAAM,uBAAuB,GAAG,CAAC,CAAC,MAAM,CAAC;IACvC,OAAO,EAAE,CAAC,CAAC,MAAM,EAAE;CACpB,CAAC,CAAC;AAIH;;;;;;;GAOG;AACH,MAAM,CAAC,MAAM,aAAa,GAAiC,uBAAuB,CAAC"}

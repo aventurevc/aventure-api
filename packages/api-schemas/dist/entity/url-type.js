@@ -4,7 +4,6 @@ import { z } from "zod/v4";
  * Canonical URL platform type such as website, linkedin, twitter, or github. Lifecycle facts belong on link flags such as isCurrent and isPrimary.
  *
  * @openapiSchema EntityUrlType
- * @endpoint GET /v1/app/saved-views
  * @endpoint GET /v1/entities
  * @endpoint GET /v1/entities/detail
  * @endpoint GET /v1/entities/detail/investors
@@ -13,14 +12,11 @@ import { z } from "zod/v4";
  * @endpoint GET /v1/entities/duplicate-check
  * @endpoint GET /v1/entities/duplicate-check/candidates
  * @endpoint GET /v1/entities/summary
- * @endpoint GET /v1/jobs/entities/duplicate-check
- * @endpoint GET /v1/jobs/people/duplicate-check
  * @endpoint GET /v1/people/detail
  * @endpoint GET /v1/people/detail/similar
  * @endpoint GET /v1/people/duplicate-check
  * @endpoint GET /v1/people/duplicate-check/candidates
  * @endpoint GET /v1/search/link
- * @endpoint GET /v1/app/saved-views/{savedViewId}
  * @endpoint GET /v1/entities/{entityId}/people
  * @endpoint GET /v1/entities/{entityId}/people/{associationId}
  * @endpoint GET /v1/entities/{entityId}/products/suggestions
@@ -28,15 +24,11 @@ import { z } from "zod/v4";
  * @endpoint GET /v1/entities/{entityId}/urls
  * @endpoint GET /v1/entities/{entityId}/urls/{urlId}
  * @endpoint GET /v1/entities/{entityId}/urls/all
- * @endpoint GET /v1/jobs/entities/duplicate-check/{jobId}
- * @endpoint GET /v1/jobs/people/duplicate-check/{jobId}
  * @endpoint GET /v1/people/{personId}/entities
  * @endpoint GET /v1/people/{personId}/entities/{associationId}
  * @endpoint GET /v1/people/{personId}/urls
  * @endpoint GET /v1/people/{personId}/urls/{urlId}
  * @endpoint GET /v1/people/{personId}/urls/all
- * @endpoint POST /v1/app/saved-views
- * @endpoint POST /v1/entities
  * @endpoint POST /v1/entities/{entityId}/urls
  * @endpoint POST /v1/entities/batch
  * @endpoint POST /v1/entities/detail
@@ -48,8 +40,7 @@ import { z } from "zod/v4";
  * @endpoint POST /v1/entities/filters/refine
  * @endpoint POST /v1/entities/filters/search
  * @endpoint POST /v1/entities/natural-search
- * @endpoint POST /v1/jobs/entities/duplicate-check
- * @endpoint POST /v1/jobs/people/duplicate-check
+ * @endpoint POST /v1/entities/search
  * @endpoint POST /v1/people/{personId}/entities
  * @endpoint POST /v1/people/{personId}/urls
  * @endpoint POST /v1/people/batch
@@ -59,7 +50,6 @@ import { z } from "zod/v4";
  * @endpoint POST /v1/people/duplicate-check/candidates
  * @endpoint POST /v1/search/all
  * @endpoint POST /v1/sec/entities/{entityId}/exchange-urls
- * @endpoint PATCH /v1/app/saved-views/{savedViewId}
  * @endpoint PATCH /v1/entities/{entityId}/urls/{urlId}
  * @endpoint PATCH /v1/entities/detail
  * @endpoint PATCH /v1/people/{personId}/entities/{associationId}
@@ -70,7 +60,6 @@ import { z } from "zod/v4";
  * @endpoint PUT /v1/people/{personId}/entities/{associationId}
  * @endpoint PUT /v1/people/{personId}/urls/{urlId}
  * @endpoint PUT /v1/people/detail
- * @endpoint DELETE /v1/app/saved-views/{savedViewId}
  * @endpoint DELETE /v1/entities/{entityId}/urls/{urlId}
  * @endpoint DELETE /v1/people/{personId}/entities/{associationId}
  * @endpoint DELETE /v1/people/{personId}/entities/{associationId}/corporate-title
@@ -78,6 +67,7 @@ import { z } from "zod/v4";
  * @usedBySchema DuplicateUrlCandidateSchema
  * @usedBySchema EntityDuplicateCriteriaSchema
  * @usedBySchema EntityFilterSchema
+ * @usedBySchema EntityListFilterSchema
  * @usedBySchema EntityUrlLinkSchema
  * @usedBySchema PersonDuplicateCriteriaSchema
  * @contractShape entity.url-type

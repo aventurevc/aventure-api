@@ -1,3 +1,4 @@
+// Generated alternate api-schemas support copy from TypeScript source api-schemas/client/pagination/page-param.ts
 import { z } from "zod/v4";
 /**
  * Query-string sort parameter: single `"field,dir"` or multi-sort array.

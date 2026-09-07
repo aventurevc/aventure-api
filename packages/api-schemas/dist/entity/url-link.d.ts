@@ -35,15 +35,6 @@ declare const EntityUrlLinkSchemaDefinition: z.ZodObject<{
         entityId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
         personId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
     }, z.core.$strip>>>;
-    source: z.ZodOptional<z.ZodNullable<z.ZodObject<{
-        changedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
-        dataSourceUpdatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
-        detail: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-        kind: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-        pendingApproval: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
-        sourceId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-        status: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-    }, z.core.$strip>>>;
     sourceId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     status: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     statusChecked: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
@@ -128,7 +119,6 @@ type EntityUrlLinkDefinition = z.infer<typeof EntityUrlLinkSchemaDefinition>;
  * @endpoint GET /v1/people/{personId}/urls
  * @endpoint GET /v1/people/{personId}/urls/{urlId}
  * @endpoint GET /v1/people/{personId}/urls/all
- * @endpoint POST /v1/entities
  * @endpoint POST /v1/entities/{entityId}/urls
  * @endpoint POST /v1/entities/batch
  * @endpoint POST /v1/entities/detail
@@ -136,6 +126,7 @@ type EntityUrlLinkDefinition = z.infer<typeof EntityUrlLinkSchemaDefinition>;
  * @endpoint POST /v1/entities/detail/full
  * @endpoint POST /v1/entities/detail/resolve
  * @endpoint POST /v1/entities/natural-search
+ * @endpoint POST /v1/entities/search
  * @endpoint POST /v1/people/{personId}/entities
  * @endpoint POST /v1/people/{personId}/urls
  * @endpoint POST /v1/people/batch

@@ -184,10 +184,6 @@ declare const PersonNaturalSearchResultSchemaDefinition: z.ZodObject<{
                 sourceId?: string | null | undefined;
                 status?: string | null | undefined;
             };
-            status?: {
-                isHidden: boolean;
-                showOnSitemap: boolean;
-            } | undefined;
             suffix?: string | null | undefined;
             text: {
                 expanded?: string | null | undefined;
@@ -243,10 +239,6 @@ declare const PersonNaturalSearchResultSchemaDefinition: z.ZodObject<{
                 sourceId?: string | null | undefined;
                 status?: string | null | undefined;
             };
-            status?: {
-                isHidden: boolean;
-                showOnSitemap: boolean;
-            } | undefined;
             suffix?: string | null | undefined;
             text: {
                 expanded?: string | null | undefined;

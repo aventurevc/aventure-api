@@ -1,103 +1,4 @@
 import { z } from "zod/v4";
-declare const PageAventureBlogArticleListSchemaDefinition: z.ZodObject<{
-    content: z.ZodOptional<z.ZodArray<z.ZodType<{
-        author?: {
-            avatar?: string | null | undefined;
-            id: string;
-            name: string;
-            slug: string;
-            title?: string | null | undefined;
-        } | null | undefined;
-        category: {
-            name: string;
-            slug: string;
-        }[];
-        excerpt: string;
-        id: number;
-        image?: {
-            alt?: string | null | undefined;
-            url: string;
-        } | null | undefined;
-        publishedAt?: string | null | undefined;
-        readingTime: number;
-        slug: string;
-        status: string;
-        tag: {
-            name: string;
-            slug: string;
-        }[];
-        title: string;
-        updatedAt: string;
-        viewCount: number;
-        wordCount: number;
-    }, unknown, z.core.$ZodTypeInternals<{
-        author?: {
-            avatar?: string | null | undefined;
-            id: string;
-            name: string;
-            slug: string;
-            title?: string | null | undefined;
-        } | null | undefined;
-        category: {
-            name: string;
-            slug: string;
-        }[];
-        excerpt: string;
-        id: number;
-        image?: {
-            alt?: string | null | undefined;
-            url: string;
-        } | null | undefined;
-        publishedAt?: string | null | undefined;
-        readingTime: number;
-        slug: string;
-        status: string;
-        tag: {
-            name: string;
-            slug: string;
-        }[];
-        title: string;
-        updatedAt: string;
-        viewCount: number;
-        wordCount: number;
-    }, unknown>>>>;
-    empty: z.ZodOptional<z.ZodBoolean>;
-    first: z.ZodOptional<z.ZodBoolean>;
-    last: z.ZodOptional<z.ZodBoolean>;
-    number: z.ZodOptional<z.ZodInt>;
-    numberOfElements: z.ZodOptional<z.ZodInt>;
-    pageable: z.ZodOptional<z.ZodObject<{
-        offset: z.ZodOptional<z.ZodNumber>;
-        paged: z.ZodOptional<z.ZodBoolean>;
-        pageNumber: z.ZodOptional<z.ZodInt>;
-        pageSize: z.ZodOptional<z.ZodInt>;
-        sort: z.ZodOptional<z.ZodObject<{
-            empty: z.ZodOptional<z.ZodBoolean>;
-            sorted: z.ZodOptional<z.ZodBoolean>;
-            unsorted: z.ZodOptional<z.ZodBoolean>;
-        }, z.core.$strip>>;
-        unpaged: z.ZodOptional<z.ZodBoolean>;
-    }, z.core.$strip>>;
-    size: z.ZodOptional<z.ZodInt>;
-    sort: z.ZodOptional<z.ZodObject<{
-        empty: z.ZodOptional<z.ZodBoolean>;
-        sorted: z.ZodOptional<z.ZodBoolean>;
-        unsorted: z.ZodOptional<z.ZodBoolean>;
-    }, z.core.$strip>>;
-    totalElements: z.ZodOptional<z.ZodNumber>;
-    totalPages: z.ZodOptional<z.ZodInt>;
-}, z.core.$strip>;
-type PageAventureBlogArticleListDefinition = z.infer<typeof PageAventureBlogArticleListSchemaDefinition>;
-/**
- * @openapiSchema PageAventureBlogArticleList
- * @endpoint GET /v1/app/blog/articles
- * @endpoint GET /v1/app/blog/articles/featured
- * @contractShape pagination.page-aventure-blog-article-list
- * @contractRole canonical
- * @ownerModule pagination/schemas.ts
- */
-export declare const PageAventureBlogArticleListSchema: z.ZodType<PageAventureBlogArticleListDefinition>;
-export type PageAventureBlogArticleList = z.infer<typeof PageAventureBlogArticleListSchema>;
 declare const PageBlogPostSchemaDefinition: z.ZodObject<{
     content: z.ZodOptional<z.ZodArray<z.ZodType<{
         author?: string | null | undefined;
@@ -171,7 +72,6 @@ declare const PageBlogPostSchemaDefinition: z.ZodObject<{
 type PageBlogPostDefinition = z.infer<typeof PageBlogPostSchemaDefinition>;
 /**
  * @openapiSchema PageBlogPost
- * @endpoint GET /v1/research/blog-posts
  * @endpoint GET /v1/entities/{entityId}/blog-posts
  * @endpoint GET /v1/people/{personId}/blog-posts
  * @endpoint GET /v1/people/{slug}/blog-posts
@@ -295,74 +195,6 @@ type PageClassificationDefinition = z.infer<typeof PageClassificationSchemaDefin
  */
 export declare const PageClassificationSchema: z.ZodType<PageClassificationDefinition>;
 export type PageClassification = z.infer<typeof PageClassificationSchema>;
-declare const PageCliAuthorizationSchemaDefinition: z.ZodObject<{
-    content: z.ZodOptional<z.ZodArray<z.ZodType<{
-        approvedAt?: string | null | undefined;
-        clientLabel: string;
-        clientPlatform: "LINUX" | "MACOS" | "OTHER" | "WINDOWS";
-        comparisonCode: string;
-        consumedAt?: string | null | undefined;
-        createdAt: string;
-        expiresAt: string;
-        id: string;
-        intervalSeconds: number;
-        keyReadyAt?: string | null | undefined;
-        status: "CONSUMED" | "DENIED" | "EXPIRED" | "FAILED" | "ISSUING" | "KEY_READY" | "PENDING" | "REVOKED" | "REVOKING";
-        terminalAt?: string | null | undefined;
-        terminalReason?: "Authorization request expired" | "CLI authorization expired before acknowledgement" | "Clerk create response validation failed" | "Credential delivery encryption failed" | "Credential issuance could not be recovered" | "Credential issuance failed" | "Credential issuance finalization was lost" | "Credential issuance lost its database claim" | "Credential issuance recovery revoked an unrecoverable key" | "Denied by user" | "Personal API-key quota reached" | "Revoked by user" | null | undefined;
-        updatedAt: string;
-    }, unknown, z.core.$ZodTypeInternals<{
-        approvedAt?: string | null | undefined;
-        clientLabel: string;
-        clientPlatform: "LINUX" | "MACOS" | "OTHER" | "WINDOWS";
-        comparisonCode: string;
-        consumedAt?: string | null | undefined;
-        createdAt: string;
-        expiresAt: string;
-        id: string;
-        intervalSeconds: number;
-        keyReadyAt?: string | null | undefined;
-        status: "CONSUMED" | "DENIED" | "EXPIRED" | "FAILED" | "ISSUING" | "KEY_READY" | "PENDING" | "REVOKED" | "REVOKING";
-        terminalAt?: string | null | undefined;
-        terminalReason?: "Authorization request expired" | "CLI authorization expired before acknowledgement" | "Clerk create response validation failed" | "Credential delivery encryption failed" | "Credential issuance could not be recovered" | "Credential issuance failed" | "Credential issuance finalization was lost" | "Credential issuance lost its database claim" | "Credential issuance recovery revoked an unrecoverable key" | "Denied by user" | "Personal API-key quota reached" | "Revoked by user" | null | undefined;
-        updatedAt: string;
-    }, unknown>>>>;
-    empty: z.ZodOptional<z.ZodBoolean>;
-    first: z.ZodOptional<z.ZodBoolean>;
-    last: z.ZodOptional<z.ZodBoolean>;
-    number: z.ZodOptional<z.ZodInt>;
-    numberOfElements: z.ZodOptional<z.ZodInt>;
-    pageable: z.ZodOptional<z.ZodObject<{
-        offset: z.ZodOptional<z.ZodNumber>;
-        paged: z.ZodOptional<z.ZodBoolean>;
-        pageNumber: z.ZodOptional<z.ZodInt>;
-        pageSize: z.ZodOptional<z.ZodInt>;
-        sort: z.ZodOptional<z.ZodObject<{
-            empty: z.ZodOptional<z.ZodBoolean>;
-            sorted: z.ZodOptional<z.ZodBoolean>;
-            unsorted: z.ZodOptional<z.ZodBoolean>;
-        }, z.core.$strip>>;
-        unpaged: z.ZodOptional<z.ZodBoolean>;
-    }, z.core.$strip>>;
-    size: z.ZodOptional<z.ZodInt>;
-    sort: z.ZodOptional<z.ZodObject<{
-        empty: z.ZodOptional<z.ZodBoolean>;
-        sorted: z.ZodOptional<z.ZodBoolean>;
-        unsorted: z.ZodOptional<z.ZodBoolean>;
-    }, z.core.$strip>>;
-    totalElements: z.ZodOptional<z.ZodNumber>;
-    totalPages: z.ZodOptional<z.ZodInt>;
-}, z.core.$strip>;
-type PageCliAuthorizationDefinition = z.infer<typeof PageCliAuthorizationSchemaDefinition>;
-/**
- * @openapiSchema PageCliAuthorization
- * @endpoint GET /v1/app/cli-authorizations
- * @contractShape pagination.page-cli-authorization
- * @contractRole canonical
- * @ownerModule pagination/schemas.ts
- */
-export declare const PageCliAuthorizationSchema: z.ZodType<PageCliAuthorizationDefinition>;
-export type PageCliAuthorization = z.infer<typeof PageCliAuthorizationSchema>;
 declare const PageContentSchemaDefinition: z.ZodObject<{
     content: z.ZodOptional<z.ZodArray<z.ZodType<{
         canonicalUrl?: string | null | undefined;
@@ -433,154 +265,6 @@ type PageContentDefinition = z.infer<typeof PageContentSchemaDefinition>;
  */
 export declare const PageContentSchema: z.ZodType<PageContentDefinition>;
 export type PageContent = z.infer<typeof PageContentSchema>;
-declare const PageContentPageListSchemaDefinition: z.ZodObject<{
-    content: z.ZodOptional<z.ZodArray<z.ZodType<{
-        author?: {
-            avatar?: string | null | undefined;
-            id: string;
-            name: string;
-            slug: string;
-            title?: string | null | undefined;
-        } | null | undefined;
-        category: {
-            name: string;
-            slug: string;
-        }[];
-        excerpt: string;
-        id: number;
-        image?: {
-            alt?: string | null | undefined;
-            url: string;
-        } | null | undefined;
-        publishedAt?: string | null | undefined;
-        readingTime: number;
-        slug: string;
-        status: string;
-        tag: {
-            name: string;
-            slug: string;
-        }[];
-        title: string;
-        updatedAt: string;
-        viewCount: number;
-        wordCount: number;
-    }, unknown, z.core.$ZodTypeInternals<{
-        author?: {
-            avatar?: string | null | undefined;
-            id: string;
-            name: string;
-            slug: string;
-            title?: string | null | undefined;
-        } | null | undefined;
-        category: {
-            name: string;
-            slug: string;
-        }[];
-        excerpt: string;
-        id: number;
-        image?: {
-            alt?: string | null | undefined;
-            url: string;
-        } | null | undefined;
-        publishedAt?: string | null | undefined;
-        readingTime: number;
-        slug: string;
-        status: string;
-        tag: {
-            name: string;
-            slug: string;
-        }[];
-        title: string;
-        updatedAt: string;
-        viewCount: number;
-        wordCount: number;
-    }, unknown>>>>;
-    empty: z.ZodOptional<z.ZodBoolean>;
-    first: z.ZodOptional<z.ZodBoolean>;
-    last: z.ZodOptional<z.ZodBoolean>;
-    number: z.ZodOptional<z.ZodInt>;
-    numberOfElements: z.ZodOptional<z.ZodInt>;
-    pageable: z.ZodOptional<z.ZodObject<{
-        offset: z.ZodOptional<z.ZodNumber>;
-        paged: z.ZodOptional<z.ZodBoolean>;
-        pageNumber: z.ZodOptional<z.ZodInt>;
-        pageSize: z.ZodOptional<z.ZodInt>;
-        sort: z.ZodOptional<z.ZodObject<{
-            empty: z.ZodOptional<z.ZodBoolean>;
-            sorted: z.ZodOptional<z.ZodBoolean>;
-            unsorted: z.ZodOptional<z.ZodBoolean>;
-        }, z.core.$strip>>;
-        unpaged: z.ZodOptional<z.ZodBoolean>;
-    }, z.core.$strip>>;
-    size: z.ZodOptional<z.ZodInt>;
-    sort: z.ZodOptional<z.ZodObject<{
-        empty: z.ZodOptional<z.ZodBoolean>;
-        sorted: z.ZodOptional<z.ZodBoolean>;
-        unsorted: z.ZodOptional<z.ZodBoolean>;
-    }, z.core.$strip>>;
-    totalElements: z.ZodOptional<z.ZodNumber>;
-    totalPages: z.ZodOptional<z.ZodInt>;
-}, z.core.$strip>;
-type PageContentPageListDefinition = z.infer<typeof PageContentPageListSchemaDefinition>;
-/**
- * @openapiSchema PageContentPageList
- * @endpoint GET /v1/app/pages
- * @endpoint GET /v1/app/pages/featured
- * @contractShape pagination.page-content-page-list
- * @contractRole canonical
- * @ownerModule pagination/schemas.ts
- */
-export declare const PageContentPageListSchema: z.ZodType<PageContentPageListDefinition>;
-export type PageContentPageList = z.infer<typeof PageContentPageListSchema>;
-declare const PageContentTaxonomyCountSchemaDefinition: z.ZodObject<{
-    content: z.ZodOptional<z.ZodArray<z.ZodType<{
-        articleCount: number;
-        latestArticleUpdatedAt?: string | null | undefined;
-        slug: string;
-    }, unknown, z.core.$ZodTypeInternals<{
-        articleCount: number;
-        latestArticleUpdatedAt?: string | null | undefined;
-        slug: string;
-    }, unknown>>>>;
-    empty: z.ZodOptional<z.ZodBoolean>;
-    first: z.ZodOptional<z.ZodBoolean>;
-    last: z.ZodOptional<z.ZodBoolean>;
-    number: z.ZodOptional<z.ZodInt>;
-    numberOfElements: z.ZodOptional<z.ZodInt>;
-    pageable: z.ZodOptional<z.ZodObject<{
-        offset: z.ZodOptional<z.ZodNumber>;
-        paged: z.ZodOptional<z.ZodBoolean>;
-        pageNumber: z.ZodOptional<z.ZodInt>;
-        pageSize: z.ZodOptional<z.ZodInt>;
-        sort: z.ZodOptional<z.ZodObject<{
-            empty: z.ZodOptional<z.ZodBoolean>;
-            sorted: z.ZodOptional<z.ZodBoolean>;
-            unsorted: z.ZodOptional<z.ZodBoolean>;
-        }, z.core.$strip>>;
-        unpaged: z.ZodOptional<z.ZodBoolean>;
-    }, z.core.$strip>>;
-    size: z.ZodOptional<z.ZodInt>;
-    sort: z.ZodOptional<z.ZodObject<{
-        empty: z.ZodOptional<z.ZodBoolean>;
-        sorted: z.ZodOptional<z.ZodBoolean>;
-        unsorted: z.ZodOptional<z.ZodBoolean>;
-    }, z.core.$strip>>;
-    totalElements: z.ZodOptional<z.ZodNumber>;
-    totalPages: z.ZodOptional<z.ZodInt>;
-}, z.core.$strip>;
-type PageContentTaxonomyCountDefinition = z.infer<typeof PageContentTaxonomyCountSchemaDefinition>;
-/**
- * @openapiSchema PageContentTaxonomyCount
- * @endpoint GET /v1/app/blog/categories
- * @endpoint GET /v1/app/blog/tags
- * @endpoint GET /v1/app/pages/categories
- * @endpoint GET /v1/app/pages/tags
- * @contractShape pagination.page-content-taxonomy-count
- * @contractRole canonical
- * @ownerModule pagination/schemas.ts
- */
-export declare const PageContentTaxonomyCountSchema: z.ZodType<PageContentTaxonomyCountDefinition>;
-export type PageContentTaxonomyCount = z.infer<typeof PageContentTaxonomyCountSchema>;
 declare const PageDatasourceFieldProvenanceSchemaDefinition: z.ZodObject<{
     content: z.ZodOptional<z.ZodArray<z.ZodType<{
         actor?: {
@@ -697,98 +381,6 @@ type PageDatasourceFieldProvenanceDefinition = z.infer<typeof PageDatasourceFiel
  */
 export declare const PageDatasourceFieldProvenanceSchema: z.ZodType<PageDatasourceFieldProvenanceDefinition>;
 export type PageDatasourceFieldProvenance = z.infer<typeof PageDatasourceFieldProvenanceSchema>;
-declare const PageDeployEventSchemaDefinition: z.ZodObject<{
-    content: z.ZodOptional<z.ZodArray<z.ZodType<{
-        cursorDeploymentId?: string | null | undefined;
-        cursorServiceVersion?: number | null | undefined;
-        deploymentId?: string | null | undefined;
-        desiredReplicas?: number | null | undefined;
-        environment: string;
-        eventId: string;
-        fromImage?: string | null | undefined;
-        fromRuntimeImageId?: string | null | undefined;
-        id: number;
-        message?: string | null | undefined;
-        mode: "CoolifyApplicationImage" | "CoolifyComposeImage" | "DokployApplicationImage" | "RailwayImage" | "TagListOnly";
-        operationId?: string | null | undefined;
-        outcome: "Failure" | "Submitted" | "Submitting" | "Success";
-        phase: "Candidate" | "Compensation" | "PolicyBaseline";
-        runtimeTaskEvidence: {
-            latencyMillis: number;
-            revision: string;
-            statusCode: number;
-            taskToken: string;
-        }[];
-        targetName: string;
-        taskToken: string[];
-        toImage: string;
-        toRuntimeImageId?: string | null | undefined;
-        triggeredAt: string;
-        triggeredBy: string;
-    }, unknown, z.core.$ZodTypeInternals<{
-        cursorDeploymentId?: string | null | undefined;
-        cursorServiceVersion?: number | null | undefined;
-        deploymentId?: string | null | undefined;
-        desiredReplicas?: number | null | undefined;
-        environment: string;
-        eventId: string;
-        fromImage?: string | null | undefined;
-        fromRuntimeImageId?: string | null | undefined;
-        id: number;
-        message?: string | null | undefined;
-        mode: "CoolifyApplicationImage" | "CoolifyComposeImage" | "DokployApplicationImage" | "RailwayImage" | "TagListOnly";
-        operationId?: string | null | undefined;
-        outcome: "Failure" | "Submitted" | "Submitting" | "Success";
-        phase: "Candidate" | "Compensation" | "PolicyBaseline";
-        runtimeTaskEvidence: {
-            latencyMillis: number;
-            revision: string;
-            statusCode: number;
-            taskToken: string;
-        }[];
-        targetName: string;
-        taskToken: string[];
-        toImage: string;
-        toRuntimeImageId?: string | null | undefined;
-        triggeredAt: string;
-        triggeredBy: string;
-    }, unknown>>>>;
-    empty: z.ZodOptional<z.ZodBoolean>;
-    first: z.ZodOptional<z.ZodBoolean>;
-    last: z.ZodOptional<z.ZodBoolean>;
-    number: z.ZodOptional<z.ZodInt>;
-    numberOfElements: z.ZodOptional<z.ZodInt>;
-    pageable: z.ZodOptional<z.ZodObject<{
-        offset: z.ZodOptional<z.ZodNumber>;
-        paged: z.ZodOptional<z.ZodBoolean>;
-        pageNumber: z.ZodOptional<z.ZodInt>;
-        pageSize: z.ZodOptional<z.ZodInt>;
-        sort: z.ZodOptional<z.ZodObject<{
-            empty: z.ZodOptional<z.ZodBoolean>;
-            sorted: z.ZodOptional<z.ZodBoolean>;
-            unsorted: z.ZodOptional<z.ZodBoolean>;
-        }, z.core.$strip>>;
-        unpaged: z.ZodOptional<z.ZodBoolean>;
-    }, z.core.$strip>>;
-    size: z.ZodOptional<z.ZodInt>;
-    sort: z.ZodOptional<z.ZodObject<{
-        empty: z.ZodOptional<z.ZodBoolean>;
-        sorted: z.ZodOptional<z.ZodBoolean>;
-        unsorted: z.ZodOptional<z.ZodBoolean>;
-    }, z.core.$strip>>;
-    totalElements: z.ZodOptional<z.ZodNumber>;
-    totalPages: z.ZodOptional<z.ZodInt>;
-}, z.core.$strip>;
-type PageDeployEventDefinition = z.infer<typeof PageDeployEventSchemaDefinition>;
-/**
- * @openapiSchema PageDeployEvent
- * @endpoint GET /v1/deploy/events
- * @contractShape pagination.page-deploy-event
- * @contractRole canonical
- * @ownerModule pagination/schemas.ts
- */
-export declare const PageDeployEventSchema: z.ZodType<PageDeployEventDefinition>;
-export type PageDeployEvent = z.infer<typeof PageDeployEventSchema>;
 declare const PageEmployeeCountSchemaDefinition: z.ZodObject<{
     content: z.ZodOptional<z.ZodArray<z.ZodObject<{
         asOfDate: z.ZodISODateTime;
@@ -890,21 +482,6 @@ declare const PageEntitySchemaDefinition: z.ZodObject<{
             productServiceSlug: z.ZodArray<z.ZodString>;
         }, z.core.$strip>>>;
         slug: z.ZodString;
-        source: z.ZodOptional<z.ZodNullable<z.ZodObject<{
-            changedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
-            dataSourceUpdatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
-            detail: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-            kind: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-            pendingApproval: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
-            sourceId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-            status: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-        }, z.core.$strip>>>;
-        status: z.ZodOptional<z.ZodObject<{
-            isFeatured: z.ZodBoolean;
-            isHidden: z.ZodBoolean;
-            isVerified: z.ZodBoolean;
-            showOnSitemap: z.ZodBoolean;
-        }, z.core.$strip>>;
         typeRecord: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
             "Business Line": "Business Line";
             Company: "Company";
@@ -948,8 +525,6 @@ type PageEntityDefinition = z.infer<typeof PageEntitySchemaDefinition>;
 /**
  * @openapiSchema PageEntity
  * @endpoint GET /v1/entities/duplicate-check
- * @endpoint GET /v1/entities/sitemap-routes
- * @endpoint GET /v1/addresses/locations/{scope}/{slug}
  * @endpoint GET /v1/news/{id}/related-companies
  * @endpoint POST /v1/entities/duplicate-check
  * @contractShape pagination.page-entity
@@ -990,21 +565,6 @@ declare const PageEntityAcquisitionSchemaDefinition: z.ZodObject<{
                 productServiceSlug: string[];
             } | null | undefined;
             slug: string;
-            source?: {
-                changedAt?: string | null | undefined;
-                dataSourceUpdatedAt?: string | null | undefined;
-                detail?: string | null | undefined;
-                kind?: string | null | undefined;
-                pendingApproval?: number | null | undefined;
-                sourceId?: string | null | undefined;
-                status?: string | null | undefined;
-            } | null | undefined;
-            status?: {
-                isFeatured: boolean;
-                isHidden: boolean;
-                isVerified: boolean;
-                showOnSitemap: boolean;
-            } | undefined;
             typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
             updatedAt?: string | null | undefined;
         };
@@ -1038,21 +598,6 @@ declare const PageEntityAcquisitionSchemaDefinition: z.ZodObject<{
                 productServiceSlug: string[];
             } | null | undefined;
             slug: string;
-            source?: {
-                changedAt?: string | null | undefined;
-                dataSourceUpdatedAt?: string | null | undefined;
-                detail?: string | null | undefined;
-                kind?: string | null | undefined;
-                pendingApproval?: number | null | undefined;
-                sourceId?: string | null | undefined;
-                status?: string | null | undefined;
-            } | null | undefined;
-            status?: {
-                isFeatured: boolean;
-                isHidden: boolean;
-                isVerified: boolean;
-                showOnSitemap: boolean;
-            } | undefined;
             typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
             updatedAt?: string | null | undefined;
         };
@@ -1107,21 +652,6 @@ declare const PageEntityAcquisitionSchemaDefinition: z.ZodObject<{
                 productServiceSlug: string[];
             } | null | undefined;
             slug: string;
-            source?: {
-                changedAt?: string | null | undefined;
-                dataSourceUpdatedAt?: string | null | undefined;
-                detail?: string | null | undefined;
-                kind?: string | null | undefined;
-                pendingApproval?: number | null | undefined;
-                sourceId?: string | null | undefined;
-                status?: string | null | undefined;
-            } | null | undefined;
-            status?: {
-                isFeatured: boolean;
-                isHidden: boolean;
-                isVerified: boolean;
-                showOnSitemap: boolean;
-            } | undefined;
             typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
             updatedAt?: string | null | undefined;
         };
@@ -1155,21 +685,6 @@ declare const PageEntityAcquisitionSchemaDefinition: z.ZodObject<{
                 productServiceSlug: string[];
             } | null | undefined;
             slug: string;
-            source?: {
-                changedAt?: string | null | undefined;
-                dataSourceUpdatedAt?: string | null | undefined;
-                detail?: string | null | undefined;
-                kind?: string | null | undefined;
-                pendingApproval?: number | null | undefined;
-                sourceId?: string | null | undefined;
-                status?: string | null | undefined;
-            } | null | undefined;
-            status?: {
-                isFeatured: boolean;
-                isHidden: boolean;
-                isVerified: boolean;
-                showOnSitemap: boolean;
-            } | undefined;
             typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
             updatedAt?: string | null | undefined;
         };
@@ -1270,21 +785,6 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                 productServiceSlug: z.ZodArray<z.ZodString>;
             }, z.core.$strip>>>;
             slug: z.ZodString;
-            source: z.ZodOptional<z.ZodNullable<z.ZodObject<{
-                changedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
-                dataSourceUpdatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
-                detail: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-                kind: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-                pendingApproval: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
-                sourceId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-                status: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-            }, z.core.$strip>>>;
-            status: z.ZodOptional<z.ZodObject<{
-                isFeatured: z.ZodBoolean;
-                isHidden: z.ZodBoolean;
-                isVerified: z.ZodBoolean;
-                showOnSitemap: z.ZodBoolean;
-            }, z.core.$strip>>;
             typeRecord: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
                 "Business Line": "Business Line";
                 Company: "Company";
@@ -1568,15 +1068,6 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                     entityId?: string | null | undefined;
                     personId?: string | null | undefined;
                 } | null | undefined;
-                source?: {
-                    changedAt?: string | null | undefined;
-                    dataSourceUpdatedAt?: string | null | undefined;
-                    detail?: string | null | undefined;
-                    kind?: string | null | undefined;
-                    pendingApproval?: number | null | undefined;
-                    sourceId?: string | null | undefined;
-                    status?: string | null | undefined;
-                } | null | undefined;
                 sourceId?: string | null | undefined;
                 status?: string | null | undefined;
                 statusChecked?: string | null | undefined;
@@ -1854,15 +1345,6 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                     entityId?: string | null | undefined;
                     personId?: string | null | undefined;
                 } | null | undefined;
-                source?: {
-                    changedAt?: string | null | undefined;
-                    dataSourceUpdatedAt?: string | null | undefined;
-                    detail?: string | null | undefined;
-                    kind?: string | null | undefined;
-                    pendingApproval?: number | null | undefined;
-                    sourceId?: string | null | undefined;
-                    status?: string | null | undefined;
-                } | null | undefined;
                 sourceId?: string | null | undefined;
                 status?: string | null | undefined;
                 statusChecked?: string | null | undefined;
@@ -1910,21 +1392,6 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                         productServiceSlug: string[];
                     } | null | undefined;
                     slug: string;
-                    source?: {
-                        changedAt?: string | null | undefined;
-                        dataSourceUpdatedAt?: string | null | undefined;
-                        detail?: string | null | undefined;
-                        kind?: string | null | undefined;
-                        pendingApproval?: number | null | undefined;
-                        sourceId?: string | null | undefined;
-                        status?: string | null | undefined;
-                    } | null | undefined;
-                    status?: {
-                        isFeatured: boolean;
-                        isHidden: boolean;
-                        isVerified: boolean;
-                        showOnSitemap: boolean;
-                    } | undefined;
                     typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
                     updatedAt?: string | null | undefined;
                 };
@@ -2009,21 +1476,6 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                         productServiceSlug: string[];
                     } | null | undefined;
                     slug: string;
-                    source?: {
-                        changedAt?: string | null | undefined;
-                        dataSourceUpdatedAt?: string | null | undefined;
-                        detail?: string | null | undefined;
-                        kind?: string | null | undefined;
-                        pendingApproval?: number | null | undefined;
-                        sourceId?: string | null | undefined;
-                        status?: string | null | undefined;
-                    } | null | undefined;
-                    status?: {
-                        isFeatured: boolean;
-                        isHidden: boolean;
-                        isVerified: boolean;
-                        showOnSitemap: boolean;
-                    } | undefined;
                     typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
                     updatedAt?: string | null | undefined;
                 };
@@ -2083,15 +1535,6 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
             publication?: string | null | undefined;
             publishedAt?: string | null | undefined;
             slug?: string | null | undefined;
-            source?: {
-                changedAt?: string | null | undefined;
-                dataSourceUpdatedAt?: string | null | undefined;
-                detail?: string | null | undefined;
-                kind?: string | null | undefined;
-                pendingApproval?: number | null | undefined;
-                sourceId?: string | null | undefined;
-                status?: string | null | undefined;
-            } | undefined;
             title: string;
             updatedAt?: string | null | undefined;
         }, unknown, z.core.$ZodTypeInternals<{
@@ -2107,15 +1550,6 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
             publication?: string | null | undefined;
             publishedAt?: string | null | undefined;
             slug?: string | null | undefined;
-            source?: {
-                changedAt?: string | null | undefined;
-                dataSourceUpdatedAt?: string | null | undefined;
-                detail?: string | null | undefined;
-                kind?: string | null | undefined;
-                pendingApproval?: number | null | undefined;
-                sourceId?: string | null | undefined;
-                status?: string | null | undefined;
-            } | undefined;
             title: string;
             updatedAt?: string | null | undefined;
         }, unknown>>>;
@@ -2169,7 +1603,6 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                     updatedAt?: string | null | undefined;
                 }[];
                 entityId: string;
-                entityIsHidden?: boolean | null | undefined;
                 entityLogo: {
                     isMonogram: boolean;
                     logo?: string | null | undefined;
@@ -2177,7 +1610,6 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                 };
                 entityName?: string | null | undefined;
                 entityOperatingStatus?: string | null | undefined;
-                entityShowOnSitemap?: boolean | null | undefined;
                 entitySlug: string;
                 entityType?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
                 entityUrlLink: {
@@ -2190,15 +1622,6 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                     owner?: {
                         entityId?: string | null | undefined;
                         personId?: string | null | undefined;
-                    } | null | undefined;
-                    source?: {
-                        changedAt?: string | null | undefined;
-                        dataSourceUpdatedAt?: string | null | undefined;
-                        detail?: string | null | undefined;
-                        kind?: string | null | undefined;
-                        pendingApproval?: number | null | undefined;
-                        sourceId?: string | null | undefined;
-                        status?: string | null | undefined;
                     } | null | undefined;
                     sourceId?: string | null | undefined;
                     status?: string | null | undefined;
@@ -2268,15 +1691,6 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                         entityId?: string | null | undefined;
                         personId?: string | null | undefined;
                     } | null | undefined;
-                    source?: {
-                        changedAt?: string | null | undefined;
-                        dataSourceUpdatedAt?: string | null | undefined;
-                        detail?: string | null | undefined;
-                        kind?: string | null | undefined;
-                        pendingApproval?: number | null | undefined;
-                        sourceId?: string | null | undefined;
-                        status?: string | null | undefined;
-                    } | null | undefined;
                     sourceId?: string | null | undefined;
                     status?: string | null | undefined;
                     statusChecked?: string | null | undefined;
@@ -2334,10 +1748,6 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                     sourceId?: string | null | undefined;
                     status?: string | null | undefined;
                 };
-                status?: {
-                    isHidden: boolean;
-                    showOnSitemap: boolean;
-                } | undefined;
                 suffix?: string | null | undefined;
                 text: {
                     expanded?: string | null | undefined;
@@ -2400,15 +1810,6 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                         entityId?: string | null | undefined;
                         personId?: string | null | undefined;
                     } | null | undefined;
-                    source?: {
-                        changedAt?: string | null | undefined;
-                        dataSourceUpdatedAt?: string | null | undefined;
-                        detail?: string | null | undefined;
-                        kind?: string | null | undefined;
-                        pendingApproval?: number | null | undefined;
-                        sourceId?: string | null | undefined;
-                        status?: string | null | undefined;
-                    } | null | undefined;
                     sourceId?: string | null | undefined;
                     status?: string | null | undefined;
                     statusChecked?: string | null | undefined;
@@ -2450,21 +1851,6 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                             productServiceSlug: string[];
                         } | null | undefined;
                         slug: string;
-                        source?: {
-                            changedAt?: string | null | undefined;
-                            dataSourceUpdatedAt?: string | null | undefined;
-                            detail?: string | null | undefined;
-                            kind?: string | null | undefined;
-                            pendingApproval?: number | null | undefined;
-                            sourceId?: string | null | undefined;
-                            status?: string | null | undefined;
-                        } | null | undefined;
-                        status?: {
-                            isFeatured: boolean;
-                            isHidden: boolean;
-                            isVerified: boolean;
-                            showOnSitemap: boolean;
-                        } | undefined;
                         typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
                         updatedAt?: string | null | undefined;
                     };
@@ -2559,7 +1945,6 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                     updatedAt?: string | null | undefined;
                 }[];
                 entityId: string;
-                entityIsHidden?: boolean | null | undefined;
                 entityLogo: {
                     isMonogram: boolean;
                     logo?: string | null | undefined;
@@ -2567,7 +1952,6 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                 };
                 entityName?: string | null | undefined;
                 entityOperatingStatus?: string | null | undefined;
-                entityShowOnSitemap?: boolean | null | undefined;
                 entitySlug: string;
                 entityType?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
                 entityUrlLink: {
@@ -2580,15 +1964,6 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                     owner?: {
                         entityId?: string | null | undefined;
                         personId?: string | null | undefined;
-                    } | null | undefined;
-                    source?: {
-                        changedAt?: string | null | undefined;
-                        dataSourceUpdatedAt?: string | null | undefined;
-                        detail?: string | null | undefined;
-                        kind?: string | null | undefined;
-                        pendingApproval?: number | null | undefined;
-                        sourceId?: string | null | undefined;
-                        status?: string | null | undefined;
                     } | null | undefined;
                     sourceId?: string | null | undefined;
                     status?: string | null | undefined;
@@ -2658,15 +2033,6 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                         entityId?: string | null | undefined;
                         personId?: string | null | undefined;
                     } | null | undefined;
-                    source?: {
-                        changedAt?: string | null | undefined;
-                        dataSourceUpdatedAt?: string | null | undefined;
-                        detail?: string | null | undefined;
-                        kind?: string | null | undefined;
-                        pendingApproval?: number | null | undefined;
-                        sourceId?: string | null | undefined;
-                        status?: string | null | undefined;
-                    } | null | undefined;
                     sourceId?: string | null | undefined;
                     status?: string | null | undefined;
                     statusChecked?: string | null | undefined;
@@ -2724,10 +2090,6 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                     sourceId?: string | null | undefined;
                     status?: string | null | undefined;
                 };
-                status?: {
-                    isHidden: boolean;
-                    showOnSitemap: boolean;
-                } | undefined;
                 suffix?: string | null | undefined;
                 text: {
                     expanded?: string | null | undefined;
@@ -2790,15 +2152,6 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                         entityId?: string | null | undefined;
                         personId?: string | null | undefined;
                     } | null | undefined;
-                    source?: {
-                        changedAt?: string | null | undefined;
-                        dataSourceUpdatedAt?: string | null | undefined;
-                        detail?: string | null | undefined;
-                        kind?: string | null | undefined;
-                        pendingApproval?: number | null | undefined;
-                        sourceId?: string | null | undefined;
-                        status?: string | null | undefined;
-                    } | null | undefined;
                     sourceId?: string | null | undefined;
                     status?: string | null | undefined;
                     statusChecked?: string | null | undefined;
@@ -2840,21 +2193,6 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                             productServiceSlug: string[];
                         } | null | undefined;
                         slug: string;
-                        source?: {
-                            changedAt?: string | null | undefined;
-                            dataSourceUpdatedAt?: string | null | undefined;
-                            detail?: string | null | undefined;
-                            kind?: string | null | undefined;
-                            pendingApproval?: number | null | undefined;
-                            sourceId?: string | null | undefined;
-                            status?: string | null | undefined;
-                        } | null | undefined;
-                        status?: {
-                            isFeatured: boolean;
-                            isHidden: boolean;
-                            isVerified: boolean;
-                            showOnSitemap: boolean;
-                        } | undefined;
                         typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
                         updatedAt?: string | null | undefined;
                     };
@@ -2943,21 +2281,6 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                     productServiceSlug: string[];
                 } | null | undefined;
                 slug: string;
-                source?: {
-                    changedAt?: string | null | undefined;
-                    dataSourceUpdatedAt?: string | null | undefined;
-                    detail?: string | null | undefined;
-                    kind?: string | null | undefined;
-                    pendingApproval?: number | null | undefined;
-                    sourceId?: string | null | undefined;
-                    status?: string | null | undefined;
-                } | null | undefined;
-                status?: {
-                    isFeatured: boolean;
-                    isHidden: boolean;
-                    isVerified: boolean;
-                    showOnSitemap: boolean;
-                } | undefined;
                 typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
                 updatedAt?: string | null | undefined;
             };
@@ -3012,21 +2335,6 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                     productServiceSlug: string[];
                 } | null | undefined;
                 slug: string;
-                source?: {
-                    changedAt?: string | null | undefined;
-                    dataSourceUpdatedAt?: string | null | undefined;
-                    detail?: string | null | undefined;
-                    kind?: string | null | undefined;
-                    pendingApproval?: number | null | undefined;
-                    sourceId?: string | null | undefined;
-                    status?: string | null | undefined;
-                } | null | undefined;
-                status?: {
-                    isFeatured: boolean;
-                    isHidden: boolean;
-                    isVerified: boolean;
-                    showOnSitemap: boolean;
-                } | undefined;
                 typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
                 updatedAt?: string | null | undefined;
             };
@@ -3072,21 +2380,6 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                         productServiceSlug: string[];
                     } | null | undefined;
                     slug: string;
-                    source?: {
-                        changedAt?: string | null | undefined;
-                        dataSourceUpdatedAt?: string | null | undefined;
-                        detail?: string | null | undefined;
-                        kind?: string | null | undefined;
-                        pendingApproval?: number | null | undefined;
-                        sourceId?: string | null | undefined;
-                        status?: string | null | undefined;
-                    } | null | undefined;
-                    status?: {
-                        isFeatured: boolean;
-                        isHidden: boolean;
-                        isVerified: boolean;
-                        showOnSitemap: boolean;
-                    } | undefined;
                     typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
                     updatedAt?: string | null | undefined;
                 };
@@ -3111,22 +2404,6 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                 discreteValue?: number | null | undefined;
                 entityId: string;
                 id: number;
-                source?: string | null | undefined;
-                sourceRecord?: {
-                    changedAt?: string | null | undefined;
-                    operation?: "CREATE" | "DELETE" | "UPDATE" | null | undefined;
-                    provenanceSource?: {
-                        actorType?: "agent" | "employee" | undefined;
-                        agentChassis?: string | null | undefined;
-                        agentModel?: string | null | undefined;
-                        sourceDetail: string;
-                        sourceProvider?: string | null | undefined;
-                        sourceProviderId?: string | null | undefined;
-                        sourceProviderSlug?: string | null | undefined;
-                        sourceType: "api" | "aventureStaff" | "blogArticle" | "firstPartyWebsite" | "import" | "llm" | "manual" | "newsArticle" | "relatedPartyWebsite" | "requestChangeForm" | "thirdPartyWebsite";
-                    } | null | undefined;
-                    source?: string | null | undefined;
-                } | null | undefined;
                 textValue?: string | null | undefined;
                 typeResearchDetail: string;
                 updatedAt?: string | null | undefined;
@@ -3145,22 +2422,6 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                 id: number;
                 isCurrent: boolean;
                 isPrimary: boolean;
-                source?: string | null | undefined;
-                sourceRecord?: {
-                    changedAt?: string | null | undefined;
-                    operation?: "CREATE" | "DELETE" | "UPDATE" | null | undefined;
-                    provenanceSource?: {
-                        actorType?: "agent" | "employee" | undefined;
-                        agentChassis?: string | null | undefined;
-                        agentModel?: string | null | undefined;
-                        sourceDetail: string;
-                        sourceProvider?: string | null | undefined;
-                        sourceProviderId?: string | null | undefined;
-                        sourceProviderSlug?: string | null | undefined;
-                        sourceType: "api" | "aventureStaff" | "blogArticle" | "firstPartyWebsite" | "import" | "llm" | "manual" | "newsArticle" | "relatedPartyWebsite" | "requestChangeForm" | "thirdPartyWebsite";
-                    } | null | undefined;
-                    source?: string | null | undefined;
-                } | null | undefined;
                 text: string;
                 textType: string;
                 updatedAt?: string | null | undefined;
@@ -3198,21 +2459,6 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                         productServiceSlug: string[];
                     } | null | undefined;
                     slug: string;
-                    source?: {
-                        changedAt?: string | null | undefined;
-                        dataSourceUpdatedAt?: string | null | undefined;
-                        detail?: string | null | undefined;
-                        kind?: string | null | undefined;
-                        pendingApproval?: number | null | undefined;
-                        sourceId?: string | null | undefined;
-                        status?: string | null | undefined;
-                    } | null | undefined;
-                    status?: {
-                        isFeatured: boolean;
-                        isHidden: boolean;
-                        isVerified: boolean;
-                        showOnSitemap: boolean;
-                    } | undefined;
                     typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
                     updatedAt?: string | null | undefined;
                 };
@@ -3237,22 +2483,6 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                 discreteValue?: number | null | undefined;
                 entityId: string;
                 id: number;
-                source?: string | null | undefined;
-                sourceRecord?: {
-                    changedAt?: string | null | undefined;
-                    operation?: "CREATE" | "DELETE" | "UPDATE" | null | undefined;
-                    provenanceSource?: {
-                        actorType?: "agent" | "employee" | undefined;
-                        agentChassis?: string | null | undefined;
-                        agentModel?: string | null | undefined;
-                        sourceDetail: string;
-                        sourceProvider?: string | null | undefined;
-                        sourceProviderId?: string | null | undefined;
-                        sourceProviderSlug?: string | null | undefined;
-                        sourceType: "api" | "aventureStaff" | "blogArticle" | "firstPartyWebsite" | "import" | "llm" | "manual" | "newsArticle" | "relatedPartyWebsite" | "requestChangeForm" | "thirdPartyWebsite";
-                    } | null | undefined;
-                    source?: string | null | undefined;
-                } | null | undefined;
                 textValue?: string | null | undefined;
                 typeResearchDetail: string;
                 updatedAt?: string | null | undefined;
@@ -3271,22 +2501,6 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                 id: number;
                 isCurrent: boolean;
                 isPrimary: boolean;
-                source?: string | null | undefined;
-                sourceRecord?: {
-                    changedAt?: string | null | undefined;
-                    operation?: "CREATE" | "DELETE" | "UPDATE" | null | undefined;
-                    provenanceSource?: {
-                        actorType?: "agent" | "employee" | undefined;
-                        agentChassis?: string | null | undefined;
-                        agentModel?: string | null | undefined;
-                        sourceDetail: string;
-                        sourceProvider?: string | null | undefined;
-                        sourceProviderId?: string | null | undefined;
-                        sourceProviderSlug?: string | null | undefined;
-                        sourceType: "api" | "aventureStaff" | "blogArticle" | "firstPartyWebsite" | "import" | "llm" | "manual" | "newsArticle" | "relatedPartyWebsite" | "requestChangeForm" | "thirdPartyWebsite";
-                    } | null | undefined;
-                    source?: string | null | undefined;
-                } | null | undefined;
                 text: string;
                 textType: string;
                 updatedAt?: string | null | undefined;
@@ -3464,21 +2678,6 @@ declare const PageEntityFundraiseTransactionSchemaDefinition: z.ZodObject<{
                     productServiceSlug: string[];
                 } | null | undefined;
                 slug: string;
-                source?: {
-                    changedAt?: string | null | undefined;
-                    dataSourceUpdatedAt?: string | null | undefined;
-                    detail?: string | null | undefined;
-                    kind?: string | null | undefined;
-                    pendingApproval?: number | null | undefined;
-                    sourceId?: string | null | undefined;
-                    status?: string | null | undefined;
-                } | null | undefined;
-                status?: {
-                    isFeatured: boolean;
-                    isHidden: boolean;
-                    isVerified: boolean;
-                    showOnSitemap: boolean;
-                } | undefined;
                 typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
                 updatedAt?: string | null | undefined;
             };
@@ -3563,21 +2762,6 @@ declare const PageEntityFundraiseTransactionSchemaDefinition: z.ZodObject<{
                     productServiceSlug: string[];
                 } | null | undefined;
                 slug: string;
-                source?: {
-                    changedAt?: string | null | undefined;
-                    dataSourceUpdatedAt?: string | null | undefined;
-                    detail?: string | null | undefined;
-                    kind?: string | null | undefined;
-                    pendingApproval?: number | null | undefined;
-                    sourceId?: string | null | undefined;
-                    status?: string | null | undefined;
-                } | null | undefined;
-                status?: {
-                    isFeatured: boolean;
-                    isHidden: boolean;
-                    isVerified: boolean;
-                    showOnSitemap: boolean;
-                } | undefined;
                 typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
                 updatedAt?: string | null | undefined;
             };
@@ -3694,21 +2878,6 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                     productServiceSlug: string[];
                 } | null | undefined;
                 slug: string;
-                source?: {
-                    changedAt?: string | null | undefined;
-                    dataSourceUpdatedAt?: string | null | undefined;
-                    detail?: string | null | undefined;
-                    kind?: string | null | undefined;
-                    pendingApproval?: number | null | undefined;
-                    sourceId?: string | null | undefined;
-                    status?: string | null | undefined;
-                } | null | undefined;
-                status?: {
-                    isFeatured: boolean;
-                    isHidden: boolean;
-                    isVerified: boolean;
-                    showOnSitemap: boolean;
-                } | undefined;
                 typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
                 updatedAt?: string | null | undefined;
             };
@@ -3982,15 +3151,6 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                         entityId?: string | null | undefined;
                         personId?: string | null | undefined;
                     } | null | undefined;
-                    source?: {
-                        changedAt?: string | null | undefined;
-                        dataSourceUpdatedAt?: string | null | undefined;
-                        detail?: string | null | undefined;
-                        kind?: string | null | undefined;
-                        pendingApproval?: number | null | undefined;
-                        sourceId?: string | null | undefined;
-                        status?: string | null | undefined;
-                    } | null | undefined;
                     sourceId?: string | null | undefined;
                     status?: string | null | undefined;
                     statusChecked?: string | null | undefined;
@@ -4038,21 +3198,6 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                             productServiceSlug: string[];
                         } | null | undefined;
                         slug: string;
-                        source?: {
-                            changedAt?: string | null | undefined;
-                            dataSourceUpdatedAt?: string | null | undefined;
-                            detail?: string | null | undefined;
-                            kind?: string | null | undefined;
-                            pendingApproval?: number | null | undefined;
-                            sourceId?: string | null | undefined;
-                            status?: string | null | undefined;
-                        } | null | undefined;
-                        status?: {
-                            isFeatured: boolean;
-                            isHidden: boolean;
-                            isVerified: boolean;
-                            showOnSitemap: boolean;
-                        } | undefined;
                         typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
                         updatedAt?: string | null | undefined;
                     };
@@ -4112,15 +3257,6 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                 publication?: string | null | undefined;
                 publishedAt?: string | null | undefined;
                 slug?: string | null | undefined;
-                source?: {
-                    changedAt?: string | null | undefined;
-                    dataSourceUpdatedAt?: string | null | undefined;
-                    detail?: string | null | undefined;
-                    kind?: string | null | undefined;
-                    pendingApproval?: number | null | undefined;
-                    sourceId?: string | null | undefined;
-                    status?: string | null | undefined;
-                } | undefined;
                 title: string;
                 updatedAt?: string | null | undefined;
             }[];
@@ -4174,7 +3310,6 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                         updatedAt?: string | null | undefined;
                     }[];
                     entityId: string;
-                    entityIsHidden?: boolean | null | undefined;
                     entityLogo: {
                         isMonogram: boolean;
                         logo?: string | null | undefined;
@@ -4182,7 +3317,6 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                     };
                     entityName?: string | null | undefined;
                     entityOperatingStatus?: string | null | undefined;
-                    entityShowOnSitemap?: boolean | null | undefined;
                     entitySlug: string;
                     entityType?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
                     entityUrlLink: {
@@ -4195,15 +3329,6 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                         owner?: {
                             entityId?: string | null | undefined;
                             personId?: string | null | undefined;
-                        } | null | undefined;
-                        source?: {
-                            changedAt?: string | null | undefined;
-                            dataSourceUpdatedAt?: string | null | undefined;
-                            detail?: string | null | undefined;
-                            kind?: string | null | undefined;
-                            pendingApproval?: number | null | undefined;
-                            sourceId?: string | null | undefined;
-                            status?: string | null | undefined;
                         } | null | undefined;
                         sourceId?: string | null | undefined;
                         status?: string | null | undefined;
@@ -4273,15 +3398,6 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                             entityId?: string | null | undefined;
                             personId?: string | null | undefined;
                         } | null | undefined;
-                        source?: {
-                            changedAt?: string | null | undefined;
-                            dataSourceUpdatedAt?: string | null | undefined;
-                            detail?: string | null | undefined;
-                            kind?: string | null | undefined;
-                            pendingApproval?: number | null | undefined;
-                            sourceId?: string | null | undefined;
-                            status?: string | null | undefined;
-                        } | null | undefined;
                         sourceId?: string | null | undefined;
                         status?: string | null | undefined;
                         statusChecked?: string | null | undefined;
@@ -4339,10 +3455,6 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                         sourceId?: string | null | undefined;
                         status?: string | null | undefined;
                     };
-                    status?: {
-                        isHidden: boolean;
-                        showOnSitemap: boolean;
-                    } | undefined;
                     suffix?: string | null | undefined;
                     text: {
                         expanded?: string | null | undefined;
@@ -4405,15 +3517,6 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                             entityId?: string | null | undefined;
                             personId?: string | null | undefined;
                         } | null | undefined;
-                        source?: {
-                            changedAt?: string | null | undefined;
-                            dataSourceUpdatedAt?: string | null | undefined;
-                            detail?: string | null | undefined;
-                            kind?: string | null | undefined;
-                            pendingApproval?: number | null | undefined;
-                            sourceId?: string | null | undefined;
-                            status?: string | null | undefined;
-                        } | null | undefined;
                         sourceId?: string | null | undefined;
                         status?: string | null | undefined;
                         statusChecked?: string | null | undefined;
@@ -4455,21 +3558,6 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                                 productServiceSlug: string[];
                             } | null | undefined;
                             slug: string;
-                            source?: {
-                                changedAt?: string | null | undefined;
-                                dataSourceUpdatedAt?: string | null | undefined;
-                                detail?: string | null | undefined;
-                                kind?: string | null | undefined;
-                                pendingApproval?: number | null | undefined;
-                                sourceId?: string | null | undefined;
-                                status?: string | null | undefined;
-                            } | null | undefined;
-                            status?: {
-                                isFeatured: boolean;
-                                isHidden: boolean;
-                                isVerified: boolean;
-                                showOnSitemap: boolean;
-                            } | undefined;
                             typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
                             updatedAt?: string | null | undefined;
                         };
@@ -4558,21 +3646,6 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                         productServiceSlug: string[];
                     } | null | undefined;
                     slug: string;
-                    source?: {
-                        changedAt?: string | null | undefined;
-                        dataSourceUpdatedAt?: string | null | undefined;
-                        detail?: string | null | undefined;
-                        kind?: string | null | undefined;
-                        pendingApproval?: number | null | undefined;
-                        sourceId?: string | null | undefined;
-                        status?: string | null | undefined;
-                    } | null | undefined;
-                    status?: {
-                        isFeatured: boolean;
-                        isHidden: boolean;
-                        isVerified: boolean;
-                        showOnSitemap: boolean;
-                    } | undefined;
                     typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
                     updatedAt?: string | null | undefined;
                 };
@@ -4618,21 +3691,6 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                             productServiceSlug: string[];
                         } | null | undefined;
                         slug: string;
-                        source?: {
-                            changedAt?: string | null | undefined;
-                            dataSourceUpdatedAt?: string | null | undefined;
-                            detail?: string | null | undefined;
-                            kind?: string | null | undefined;
-                            pendingApproval?: number | null | undefined;
-                            sourceId?: string | null | undefined;
-                            status?: string | null | undefined;
-                        } | null | undefined;
-                        status?: {
-                            isFeatured: boolean;
-                            isHidden: boolean;
-                            isVerified: boolean;
-                            showOnSitemap: boolean;
-                        } | undefined;
                         typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
                         updatedAt?: string | null | undefined;
                     };
@@ -4657,22 +3715,6 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                     discreteValue?: number | null | undefined;
                     entityId: string;
                     id: number;
-                    source?: string | null | undefined;
-                    sourceRecord?: {
-                        changedAt?: string | null | undefined;
-                        operation?: "CREATE" | "DELETE" | "UPDATE" | null | undefined;
-                        provenanceSource?: {
-                            actorType?: "agent" | "employee" | undefined;
-                            agentChassis?: string | null | undefined;
-                            agentModel?: string | null | undefined;
-                            sourceDetail: string;
-                            sourceProvider?: string | null | undefined;
-                            sourceProviderId?: string | null | undefined;
-                            sourceProviderSlug?: string | null | undefined;
-                            sourceType: "api" | "aventureStaff" | "blogArticle" | "firstPartyWebsite" | "import" | "llm" | "manual" | "newsArticle" | "relatedPartyWebsite" | "requestChangeForm" | "thirdPartyWebsite";
-                        } | null | undefined;
-                        source?: string | null | undefined;
-                    } | null | undefined;
                     textValue?: string | null | undefined;
                     typeResearchDetail: string;
                     updatedAt?: string | null | undefined;
@@ -4691,22 +3733,6 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                     id: number;
                     isCurrent: boolean;
                     isPrimary: boolean;
-                    source?: string | null | undefined;
-                    sourceRecord?: {
-                        changedAt?: string | null | undefined;
-                        operation?: "CREATE" | "DELETE" | "UPDATE" | null | undefined;
-                        provenanceSource?: {
-                            actorType?: "agent" | "employee" | undefined;
-                            agentChassis?: string | null | undefined;
-                            agentModel?: string | null | undefined;
-                            sourceDetail: string;
-                            sourceProvider?: string | null | undefined;
-                            sourceProviderId?: string | null | undefined;
-                            sourceProviderSlug?: string | null | undefined;
-                            sourceType: "api" | "aventureStaff" | "blogArticle" | "firstPartyWebsite" | "import" | "llm" | "manual" | "newsArticle" | "relatedPartyWebsite" | "requestChangeForm" | "thirdPartyWebsite";
-                        } | null | undefined;
-                        source?: string | null | undefined;
-                    } | null | undefined;
                     text: string;
                     textType: string;
                     updatedAt?: string | null | undefined;
@@ -4783,21 +3809,6 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                     productServiceSlug: string[];
                 } | null | undefined;
                 slug: string;
-                source?: {
-                    changedAt?: string | null | undefined;
-                    dataSourceUpdatedAt?: string | null | undefined;
-                    detail?: string | null | undefined;
-                    kind?: string | null | undefined;
-                    pendingApproval?: number | null | undefined;
-                    sourceId?: string | null | undefined;
-                    status?: string | null | undefined;
-                } | null | undefined;
-                status?: {
-                    isFeatured: boolean;
-                    isHidden: boolean;
-                    isVerified: boolean;
-                    showOnSitemap: boolean;
-                } | undefined;
                 typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
                 updatedAt?: string | null | undefined;
             };
@@ -5071,15 +4082,6 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                         entityId?: string | null | undefined;
                         personId?: string | null | undefined;
                     } | null | undefined;
-                    source?: {
-                        changedAt?: string | null | undefined;
-                        dataSourceUpdatedAt?: string | null | undefined;
-                        detail?: string | null | undefined;
-                        kind?: string | null | undefined;
-                        pendingApproval?: number | null | undefined;
-                        sourceId?: string | null | undefined;
-                        status?: string | null | undefined;
-                    } | null | undefined;
                     sourceId?: string | null | undefined;
                     status?: string | null | undefined;
                     statusChecked?: string | null | undefined;
@@ -5127,21 +4129,6 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                             productServiceSlug: string[];
                         } | null | undefined;
                         slug: string;
-                        source?: {
-                            changedAt?: string | null | undefined;
-                            dataSourceUpdatedAt?: string | null | undefined;
-                            detail?: string | null | undefined;
-                            kind?: string | null | undefined;
-                            pendingApproval?: number | null | undefined;
-                            sourceId?: string | null | undefined;
-                            status?: string | null | undefined;
-                        } | null | undefined;
-                        status?: {
-                            isFeatured: boolean;
-                            isHidden: boolean;
-                            isVerified: boolean;
-                            showOnSitemap: boolean;
-                        } | undefined;
                         typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
                         updatedAt?: string | null | undefined;
                     };
@@ -5201,15 +4188,6 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                 publication?: string | null | undefined;
                 publishedAt?: string | null | undefined;
                 slug?: string | null | undefined;
-                source?: {
-                    changedAt?: string | null | undefined;
-                    dataSourceUpdatedAt?: string | null | undefined;
-                    detail?: string | null | undefined;
-                    kind?: string | null | undefined;
-                    pendingApproval?: number | null | undefined;
-                    sourceId?: string | null | undefined;
-                    status?: string | null | undefined;
-                } | undefined;
                 title: string;
                 updatedAt?: string | null | undefined;
             }[];
@@ -5263,7 +4241,6 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                         updatedAt?: string | null | undefined;
                     }[];
                     entityId: string;
-                    entityIsHidden?: boolean | null | undefined;
                     entityLogo: {
                         isMonogram: boolean;
                         logo?: string | null | undefined;
@@ -5271,7 +4248,6 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                     };
                     entityName?: string | null | undefined;
                     entityOperatingStatus?: string | null | undefined;
-                    entityShowOnSitemap?: boolean | null | undefined;
                     entitySlug: string;
                     entityType?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
                     entityUrlLink: {
@@ -5284,15 +4260,6 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                         owner?: {
                             entityId?: string | null | undefined;
                             personId?: string | null | undefined;
-                        } | null | undefined;
-                        source?: {
-                            changedAt?: string | null | undefined;
-                            dataSourceUpdatedAt?: string | null | undefined;
-                            detail?: string | null | undefined;
-                            kind?: string | null | undefined;
-                            pendingApproval?: number | null | undefined;
-                            sourceId?: string | null | undefined;
-                            status?: string | null | undefined;
                         } | null | undefined;
                         sourceId?: string | null | undefined;
                         status?: string | null | undefined;
@@ -5362,15 +4329,6 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                             entityId?: string | null | undefined;
                             personId?: string | null | undefined;
                         } | null | undefined;
-                        source?: {
-                            changedAt?: string | null | undefined;
-                            dataSourceUpdatedAt?: string | null | undefined;
-                            detail?: string | null | undefined;
-                            kind?: string | null | undefined;
-                            pendingApproval?: number | null | undefined;
-                            sourceId?: string | null | undefined;
-                            status?: string | null | undefined;
-                        } | null | undefined;
                         sourceId?: string | null | undefined;
                         status?: string | null | undefined;
                         statusChecked?: string | null | undefined;
@@ -5428,10 +4386,6 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                         sourceId?: string | null | undefined;
                         status?: string | null | undefined;
                     };
-                    status?: {
-                        isHidden: boolean;
-                        showOnSitemap: boolean;
-                    } | undefined;
                     suffix?: string | null | undefined;
                     text: {
                         expanded?: string | null | undefined;
@@ -5494,15 +4448,6 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                             entityId?: string | null | undefined;
                             personId?: string | null | undefined;
                         } | null | undefined;
-                        source?: {
-                            changedAt?: string | null | undefined;
-                            dataSourceUpdatedAt?: string | null | undefined;
-                            detail?: string | null | undefined;
-                            kind?: string | null | undefined;
-                            pendingApproval?: number | null | undefined;
-                            sourceId?: string | null | undefined;
-                            status?: string | null | undefined;
-                        } | null | undefined;
                         sourceId?: string | null | undefined;
                         status?: string | null | undefined;
                         statusChecked?: string | null | undefined;
@@ -5544,21 +4489,6 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                                 productServiceSlug: string[];
                             } | null | undefined;
                             slug: string;
-                            source?: {
-                                changedAt?: string | null | undefined;
-                                dataSourceUpdatedAt?: string | null | undefined;
-                                detail?: string | null | undefined;
-                                kind?: string | null | undefined;
-                                pendingApproval?: number | null | undefined;
-                                sourceId?: string | null | undefined;
-                                status?: string | null | undefined;
-                            } | null | undefined;
-                            status?: {
-                                isFeatured: boolean;
-                                isHidden: boolean;
-                                isVerified: boolean;
-                                showOnSitemap: boolean;
-                            } | undefined;
                             typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
                             updatedAt?: string | null | undefined;
                         };
@@ -5647,21 +4577,6 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                         productServiceSlug: string[];
                     } | null | undefined;
                     slug: string;
-                    source?: {
-                        changedAt?: string | null | undefined;
-                        dataSourceUpdatedAt?: string | null | undefined;
-                        detail?: string | null | undefined;
-                        kind?: string | null | undefined;
-                        pendingApproval?: number | null | undefined;
-                        sourceId?: string | null | undefined;
-                        status?: string | null | undefined;
-                    } | null | undefined;
-                    status?: {
-                        isFeatured: boolean;
-                        isHidden: boolean;
-                        isVerified: boolean;
-                        showOnSitemap: boolean;
-                    } | undefined;
                     typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
                     updatedAt?: string | null | undefined;
                 };
@@ -5707,21 +4622,6 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                             productServiceSlug: string[];
                         } | null | undefined;
                         slug: string;
-                        source?: {
-                            changedAt?: string | null | undefined;
-                            dataSourceUpdatedAt?: string | null | undefined;
-                            detail?: string | null | undefined;
-                            kind?: string | null | undefined;
-                            pendingApproval?: number | null | undefined;
-                            sourceId?: string | null | undefined;
-                            status?: string | null | undefined;
-                        } | null | undefined;
-                        status?: {
-                            isFeatured: boolean;
-                            isHidden: boolean;
-                            isVerified: boolean;
-                            showOnSitemap: boolean;
-                        } | undefined;
                         typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
                         updatedAt?: string | null | undefined;
                     };
@@ -5746,22 +4646,6 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                     discreteValue?: number | null | undefined;
                     entityId: string;
                     id: number;
-                    source?: string | null | undefined;
-                    sourceRecord?: {
-                        changedAt?: string | null | undefined;
-                        operation?: "CREATE" | "DELETE" | "UPDATE" | null | undefined;
-                        provenanceSource?: {
-                            actorType?: "agent" | "employee" | undefined;
-                            agentChassis?: string | null | undefined;
-                            agentModel?: string | null | undefined;
-                            sourceDetail: string;
-                            sourceProvider?: string | null | undefined;
-                            sourceProviderId?: string | null | undefined;
-                            sourceProviderSlug?: string | null | undefined;
-                            sourceType: "api" | "aventureStaff" | "blogArticle" | "firstPartyWebsite" | "import" | "llm" | "manual" | "newsArticle" | "relatedPartyWebsite" | "requestChangeForm" | "thirdPartyWebsite";
-                        } | null | undefined;
-                        source?: string | null | undefined;
-                    } | null | undefined;
                     textValue?: string | null | undefined;
                     typeResearchDetail: string;
                     updatedAt?: string | null | undefined;
@@ -5780,22 +4664,6 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                     id: number;
                     isCurrent: boolean;
                     isPrimary: boolean;
-                    source?: string | null | undefined;
-                    sourceRecord?: {
-                        changedAt?: string | null | undefined;
-                        operation?: "CREATE" | "DELETE" | "UPDATE" | null | undefined;
-                        provenanceSource?: {
-                            actorType?: "agent" | "employee" | undefined;
-                            agentChassis?: string | null | undefined;
-                            agentModel?: string | null | undefined;
-                            sourceDetail: string;
-                            sourceProvider?: string | null | undefined;
-                            sourceProviderId?: string | null | undefined;
-                            sourceProviderSlug?: string | null | undefined;
-                            sourceType: "api" | "aventureStaff" | "blogArticle" | "firstPartyWebsite" | "import" | "llm" | "manual" | "newsArticle" | "relatedPartyWebsite" | "requestChangeForm" | "thirdPartyWebsite";
-                        } | null | undefined;
-                        source?: string | null | undefined;
-                    } | null | undefined;
                     text: string;
                     textType: string;
                     updatedAt?: string | null | undefined;
@@ -5909,21 +4777,6 @@ declare const PageEntityListSchemaDefinition: z.ZodObject<{
                 productServiceSlug: string[];
             } | null | undefined;
             slug: string;
-            source?: {
-                changedAt?: string | null | undefined;
-                dataSourceUpdatedAt?: string | null | undefined;
-                detail?: string | null | undefined;
-                kind?: string | null | undefined;
-                pendingApproval?: number | null | undefined;
-                sourceId?: string | null | undefined;
-                status?: string | null | undefined;
-            } | null | undefined;
-            status?: {
-                isFeatured: boolean;
-                isHidden: boolean;
-                isVerified: boolean;
-                showOnSitemap: boolean;
-            } | undefined;
             typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
             updatedAt?: string | null | undefined;
         };
@@ -6197,15 +5050,6 @@ declare const PageEntityListSchemaDefinition: z.ZodObject<{
                     entityId?: string | null | undefined;
                     personId?: string | null | undefined;
                 } | null | undefined;
-                source?: {
-                    changedAt?: string | null | undefined;
-                    dataSourceUpdatedAt?: string | null | undefined;
-                    detail?: string | null | undefined;
-                    kind?: string | null | undefined;
-                    pendingApproval?: number | null | undefined;
-                    sourceId?: string | null | undefined;
-                    status?: string | null | undefined;
-                } | null | undefined;
                 sourceId?: string | null | undefined;
                 status?: string | null | undefined;
                 statusChecked?: string | null | undefined;
@@ -6253,21 +5097,6 @@ declare const PageEntityListSchemaDefinition: z.ZodObject<{
                         productServiceSlug: string[];
                     } | null | undefined;
                     slug: string;
-                    source?: {
-                        changedAt?: string | null | undefined;
-                        dataSourceUpdatedAt?: string | null | undefined;
-                        detail?: string | null | undefined;
-                        kind?: string | null | undefined;
-                        pendingApproval?: number | null | undefined;
-                        sourceId?: string | null | undefined;
-                        status?: string | null | undefined;
-                    } | null | undefined;
-                    status?: {
-                        isFeatured: boolean;
-                        isHidden: boolean;
-                        isVerified: boolean;
-                        showOnSitemap: boolean;
-                    } | undefined;
                     typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
                     updatedAt?: string | null | undefined;
                 };
@@ -6346,21 +5175,6 @@ declare const PageEntityListSchemaDefinition: z.ZodObject<{
                         productServiceSlug: string[];
                     } | null | undefined;
                     slug: string;
-                    source?: {
-                        changedAt?: string | null | undefined;
-                        dataSourceUpdatedAt?: string | null | undefined;
-                        detail?: string | null | undefined;
-                        kind?: string | null | undefined;
-                        pendingApproval?: number | null | undefined;
-                        sourceId?: string | null | undefined;
-                        status?: string | null | undefined;
-                    } | null | undefined;
-                    status?: {
-                        isFeatured: boolean;
-                        isHidden: boolean;
-                        isVerified: boolean;
-                        showOnSitemap: boolean;
-                    } | undefined;
                     typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
                     updatedAt?: string | null | undefined;
                 };
@@ -6385,22 +5199,6 @@ declare const PageEntityListSchemaDefinition: z.ZodObject<{
                 discreteValue?: number | null | undefined;
                 entityId: string;
                 id: number;
-                source?: string | null | undefined;
-                sourceRecord?: {
-                    changedAt?: string | null | undefined;
-                    operation?: "CREATE" | "DELETE" | "UPDATE" | null | undefined;
-                    provenanceSource?: {
-                        actorType?: "agent" | "employee" | undefined;
-                        agentChassis?: string | null | undefined;
-                        agentModel?: string | null | undefined;
-                        sourceDetail: string;
-                        sourceProvider?: string | null | undefined;
-                        sourceProviderId?: string | null | undefined;
-                        sourceProviderSlug?: string | null | undefined;
-                        sourceType: "api" | "aventureStaff" | "blogArticle" | "firstPartyWebsite" | "import" | "llm" | "manual" | "newsArticle" | "relatedPartyWebsite" | "requestChangeForm" | "thirdPartyWebsite";
-                    } | null | undefined;
-                    source?: string | null | undefined;
-                } | null | undefined;
                 textValue?: string | null | undefined;
                 typeResearchDetail: string;
                 updatedAt?: string | null | undefined;
@@ -6451,21 +5249,6 @@ declare const PageEntityListSchemaDefinition: z.ZodObject<{
                 productServiceSlug: string[];
             } | null | undefined;
             slug: string;
-            source?: {
-                changedAt?: string | null | undefined;
-                dataSourceUpdatedAt?: string | null | undefined;
-                detail?: string | null | undefined;
-                kind?: string | null | undefined;
-                pendingApproval?: number | null | undefined;
-                sourceId?: string | null | undefined;
-                status?: string | null | undefined;
-            } | null | undefined;
-            status?: {
-                isFeatured: boolean;
-                isHidden: boolean;
-                isVerified: boolean;
-                showOnSitemap: boolean;
-            } | undefined;
             typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
             updatedAt?: string | null | undefined;
         };
@@ -6739,15 +5522,6 @@ declare const PageEntityListSchemaDefinition: z.ZodObject<{
                     entityId?: string | null | undefined;
                     personId?: string | null | undefined;
                 } | null | undefined;
-                source?: {
-                    changedAt?: string | null | undefined;
-                    dataSourceUpdatedAt?: string | null | undefined;
-                    detail?: string | null | undefined;
-                    kind?: string | null | undefined;
-                    pendingApproval?: number | null | undefined;
-                    sourceId?: string | null | undefined;
-                    status?: string | null | undefined;
-                } | null | undefined;
                 sourceId?: string | null | undefined;
                 status?: string | null | undefined;
                 statusChecked?: string | null | undefined;
@@ -6795,21 +5569,6 @@ declare const PageEntityListSchemaDefinition: z.ZodObject<{
                         productServiceSlug: string[];
                     } | null | undefined;
                     slug: string;
-                    source?: {
-                        changedAt?: string | null | undefined;
-                        dataSourceUpdatedAt?: string | null | undefined;
-                        detail?: string | null | undefined;
-                        kind?: string | null | undefined;
-                        pendingApproval?: number | null | undefined;
-                        sourceId?: string | null | undefined;
-                        status?: string | null | undefined;
-                    } | null | undefined;
-                    status?: {
-                        isFeatured: boolean;
-                        isHidden: boolean;
-                        isVerified: boolean;
-                        showOnSitemap: boolean;
-                    } | undefined;
                     typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
                     updatedAt?: string | null | undefined;
                 };
@@ -6888,21 +5647,6 @@ declare const PageEntityListSchemaDefinition: z.ZodObject<{
                         productServiceSlug: string[];
                     } | null | undefined;
                     slug: string;
-                    source?: {
-                        changedAt?: string | null | undefined;
-                        dataSourceUpdatedAt?: string | null | undefined;
-                        detail?: string | null | undefined;
-                        kind?: string | null | undefined;
-                        pendingApproval?: number | null | undefined;
-                        sourceId?: string | null | undefined;
-                        status?: string | null | undefined;
-                    } | null | undefined;
-                    status?: {
-                        isFeatured: boolean;
-                        isHidden: boolean;
-                        isVerified: boolean;
-                        showOnSitemap: boolean;
-                    } | undefined;
                     typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
                     updatedAt?: string | null | undefined;
                 };
@@ -6927,22 +5671,6 @@ declare const PageEntityListSchemaDefinition: z.ZodObject<{
                 discreteValue?: number | null | undefined;
                 entityId: string;
                 id: number;
-                source?: string | null | undefined;
-                sourceRecord?: {
-                    changedAt?: string | null | undefined;
-                    operation?: "CREATE" | "DELETE" | "UPDATE" | null | undefined;
-                    provenanceSource?: {
-                        actorType?: "agent" | "employee" | undefined;
-                        agentChassis?: string | null | undefined;
-                        agentModel?: string | null | undefined;
-                        sourceDetail: string;
-                        sourceProvider?: string | null | undefined;
-                        sourceProviderId?: string | null | undefined;
-                        sourceProviderSlug?: string | null | undefined;
-                        sourceType: "api" | "aventureStaff" | "blogArticle" | "firstPartyWebsite" | "import" | "llm" | "manual" | "newsArticle" | "relatedPartyWebsite" | "requestChangeForm" | "thirdPartyWebsite";
-                    } | null | undefined;
-                    source?: string | null | undefined;
-                } | null | undefined;
                 textValue?: string | null | undefined;
                 typeResearchDetail: string;
                 updatedAt?: string | null | undefined;
@@ -6993,8 +5721,8 @@ type PageEntityListDefinition = z.infer<typeof PageEntityListSchemaDefinition>;
 /**
  * @openapiSchema PageEntityList
  * @endpoint GET /v1/entities
- * @endpoint POST /v1/entities
  * @endpoint POST /v1/entities/batch
+ * @endpoint POST /v1/entities/search
  * @contractShape pagination.page-entity-list
  * @contractRole canonical
  * @ownerModule pagination/schemas.ts
@@ -7034,21 +5762,6 @@ declare const PageEntityListSummarySchemaDefinition: z.ZodObject<{
                     productServiceSlug: string[];
                 } | null | undefined;
                 slug: string;
-                source?: {
-                    changedAt?: string | null | undefined;
-                    dataSourceUpdatedAt?: string | null | undefined;
-                    detail?: string | null | undefined;
-                    kind?: string | null | undefined;
-                    pendingApproval?: number | null | undefined;
-                    sourceId?: string | null | undefined;
-                    status?: string | null | undefined;
-                } | null | undefined;
-                status?: {
-                    isFeatured: boolean;
-                    isHidden: boolean;
-                    isVerified: boolean;
-                    showOnSitemap: boolean;
-                } | undefined;
                 typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
                 updatedAt?: string | null | undefined;
             };
@@ -7101,21 +5814,6 @@ declare const PageEntityListSummarySchemaDefinition: z.ZodObject<{
                         productServiceSlug: string[];
                     } | null | undefined;
                     slug: string;
-                    source?: {
-                        changedAt?: string | null | undefined;
-                        dataSourceUpdatedAt?: string | null | undefined;
-                        detail?: string | null | undefined;
-                        kind?: string | null | undefined;
-                        pendingApproval?: number | null | undefined;
-                        sourceId?: string | null | undefined;
-                        status?: string | null | undefined;
-                    } | null | undefined;
-                    status?: {
-                        isFeatured: boolean;
-                        isHidden: boolean;
-                        isVerified: boolean;
-                        showOnSitemap: boolean;
-                    } | undefined;
                     typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
                     updatedAt?: string | null | undefined;
                 };
@@ -7194,21 +5892,6 @@ declare const PageEntityListSummarySchemaDefinition: z.ZodObject<{
                     productServiceSlug: string[];
                 } | null | undefined;
                 slug: string;
-                source?: {
-                    changedAt?: string | null | undefined;
-                    dataSourceUpdatedAt?: string | null | undefined;
-                    detail?: string | null | undefined;
-                    kind?: string | null | undefined;
-                    pendingApproval?: number | null | undefined;
-                    sourceId?: string | null | undefined;
-                    status?: string | null | undefined;
-                } | null | undefined;
-                status?: {
-                    isFeatured: boolean;
-                    isHidden: boolean;
-                    isVerified: boolean;
-                    showOnSitemap: boolean;
-                } | undefined;
                 typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
                 updatedAt?: string | null | undefined;
             };
@@ -7261,21 +5944,6 @@ declare const PageEntityListSummarySchemaDefinition: z.ZodObject<{
                         productServiceSlug: string[];
                     } | null | undefined;
                     slug: string;
-                    source?: {
-                        changedAt?: string | null | undefined;
-                        dataSourceUpdatedAt?: string | null | undefined;
-                        detail?: string | null | undefined;
-                        kind?: string | null | undefined;
-                        pendingApproval?: number | null | undefined;
-                        sourceId?: string | null | undefined;
-                        status?: string | null | undefined;
-                    } | null | undefined;
-                    status?: {
-                        isFeatured: boolean;
-                        isHidden: boolean;
-                        isVerified: boolean;
-                        showOnSitemap: boolean;
-                    } | undefined;
                     typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
                     updatedAt?: string | null | undefined;
                 };
@@ -7414,7 +6082,6 @@ declare const PageEntityPersonAssociationSchemaDefinition: z.ZodObject<{
             updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
         }, z.core.$strip>>;
         entityId: z.ZodUUID;
-        entityIsHidden: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
         entityLogo: z.ZodType<{
             isMonogram: boolean;
             logo?: string | null | undefined;
@@ -7426,7 +6093,6 @@ declare const PageEntityPersonAssociationSchemaDefinition: z.ZodObject<{
         }, unknown>>;
         entityName: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         entityOperatingStatus: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-        entityShowOnSitemap: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
         entitySlug: z.ZodString;
         entityType: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
             "Business Line": "Business Line";
@@ -7450,15 +6116,6 @@ declare const PageEntityPersonAssociationSchemaDefinition: z.ZodObject<{
                 entityId?: string | null | undefined;
                 personId?: string | null | undefined;
             } | null | undefined;
-            source?: {
-                changedAt?: string | null | undefined;
-                dataSourceUpdatedAt?: string | null | undefined;
-                detail?: string | null | undefined;
-                kind?: string | null | undefined;
-                pendingApproval?: number | null | undefined;
-                sourceId?: string | null | undefined;
-                status?: string | null | undefined;
-            } | null | undefined;
             sourceId?: string | null | undefined;
             status?: string | null | undefined;
             statusChecked?: string | null | undefined;
@@ -7475,15 +6132,6 @@ declare const PageEntityPersonAssociationSchemaDefinition: z.ZodObject<{
             owner?: {
                 entityId?: string | null | undefined;
                 personId?: string | null | undefined;
-            } | null | undefined;
-            source?: {
-                changedAt?: string | null | undefined;
-                dataSourceUpdatedAt?: string | null | undefined;
-                detail?: string | null | undefined;
-                kind?: string | null | undefined;
-                pendingApproval?: number | null | undefined;
-                sourceId?: string | null | undefined;
-                status?: string | null | undefined;
             } | null | undefined;
             sourceId?: string | null | undefined;
             status?: string | null | undefined;
@@ -7562,15 +6210,6 @@ declare const PageEntityPersonAssociationSchemaDefinition: z.ZodObject<{
                 entityId?: string | null | undefined;
                 personId?: string | null | undefined;
             } | null | undefined;
-            source?: {
-                changedAt?: string | null | undefined;
-                dataSourceUpdatedAt?: string | null | undefined;
-                detail?: string | null | undefined;
-                kind?: string | null | undefined;
-                pendingApproval?: number | null | undefined;
-                sourceId?: string | null | undefined;
-                status?: string | null | undefined;
-            } | null | undefined;
             sourceId?: string | null | undefined;
             status?: string | null | undefined;
             statusChecked?: string | null | undefined;
@@ -7587,15 +6226,6 @@ declare const PageEntityPersonAssociationSchemaDefinition: z.ZodObject<{
             owner?: {
                 entityId?: string | null | undefined;
                 personId?: string | null | undefined;
-            } | null | undefined;
-            source?: {
-                changedAt?: string | null | undefined;
-                dataSourceUpdatedAt?: string | null | undefined;
-                detail?: string | null | undefined;
-                kind?: string | null | undefined;
-                pendingApproval?: number | null | undefined;
-                sourceId?: string | null | undefined;
-                status?: string | null | undefined;
             } | null | undefined;
             sourceId?: string | null | undefined;
             status?: string | null | undefined;
@@ -7692,21 +6322,6 @@ declare const PageEntityRelationshipSchemaDefinition: z.ZodObject<{
                 productServiceSlug: string[];
             } | null | undefined;
             slug: string;
-            source?: {
-                changedAt?: string | null | undefined;
-                dataSourceUpdatedAt?: string | null | undefined;
-                detail?: string | null | undefined;
-                kind?: string | null | undefined;
-                pendingApproval?: number | null | undefined;
-                sourceId?: string | null | undefined;
-                status?: string | null | undefined;
-            } | null | undefined;
-            status?: {
-                isFeatured: boolean;
-                isHidden: boolean;
-                isVerified: boolean;
-                showOnSitemap: boolean;
-            } | undefined;
             typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
             updatedAt?: string | null | undefined;
         };
@@ -7761,21 +6376,6 @@ declare const PageEntityRelationshipSchemaDefinition: z.ZodObject<{
                 productServiceSlug: string[];
             } | null | undefined;
             slug: string;
-            source?: {
-                changedAt?: string | null | undefined;
-                dataSourceUpdatedAt?: string | null | undefined;
-                detail?: string | null | undefined;
-                kind?: string | null | undefined;
-                pendingApproval?: number | null | undefined;
-                sourceId?: string | null | undefined;
-                status?: string | null | undefined;
-            } | null | undefined;
-            status?: {
-                isFeatured: boolean;
-                isHidden: boolean;
-                isVerified: boolean;
-                showOnSitemap: boolean;
-            } | undefined;
             typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
             updatedAt?: string | null | undefined;
         };
@@ -7840,22 +6440,6 @@ declare const PageEntityResearchDetailSchemaDefinition: z.ZodObject<{
         discreteValue?: number | null | undefined;
         entityId: string;
         id: number;
-        source?: string | null | undefined;
-        sourceRecord?: {
-            changedAt?: string | null | undefined;
-            operation?: "CREATE" | "DELETE" | "UPDATE" | null | undefined;
-            provenanceSource?: {
-                actorType?: "agent" | "employee" | undefined;
-                agentChassis?: string | null | undefined;
-                agentModel?: string | null | undefined;
-                sourceDetail: string;
-                sourceProvider?: string | null | undefined;
-                sourceProviderId?: string | null | undefined;
-                sourceProviderSlug?: string | null | undefined;
-                sourceType: "api" | "aventureStaff" | "blogArticle" | "firstPartyWebsite" | "import" | "llm" | "manual" | "newsArticle" | "relatedPartyWebsite" | "requestChangeForm" | "thirdPartyWebsite";
-            } | null | undefined;
-            source?: string | null | undefined;
-        } | null | undefined;
         textValue?: string | null | undefined;
         typeResearchDetail: string;
         updatedAt?: string | null | undefined;
@@ -7875,22 +6459,6 @@ declare const PageEntityResearchDetailSchemaDefinition: z.ZodObject<{
         discreteValue?: number | null | undefined;
         entityId: string;
         id: number;
-        source?: string | null | undefined;
-        sourceRecord?: {
-            changedAt?: string | null | undefined;
-            operation?: "CREATE" | "DELETE" | "UPDATE" | null | undefined;
-            provenanceSource?: {
-                actorType?: "agent" | "employee" | undefined;
-                agentChassis?: string | null | undefined;
-                agentModel?: string | null | undefined;
-                sourceDetail: string;
-                sourceProvider?: string | null | undefined;
-                sourceProviderId?: string | null | undefined;
-                sourceProviderSlug?: string | null | undefined;
-                sourceType: "api" | "aventureStaff" | "blogArticle" | "firstPartyWebsite" | "import" | "llm" | "manual" | "newsArticle" | "relatedPartyWebsite" | "requestChangeForm" | "thirdPartyWebsite";
-            } | null | undefined;
-            source?: string | null | undefined;
-        } | null | undefined;
         textValue?: string | null | undefined;
         typeResearchDetail: string;
         updatedAt?: string | null | undefined;
@@ -7946,41 +6514,6 @@ declare const PageEntityResearchSnippetSchemaDefinition: z.ZodObject<{
         id: z.ZodInt;
         isCurrent: z.ZodBoolean;
         isPrimary: z.ZodBoolean;
-        source: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-        sourceRecord: z.ZodOptional<z.ZodNullable<z.ZodObject<{
-            changedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
-            operation: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
-                CREATE: "CREATE";
-                DELETE: "DELETE";
-                UPDATE: "UPDATE";
-            }>>>;
-            provenanceSource: z.ZodOptional<z.ZodNullable<z.ZodObject<{
-                actorType: z.ZodOptional<z.ZodEnum<{
-                    agent: "agent";
-                    employee: "employee";
-                }>>;
-                agentChassis: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-                agentModel: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-                sourceDetail: z.ZodString;
-                sourceProvider: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-                sourceProviderId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-                sourceProviderSlug: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-                sourceType: z.ZodEnum<{
-                    api: "api";
-                    aventureStaff: "aventureStaff";
-                    blogArticle: "blogArticle";
-                    firstPartyWebsite: "firstPartyWebsite";
-                    import: "import";
-                    llm: "llm";
-                    manual: "manual";
-                    newsArticle: "newsArticle";
-                    relatedPartyWebsite: "relatedPartyWebsite";
-                    requestChangeForm: "requestChangeForm";
-                    thirdPartyWebsite: "thirdPartyWebsite";
-                }>;
-            }, z.core.$strip>>>;
-            source: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-        }, z.core.$strip>>>;
         text: z.ZodString;
         textType: z.ZodString;
         updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
@@ -8055,21 +6588,6 @@ declare const PageEntitySimilarityResultSchemaDefinition: z.ZodObject<{
                     productServiceSlug: string[];
                 } | null | undefined;
                 slug: string;
-                source?: {
-                    changedAt?: string | null | undefined;
-                    dataSourceUpdatedAt?: string | null | undefined;
-                    detail?: string | null | undefined;
-                    kind?: string | null | undefined;
-                    pendingApproval?: number | null | undefined;
-                    sourceId?: string | null | undefined;
-                    status?: string | null | undefined;
-                } | null | undefined;
-                status?: {
-                    isFeatured: boolean;
-                    isHidden: boolean;
-                    isVerified: boolean;
-                    showOnSitemap: boolean;
-                } | undefined;
                 typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
                 updatedAt?: string | null | undefined;
             };
@@ -8343,15 +6861,6 @@ declare const PageEntitySimilarityResultSchemaDefinition: z.ZodObject<{
                         entityId?: string | null | undefined;
                         personId?: string | null | undefined;
                     } | null | undefined;
-                    source?: {
-                        changedAt?: string | null | undefined;
-                        dataSourceUpdatedAt?: string | null | undefined;
-                        detail?: string | null | undefined;
-                        kind?: string | null | undefined;
-                        pendingApproval?: number | null | undefined;
-                        sourceId?: string | null | undefined;
-                        status?: string | null | undefined;
-                    } | null | undefined;
                     sourceId?: string | null | undefined;
                     status?: string | null | undefined;
                     statusChecked?: string | null | undefined;
@@ -8399,21 +6908,6 @@ declare const PageEntitySimilarityResultSchemaDefinition: z.ZodObject<{
                             productServiceSlug: string[];
                         } | null | undefined;
                         slug: string;
-                        source?: {
-                            changedAt?: string | null | undefined;
-                            dataSourceUpdatedAt?: string | null | undefined;
-                            detail?: string | null | undefined;
-                            kind?: string | null | undefined;
-                            pendingApproval?: number | null | undefined;
-                            sourceId?: string | null | undefined;
-                            status?: string | null | undefined;
-                        } | null | undefined;
-                        status?: {
-                            isFeatured: boolean;
-                            isHidden: boolean;
-                            isVerified: boolean;
-                            showOnSitemap: boolean;
-                        } | undefined;
                         typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
                         updatedAt?: string | null | undefined;
                     };
@@ -8492,21 +6986,6 @@ declare const PageEntitySimilarityResultSchemaDefinition: z.ZodObject<{
                             productServiceSlug: string[];
                         } | null | undefined;
                         slug: string;
-                        source?: {
-                            changedAt?: string | null | undefined;
-                            dataSourceUpdatedAt?: string | null | undefined;
-                            detail?: string | null | undefined;
-                            kind?: string | null | undefined;
-                            pendingApproval?: number | null | undefined;
-                            sourceId?: string | null | undefined;
-                            status?: string | null | undefined;
-                        } | null | undefined;
-                        status?: {
-                            isFeatured: boolean;
-                            isHidden: boolean;
-                            isVerified: boolean;
-                            showOnSitemap: boolean;
-                        } | undefined;
                         typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
                         updatedAt?: string | null | undefined;
                     };
@@ -8531,22 +7010,6 @@ declare const PageEntitySimilarityResultSchemaDefinition: z.ZodObject<{
                     discreteValue?: number | null | undefined;
                     entityId: string;
                     id: number;
-                    source?: string | null | undefined;
-                    sourceRecord?: {
-                        changedAt?: string | null | undefined;
-                        operation?: "CREATE" | "DELETE" | "UPDATE" | null | undefined;
-                        provenanceSource?: {
-                            actorType?: "agent" | "employee" | undefined;
-                            agentChassis?: string | null | undefined;
-                            agentModel?: string | null | undefined;
-                            sourceDetail: string;
-                            sourceProvider?: string | null | undefined;
-                            sourceProviderId?: string | null | undefined;
-                            sourceProviderSlug?: string | null | undefined;
-                            sourceType: "api" | "aventureStaff" | "blogArticle" | "firstPartyWebsite" | "import" | "llm" | "manual" | "newsArticle" | "relatedPartyWebsite" | "requestChangeForm" | "thirdPartyWebsite";
-                        } | null | undefined;
-                        source?: string | null | undefined;
-                    } | null | undefined;
                     textValue?: string | null | undefined;
                     typeResearchDetail: string;
                     updatedAt?: string | null | undefined;
@@ -8611,21 +7074,6 @@ declare const PageEntitySimilarityResultSchemaDefinition: z.ZodObject<{
                     productServiceSlug: string[];
                 } | null | undefined;
                 slug: string;
-                source?: {
-                    changedAt?: string | null | undefined;
-                    dataSourceUpdatedAt?: string | null | undefined;
-                    detail?: string | null | undefined;
-                    kind?: string | null | undefined;
-                    pendingApproval?: number | null | undefined;
-                    sourceId?: string | null | undefined;
-                    status?: string | null | undefined;
-                } | null | undefined;
-                status?: {
-                    isFeatured: boolean;
-                    isHidden: boolean;
-                    isVerified: boolean;
-                    showOnSitemap: boolean;
-                } | undefined;
                 typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
                 updatedAt?: string | null | undefined;
             };
@@ -8899,15 +7347,6 @@ declare const PageEntitySimilarityResultSchemaDefinition: z.ZodObject<{
                         entityId?: string | null | undefined;
                         personId?: string | null | undefined;
                     } | null | undefined;
-                    source?: {
-                        changedAt?: string | null | undefined;
-                        dataSourceUpdatedAt?: string | null | undefined;
-                        detail?: string | null | undefined;
-                        kind?: string | null | undefined;
-                        pendingApproval?: number | null | undefined;
-                        sourceId?: string | null | undefined;
-                        status?: string | null | undefined;
-                    } | null | undefined;
                     sourceId?: string | null | undefined;
                     status?: string | null | undefined;
                     statusChecked?: string | null | undefined;
@@ -8955,21 +7394,6 @@ declare const PageEntitySimilarityResultSchemaDefinition: z.ZodObject<{
                             productServiceSlug: string[];
                         } | null | undefined;
                         slug: string;
-                        source?: {
-                            changedAt?: string | null | undefined;
-                            dataSourceUpdatedAt?: string | null | undefined;
-                            detail?: string | null | undefined;
-                            kind?: string | null | undefined;
-                            pendingApproval?: number | null | undefined;
-                            sourceId?: string | null | undefined;
-                            status?: string | null | undefined;
-                        } | null | undefined;
-                        status?: {
-                            isFeatured: boolean;
-                            isHidden: boolean;
-                            isVerified: boolean;
-                            showOnSitemap: boolean;
-                        } | undefined;
                         typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
                         updatedAt?: string | null | undefined;
                     };
@@ -9048,21 +7472,6 @@ declare const PageEntitySimilarityResultSchemaDefinition: z.ZodObject<{
                             productServiceSlug: string[];
                         } | null | undefined;
                         slug: string;
-                        source?: {
-                            changedAt?: string | null | undefined;
-                            dataSourceUpdatedAt?: string | null | undefined;
-                            detail?: string | null | undefined;
-                            kind?: string | null | undefined;
-                            pendingApproval?: number | null | undefined;
-                            sourceId?: string | null | undefined;
-                            status?: string | null | undefined;
-                        } | null | undefined;
-                        status?: {
-                            isFeatured: boolean;
-                            isHidden: boolean;
-                            isVerified: boolean;
-                            showOnSitemap: boolean;
-                        } | undefined;
                         typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
                         updatedAt?: string | null | undefined;
                     };
@@ -9087,22 +7496,6 @@ declare const PageEntitySimilarityResultSchemaDefinition: z.ZodObject<{
                     discreteValue?: number | null | undefined;
                     entityId: string;
                     id: number;
-                    source?: string | null | undefined;
-                    sourceRecord?: {
-                        changedAt?: string | null | undefined;
-                        operation?: "CREATE" | "DELETE" | "UPDATE" | null | undefined;
-                        provenanceSource?: {
-                            actorType?: "agent" | "employee" | undefined;
-                            agentChassis?: string | null | undefined;
-                            agentModel?: string | null | undefined;
-                            sourceDetail: string;
-                            sourceProvider?: string | null | undefined;
-                            sourceProviderId?: string | null | undefined;
-                            sourceProviderSlug?: string | null | undefined;
-                            sourceType: "api" | "aventureStaff" | "blogArticle" | "firstPartyWebsite" | "import" | "llm" | "manual" | "newsArticle" | "relatedPartyWebsite" | "requestChangeForm" | "thirdPartyWebsite";
-                        } | null | undefined;
-                        source?: string | null | undefined;
-                    } | null | undefined;
                     textValue?: string | null | undefined;
                     typeResearchDetail: string;
                     updatedAt?: string | null | undefined;
@@ -9172,62 +7565,6 @@ type PageEntitySimilarityResultDefinition = z.infer<typeof PageEntitySimilarityR
  */
 export declare const PageEntitySimilarityResultSchema: z.ZodType<PageEntitySimilarityResultDefinition>;
 export type PageEntitySimilarityResult = z.infer<typeof PageEntitySimilarityResultSchema>;
-declare const PageEntitySitemapUrlSchemaDefinition: z.ZodObject<{
-    content: z.ZodOptional<z.ZodArray<z.ZodType<{
-        entityId: string;
-        lastUpdatedAt: string;
-        path: string;
-        productServiceSlug?: string | null | undefined;
-        slotKey: string;
-        slug: string;
-        typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
-        urlType: "acquisitions" | "analysis" | "employees" | "fundraising" | "news" | "overview" | "productService";
-    }, unknown, z.core.$ZodTypeInternals<{
-        entityId: string;
-        lastUpdatedAt: string;
-        path: string;
-        productServiceSlug?: string | null | undefined;
-        slotKey: string;
-        slug: string;
-        typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
-        urlType: "acquisitions" | "analysis" | "employees" | "fundraising" | "news" | "overview" | "productService";
-    }, unknown>>>>;
-    empty: z.ZodOptional<z.ZodBoolean>;
-    first: z.ZodOptional<z.ZodBoolean>;
-    last: z.ZodOptional<z.ZodBoolean>;
-    number: z.ZodOptional<z.ZodInt>;
-    numberOfElements: z.ZodOptional<z.ZodInt>;
-    pageable: z.ZodOptional<z.ZodObject<{
-        offset: z.ZodOptional<z.ZodNumber>;
-        paged: z.ZodOptional<z.ZodBoolean>;
-        pageNumber: z.ZodOptional<z.ZodInt>;
-        pageSize: z.ZodOptional<z.ZodInt>;
-        sort: z.ZodOptional<z.ZodObject<{
-            empty: z.ZodOptional<z.ZodBoolean>;
-            sorted: z.ZodOptional<z.ZodBoolean>;
-            unsorted: z.ZodOptional<z.ZodBoolean>;
-        }, z.core.$strip>>;
-        unpaged: z.ZodOptional<z.ZodBoolean>;
-    }, z.core.$strip>>;
-    size: z.ZodOptional<z.ZodInt>;
-    sort: z.ZodOptional<z.ZodObject<{
-        empty: z.ZodOptional<z.ZodBoolean>;
-        sorted: z.ZodOptional<z.ZodBoolean>;
-        unsorted: z.ZodOptional<z.ZodBoolean>;
-    }, z.core.$strip>>;
-    totalElements: z.ZodOptional<z.ZodNumber>;
-    totalPages: z.ZodOptional<z.ZodInt>;
-}, z.core.$strip>;
-type PageEntitySitemapUrlDefinition = z.infer<typeof PageEntitySitemapUrlSchemaDefinition>;
-/**
- * @openapiSchema PageEntitySitemapUrl
- * @endpoint GET /v1/entities/sitemap-urls
- * @contractShape pagination.page-entity-sitemap-url
- * @contractRole canonical
- * @ownerModule pagination/schemas.ts
- */
-export declare const PageEntitySitemapUrlSchema: z.ZodType<PageEntitySitemapUrlDefinition>;
-export type PageEntitySitemapUrl = z.infer<typeof PageEntitySitemapUrlSchema>;
 declare const PageEntityTagSchemaDefinition: z.ZodObject<{
     content: z.ZodOptional<z.ZodArray<z.ZodType<{
         creatable: boolean;
@@ -9397,15 +7734,6 @@ declare const PageEntityUrlLinkSchemaDefinition: z.ZodObject<{
             entityId?: string | null | undefined;
             personId?: string | null | undefined;
         } | null | undefined;
-        source?: {
-            changedAt?: string | null | undefined;
-            dataSourceUpdatedAt?: string | null | undefined;
-            detail?: string | null | undefined;
-            kind?: string | null | undefined;
-            pendingApproval?: number | null | undefined;
-            sourceId?: string | null | undefined;
-            status?: string | null | undefined;
-        } | null | undefined;
         sourceId?: string | null | undefined;
         status?: string | null | undefined;
         statusChecked?: string | null | undefined;
@@ -9422,15 +7750,6 @@ declare const PageEntityUrlLinkSchemaDefinition: z.ZodObject<{
         owner?: {
             entityId?: string | null | undefined;
             personId?: string | null | undefined;
-        } | null | undefined;
-        source?: {
-            changedAt?: string | null | undefined;
-            dataSourceUpdatedAt?: string | null | undefined;
-            detail?: string | null | undefined;
-            kind?: string | null | undefined;
-            pendingApproval?: number | null | undefined;
-            sourceId?: string | null | undefined;
-            status?: string | null | undefined;
         } | null | undefined;
         sourceId?: string | null | undefined;
         status?: string | null | undefined;
@@ -9542,71 +7861,6 @@ type PageEntityValuationTimeSeriesPointDefinition = z.infer<typeof PageEntityVal
  */
 export declare const PageEntityValuationTimeSeriesPointSchema: z.ZodType<PageEntityValuationTimeSeriesPointDefinition>;
 export type PageEntityValuationTimeSeriesPoint = z.infer<typeof PageEntityValuationTimeSeriesPointSchema>;
-declare const PageExternalSocialPostSchemaDefinition: z.ZodObject<{
-    content: z.ZodOptional<z.ZodArray<z.ZodObject<{
-        author: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-        content: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-        createdAt: z.ZodISODateTime;
-        id: z.ZodUUID;
-        isCurrent: z.ZodBoolean;
-        lastFetchedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
-        mentionedEntityId: z.ZodArray<z.ZodUUID>;
-        mentionedPersonId: z.ZodArray<z.ZodUUID>;
-        owner: z.ZodOptional<z.ZodNullable<z.ZodObject<{
-            entityId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
-            personId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
-        }, z.core.$strip>>>;
-        permalink: z.ZodType<{
-            externalPostId?: string | null | undefined;
-            platform: "facebook" | "instagram" | "linkedin" | "other" | "threads" | "tiktok" | "xTwitter";
-            url: string;
-        }, unknown, z.core.$ZodTypeInternals<{
-            externalPostId?: string | null | undefined;
-            platform: "facebook" | "instagram" | "linkedin" | "other" | "threads" | "tiktok" | "xTwitter";
-            url: string;
-        }, unknown>>;
-        publishedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
-        summary: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-        summaryGeneratedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
-        title: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-        updatedAt: z.ZodISODateTime;
-    }, z.core.$strip>>>;
-    empty: z.ZodOptional<z.ZodBoolean>;
-    first: z.ZodOptional<z.ZodBoolean>;
-    last: z.ZodOptional<z.ZodBoolean>;
-    number: z.ZodOptional<z.ZodInt>;
-    numberOfElements: z.ZodOptional<z.ZodInt>;
-    pageable: z.ZodOptional<z.ZodObject<{
-        offset: z.ZodOptional<z.ZodNumber>;
-        paged: z.ZodOptional<z.ZodBoolean>;
-        pageNumber: z.ZodOptional<z.ZodInt>;
-        pageSize: z.ZodOptional<z.ZodInt>;
-        sort: z.ZodOptional<z.ZodObject<{
-            empty: z.ZodOptional<z.ZodBoolean>;
-            sorted: z.ZodOptional<z.ZodBoolean>;
-            unsorted: z.ZodOptional<z.ZodBoolean>;
-        }, z.core.$strip>>;
-        unpaged: z.ZodOptional<z.ZodBoolean>;
-    }, z.core.$strip>>;
-    size: z.ZodOptional<z.ZodInt>;
-    sort: z.ZodOptional<z.ZodObject<{
-        empty: z.ZodOptional<z.ZodBoolean>;
-        sorted: z.ZodOptional<z.ZodBoolean>;
-        unsorted: z.ZodOptional<z.ZodBoolean>;
-    }, z.core.$strip>>;
-    totalElements: z.ZodOptional<z.ZodNumber>;
-    totalPages: z.ZodOptional<z.ZodInt>;
-}, z.core.$strip>;
-type PageExternalSocialPostDefinition = z.infer<typeof PageExternalSocialPostSchemaDefinition>;
-/**
- * @openapiSchema PageExternalSocialPost
- * @endpoint GET /v1/research/external-social-posts
- * @contractShape pagination.page-external-social-post
- * @contractRole canonical
- * @ownerModule pagination/schemas.ts
- */
-export declare const PageExternalSocialPostSchema: z.ZodType<PageExternalSocialPostDefinition>;
-export type PageExternalSocialPost = z.infer<typeof PageExternalSocialPostSchema>;
 declare const PageGithubRepoSchemaDefinition: z.ZodObject<{
     content: z.ZodOptional<z.ZodArray<z.ZodType<{
         createdAt?: string | null | undefined;
@@ -9684,238 +7938,6 @@ type PageGithubRepoDefinition = z.infer<typeof PageGithubRepoSchemaDefinition>;
  */
 export declare const PageGithubRepoSchema: z.ZodType<PageGithubRepoDefinition>;
 export type PageGithubRepo = z.infer<typeof PageGithubRepoSchema>;
-declare const PageHarnessRunSchemaDefinition: z.ZodObject<{
-    content: z.ZodOptional<z.ZodArray<z.ZodType<{
-        attempt: number;
-        chainRunId?: string | null | undefined;
-        createdAt: string;
-        entitySlug?: string | null | undefined;
-        environment: "development" | "production" | "staging" | "unassigned";
-        error?: string | null | undefined;
-        failureClass?: string | null | undefined;
-        finishedAt?: string | null | undefined;
-        hasSourceDocument: boolean;
-        id: string;
-        idempotencyKey?: string | null | undefined;
-        instructionPointer?: string | null | undefined;
-        iteration: number;
-        latestStatus?: string | null | undefined;
-        lockedAt?: string | null | undefined;
-        lockedBy?: string | null | undefined;
-        maxIteration: number;
-        maxScoutConcurrent: number;
-        mode: "COMPREHENSIVE" | "INDIVIDUAL";
-        model: string;
-        nextAttemptAt?: string | null | undefined;
-        ownerUserId?: string | null | undefined;
-        resumeSafeUntil?: string | null | undefined;
-        sessionResume?: string | null | undefined;
-        sourceDocumentId?: string | null | undefined;
-        startedAt?: string | null | undefined;
-        status: "completed" | "failed" | "queued" | "running" | "stopped";
-        subagentModel: string;
-        taskKey?: string | null | undefined;
-        taskPhase?: "FINAL" | "PRIMARY" | null | undefined;
-        taskPresetKey?: string[] | null | undefined;
-        type: "ENRICHMENT" | "TASK";
-        updatedAt: string;
-        url: string;
-        usageSnapshot?: string | null | undefined;
-        userPrompt?: string | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
-        attempt: number;
-        chainRunId?: string | null | undefined;
-        createdAt: string;
-        entitySlug?: string | null | undefined;
-        environment: "development" | "production" | "staging" | "unassigned";
-        error?: string | null | undefined;
-        failureClass?: string | null | undefined;
-        finishedAt?: string | null | undefined;
-        hasSourceDocument: boolean;
-        id: string;
-        idempotencyKey?: string | null | undefined;
-        instructionPointer?: string | null | undefined;
-        iteration: number;
-        latestStatus?: string | null | undefined;
-        lockedAt?: string | null | undefined;
-        lockedBy?: string | null | undefined;
-        maxIteration: number;
-        maxScoutConcurrent: number;
-        mode: "COMPREHENSIVE" | "INDIVIDUAL";
-        model: string;
-        nextAttemptAt?: string | null | undefined;
-        ownerUserId?: string | null | undefined;
-        resumeSafeUntil?: string | null | undefined;
-        sessionResume?: string | null | undefined;
-        sourceDocumentId?: string | null | undefined;
-        startedAt?: string | null | undefined;
-        status: "completed" | "failed" | "queued" | "running" | "stopped";
-        subagentModel: string;
-        taskKey?: string | null | undefined;
-        taskPhase?: "FINAL" | "PRIMARY" | null | undefined;
-        taskPresetKey?: string[] | null | undefined;
-        type: "ENRICHMENT" | "TASK";
-        updatedAt: string;
-        url: string;
-        usageSnapshot?: string | null | undefined;
-        userPrompt?: string | null | undefined;
-    }, unknown>>>>;
-    empty: z.ZodOptional<z.ZodBoolean>;
-    first: z.ZodOptional<z.ZodBoolean>;
-    last: z.ZodOptional<z.ZodBoolean>;
-    number: z.ZodOptional<z.ZodInt>;
-    numberOfElements: z.ZodOptional<z.ZodInt>;
-    pageable: z.ZodOptional<z.ZodObject<{
-        offset: z.ZodOptional<z.ZodNumber>;
-        paged: z.ZodOptional<z.ZodBoolean>;
-        pageNumber: z.ZodOptional<z.ZodInt>;
-        pageSize: z.ZodOptional<z.ZodInt>;
-        sort: z.ZodOptional<z.ZodObject<{
-            empty: z.ZodOptional<z.ZodBoolean>;
-            sorted: z.ZodOptional<z.ZodBoolean>;
-            unsorted: z.ZodOptional<z.ZodBoolean>;
-        }, z.core.$strip>>;
-        unpaged: z.ZodOptional<z.ZodBoolean>;
-    }, z.core.$strip>>;
-    size: z.ZodOptional<z.ZodInt>;
-    sort: z.ZodOptional<z.ZodObject<{
-        empty: z.ZodOptional<z.ZodBoolean>;
-        sorted: z.ZodOptional<z.ZodBoolean>;
-        unsorted: z.ZodOptional<z.ZodBoolean>;
-    }, z.core.$strip>>;
-    totalElements: z.ZodOptional<z.ZodNumber>;
-    totalPages: z.ZodOptional<z.ZodInt>;
-}, z.core.$strip>;
-type PageHarnessRunDefinition = z.infer<typeof PageHarnessRunSchemaDefinition>;
-/**
- * @openapiSchema PageHarnessRun
- * @endpoint GET /v1/harness/control-plane/runs
- * @contractShape pagination.page-harness-run
- * @contractRole canonical
- * @ownerModule pagination/schemas.ts
- */
-export declare const PageHarnessRunSchema: z.ZodType<PageHarnessRunDefinition>;
-export type PageHarnessRun = z.infer<typeof PageHarnessRunSchema>;
-declare const PageJobSchemaDefinition: z.ZodObject<{
-    content: z.ZodOptional<z.ZodArray<z.ZodType<{
-        createdAt?: string | null | undefined;
-        failureReason?: string | null | undefined;
-        jobId: string;
-        jobName: string;
-        jobType: string;
-        state: string;
-        updatedAt?: string | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
-        createdAt?: string | null | undefined;
-        failureReason?: string | null | undefined;
-        jobId: string;
-        jobName: string;
-        jobType: string;
-        state: string;
-        updatedAt?: string | null | undefined;
-    }, unknown>>>>;
-    empty: z.ZodOptional<z.ZodBoolean>;
-    first: z.ZodOptional<z.ZodBoolean>;
-    last: z.ZodOptional<z.ZodBoolean>;
-    number: z.ZodOptional<z.ZodInt>;
-    numberOfElements: z.ZodOptional<z.ZodInt>;
-    pageable: z.ZodOptional<z.ZodObject<{
-        offset: z.ZodOptional<z.ZodNumber>;
-        paged: z.ZodOptional<z.ZodBoolean>;
-        pageNumber: z.ZodOptional<z.ZodInt>;
-        pageSize: z.ZodOptional<z.ZodInt>;
-        sort: z.ZodOptional<z.ZodObject<{
-            empty: z.ZodOptional<z.ZodBoolean>;
-            sorted: z.ZodOptional<z.ZodBoolean>;
-            unsorted: z.ZodOptional<z.ZodBoolean>;
-        }, z.core.$strip>>;
-        unpaged: z.ZodOptional<z.ZodBoolean>;
-    }, z.core.$strip>>;
-    size: z.ZodOptional<z.ZodInt>;
-    sort: z.ZodOptional<z.ZodObject<{
-        empty: z.ZodOptional<z.ZodBoolean>;
-        sorted: z.ZodOptional<z.ZodBoolean>;
-        unsorted: z.ZodOptional<z.ZodBoolean>;
-    }, z.core.$strip>>;
-    totalElements: z.ZodOptional<z.ZodNumber>;
-    totalPages: z.ZodOptional<z.ZodInt>;
-}, z.core.$strip>;
-type PageJobDefinition = z.infer<typeof PageJobSchemaDefinition>;
-/**
- * @openapiSchema PageJob
- * @endpoint GET /v1/jobs/runs
- * @contractShape pagination.page-job
- * @contractRole canonical
- * @ownerModule pagination/schemas.ts
- */
-export declare const PageJobSchema: z.ZodType<PageJobDefinition>;
-export type PageJob = z.infer<typeof PageJobSchema>;
-declare const PageLocationDirectoryEntrySchemaDefinition: z.ZodObject<{
-    content: z.ZodOptional<z.ZodArray<z.ZodObject<{
-        canonicalSlug: z.ZodString;
-        entityCount: z.ZodNumber;
-        identifier: z.ZodType<{
-            cityId?: number | null | undefined;
-            cityName?: string | null | undefined;
-            countryId?: number | null | undefined;
-            countryIso2?: string | null | undefined;
-            countryName?: string | null | undefined;
-            scope: "city" | "country" | "state";
-            stateAbbrev?: string | null | undefined;
-            stateId?: number | null | undefined;
-            stateName?: string | null | undefined;
-        }, unknown, z.core.$ZodTypeInternals<{
-            cityId?: number | null | undefined;
-            cityName?: string | null | undefined;
-            countryId?: number | null | undefined;
-            countryIso2?: string | null | undefined;
-            countryName?: string | null | undefined;
-            scope: "city" | "country" | "state";
-            stateAbbrev?: string | null | undefined;
-            stateId?: number | null | undefined;
-            stateName?: string | null | undefined;
-        }, unknown>>;
-        latestUpdatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
-        name: z.ZodString;
-        parentLabel: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-        slug: z.ZodString;
-    }, z.core.$strip>>>;
-    empty: z.ZodOptional<z.ZodBoolean>;
-    first: z.ZodOptional<z.ZodBoolean>;
-    last: z.ZodOptional<z.ZodBoolean>;
-    number: z.ZodOptional<z.ZodInt>;
-    numberOfElements: z.ZodOptional<z.ZodInt>;
-    pageable: z.ZodOptional<z.ZodObject<{
-        offset: z.ZodOptional<z.ZodNumber>;
-        paged: z.ZodOptional<z.ZodBoolean>;
-        pageNumber: z.ZodOptional<z.ZodInt>;
-        pageSize: z.ZodOptional<z.ZodInt>;
-        sort: z.ZodOptional<z.ZodObject<{
-            empty: z.ZodOptional<z.ZodBoolean>;
-            sorted: z.ZodOptional<z.ZodBoolean>;
-            unsorted: z.ZodOptional<z.ZodBoolean>;
-        }, z.core.$strip>>;
-        unpaged: z.ZodOptional<z.ZodBoolean>;
-    }, z.core.$strip>>;
-    size: z.ZodOptional<z.ZodInt>;
-    sort: z.ZodOptional<z.ZodObject<{
-        empty: z.ZodOptional<z.ZodBoolean>;
-        sorted: z.ZodOptional<z.ZodBoolean>;
-        unsorted: z.ZodOptional<z.ZodBoolean>;
-    }, z.core.$strip>>;
-    totalElements: z.ZodOptional<z.ZodNumber>;
-    totalPages: z.ZodOptional<z.ZodInt>;
-}, z.core.$strip>;
-type PageLocationDirectoryEntryDefinition = z.infer<typeof PageLocationDirectoryEntrySchemaDefinition>;
-/**
- * @openapiSchema PageLocationDirectoryEntry
- * @endpoint GET /v1/addresses/locations/{scope}
- * @contractShape pagination.page-location-directory-entry
- * @contractRole canonical
- * @ownerModule pagination/schemas.ts
- */
-export declare const PageLocationDirectoryEntrySchema: z.ZodType<PageLocationDirectoryEntryDefinition>;
-export type PageLocationDirectoryEntry = z.infer<typeof PageLocationDirectoryEntrySchema>;
 declare const PageMediaLogoAuditJobSchemaDefinition: z.ZodObject<{
     content: z.ZodOptional<z.ZodArray<z.ZodType<{
         checked: number;
@@ -10066,15 +8088,6 @@ declare const PageNewsSchemaDefinition: z.ZodObject<{
         publication?: string | null | undefined;
         publishedAt?: string | null | undefined;
         slug?: string | null | undefined;
-        source?: {
-            changedAt?: string | null | undefined;
-            dataSourceUpdatedAt?: string | null | undefined;
-            detail?: string | null | undefined;
-            kind?: string | null | undefined;
-            pendingApproval?: number | null | undefined;
-            sourceId?: string | null | undefined;
-            status?: string | null | undefined;
-        } | undefined;
         title: string;
         updatedAt?: string | null | undefined;
     }, unknown, z.core.$ZodTypeInternals<{
@@ -10090,15 +8103,6 @@ declare const PageNewsSchemaDefinition: z.ZodObject<{
         publication?: string | null | undefined;
         publishedAt?: string | null | undefined;
         slug?: string | null | undefined;
-        source?: {
-            changedAt?: string | null | undefined;
-            dataSourceUpdatedAt?: string | null | undefined;
-            detail?: string | null | undefined;
-            kind?: string | null | undefined;
-            pendingApproval?: number | null | undefined;
-            sourceId?: string | null | undefined;
-            status?: string | null | undefined;
-        } | undefined;
         title: string;
         updatedAt?: string | null | undefined;
     }, unknown>>>>;
@@ -10205,15 +8209,6 @@ declare const PageNewsDetailSchemaDefinition: z.ZodObject<{
             publication?: string | null | undefined;
             publishedAt?: string | null | undefined;
             slug?: string | null | undefined;
-            source?: {
-                changedAt?: string | null | undefined;
-                dataSourceUpdatedAt?: string | null | undefined;
-                detail?: string | null | undefined;
-                kind?: string | null | undefined;
-                pendingApproval?: number | null | undefined;
-                sourceId?: string | null | undefined;
-                status?: string | null | undefined;
-            } | undefined;
             title: string;
             updatedAt?: string | null | undefined;
         };
@@ -10241,15 +8236,6 @@ declare const PageNewsDetailSchemaDefinition: z.ZodObject<{
             slug?: string | null | undefined;
             updatedAt: string;
         }[];
-        source?: {
-            changedAt?: string | null | undefined;
-            dataSourceUpdatedAt?: string | null | undefined;
-            detail?: string | null | undefined;
-            kind?: string | null | undefined;
-            pendingApproval?: number | null | undefined;
-            sourceId?: string | null | undefined;
-            status?: string | null | undefined;
-        } | undefined;
     }, unknown, z.core.$ZodTypeInternals<{
         content?: string | null | undefined;
         core: {
@@ -10265,15 +8251,6 @@ declare const PageNewsDetailSchemaDefinition: z.ZodObject<{
             publication?: string | null | undefined;
             publishedAt?: string | null | undefined;
             slug?: string | null | undefined;
-            source?: {
-                changedAt?: string | null | undefined;
-                dataSourceUpdatedAt?: string | null | undefined;
-                detail?: string | null | undefined;
-                kind?: string | null | undefined;
-                pendingApproval?: number | null | undefined;
-                sourceId?: string | null | undefined;
-                status?: string | null | undefined;
-            } | undefined;
             title: string;
             updatedAt?: string | null | undefined;
         };
@@ -10301,15 +8278,6 @@ declare const PageNewsDetailSchemaDefinition: z.ZodObject<{
             slug?: string | null | undefined;
             updatedAt: string;
         }[];
-        source?: {
-            changedAt?: string | null | undefined;
-            dataSourceUpdatedAt?: string | null | undefined;
-            detail?: string | null | undefined;
-            kind?: string | null | undefined;
-            pendingApproval?: number | null | undefined;
-            sourceId?: string | null | undefined;
-            status?: string | null | undefined;
-        } | undefined;
     }, unknown>>>>;
     empty: z.ZodOptional<z.ZodBoolean>;
     first: z.ZodOptional<z.ZodBoolean>;
@@ -10461,10 +8429,6 @@ declare const PagePersonSchemaDefinition: z.ZodObject<{
             sourceId?: string | null | undefined;
             status?: string | null | undefined;
         };
-        status?: {
-            isHidden: boolean;
-            showOnSitemap: boolean;
-        } | undefined;
         suffix?: string | null | undefined;
         text: {
             expanded?: string | null | undefined;
@@ -10514,10 +8478,6 @@ declare const PagePersonSchemaDefinition: z.ZodObject<{
             sourceId?: string | null | undefined;
             status?: string | null | undefined;
         };
-        status?: {
-            isHidden: boolean;
-            showOnSitemap: boolean;
-        } | undefined;
         suffix?: string | null | undefined;
         text: {
             expanded?: string | null | undefined;
@@ -10557,9 +8517,9 @@ type PagePersonDefinition = z.infer<typeof PagePersonSchemaDefinition>;
  * @openapiSchema PagePerson
  * @endpoint GET /v1/people
  * @endpoint GET /v1/people/duplicate-check
- * @endpoint POST /v1/people
  * @endpoint POST /v1/people/batch
  * @endpoint POST /v1/people/duplicate-check
+ * @endpoint POST /v1/people/search
  * @contractShape pagination.page-person
  * @contractRole canonical
  * @ownerModule pagination/schemas.ts
@@ -10617,7 +8577,6 @@ declare const PagePersonDetailSchemaDefinition: z.ZodObject<{
                 updatedAt?: string | null | undefined;
             }[];
             entityId: string;
-            entityIsHidden?: boolean | null | undefined;
             entityLogo: {
                 isMonogram: boolean;
                 logo?: string | null | undefined;
@@ -10625,7 +8584,6 @@ declare const PagePersonDetailSchemaDefinition: z.ZodObject<{
             };
             entityName?: string | null | undefined;
             entityOperatingStatus?: string | null | undefined;
-            entityShowOnSitemap?: boolean | null | undefined;
             entitySlug: string;
             entityType?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
             entityUrlLink: {
@@ -10638,15 +8596,6 @@ declare const PagePersonDetailSchemaDefinition: z.ZodObject<{
                 owner?: {
                     entityId?: string | null | undefined;
                     personId?: string | null | undefined;
-                } | null | undefined;
-                source?: {
-                    changedAt?: string | null | undefined;
-                    dataSourceUpdatedAt?: string | null | undefined;
-                    detail?: string | null | undefined;
-                    kind?: string | null | undefined;
-                    pendingApproval?: number | null | undefined;
-                    sourceId?: string | null | undefined;
-                    status?: string | null | undefined;
                 } | null | undefined;
                 sourceId?: string | null | undefined;
                 status?: string | null | undefined;
@@ -10716,15 +8665,6 @@ declare const PagePersonDetailSchemaDefinition: z.ZodObject<{
                     entityId?: string | null | undefined;
                     personId?: string | null | undefined;
                 } | null | undefined;
-                source?: {
-                    changedAt?: string | null | undefined;
-                    dataSourceUpdatedAt?: string | null | undefined;
-                    detail?: string | null | undefined;
-                    kind?: string | null | undefined;
-                    pendingApproval?: number | null | undefined;
-                    sourceId?: string | null | undefined;
-                    status?: string | null | undefined;
-                } | null | undefined;
                 sourceId?: string | null | undefined;
                 status?: string | null | undefined;
                 statusChecked?: string | null | undefined;
@@ -10782,10 +8722,6 @@ declare const PagePersonDetailSchemaDefinition: z.ZodObject<{
                 sourceId?: string | null | undefined;
                 status?: string | null | undefined;
             };
-            status?: {
-                isHidden: boolean;
-                showOnSitemap: boolean;
-            } | undefined;
             suffix?: string | null | undefined;
             text: {
                 expanded?: string | null | undefined;
@@ -10848,15 +8784,6 @@ declare const PagePersonDetailSchemaDefinition: z.ZodObject<{
                     entityId?: string | null | undefined;
                     personId?: string | null | undefined;
                 } | null | undefined;
-                source?: {
-                    changedAt?: string | null | undefined;
-                    dataSourceUpdatedAt?: string | null | undefined;
-                    detail?: string | null | undefined;
-                    kind?: string | null | undefined;
-                    pendingApproval?: number | null | undefined;
-                    sourceId?: string | null | undefined;
-                    status?: string | null | undefined;
-                } | null | undefined;
                 sourceId?: string | null | undefined;
                 status?: string | null | undefined;
                 statusChecked?: string | null | undefined;
@@ -10898,21 +8825,6 @@ declare const PagePersonDetailSchemaDefinition: z.ZodObject<{
                         productServiceSlug: string[];
                     } | null | undefined;
                     slug: string;
-                    source?: {
-                        changedAt?: string | null | undefined;
-                        dataSourceUpdatedAt?: string | null | undefined;
-                        detail?: string | null | undefined;
-                        kind?: string | null | undefined;
-                        pendingApproval?: number | null | undefined;
-                        sourceId?: string | null | undefined;
-                        status?: string | null | undefined;
-                    } | null | undefined;
-                    status?: {
-                        isFeatured: boolean;
-                        isHidden: boolean;
-                        isVerified: boolean;
-                        showOnSitemap: boolean;
-                    } | undefined;
                     typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
                     updatedAt?: string | null | undefined;
                 };
@@ -11007,7 +8919,6 @@ declare const PagePersonDetailSchemaDefinition: z.ZodObject<{
                 updatedAt?: string | null | undefined;
             }[];
             entityId: string;
-            entityIsHidden?: boolean | null | undefined;
             entityLogo: {
                 isMonogram: boolean;
                 logo?: string | null | undefined;
@@ -11015,7 +8926,6 @@ declare const PagePersonDetailSchemaDefinition: z.ZodObject<{
             };
             entityName?: string | null | undefined;
             entityOperatingStatus?: string | null | undefined;
-            entityShowOnSitemap?: boolean | null | undefined;
             entitySlug: string;
             entityType?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
             entityUrlLink: {
@@ -11028,15 +8938,6 @@ declare const PagePersonDetailSchemaDefinition: z.ZodObject<{
                 owner?: {
                     entityId?: string | null | undefined;
                     personId?: string | null | undefined;
-                } | null | undefined;
-                source?: {
-                    changedAt?: string | null | undefined;
-                    dataSourceUpdatedAt?: string | null | undefined;
-                    detail?: string | null | undefined;
-                    kind?: string | null | undefined;
-                    pendingApproval?: number | null | undefined;
-                    sourceId?: string | null | undefined;
-                    status?: string | null | undefined;
                 } | null | undefined;
                 sourceId?: string | null | undefined;
                 status?: string | null | undefined;
@@ -11106,15 +9007,6 @@ declare const PagePersonDetailSchemaDefinition: z.ZodObject<{
                     entityId?: string | null | undefined;
                     personId?: string | null | undefined;
                 } | null | undefined;
-                source?: {
-                    changedAt?: string | null | undefined;
-                    dataSourceUpdatedAt?: string | null | undefined;
-                    detail?: string | null | undefined;
-                    kind?: string | null | undefined;
-                    pendingApproval?: number | null | undefined;
-                    sourceId?: string | null | undefined;
-                    status?: string | null | undefined;
-                } | null | undefined;
                 sourceId?: string | null | undefined;
                 status?: string | null | undefined;
                 statusChecked?: string | null | undefined;
@@ -11172,10 +9064,6 @@ declare const PagePersonDetailSchemaDefinition: z.ZodObject<{
                 sourceId?: string | null | undefined;
                 status?: string | null | undefined;
             };
-            status?: {
-                isHidden: boolean;
-                showOnSitemap: boolean;
-            } | undefined;
             suffix?: string | null | undefined;
             text: {
                 expanded?: string | null | undefined;
@@ -11238,15 +9126,6 @@ declare const PagePersonDetailSchemaDefinition: z.ZodObject<{
                     entityId?: string | null | undefined;
                     personId?: string | null | undefined;
                 } | null | undefined;
-                source?: {
-                    changedAt?: string | null | undefined;
-                    dataSourceUpdatedAt?: string | null | undefined;
-                    detail?: string | null | undefined;
-                    kind?: string | null | undefined;
-                    pendingApproval?: number | null | undefined;
-                    sourceId?: string | null | undefined;
-                    status?: string | null | undefined;
-                } | null | undefined;
                 sourceId?: string | null | undefined;
                 status?: string | null | undefined;
                 statusChecked?: string | null | undefined;
@@ -11288,21 +9167,6 @@ declare const PagePersonDetailSchemaDefinition: z.ZodObject<{
                         productServiceSlug: string[];
                     } | null | undefined;
                     slug: string;
-                    source?: {
-                        changedAt?: string | null | undefined;
-                        dataSourceUpdatedAt?: string | null | undefined;
-                        detail?: string | null | undefined;
-                        kind?: string | null | undefined;
-                        pendingApproval?: number | null | undefined;
-                        sourceId?: string | null | undefined;
-                        status?: string | null | undefined;
-                    } | null | undefined;
-                    status?: {
-                        isFeatured: boolean;
-                        isHidden: boolean;
-                        isVerified: boolean;
-                        showOnSitemap: boolean;
-                    } | undefined;
                     typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
                     updatedAt?: string | null | undefined;
                 };
@@ -11385,6 +9249,184 @@ type PagePersonDetailDefinition = z.infer<typeof PagePersonDetailSchemaDefinitio
  */
 export declare const PagePersonDetailSchema: z.ZodType<PagePersonDetailDefinition>;
 export type PagePersonDetail = z.infer<typeof PagePersonDetailSchema>;
+declare const PagePersonInvestmentSchemaDefinition: z.ZodObject<{
+    content: z.ZodOptional<z.ZodArray<z.ZodType<{
+        amount?: number | null | undefined;
+        company: {
+            entity: {
+                createdAt?: string | null | undefined;
+                defaultCurrency?: string | null | undefined;
+                foundedYear?: number | null | undefined;
+                id: string;
+                image: {
+                    isMonogram: boolean;
+                    logo?: string | null | undefined;
+                    logoSquare?: string | null | undefined;
+                };
+                lastModifiedAt?: string | null | undefined;
+                nameAlias: {
+                    displayable?: boolean | null | undefined;
+                    name: string;
+                    type?: "alternativeDba" | "relatedLegal" | null | undefined;
+                }[];
+                nameBrand: string;
+                nameLegal?: string | null | undefined;
+                operatingStatus?: string | null | undefined;
+                publicId?: string | null | undefined;
+                publicUrl?: string | null | undefined;
+                sitemap?: {
+                    hasAcquisitions?: boolean | undefined;
+                    hasAnalysis: boolean;
+                    hasEmployees: boolean;
+                    hasFundraising: boolean;
+                    hasNews: boolean;
+                    productServiceSlug: string[];
+                } | null | undefined;
+                slug: string;
+                typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
+                updatedAt?: string | null | undefined;
+            };
+        };
+        date?: string | null | undefined;
+        fundraiseTransaction?: {
+            amountRaised?: number | null | undefined;
+            dateAnnounced?: string | null | undefined;
+            id: string;
+            image: {
+                isMonogram: boolean;
+                logo?: string | null | undefined;
+                logoSquare?: string | null | undefined;
+            };
+            investorCount?: number | null | undefined;
+            nameBrand: string;
+            round?: string | null | undefined;
+            status?: string | null | undefined;
+            valuationPostMoney?: number | null | undefined;
+        } | null | undefined;
+        fundraiseTransactionId: string;
+        id: string;
+        investmentDate: string;
+        investorAttribution?: {
+            amountInvested?: number | null | undefined;
+            attributionType: "direct" | "managedFund";
+            beneficialEntityId?: string | null | undefined;
+            fundManagerRelationshipId?: number | null | undefined;
+            joinId: string;
+            leadInvestor: boolean;
+            recordedEntityId?: string | null | undefined;
+            round?: {
+                round: string;
+            } | null | undefined;
+            transactionId: string;
+        } | null | undefined;
+        round?: string | null | undefined;
+    }, unknown, z.core.$ZodTypeInternals<{
+        amount?: number | null | undefined;
+        company: {
+            entity: {
+                createdAt?: string | null | undefined;
+                defaultCurrency?: string | null | undefined;
+                foundedYear?: number | null | undefined;
+                id: string;
+                image: {
+                    isMonogram: boolean;
+                    logo?: string | null | undefined;
+                    logoSquare?: string | null | undefined;
+                };
+                lastModifiedAt?: string | null | undefined;
+                nameAlias: {
+                    displayable?: boolean | null | undefined;
+                    name: string;
+                    type?: "alternativeDba" | "relatedLegal" | null | undefined;
+                }[];
+                nameBrand: string;
+                nameLegal?: string | null | undefined;
+                operatingStatus?: string | null | undefined;
+                publicId?: string | null | undefined;
+                publicUrl?: string | null | undefined;
+                sitemap?: {
+                    hasAcquisitions?: boolean | undefined;
+                    hasAnalysis: boolean;
+                    hasEmployees: boolean;
+                    hasFundraising: boolean;
+                    hasNews: boolean;
+                    productServiceSlug: string[];
+                } | null | undefined;
+                slug: string;
+                typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
+                updatedAt?: string | null | undefined;
+            };
+        };
+        date?: string | null | undefined;
+        fundraiseTransaction?: {
+            amountRaised?: number | null | undefined;
+            dateAnnounced?: string | null | undefined;
+            id: string;
+            image: {
+                isMonogram: boolean;
+                logo?: string | null | undefined;
+                logoSquare?: string | null | undefined;
+            };
+            investorCount?: number | null | undefined;
+            nameBrand: string;
+            round?: string | null | undefined;
+            status?: string | null | undefined;
+            valuationPostMoney?: number | null | undefined;
+        } | null | undefined;
+        fundraiseTransactionId: string;
+        id: string;
+        investmentDate: string;
+        investorAttribution?: {
+            amountInvested?: number | null | undefined;
+            attributionType: "direct" | "managedFund";
+            beneficialEntityId?: string | null | undefined;
+            fundManagerRelationshipId?: number | null | undefined;
+            joinId: string;
+            leadInvestor: boolean;
+            recordedEntityId?: string | null | undefined;
+            round?: {
+                round: string;
+            } | null | undefined;
+            transactionId: string;
+        } | null | undefined;
+        round?: string | null | undefined;
+    }, unknown>>>>;
+    empty: z.ZodOptional<z.ZodBoolean>;
+    first: z.ZodOptional<z.ZodBoolean>;
+    last: z.ZodOptional<z.ZodBoolean>;
+    number: z.ZodOptional<z.ZodInt>;
+    numberOfElements: z.ZodOptional<z.ZodInt>;
+    pageable: z.ZodOptional<z.ZodObject<{
+        offset: z.ZodOptional<z.ZodNumber>;
+        paged: z.ZodOptional<z.ZodBoolean>;
+        pageNumber: z.ZodOptional<z.ZodInt>;
+        pageSize: z.ZodOptional<z.ZodInt>;
+        sort: z.ZodOptional<z.ZodObject<{
+            empty: z.ZodOptional<z.ZodBoolean>;
+            sorted: z.ZodOptional<z.ZodBoolean>;
+            unsorted: z.ZodOptional<z.ZodBoolean>;
+        }, z.core.$strip>>;
+        unpaged: z.ZodOptional<z.ZodBoolean>;
+    }, z.core.$strip>>;
+    size: z.ZodOptional<z.ZodInt>;
+    sort: z.ZodOptional<z.ZodObject<{
+        empty: z.ZodOptional<z.ZodBoolean>;
+        sorted: z.ZodOptional<z.ZodBoolean>;
+        unsorted: z.ZodOptional<z.ZodBoolean>;
+    }, z.core.$strip>>;
+    totalElements: z.ZodOptional<z.ZodNumber>;
+    totalPages: z.ZodOptional<z.ZodInt>;
+}, z.core.$strip>;
+type PagePersonInvestmentDefinition = z.infer<typeof PagePersonInvestmentSchemaDefinition>;
+/**
+ * @openapiSchema PagePersonInvestment
+ * @endpoint GET /v1/people/detail/investments
+ * @contractShape pagination.page-person-investment
+ * @contractRole canonical
+ * @ownerModule pagination/schemas.ts
+ */
+export declare const PagePersonInvestmentSchema: z.ZodType<PagePersonInvestmentDefinition>;
+export type PagePersonInvestment = z.infer<typeof PagePersonInvestmentSchema>;
 declare const PagePersonInvestorParticipationSchemaDefinition: z.ZodObject<{
     content: z.ZodOptional<z.ZodArray<z.ZodType<{
         investorAttribution: {
@@ -11450,7 +9492,6 @@ declare const PagePersonInvestorParticipationSchemaDefinition: z.ZodObject<{
                     updatedAt?: string | null | undefined;
                 }[];
                 entityId: string;
-                entityIsHidden?: boolean | null | undefined;
                 entityLogo: {
                     isMonogram: boolean;
                     logo?: string | null | undefined;
@@ -11458,7 +9499,6 @@ declare const PagePersonInvestorParticipationSchemaDefinition: z.ZodObject<{
                 };
                 entityName?: string | null | undefined;
                 entityOperatingStatus?: string | null | undefined;
-                entityShowOnSitemap?: boolean | null | undefined;
                 entitySlug: string;
                 entityType?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
                 entityUrlLink: {
@@ -11471,15 +9511,6 @@ declare const PagePersonInvestorParticipationSchemaDefinition: z.ZodObject<{
                     owner?: {
                         entityId?: string | null | undefined;
                         personId?: string | null | undefined;
-                    } | null | undefined;
-                    source?: {
-                        changedAt?: string | null | undefined;
-                        dataSourceUpdatedAt?: string | null | undefined;
-                        detail?: string | null | undefined;
-                        kind?: string | null | undefined;
-                        pendingApproval?: number | null | undefined;
-                        sourceId?: string | null | undefined;
-                        status?: string | null | undefined;
                     } | null | undefined;
                     sourceId?: string | null | undefined;
                     status?: string | null | undefined;
@@ -11549,15 +9580,6 @@ declare const PagePersonInvestorParticipationSchemaDefinition: z.ZodObject<{
                         entityId?: string | null | undefined;
                         personId?: string | null | undefined;
                     } | null | undefined;
-                    source?: {
-                        changedAt?: string | null | undefined;
-                        dataSourceUpdatedAt?: string | null | undefined;
-                        detail?: string | null | undefined;
-                        kind?: string | null | undefined;
-                        pendingApproval?: number | null | undefined;
-                        sourceId?: string | null | undefined;
-                        status?: string | null | undefined;
-                    } | null | undefined;
                     sourceId?: string | null | undefined;
                     status?: string | null | undefined;
                     statusChecked?: string | null | undefined;
@@ -11615,10 +9637,6 @@ declare const PagePersonInvestorParticipationSchemaDefinition: z.ZodObject<{
                     sourceId?: string | null | undefined;
                     status?: string | null | undefined;
                 };
-                status?: {
-                    isHidden: boolean;
-                    showOnSitemap: boolean;
-                } | undefined;
                 suffix?: string | null | undefined;
                 text: {
                     expanded?: string | null | undefined;
@@ -11681,15 +9699,6 @@ declare const PagePersonInvestorParticipationSchemaDefinition: z.ZodObject<{
                         entityId?: string | null | undefined;
                         personId?: string | null | undefined;
                     } | null | undefined;
-                    source?: {
-                        changedAt?: string | null | undefined;
-                        dataSourceUpdatedAt?: string | null | undefined;
-                        detail?: string | null | undefined;
-                        kind?: string | null | undefined;
-                        pendingApproval?: number | null | undefined;
-                        sourceId?: string | null | undefined;
-                        status?: string | null | undefined;
-                    } | null | undefined;
                     sourceId?: string | null | undefined;
                     status?: string | null | undefined;
                     statusChecked?: string | null | undefined;
@@ -11731,21 +9740,6 @@ declare const PagePersonInvestorParticipationSchemaDefinition: z.ZodObject<{
                             productServiceSlug: string[];
                         } | null | undefined;
                         slug: string;
-                        source?: {
-                            changedAt?: string | null | undefined;
-                            dataSourceUpdatedAt?: string | null | undefined;
-                            detail?: string | null | undefined;
-                            kind?: string | null | undefined;
-                            pendingApproval?: number | null | undefined;
-                            sourceId?: string | null | undefined;
-                            status?: string | null | undefined;
-                        } | null | undefined;
-                        status?: {
-                            isFeatured: boolean;
-                            isHidden: boolean;
-                            isVerified: boolean;
-                            showOnSitemap: boolean;
-                        } | undefined;
                         typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
                         updatedAt?: string | null | undefined;
                     };
@@ -11859,7 +9853,6 @@ declare const PagePersonInvestorParticipationSchemaDefinition: z.ZodObject<{
                     updatedAt?: string | null | undefined;
                 }[];
                 entityId: string;
-                entityIsHidden?: boolean | null | undefined;
                 entityLogo: {
                     isMonogram: boolean;
                     logo?: string | null | undefined;
@@ -11867,7 +9860,6 @@ declare const PagePersonInvestorParticipationSchemaDefinition: z.ZodObject<{
                 };
                 entityName?: string | null | undefined;
                 entityOperatingStatus?: string | null | undefined;
-                entityShowOnSitemap?: boolean | null | undefined;
                 entitySlug: string;
                 entityType?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
                 entityUrlLink: {
@@ -11880,15 +9872,6 @@ declare const PagePersonInvestorParticipationSchemaDefinition: z.ZodObject<{
                     owner?: {
                         entityId?: string | null | undefined;
                         personId?: string | null | undefined;
-                    } | null | undefined;
-                    source?: {
-                        changedAt?: string | null | undefined;
-                        dataSourceUpdatedAt?: string | null | undefined;
-                        detail?: string | null | undefined;
-                        kind?: string | null | undefined;
-                        pendingApproval?: number | null | undefined;
-                        sourceId?: string | null | undefined;
-                        status?: string | null | undefined;
                     } | null | undefined;
                     sourceId?: string | null | undefined;
                     status?: string | null | undefined;
@@ -11958,15 +9941,6 @@ declare const PagePersonInvestorParticipationSchemaDefinition: z.ZodObject<{
                         entityId?: string | null | undefined;
                         personId?: string | null | undefined;
                     } | null | undefined;
-                    source?: {
-                        changedAt?: string | null | undefined;
-                        dataSourceUpdatedAt?: string | null | undefined;
-                        detail?: string | null | undefined;
-                        kind?: string | null | undefined;
-                        pendingApproval?: number | null | undefined;
-                        sourceId?: string | null | undefined;
-                        status?: string | null | undefined;
-                    } | null | undefined;
                     sourceId?: string | null | undefined;
                     status?: string | null | undefined;
                     statusChecked?: string | null | undefined;
@@ -12024,10 +9998,6 @@ declare const PagePersonInvestorParticipationSchemaDefinition: z.ZodObject<{
                     sourceId?: string | null | undefined;
                     status?: string | null | undefined;
                 };
-                status?: {
-                    isHidden: boolean;
-                    showOnSitemap: boolean;
-                } | undefined;
                 suffix?: string | null | undefined;
                 text: {
                     expanded?: string | null | undefined;
@@ -12090,15 +10060,6 @@ declare const PagePersonInvestorParticipationSchemaDefinition: z.ZodObject<{
                         entityId?: string | null | undefined;
                         personId?: string | null | undefined;
                     } | null | undefined;
-                    source?: {
-                        changedAt?: string | null | undefined;
-                        dataSourceUpdatedAt?: string | null | undefined;
-                        detail?: string | null | undefined;
-                        kind?: string | null | undefined;
-                        pendingApproval?: number | null | undefined;
-                        sourceId?: string | null | undefined;
-                        status?: string | null | undefined;
-                    } | null | undefined;
                     sourceId?: string | null | undefined;
                     status?: string | null | undefined;
                     statusChecked?: string | null | undefined;
@@ -12140,21 +10101,6 @@ declare const PagePersonInvestorParticipationSchemaDefinition: z.ZodObject<{
                             productServiceSlug: string[];
                         } | null | undefined;
                         slug: string;
-                        source?: {
-                            changedAt?: string | null | undefined;
-                            dataSourceUpdatedAt?: string | null | undefined;
-                            detail?: string | null | undefined;
-                            kind?: string | null | undefined;
-                            pendingApproval?: number | null | undefined;
-                            sourceId?: string | null | undefined;
-                            status?: string | null | undefined;
-                        } | null | undefined;
-                        status?: {
-                            isFeatured: boolean;
-                            isHidden: boolean;
-                            isVerified: boolean;
-                            showOnSitemap: boolean;
-                        } | undefined;
                         typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
                         updatedAt?: string | null | undefined;
                     };
@@ -12291,7 +10237,6 @@ declare const PagePersonSimilarityResultSchemaDefinition: z.ZodObject<{
                 updatedAt?: string | null | undefined;
             }[];
             entityId: string;
-            entityIsHidden?: boolean | null | undefined;
             entityLogo: {
                 isMonogram: boolean;
                 logo?: string | null | undefined;
@@ -12299,7 +10244,6 @@ declare const PagePersonSimilarityResultSchemaDefinition: z.ZodObject<{
             };
             entityName?: string | null | undefined;
             entityOperatingStatus?: string | null | undefined;
-            entityShowOnSitemap?: boolean | null | undefined;
             entitySlug: string;
             entityType?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
             entityUrlLink: {
@@ -12312,15 +10256,6 @@ declare const PagePersonSimilarityResultSchemaDefinition: z.ZodObject<{
                 owner?: {
                     entityId?: string | null | undefined;
                     personId?: string | null | undefined;
-                } | null | undefined;
-                source?: {
-                    changedAt?: string | null | undefined;
-                    dataSourceUpdatedAt?: string | null | undefined;
-                    detail?: string | null | undefined;
-                    kind?: string | null | undefined;
-                    pendingApproval?: number | null | undefined;
-                    sourceId?: string | null | undefined;
-                    status?: string | null | undefined;
                 } | null | undefined;
                 sourceId?: string | null | undefined;
                 status?: string | null | undefined;
@@ -12390,15 +10325,6 @@ declare const PagePersonSimilarityResultSchemaDefinition: z.ZodObject<{
                     entityId?: string | null | undefined;
                     personId?: string | null | undefined;
                 } | null | undefined;
-                source?: {
-                    changedAt?: string | null | undefined;
-                    dataSourceUpdatedAt?: string | null | undefined;
-                    detail?: string | null | undefined;
-                    kind?: string | null | undefined;
-                    pendingApproval?: number | null | undefined;
-                    sourceId?: string | null | undefined;
-                    status?: string | null | undefined;
-                } | null | undefined;
                 sourceId?: string | null | undefined;
                 status?: string | null | undefined;
                 statusChecked?: string | null | undefined;
@@ -12456,10 +10382,6 @@ declare const PagePersonSimilarityResultSchemaDefinition: z.ZodObject<{
                 sourceId?: string | null | undefined;
                 status?: string | null | undefined;
             };
-            status?: {
-                isHidden: boolean;
-                showOnSitemap: boolean;
-            } | undefined;
             suffix?: string | null | undefined;
             text: {
                 expanded?: string | null | undefined;
@@ -12525,7 +10447,6 @@ declare const PagePersonSimilarityResultSchemaDefinition: z.ZodObject<{
                 updatedAt?: string | null | undefined;
             }[];
             entityId: string;
-            entityIsHidden?: boolean | null | undefined;
             entityLogo: {
                 isMonogram: boolean;
                 logo?: string | null | undefined;
@@ -12533,7 +10454,6 @@ declare const PagePersonSimilarityResultSchemaDefinition: z.ZodObject<{
             };
             entityName?: string | null | undefined;
             entityOperatingStatus?: string | null | undefined;
-            entityShowOnSitemap?: boolean | null | undefined;
             entitySlug: string;
             entityType?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
             entityUrlLink: {
@@ -12546,15 +10466,6 @@ declare const PagePersonSimilarityResultSchemaDefinition: z.ZodObject<{
                 owner?: {
                     entityId?: string | null | undefined;
                     personId?: string | null | undefined;
-                } | null | undefined;
-                source?: {
-                    changedAt?: string | null | undefined;
-                    dataSourceUpdatedAt?: string | null | undefined;
-                    detail?: string | null | undefined;
-                    kind?: string | null | undefined;
-                    pendingApproval?: number | null | undefined;
-                    sourceId?: string | null | undefined;
-                    status?: string | null | undefined;
                 } | null | undefined;
                 sourceId?: string | null | undefined;
                 status?: string | null | undefined;
@@ -12624,15 +10535,6 @@ declare const PagePersonSimilarityResultSchemaDefinition: z.ZodObject<{
                     entityId?: string | null | undefined;
                     personId?: string | null | undefined;
                 } | null | undefined;
-                source?: {
-                    changedAt?: string | null | undefined;
-                    dataSourceUpdatedAt?: string | null | undefined;
-                    detail?: string | null | undefined;
-                    kind?: string | null | undefined;
-                    pendingApproval?: number | null | undefined;
-                    sourceId?: string | null | undefined;
-                    status?: string | null | undefined;
-                } | null | undefined;
                 sourceId?: string | null | undefined;
                 status?: string | null | undefined;
                 statusChecked?: string | null | undefined;
@@ -12690,10 +10592,6 @@ declare const PagePersonSimilarityResultSchemaDefinition: z.ZodObject<{
                 sourceId?: string | null | undefined;
                 status?: string | null | undefined;
             };
-            status?: {
-                isHidden: boolean;
-                showOnSitemap: boolean;
-            } | undefined;
             suffix?: string | null | undefined;
             text: {
                 expanded?: string | null | undefined;
@@ -12829,21 +10727,6 @@ declare const PageResultEntityListSchemaDefinition: z.ZodObject<{
                 productServiceSlug: string[];
             } | null | undefined;
             slug: string;
-            source?: {
-                changedAt?: string | null | undefined;
-                dataSourceUpdatedAt?: string | null | undefined;
-                detail?: string | null | undefined;
-                kind?: string | null | undefined;
-                pendingApproval?: number | null | undefined;
-                sourceId?: string | null | undefined;
-                status?: string | null | undefined;
-            } | null | undefined;
-            status?: {
-                isFeatured: boolean;
-                isHidden: boolean;
-                isVerified: boolean;
-                showOnSitemap: boolean;
-            } | undefined;
             typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
             updatedAt?: string | null | undefined;
         };
@@ -13117,15 +11000,6 @@ declare const PageResultEntityListSchemaDefinition: z.ZodObject<{
                     entityId?: string | null | undefined;
                     personId?: string | null | undefined;
                 } | null | undefined;
-                source?: {
-                    changedAt?: string | null | undefined;
-                    dataSourceUpdatedAt?: string | null | undefined;
-                    detail?: string | null | undefined;
-                    kind?: string | null | undefined;
-                    pendingApproval?: number | null | undefined;
-                    sourceId?: string | null | undefined;
-                    status?: string | null | undefined;
-                } | null | undefined;
                 sourceId?: string | null | undefined;
                 status?: string | null | undefined;
                 statusChecked?: string | null | undefined;
@@ -13173,21 +11047,6 @@ declare const PageResultEntityListSchemaDefinition: z.ZodObject<{
                         productServiceSlug: string[];
                     } | null | undefined;
                     slug: string;
-                    source?: {
-                        changedAt?: string | null | undefined;
-                        dataSourceUpdatedAt?: string | null | undefined;
-                        detail?: string | null | undefined;
-                        kind?: string | null | undefined;
-                        pendingApproval?: number | null | undefined;
-                        sourceId?: string | null | undefined;
-                        status?: string | null | undefined;
-                    } | null | undefined;
-                    status?: {
-                        isFeatured: boolean;
-                        isHidden: boolean;
-                        isVerified: boolean;
-                        showOnSitemap: boolean;
-                    } | undefined;
                     typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
                     updatedAt?: string | null | undefined;
                 };
@@ -13266,21 +11125,6 @@ declare const PageResultEntityListSchemaDefinition: z.ZodObject<{
                         productServiceSlug: string[];
                     } | null | undefined;
                     slug: string;
-                    source?: {
-                        changedAt?: string | null | undefined;
-                        dataSourceUpdatedAt?: string | null | undefined;
-                        detail?: string | null | undefined;
-                        kind?: string | null | undefined;
-                        pendingApproval?: number | null | undefined;
-                        sourceId?: string | null | undefined;
-                        status?: string | null | undefined;
-                    } | null | undefined;
-                    status?: {
-                        isFeatured: boolean;
-                        isHidden: boolean;
-                        isVerified: boolean;
-                        showOnSitemap: boolean;
-                    } | undefined;
                     typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
                     updatedAt?: string | null | undefined;
                 };
@@ -13305,22 +11149,6 @@ declare const PageResultEntityListSchemaDefinition: z.ZodObject<{
                 discreteValue?: number | null | undefined;
                 entityId: string;
                 id: number;
-                source?: string | null | undefined;
-                sourceRecord?: {
-                    changedAt?: string | null | undefined;
-                    operation?: "CREATE" | "DELETE" | "UPDATE" | null | undefined;
-                    provenanceSource?: {
-                        actorType?: "agent" | "employee" | undefined;
-                        agentChassis?: string | null | undefined;
-                        agentModel?: string | null | undefined;
-                        sourceDetail: string;
-                        sourceProvider?: string | null | undefined;
-                        sourceProviderId?: string | null | undefined;
-                        sourceProviderSlug?: string | null | undefined;
-                        sourceType: "api" | "aventureStaff" | "blogArticle" | "firstPartyWebsite" | "import" | "llm" | "manual" | "newsArticle" | "relatedPartyWebsite" | "requestChangeForm" | "thirdPartyWebsite";
-                    } | null | undefined;
-                    source?: string | null | undefined;
-                } | null | undefined;
                 textValue?: string | null | undefined;
                 typeResearchDetail: string;
                 updatedAt?: string | null | undefined;
@@ -13371,21 +11199,6 @@ declare const PageResultEntityListSchemaDefinition: z.ZodObject<{
                 productServiceSlug: string[];
             } | null | undefined;
             slug: string;
-            source?: {
-                changedAt?: string | null | undefined;
-                dataSourceUpdatedAt?: string | null | undefined;
-                detail?: string | null | undefined;
-                kind?: string | null | undefined;
-                pendingApproval?: number | null | undefined;
-                sourceId?: string | null | undefined;
-                status?: string | null | undefined;
-            } | null | undefined;
-            status?: {
-                isFeatured: boolean;
-                isHidden: boolean;
-                isVerified: boolean;
-                showOnSitemap: boolean;
-            } | undefined;
             typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
             updatedAt?: string | null | undefined;
         };
@@ -13659,15 +11472,6 @@ declare const PageResultEntityListSchemaDefinition: z.ZodObject<{
                     entityId?: string | null | undefined;
                     personId?: string | null | undefined;
                 } | null | undefined;
-                source?: {
-                    changedAt?: string | null | undefined;
-                    dataSourceUpdatedAt?: string | null | undefined;
-                    detail?: string | null | undefined;
-                    kind?: string | null | undefined;
-                    pendingApproval?: number | null | undefined;
-                    sourceId?: string | null | undefined;
-                    status?: string | null | undefined;
-                } | null | undefined;
                 sourceId?: string | null | undefined;
                 status?: string | null | undefined;
                 statusChecked?: string | null | undefined;
@@ -13715,21 +11519,6 @@ declare const PageResultEntityListSchemaDefinition: z.ZodObject<{
                         productServiceSlug: string[];
                     } | null | undefined;
                     slug: string;
-                    source?: {
-                        changedAt?: string | null | undefined;
-                        dataSourceUpdatedAt?: string | null | undefined;
-                        detail?: string | null | undefined;
-                        kind?: string | null | undefined;
-                        pendingApproval?: number | null | undefined;
-                        sourceId?: string | null | undefined;
-                        status?: string | null | undefined;
-                    } | null | undefined;
-                    status?: {
-                        isFeatured: boolean;
-                        isHidden: boolean;
-                        isVerified: boolean;
-                        showOnSitemap: boolean;
-                    } | undefined;
                     typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
                     updatedAt?: string | null | undefined;
                 };
@@ -13808,21 +11597,6 @@ declare const PageResultEntityListSchemaDefinition: z.ZodObject<{
                         productServiceSlug: string[];
                     } | null | undefined;
                     slug: string;
-                    source?: {
-                        changedAt?: string | null | undefined;
-                        dataSourceUpdatedAt?: string | null | undefined;
-                        detail?: string | null | undefined;
-                        kind?: string | null | undefined;
-                        pendingApproval?: number | null | undefined;
-                        sourceId?: string | null | undefined;
-                        status?: string | null | undefined;
-                    } | null | undefined;
-                    status?: {
-                        isFeatured: boolean;
-                        isHidden: boolean;
-                        isVerified: boolean;
-                        showOnSitemap: boolean;
-                    } | undefined;
                     typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
                     updatedAt?: string | null | undefined;
                 };
@@ -13847,22 +11621,6 @@ declare const PageResultEntityListSchemaDefinition: z.ZodObject<{
                 discreteValue?: number | null | undefined;
                 entityId: string;
                 id: number;
-                source?: string | null | undefined;
-                sourceRecord?: {
-                    changedAt?: string | null | undefined;
-                    operation?: "CREATE" | "DELETE" | "UPDATE" | null | undefined;
-                    provenanceSource?: {
-                        actorType?: "agent" | "employee" | undefined;
-                        agentChassis?: string | null | undefined;
-                        agentModel?: string | null | undefined;
-                        sourceDetail: string;
-                        sourceProvider?: string | null | undefined;
-                        sourceProviderId?: string | null | undefined;
-                        sourceProviderSlug?: string | null | undefined;
-                        sourceType: "api" | "aventureStaff" | "blogArticle" | "firstPartyWebsite" | "import" | "llm" | "manual" | "newsArticle" | "relatedPartyWebsite" | "requestChangeForm" | "thirdPartyWebsite";
-                    } | null | undefined;
-                    source?: string | null | undefined;
-                } | null | undefined;
                 textValue?: string | null | undefined;
                 typeResearchDetail: string;
                 updatedAt?: string | null | undefined;
@@ -13901,52 +11659,6 @@ type PageResultEntityListDefinition = z.infer<typeof PageResultEntityListSchemaD
  */
 export declare const PageResultEntityListSchema: z.ZodType<PageResultEntityListDefinition>;
 export type PageResultEntityList = z.infer<typeof PageResultEntityListSchema>;
-declare const PageResultLocationDirectoryEntrySchemaDefinition: z.ZodObject<{
-    content: z.ZodArray<z.ZodObject<{
-        canonicalSlug: z.ZodString;
-        entityCount: z.ZodNumber;
-        identifier: z.ZodType<{
-            cityId?: number | null | undefined;
-            cityName?: string | null | undefined;
-            countryId?: number | null | undefined;
-            countryIso2?: string | null | undefined;
-            countryName?: string | null | undefined;
-            scope: "city" | "country" | "state";
-            stateAbbrev?: string | null | undefined;
-            stateId?: number | null | undefined;
-            stateName?: string | null | undefined;
-        }, unknown, z.core.$ZodTypeInternals<{
-            cityId?: number | null | undefined;
-            cityName?: string | null | undefined;
-            countryId?: number | null | undefined;
-            countryIso2?: string | null | undefined;
-            countryName?: string | null | undefined;
-            scope: "city" | "country" | "state";
-            stateAbbrev?: string | null | undefined;
-            stateId?: number | null | undefined;
-            stateName?: string | null | undefined;
-        }, unknown>>;
-        latestUpdatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
-        name: z.ZodString;
-        parentLabel: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-        slug: z.ZodString;
-    }, z.core.$strip>>;
-    number: z.ZodInt;
-    size: z.ZodInt;
-    totalElements: z.ZodNumber;
-    totalPages: z.ZodInt;
-}, z.core.$strip>;
-type PageResultLocationDirectoryEntryDefinition = z.infer<typeof PageResultLocationDirectoryEntrySchemaDefinition>;
-/**
- * @openapiSchema PageResultLocationDirectoryEntry
- * @endpoint POST /v1/addresses/locations/batch
- * @usedBySchema LocationSitemapSchema
- * @contractShape pagination.page-result-location-directory-entry
- * @contractRole canonical
- * @ownerSourceFile src/main/kotlin/vc/aventure/domain/model/pagination/PageResult.kt
- */
-export declare const PageResultLocationDirectoryEntrySchema: z.ZodType<PageResultLocationDirectoryEntryDefinition>;
-export type PageResultLocationDirectoryEntry = z.infer<typeof PageResultLocationDirectoryEntrySchema>;
 declare const PageResultNewsSchemaDefinition: z.ZodObject<{
     content: z.ZodArray<z.ZodType<{
         author?: string | null | undefined;
@@ -13961,15 +11673,6 @@ declare const PageResultNewsSchemaDefinition: z.ZodObject<{
         publication?: string | null | undefined;
         publishedAt?: string | null | undefined;
         slug?: string | null | undefined;
-        source?: {
-            changedAt?: string | null | undefined;
-            dataSourceUpdatedAt?: string | null | undefined;
-            detail?: string | null | undefined;
-            kind?: string | null | undefined;
-            pendingApproval?: number | null | undefined;
-            sourceId?: string | null | undefined;
-            status?: string | null | undefined;
-        } | undefined;
         title: string;
         updatedAt?: string | null | undefined;
     }, unknown, z.core.$ZodTypeInternals<{
@@ -13985,15 +11688,6 @@ declare const PageResultNewsSchemaDefinition: z.ZodObject<{
         publication?: string | null | undefined;
         publishedAt?: string | null | undefined;
         slug?: string | null | undefined;
-        source?: {
-            changedAt?: string | null | undefined;
-            dataSourceUpdatedAt?: string | null | undefined;
-            detail?: string | null | undefined;
-            kind?: string | null | undefined;
-            pendingApproval?: number | null | undefined;
-            sourceId?: string | null | undefined;
-            status?: string | null | undefined;
-        } | undefined;
         title: string;
         updatedAt?: string | null | undefined;
     }, unknown>>>;
@@ -14057,10 +11751,6 @@ declare const PageResultPersonSchemaDefinition: z.ZodObject<{
             sourceId?: string | null | undefined;
             status?: string | null | undefined;
         };
-        status?: {
-            isHidden: boolean;
-            showOnSitemap: boolean;
-        } | undefined;
         suffix?: string | null | undefined;
         text: {
             expanded?: string | null | undefined;
@@ -14110,10 +11800,6 @@ declare const PageResultPersonSchemaDefinition: z.ZodObject<{
             sourceId?: string | null | undefined;
             status?: string | null | undefined;
         };
-        status?: {
-            isHidden: boolean;
-            showOnSitemap: boolean;
-        } | undefined;
         suffix?: string | null | undefined;
         text: {
             expanded?: string | null | undefined;
@@ -14140,465 +11826,25 @@ type PageResultPersonDefinition = z.infer<typeof PageResultPersonSchemaDefinitio
  */
 export declare const PageResultPersonSchema: z.ZodType<PageResultPersonDefinition>;
 export type PageResultPerson = z.infer<typeof PageResultPersonSchema>;
-/**
- * @openapiSchema PageResultSitemapUrlSlot
- * @endpoint POST /v1/addresses/locations/batch
- * @usedBySchema LocationSitemapSchema
- * @contractShape pagination.page-result-sitemap-url-slot
- * @contractRole canonical
- * @ownerSourceFile src/main/kotlin/vc/aventure/domain/model/pagination/PageResult.kt
- */
-export declare const PageResultSitemapUrlSlotSchema: z.ZodObject<{
-    content: z.ZodArray<z.ZodType<{
-        family: "blogArticle" | "blogCategory" | "blogTag" | "companyImage" | "companyUrl" | "governmentUrl" | "investorUrl" | "locationCity" | "locationCountry" | "locationState" | "news" | "nonprofitUrl" | "person" | "personImage";
-        imagePath?: string | null | undefined;
-        lastUpdatedAt: string;
-        path: string;
-        slotKey: string;
-        slug: string;
-    }, unknown, z.core.$ZodTypeInternals<{
-        family: "blogArticle" | "blogCategory" | "blogTag" | "companyImage" | "companyUrl" | "governmentUrl" | "investorUrl" | "locationCity" | "locationCountry" | "locationState" | "news" | "nonprofitUrl" | "person" | "personImage";
-        imagePath?: string | null | undefined;
-        lastUpdatedAt: string;
-        path: string;
-        slotKey: string;
-        slug: string;
-    }, unknown>>>;
-    number: z.ZodInt;
-    size: z.ZodInt;
-    totalElements: z.ZodNumber;
-    totalPages: z.ZodInt;
-}, z.core.$strip>;
-export type PageResultSitemapUrlSlot = z.infer<typeof PageResultSitemapUrlSlotSchema>;
-declare const PageSavedViewSchemaDefinition: z.ZodObject<{
-    content: z.ZodOptional<z.ZodArray<z.ZodType<{
-        createdAt: string;
-        frontmatter: {
-            description?: string | null | undefined;
-            title: string;
-        };
-        id: number;
-        param: {
-            column: string[];
-            columnWidth: number[];
-            direction?: string | null | undefined;
-            filter: {
-                acceleratorBrand?: string[] | undefined;
-                acceleratorCohort?: string[] | undefined;
-                acceleratorName?: string[] | undefined;
-                acceleratorStatus?: string[] | undefined;
-                affinity?: string[] | undefined;
-                createdAtRange?: {
-                    max?: string | null | undefined;
-                    min?: string | null | undefined;
-                } | null | undefined;
-                employeeCountRange?: {
-                    max?: number | null | undefined;
-                    min?: number | null | undefined;
-                }[] | undefined;
-                entityId?: string[] | undefined;
-                entityName?: string[] | undefined;
-                featured?: boolean | null | undefined;
-                fundraiseActivity?: {
-                    amountInvestedRange?: {
-                        max?: number | null | undefined;
-                        min?: number | null | undefined;
-                    }[] | undefined;
-                    amountRaisedRange?: {
-                        max?: number | null | undefined;
-                        min?: number | null | undefined;
-                    }[] | undefined;
-                    investedCompanyName?: string[] | undefined;
-                    investorActivity?: {
-                        averageAmountInvestedUsdRange?: {
-                            max?: number | null | undefined;
-                            min?: number | null | undefined;
-                        }[] | undefined;
-                        largestAmountInvestedUsdRange?: {
-                            max?: number | null | undefined;
-                            min?: number | null | undefined;
-                        }[] | undefined;
-                        smallestAmountInvestedUsdRange?: {
-                            max?: number | null | undefined;
-                            min?: number | null | undefined;
-                        }[] | undefined;
-                        totalAmountInvestedUsdRange?: {
-                            max?: number | null | undefined;
-                            min?: number | null | undefined;
-                        }[] | undefined;
-                        totalInvestmentRange?: {
-                            max?: number | null | undefined;
-                            min?: number | null | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                    lastRoundYearRange?: {
-                        max?: number | null | undefined;
-                        min?: number | null | undefined;
-                    }[] | undefined;
-                    round?: string[] | undefined;
-                    totalRaisedRange?: {
-                        max?: number | null | undefined;
-                        min?: number | null | undefined;
-                    }[] | undefined;
-                    valuationRange?: {
-                        max?: number | null | undefined;
-                        min?: number | null | undefined;
-                    }[] | undefined;
-                } | undefined;
-                hasFundraising?: boolean | null | undefined;
-                hasLogo?: boolean | null | undefined;
-                hasRealLogo?: boolean | null | undefined;
-                headquartersCity?: string[] | undefined;
-                headquartersCountry?: string[] | undefined;
-                headquartersState?: string[] | undefined;
-                industry?: string[] | undefined;
-                isHidden?: boolean | null | undefined;
-                letter?: string | null | undefined;
-                location?: string[] | undefined;
-                logoOption?: {
-                    sortPriority: "ANY_LOGO_FIRST" | "NONE" | "REAL_LOGO_FIRST";
-                } | undefined;
-                mainProduct?: string[] | undefined;
-                operatingStatus?: string[] | undefined;
-                portfolioHeadquartersCity?: string[] | undefined;
-                portfolioHeadquartersCountry?: string[] | undefined;
-                portfolioHeadquartersState?: string[] | undefined;
-                qualityGate?: "COMPANY_LISTING_READY" | "NONE" | undefined;
-                semanticQuery?: string | null | undefined;
-                showOnSitemap?: boolean | null | undefined;
-                slug?: string[] | undefined;
-                stage?: string[] | undefined;
-                suppressNonOperating?: boolean | null | undefined;
-                suppressZeroTotalRaised?: boolean | null | undefined;
-                tag?: string[] | undefined;
-                textSearch?: string | null | undefined;
-                typeCustomer?: string[] | undefined;
-                typeModel?: string[] | undefined;
-                typeOwnership?: string[] | undefined;
-                typeRecord?: ("Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service")[] | undefined;
-                typeRevenue?: string[] | undefined;
-                typeTechnologyUsed?: string[] | undefined;
-                updatedAtRange?: {
-                    max?: string | null | undefined;
-                    min?: string | null | undefined;
-                } | null | undefined;
-                url?: string | null | undefined;
-                urlDomain?: string | null | undefined;
-                urlMatchMode?: "domain" | "hostPath" | undefined;
-                urlType?: "alternativeto" | "angellist" | "appstore" | "awsmarketplace" | "bloomberg" | "capterra" | "changelog" | "chromewebstore" | "crates" | "crunchbase" | "discord" | "dockerhub" | "documentation" | "facebook" | "forum" | "g2" | "gartnerpeerinsights" | "getapp" | "github" | "glassdoor" | "googleplay" | "homebrew" | "hubspotmarketplace" | "instagram" | "linkedin" | "maven" | "morningstar" | "nasdaq" | "npm" | "nyse" | "pitchbook" | "producthunt" | "pypi" | "roadmap" | "salesforceappexchange" | "slackappdirectory" | "sourceforge" | "statuspage" | "subreddit" | "support" | "theorg" | "tiktok" | "trustpilot" | "trustradius" | "twitter" | "vscodemarketplace" | "website" | "wellfound" | "wikipedia" | "ycombinator" | "youtube" | null | undefined;
-                yearFoundedRange?: {
-                    max?: number | null | undefined;
-                    min?: number | null | undefined;
-                }[] | undefined;
-            };
-            orderBy?: {
-                id?: string | null | undefined;
-                label?: string | null | undefined;
-                value: string;
-            } | null | undefined;
-            page?: number | null | undefined;
-            personFilter?: {
-                arrayFilter?: {
-                    amountInvestedRange?: {
-                        max?: number | null | undefined;
-                        min?: number | null | undefined;
-                    }[] | null | undefined;
-                    amountRaisedRange?: {
-                        max?: number | null | undefined;
-                        min?: number | null | undefined;
-                    }[] | null | undefined;
-                    entityName?: string[] | null | undefined;
-                    investedCompany?: string[] | null | undefined;
-                    personTitle?: string[] | null | undefined;
-                    round?: string[] | null | undefined;
-                    totalInvestmentCount?: {
-                        max?: number | null | undefined;
-                        min?: number | null | undefined;
-                    }[] | null | undefined;
-                    typeRecord?: ("Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service")[] | null | undefined;
-                } | undefined;
-                entityId?: string | null | undefined;
-                entitySlug?: string | null | undefined;
-                firstName?: string | null | undefined;
-                includeAddress?: boolean | null | undefined;
-                includeUrl?: boolean | null | undefined;
-                investorActivity?: {
-                    averageAmountInvestedUsdRange?: {
-                        max?: number | null | undefined;
-                        min?: number | null | undefined;
-                    }[] | undefined;
-                    largestAmountInvestedUsdRange?: {
-                        max?: number | null | undefined;
-                        min?: number | null | undefined;
-                    }[] | undefined;
-                    smallestAmountInvestedUsdRange?: {
-                        max?: number | null | undefined;
-                        min?: number | null | undefined;
-                    }[] | undefined;
-                    totalAmountInvestedUsdRange?: {
-                        max?: number | null | undefined;
-                        min?: number | null | undefined;
-                    }[] | undefined;
-                    totalInvestmentRange?: {
-                        max?: number | null | undefined;
-                        min?: number | null | undefined;
-                    }[] | undefined;
-                } | undefined;
-                isCurrent?: boolean | null | undefined;
-                lastName?: string | null | undefined;
-                letter?: string | null | undefined;
-                role?: string | null | undefined;
-                search?: string | null | undefined;
-                semanticQuery?: string | null | undefined;
-                status?: string | null | undefined;
-            } | null | undefined;
-            size?: number | null | undefined;
-        };
-        updatedAt: string;
-    }, unknown, z.core.$ZodTypeInternals<{
-        createdAt: string;
-        frontmatter: {
-            description?: string | null | undefined;
-            title: string;
-        };
-        id: number;
-        param: {
-            column: string[];
-            columnWidth: number[];
-            direction?: string | null | undefined;
-            filter: {
-                acceleratorBrand?: string[] | undefined;
-                acceleratorCohort?: string[] | undefined;
-                acceleratorName?: string[] | undefined;
-                acceleratorStatus?: string[] | undefined;
-                affinity?: string[] | undefined;
-                createdAtRange?: {
-                    max?: string | null | undefined;
-                    min?: string | null | undefined;
-                } | null | undefined;
-                employeeCountRange?: {
-                    max?: number | null | undefined;
-                    min?: number | null | undefined;
-                }[] | undefined;
-                entityId?: string[] | undefined;
-                entityName?: string[] | undefined;
-                featured?: boolean | null | undefined;
-                fundraiseActivity?: {
-                    amountInvestedRange?: {
-                        max?: number | null | undefined;
-                        min?: number | null | undefined;
-                    }[] | undefined;
-                    amountRaisedRange?: {
-                        max?: number | null | undefined;
-                        min?: number | null | undefined;
-                    }[] | undefined;
-                    investedCompanyName?: string[] | undefined;
-                    investorActivity?: {
-                        averageAmountInvestedUsdRange?: {
-                            max?: number | null | undefined;
-                            min?: number | null | undefined;
-                        }[] | undefined;
-                        largestAmountInvestedUsdRange?: {
-                            max?: number | null | undefined;
-                            min?: number | null | undefined;
-                        }[] | undefined;
-                        smallestAmountInvestedUsdRange?: {
-                            max?: number | null | undefined;
-                            min?: number | null | undefined;
-                        }[] | undefined;
-                        totalAmountInvestedUsdRange?: {
-                            max?: number | null | undefined;
-                            min?: number | null | undefined;
-                        }[] | undefined;
-                        totalInvestmentRange?: {
-                            max?: number | null | undefined;
-                            min?: number | null | undefined;
-                        }[] | undefined;
-                    } | undefined;
-                    lastRoundYearRange?: {
-                        max?: number | null | undefined;
-                        min?: number | null | undefined;
-                    }[] | undefined;
-                    round?: string[] | undefined;
-                    totalRaisedRange?: {
-                        max?: number | null | undefined;
-                        min?: number | null | undefined;
-                    }[] | undefined;
-                    valuationRange?: {
-                        max?: number | null | undefined;
-                        min?: number | null | undefined;
-                    }[] | undefined;
-                } | undefined;
-                hasFundraising?: boolean | null | undefined;
-                hasLogo?: boolean | null | undefined;
-                hasRealLogo?: boolean | null | undefined;
-                headquartersCity?: string[] | undefined;
-                headquartersCountry?: string[] | undefined;
-                headquartersState?: string[] | undefined;
-                industry?: string[] | undefined;
-                isHidden?: boolean | null | undefined;
-                letter?: string | null | undefined;
-                location?: string[] | undefined;
-                logoOption?: {
-                    sortPriority: "ANY_LOGO_FIRST" | "NONE" | "REAL_LOGO_FIRST";
-                } | undefined;
-                mainProduct?: string[] | undefined;
-                operatingStatus?: string[] | undefined;
-                portfolioHeadquartersCity?: string[] | undefined;
-                portfolioHeadquartersCountry?: string[] | undefined;
-                portfolioHeadquartersState?: string[] | undefined;
-                qualityGate?: "COMPANY_LISTING_READY" | "NONE" | undefined;
-                semanticQuery?: string | null | undefined;
-                showOnSitemap?: boolean | null | undefined;
-                slug?: string[] | undefined;
-                stage?: string[] | undefined;
-                suppressNonOperating?: boolean | null | undefined;
-                suppressZeroTotalRaised?: boolean | null | undefined;
-                tag?: string[] | undefined;
-                textSearch?: string | null | undefined;
-                typeCustomer?: string[] | undefined;
-                typeModel?: string[] | undefined;
-                typeOwnership?: string[] | undefined;
-                typeRecord?: ("Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service")[] | undefined;
-                typeRevenue?: string[] | undefined;
-                typeTechnologyUsed?: string[] | undefined;
-                updatedAtRange?: {
-                    max?: string | null | undefined;
-                    min?: string | null | undefined;
-                } | null | undefined;
-                url?: string | null | undefined;
-                urlDomain?: string | null | undefined;
-                urlMatchMode?: "domain" | "hostPath" | undefined;
-                urlType?: "alternativeto" | "angellist" | "appstore" | "awsmarketplace" | "bloomberg" | "capterra" | "changelog" | "chromewebstore" | "crates" | "crunchbase" | "discord" | "dockerhub" | "documentation" | "facebook" | "forum" | "g2" | "gartnerpeerinsights" | "getapp" | "github" | "glassdoor" | "googleplay" | "homebrew" | "hubspotmarketplace" | "instagram" | "linkedin" | "maven" | "morningstar" | "nasdaq" | "npm" | "nyse" | "pitchbook" | "producthunt" | "pypi" | "roadmap" | "salesforceappexchange" | "slackappdirectory" | "sourceforge" | "statuspage" | "subreddit" | "support" | "theorg" | "tiktok" | "trustpilot" | "trustradius" | "twitter" | "vscodemarketplace" | "website" | "wellfound" | "wikipedia" | "ycombinator" | "youtube" | null | undefined;
-                yearFoundedRange?: {
-                    max?: number | null | undefined;
-                    min?: number | null | undefined;
-                }[] | undefined;
-            };
-            orderBy?: {
-                id?: string | null | undefined;
-                label?: string | null | undefined;
-                value: string;
-            } | null | undefined;
-            page?: number | null | undefined;
-            personFilter?: {
-                arrayFilter?: {
-                    amountInvestedRange?: {
-                        max?: number | null | undefined;
-                        min?: number | null | undefined;
-                    }[] | null | undefined;
-                    amountRaisedRange?: {
-                        max?: number | null | undefined;
-                        min?: number | null | undefined;
-                    }[] | null | undefined;
-                    entityName?: string[] | null | undefined;
-                    investedCompany?: string[] | null | undefined;
-                    personTitle?: string[] | null | undefined;
-                    round?: string[] | null | undefined;
-                    totalInvestmentCount?: {
-                        max?: number | null | undefined;
-                        min?: number | null | undefined;
-                    }[] | null | undefined;
-                    typeRecord?: ("Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service")[] | null | undefined;
-                } | undefined;
-                entityId?: string | null | undefined;
-                entitySlug?: string | null | undefined;
-                firstName?: string | null | undefined;
-                includeAddress?: boolean | null | undefined;
-                includeUrl?: boolean | null | undefined;
-                investorActivity?: {
-                    averageAmountInvestedUsdRange?: {
-                        max?: number | null | undefined;
-                        min?: number | null | undefined;
-                    }[] | undefined;
-                    largestAmountInvestedUsdRange?: {
-                        max?: number | null | undefined;
-                        min?: number | null | undefined;
-                    }[] | undefined;
-                    smallestAmountInvestedUsdRange?: {
-                        max?: number | null | undefined;
-                        min?: number | null | undefined;
-                    }[] | undefined;
-                    totalAmountInvestedUsdRange?: {
-                        max?: number | null | undefined;
-                        min?: number | null | undefined;
-                    }[] | undefined;
-                    totalInvestmentRange?: {
-                        max?: number | null | undefined;
-                        min?: number | null | undefined;
-                    }[] | undefined;
-                } | undefined;
-                isCurrent?: boolean | null | undefined;
-                lastName?: string | null | undefined;
-                letter?: string | null | undefined;
-                role?: string | null | undefined;
-                search?: string | null | undefined;
-                semanticQuery?: string | null | undefined;
-                status?: string | null | undefined;
-            } | null | undefined;
-            size?: number | null | undefined;
-        };
-        updatedAt: string;
-    }, unknown>>>>;
-    empty: z.ZodOptional<z.ZodBoolean>;
-    first: z.ZodOptional<z.ZodBoolean>;
-    last: z.ZodOptional<z.ZodBoolean>;
-    number: z.ZodOptional<z.ZodInt>;
-    numberOfElements: z.ZodOptional<z.ZodInt>;
-    pageable: z.ZodOptional<z.ZodObject<{
-        offset: z.ZodOptional<z.ZodNumber>;
-        paged: z.ZodOptional<z.ZodBoolean>;
-        pageNumber: z.ZodOptional<z.ZodInt>;
-        pageSize: z.ZodOptional<z.ZodInt>;
-        sort: z.ZodOptional<z.ZodObject<{
-            empty: z.ZodOptional<z.ZodBoolean>;
-            sorted: z.ZodOptional<z.ZodBoolean>;
-            unsorted: z.ZodOptional<z.ZodBoolean>;
-        }, z.core.$strip>>;
-        unpaged: z.ZodOptional<z.ZodBoolean>;
-    }, z.core.$strip>>;
-    size: z.ZodOptional<z.ZodInt>;
-    sort: z.ZodOptional<z.ZodObject<{
-        empty: z.ZodOptional<z.ZodBoolean>;
-        sorted: z.ZodOptional<z.ZodBoolean>;
-        unsorted: z.ZodOptional<z.ZodBoolean>;
-    }, z.core.$strip>>;
-    totalElements: z.ZodOptional<z.ZodNumber>;
-    totalPages: z.ZodOptional<z.ZodInt>;
-}, z.core.$strip>;
-type PageSavedViewDefinition = z.infer<typeof PageSavedViewSchemaDefinition>;
-/**
- * @openapiSchema PageSavedView
- * @endpoint GET /v1/app/saved-views
- * @contractShape pagination.page-saved-view
- * @contractRole canonical
- * @ownerModule pagination/schemas.ts
- */
-export declare const PageSavedViewSchema: z.ZodType<PageSavedViewDefinition>;
-export type PageSavedView = z.infer<typeof PageSavedViewSchema>;
 declare const PageSearchDuplicateCandidateScoreSchemaDefinition: z.ZodObject<{
     content: z.ZodOptional<z.ZodArray<z.ZodType<{
         externalId?: string | null | undefined;
         id: string;
-        isHidden?: boolean | null | undefined;
         name?: string | null | undefined;
         operatingStatus?: string | null | undefined;
         publicPath?: string | null | undefined;
         reason: string[];
         score: number;
-        showOnSitemap?: boolean | null | undefined;
         slug?: string | null | undefined;
         typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
     }, unknown, z.core.$ZodTypeInternals<{
         externalId?: string | null | undefined;
         id: string;
-        isHidden?: boolean | null | undefined;
         name?: string | null | undefined;
         operatingStatus?: string | null | undefined;
         publicPath?: string | null | undefined;
         reason: string[];
         score: number;
-        showOnSitemap?: boolean | null | undefined;
         slug?: string | null | undefined;
         typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
     }, unknown>>>>;
@@ -14641,188 +11887,6 @@ type PageSearchDuplicateCandidateScoreDefinition = z.infer<typeof PageSearchDupl
  */
 export declare const PageSearchDuplicateCandidateScoreSchema: z.ZodType<PageSearchDuplicateCandidateScoreDefinition>;
 export type PageSearchDuplicateCandidateScore = z.infer<typeof PageSearchDuplicateCandidateScoreSchema>;
-declare const PageSitemapUrlSlotSchemaDefinition: z.ZodObject<{
-    content: z.ZodOptional<z.ZodArray<z.ZodType<{
-        family: "blogArticle" | "blogCategory" | "blogTag" | "companyImage" | "companyUrl" | "governmentUrl" | "investorUrl" | "locationCity" | "locationCountry" | "locationState" | "news" | "nonprofitUrl" | "person" | "personImage";
-        imagePath?: string | null | undefined;
-        lastUpdatedAt: string;
-        path: string;
-        slotKey: string;
-        slug: string;
-    }, unknown, z.core.$ZodTypeInternals<{
-        family: "blogArticle" | "blogCategory" | "blogTag" | "companyImage" | "companyUrl" | "governmentUrl" | "investorUrl" | "locationCity" | "locationCountry" | "locationState" | "news" | "nonprofitUrl" | "person" | "personImage";
-        imagePath?: string | null | undefined;
-        lastUpdatedAt: string;
-        path: string;
-        slotKey: string;
-        slug: string;
-    }, unknown>>>>;
-    empty: z.ZodOptional<z.ZodBoolean>;
-    first: z.ZodOptional<z.ZodBoolean>;
-    last: z.ZodOptional<z.ZodBoolean>;
-    number: z.ZodOptional<z.ZodInt>;
-    numberOfElements: z.ZodOptional<z.ZodInt>;
-    pageable: z.ZodOptional<z.ZodObject<{
-        offset: z.ZodOptional<z.ZodNumber>;
-        paged: z.ZodOptional<z.ZodBoolean>;
-        pageNumber: z.ZodOptional<z.ZodInt>;
-        pageSize: z.ZodOptional<z.ZodInt>;
-        sort: z.ZodOptional<z.ZodObject<{
-            empty: z.ZodOptional<z.ZodBoolean>;
-            sorted: z.ZodOptional<z.ZodBoolean>;
-            unsorted: z.ZodOptional<z.ZodBoolean>;
-        }, z.core.$strip>>;
-        unpaged: z.ZodOptional<z.ZodBoolean>;
-    }, z.core.$strip>>;
-    size: z.ZodOptional<z.ZodInt>;
-    sort: z.ZodOptional<z.ZodObject<{
-        empty: z.ZodOptional<z.ZodBoolean>;
-        sorted: z.ZodOptional<z.ZodBoolean>;
-        unsorted: z.ZodOptional<z.ZodBoolean>;
-    }, z.core.$strip>>;
-    totalElements: z.ZodOptional<z.ZodNumber>;
-    totalPages: z.ZodOptional<z.ZodInt>;
-}, z.core.$strip>;
-type PageSitemapUrlSlotDefinition = z.infer<typeof PageSitemapUrlSlotSchemaDefinition>;
-/**
- * @openapiSchema PageSitemapUrlSlot
- * @endpoint GET /v1/sitemap/url-slots
- * @contractShape pagination.page-sitemap-url-slot
- * @contractRole canonical
- * @ownerModule pagination/schemas.ts
- */
-export declare const PageSitemapUrlSlotSchema: z.ZodType<PageSitemapUrlSlotDefinition>;
-export type PageSitemapUrlSlot = z.infer<typeof PageSitemapUrlSlotSchema>;
-declare const PageSocialMediaPostSchemaDefinition: z.ZodObject<{
-    content: z.ZodOptional<z.ZodArray<z.ZodType<{
-        attemptCount: number;
-        createdAt: string;
-        eventType: "acquisition" | "fundraiseRound" | "newCompany" | "newsArticle";
-        externalPostId?: string | null | undefined;
-        id: number;
-        lastError?: string | null | undefined;
-        postedAt?: string | null | undefined;
-        skipReason?: string | null | undefined;
-        sourceId: string;
-        status: "failed" | "pending" | "posted" | "skipped";
-        updatedAt: string;
-    }, unknown, z.core.$ZodTypeInternals<{
-        attemptCount: number;
-        createdAt: string;
-        eventType: "acquisition" | "fundraiseRound" | "newCompany" | "newsArticle";
-        externalPostId?: string | null | undefined;
-        id: number;
-        lastError?: string | null | undefined;
-        postedAt?: string | null | undefined;
-        skipReason?: string | null | undefined;
-        sourceId: string;
-        status: "failed" | "pending" | "posted" | "skipped";
-        updatedAt: string;
-    }, unknown>>>>;
-    empty: z.ZodOptional<z.ZodBoolean>;
-    first: z.ZodOptional<z.ZodBoolean>;
-    last: z.ZodOptional<z.ZodBoolean>;
-    number: z.ZodOptional<z.ZodInt>;
-    numberOfElements: z.ZodOptional<z.ZodInt>;
-    pageable: z.ZodOptional<z.ZodObject<{
-        offset: z.ZodOptional<z.ZodNumber>;
-        paged: z.ZodOptional<z.ZodBoolean>;
-        pageNumber: z.ZodOptional<z.ZodInt>;
-        pageSize: z.ZodOptional<z.ZodInt>;
-        sort: z.ZodOptional<z.ZodObject<{
-            empty: z.ZodOptional<z.ZodBoolean>;
-            sorted: z.ZodOptional<z.ZodBoolean>;
-            unsorted: z.ZodOptional<z.ZodBoolean>;
-        }, z.core.$strip>>;
-        unpaged: z.ZodOptional<z.ZodBoolean>;
-    }, z.core.$strip>>;
-    size: z.ZodOptional<z.ZodInt>;
-    sort: z.ZodOptional<z.ZodObject<{
-        empty: z.ZodOptional<z.ZodBoolean>;
-        sorted: z.ZodOptional<z.ZodBoolean>;
-        unsorted: z.ZodOptional<z.ZodBoolean>;
-    }, z.core.$strip>>;
-    totalElements: z.ZodOptional<z.ZodNumber>;
-    totalPages: z.ZodOptional<z.ZodInt>;
-}, z.core.$strip>;
-type PageSocialMediaPostDefinition = z.infer<typeof PageSocialMediaPostSchemaDefinition>;
-/**
- * @openapiSchema PageSocialMediaPost
- * @endpoint GET /v1/social/posts
- * @contractShape pagination.page-social-media-post
- * @contractRole canonical
- * @ownerModule pagination/schemas.ts
- */
-export declare const PageSocialMediaPostSchema: z.ZodType<PageSocialMediaPostDefinition>;
-export type PageSocialMediaPost = z.infer<typeof PageSocialMediaPostSchema>;
-declare const PageSourceDocumentListSchemaDefinition: z.ZodObject<{
-    content: z.ZodOptional<z.ZodArray<z.ZodType<{
-        cacheHitCount: number;
-        createdAt: string;
-        documentType: string;
-        expiresAt?: string | null | undefined;
-        httpStatus?: number | null | undefined;
-        id: string;
-        lastAccessedAt?: string | null | undefined;
-        provider: string;
-        providerRequestId?: string | null | undefined;
-        rawByteCount?: number | null | undefined;
-        rawCharset?: string | null | undefined;
-        rawMediaType?: string | null | undefined;
-        sourceKey: string;
-        upstreamContentEncoding?: string | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
-        cacheHitCount: number;
-        createdAt: string;
-        documentType: string;
-        expiresAt?: string | null | undefined;
-        httpStatus?: number | null | undefined;
-        id: string;
-        lastAccessedAt?: string | null | undefined;
-        provider: string;
-        providerRequestId?: string | null | undefined;
-        rawByteCount?: number | null | undefined;
-        rawCharset?: string | null | undefined;
-        rawMediaType?: string | null | undefined;
-        sourceKey: string;
-        upstreamContentEncoding?: string | null | undefined;
-    }, unknown>>>>;
-    empty: z.ZodOptional<z.ZodBoolean>;
-    first: z.ZodOptional<z.ZodBoolean>;
-    last: z.ZodOptional<z.ZodBoolean>;
-    number: z.ZodOptional<z.ZodInt>;
-    numberOfElements: z.ZodOptional<z.ZodInt>;
-    pageable: z.ZodOptional<z.ZodObject<{
-        offset: z.ZodOptional<z.ZodNumber>;
-        paged: z.ZodOptional<z.ZodBoolean>;
-        pageNumber: z.ZodOptional<z.ZodInt>;
-        pageSize: z.ZodOptional<z.ZodInt>;
-        sort: z.ZodOptional<z.ZodObject<{
-            empty: z.ZodOptional<z.ZodBoolean>;
-            sorted: z.ZodOptional<z.ZodBoolean>;
-            unsorted: z.ZodOptional<z.ZodBoolean>;
-        }, z.core.$strip>>;
-        unpaged: z.ZodOptional<z.ZodBoolean>;
-    }, z.core.$strip>>;
-    size: z.ZodOptional<z.ZodInt>;
-    sort: z.ZodOptional<z.ZodObject<{
-        empty: z.ZodOptional<z.ZodBoolean>;
-        sorted: z.ZodOptional<z.ZodBoolean>;
-        unsorted: z.ZodOptional<z.ZodBoolean>;
-    }, z.core.$strip>>;
-    totalElements: z.ZodOptional<z.ZodNumber>;
-    totalPages: z.ZodOptional<z.ZodInt>;
-}, z.core.$strip>;
-type PageSourceDocumentListDefinition = z.infer<typeof PageSourceDocumentListSchemaDefinition>;
-/**
- * @openapiSchema PageSourceDocumentList
- * @endpoint GET /v1/research/source-documents
- * @contractShape pagination.page-source-document-list
- * @contractRole canonical
- * @ownerModule pagination/schemas.ts
- */
-export declare const PageSourceDocumentListSchema: z.ZodType<PageSourceDocumentListDefinition>;
-export type PageSourceDocumentList = z.infer<typeof PageSourceDocumentListSchema>;
 declare const PageUniqueIdSchemaDefinition: z.ZodObject<{
     content: z.ZodOptional<z.ZodArray<z.ZodType<{
         createdAt: string;
@@ -14929,8 +11993,6 @@ declare const PageUrlSlugRedirectSchemaDefinition: z.ZodObject<{
 type PageUrlSlugRedirectDefinition = z.infer<typeof PageUrlSlugRedirectSchemaDefinition>;
 /**
  * @openapiSchema PageUrlSlugRedirect
- * @endpoint GET /v1/app/blog/articles/{id}/slug/redirects
- * @endpoint GET /v1/app/pages/{id}/slug/redirects
  * @endpoint GET /v1/entities/{entityId}/slug/redirects
  * @endpoint GET /v1/news/{newsId}/slug/redirects
  * @endpoint GET /v1/people/{personId}/slug/redirects
@@ -14940,75 +12002,5 @@ type PageUrlSlugRedirectDefinition = z.infer<typeof PageUrlSlugRedirectSchemaDef
  */
 export declare const PageUrlSlugRedirectSchema: z.ZodType<PageUrlSlugRedirectDefinition>;
 export type PageUrlSlugRedirect = z.infer<typeof PageUrlSlugRedirectSchema>;
-declare const PageWebSiteSchemaDefinition: z.ZodObject<{
-    content: z.ZodOptional<z.ZodArray<z.ZodType<{
-        createdAt?: string | null | undefined;
-        domain: string;
-        id?: number | null | undefined;
-        owner: {
-            entityId?: string | null | undefined;
-            personId?: string | null | undefined;
-        };
-        pages: Record<string, {
-            comparisonTarget?: string[] | null | undefined;
-            kind?: string | null | undefined;
-            label?: string | null | undefined;
-            offDomain?: boolean | null | undefined;
-            url: string;
-        }[]>;
-        updatedAt?: string | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
-        createdAt?: string | null | undefined;
-        domain: string;
-        id?: number | null | undefined;
-        owner: {
-            entityId?: string | null | undefined;
-            personId?: string | null | undefined;
-        };
-        pages: Record<string, {
-            comparisonTarget?: string[] | null | undefined;
-            kind?: string | null | undefined;
-            label?: string | null | undefined;
-            offDomain?: boolean | null | undefined;
-            url: string;
-        }[]>;
-        updatedAt?: string | null | undefined;
-    }, unknown>>>>;
-    empty: z.ZodOptional<z.ZodBoolean>;
-    first: z.ZodOptional<z.ZodBoolean>;
-    last: z.ZodOptional<z.ZodBoolean>;
-    number: z.ZodOptional<z.ZodInt>;
-    numberOfElements: z.ZodOptional<z.ZodInt>;
-    pageable: z.ZodOptional<z.ZodObject<{
-        offset: z.ZodOptional<z.ZodNumber>;
-        paged: z.ZodOptional<z.ZodBoolean>;
-        pageNumber: z.ZodOptional<z.ZodInt>;
-        pageSize: z.ZodOptional<z.ZodInt>;
-        sort: z.ZodOptional<z.ZodObject<{
-            empty: z.ZodOptional<z.ZodBoolean>;
-            sorted: z.ZodOptional<z.ZodBoolean>;
-            unsorted: z.ZodOptional<z.ZodBoolean>;
-        }, z.core.$strip>>;
-        unpaged: z.ZodOptional<z.ZodBoolean>;
-    }, z.core.$strip>>;
-    size: z.ZodOptional<z.ZodInt>;
-    sort: z.ZodOptional<z.ZodObject<{
-        empty: z.ZodOptional<z.ZodBoolean>;
-        sorted: z.ZodOptional<z.ZodBoolean>;
-        unsorted: z.ZodOptional<z.ZodBoolean>;
-    }, z.core.$strip>>;
-    totalElements: z.ZodOptional<z.ZodNumber>;
-    totalPages: z.ZodOptional<z.ZodInt>;
-}, z.core.$strip>;
-type PageWebSiteDefinition = z.infer<typeof PageWebSiteSchemaDefinition>;
-/**
- * @openapiSchema PageWebSite
- * @endpoint GET /v1/entities/{entityId}/sites
- * @contractShape pagination.page-web-site
- * @contractRole canonical
- * @ownerModule pagination/schemas.ts
- */
-export declare const PageWebSiteSchema: z.ZodType<PageWebSiteDefinition>;
-export type PageWebSite = z.infer<typeof PageWebSiteSchema>;
 export {};
 //# sourceMappingURL=schemas.d.ts.map

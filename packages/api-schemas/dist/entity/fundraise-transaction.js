@@ -40,7 +40,6 @@ const EntityFundraiseTransactionSchemaDefinition = z.object({
  * @endpoint GET /v1/entities/{entityId}/products/suggestions
  * @endpoint GET /v1/entities/{entityId}/relationships/suggestions
  * @endpoint GET /v1/entities/detail/fundraise-rounds/{transactionId}
- * @endpoint POST /v1/entities
  * @endpoint POST /v1/entities/batch
  * @endpoint POST /v1/entities/detail
  * @endpoint POST /v1/entities/detail/batch
@@ -48,6 +47,7 @@ const EntityFundraiseTransactionSchemaDefinition = z.object({
  * @endpoint POST /v1/entities/detail/fundraise-rounds
  * @endpoint POST /v1/entities/detail/resolve
  * @endpoint POST /v1/entities/natural-search
+ * @endpoint POST /v1/entities/search
  * @endpoint POST /v1/search/all
  * @endpoint PATCH /v1/entities/detail
  * @endpoint PATCH /v1/entities/detail/fundraise-rounds/{transactionId}

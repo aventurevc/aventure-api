@@ -36,8 +36,6 @@ const AddressAssociationSchemaDefinition = z.object({
  * @endpoint GET /v1/people/{personId}/entities
  * @endpoint GET /v1/people/{personId}/entities/{associationId}
  * @endpoint GET /v1/people/{personId}/graph
- * @endpoint POST /v1/address/validation
- * @endpoint POST /v1/entities
  * @endpoint POST /v1/entities/{entityId}/addresses
  * @endpoint POST /v1/entities/batch
  * @endpoint POST /v1/entities/detail
@@ -45,6 +43,7 @@ const AddressAssociationSchemaDefinition = z.object({
  * @endpoint POST /v1/entities/detail/full
  * @endpoint POST /v1/entities/detail/resolve
  * @endpoint POST /v1/entities/natural-search
+ * @endpoint POST /v1/entities/search
  * @endpoint POST /v1/people/{personId}/addresses
  * @endpoint POST /v1/people/{personId}/entities
  * @endpoint POST /v1/people/batch

@@ -4,21 +4,16 @@ import { z } from "zod/v4";
  *
  * @openapiSchema EntityPersonOwner
  * @standardProblemResponse
- * @usedBySchema AddressLookupContextSchema
  * @usedBySchema BlogPostSchema
- * @usedBySchema CrawlRunSchema
  * @usedBySchema EntityFundraiseInvestorJoinSchema
  * @usedBySchema EntityTextSchema
  * @usedBySchema EntityUrlLinkSchema
- * @usedBySchema ExternalSocialPostMutationSchema
- * @usedBySchema ExternalSocialPostSchema
  * @usedBySchema MediaScreenshotSchema
  * @usedBySchema NewsFilterSchema
  * @usedBySchema ResolvedHandleSchema
  * @usedBySchema UniqueIdSchema
  * @usedBySchema UrlDuplicateConflictSchema
  * @usedBySchema UrlDuplicateJoinSchema
- * @usedBySchema WebSiteSchema
  * @contractShape entity.person-owner
  * @contractRole canonical
  * @ownerSourceFile src/main/kotlin/vc/aventure/domain/model/identity/EntityPersonOwner.kt

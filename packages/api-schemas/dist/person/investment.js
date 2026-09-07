@@ -24,6 +24,7 @@ const PersonInvestmentSchemaDefinition = z.object({
  * @endpoint GET /v1/entities/detail/investors
  * @endpoint GET /v1/entities/detail/person-investors
  * @endpoint GET /v1/people/detail
+ * @endpoint GET /v1/people/detail/investments
  * @endpoint POST /v1/entities/batch
  * @endpoint POST /v1/entities/detail
  * @endpoint POST /v1/entities/detail/batch
@@ -36,6 +37,7 @@ const PersonInvestmentSchemaDefinition = z.object({
  * @endpoint PATCH /v1/people/detail
  * @endpoint PUT /v1/entities/detail
  * @endpoint PUT /v1/people/detail
+ * @usedBySchema PagePersonInvestmentSchema
  * @usedBySchema PersonDetailSchema
  * @contractShape person.investment
  * @contractRole canonical

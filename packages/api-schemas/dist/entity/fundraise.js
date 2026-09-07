@@ -9,6 +9,7 @@ import { EntityImageSchema } from "./image.js";
  * @endpoint GET /v1/entities/detail/investors
  * @endpoint GET /v1/entities/detail/person-investors
  * @endpoint GET /v1/people/detail
+ * @endpoint GET /v1/people/detail/investments
  * @endpoint POST /v1/entities/batch
  * @endpoint POST /v1/entities/detail
  * @endpoint POST /v1/entities/detail/batch

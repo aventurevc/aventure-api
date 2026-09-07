@@ -31,21 +31,6 @@ declare const EntityResearchSchemaDefinition: z.ZodObject<{
                 productServiceSlug: string[];
             } | null | undefined;
             slug: string;
-            source?: {
-                changedAt?: string | null | undefined;
-                dataSourceUpdatedAt?: string | null | undefined;
-                detail?: string | null | undefined;
-                kind?: string | null | undefined;
-                pendingApproval?: number | null | undefined;
-                sourceId?: string | null | undefined;
-                status?: string | null | undefined;
-            } | null | undefined;
-            status?: {
-                isFeatured: boolean;
-                isHidden: boolean;
-                isVerified: boolean;
-                showOnSitemap: boolean;
-            } | undefined;
             typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
             updatedAt?: string | null | undefined;
         };
@@ -86,21 +71,6 @@ declare const EntityResearchSchemaDefinition: z.ZodObject<{
                 productServiceSlug: string[];
             } | null | undefined;
             slug: string;
-            source?: {
-                changedAt?: string | null | undefined;
-                dataSourceUpdatedAt?: string | null | undefined;
-                detail?: string | null | undefined;
-                kind?: string | null | undefined;
-                pendingApproval?: number | null | undefined;
-                sourceId?: string | null | undefined;
-                status?: string | null | undefined;
-            } | null | undefined;
-            status?: {
-                isFeatured: boolean;
-                isHidden: boolean;
-                isVerified: boolean;
-                showOnSitemap: boolean;
-            } | undefined;
             typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
             updatedAt?: string | null | undefined;
         };
@@ -125,22 +95,6 @@ declare const EntityResearchSchemaDefinition: z.ZodObject<{
         discreteValue?: number | null | undefined;
         entityId: string;
         id: number;
-        source?: string | null | undefined;
-        sourceRecord?: {
-            changedAt?: string | null | undefined;
-            operation?: "CREATE" | "DELETE" | "UPDATE" | null | undefined;
-            provenanceSource?: {
-                actorType?: "agent" | "employee" | undefined;
-                agentChassis?: string | null | undefined;
-                agentModel?: string | null | undefined;
-                sourceDetail: string;
-                sourceProvider?: string | null | undefined;
-                sourceProviderId?: string | null | undefined;
-                sourceProviderSlug?: string | null | undefined;
-                sourceType: "api" | "aventureStaff" | "blogArticle" | "firstPartyWebsite" | "import" | "llm" | "manual" | "newsArticle" | "relatedPartyWebsite" | "requestChangeForm" | "thirdPartyWebsite";
-            } | null | undefined;
-            source?: string | null | undefined;
-        } | null | undefined;
         textValue?: string | null | undefined;
         typeResearchDetail: string;
         updatedAt?: string | null | undefined;
@@ -160,22 +114,6 @@ declare const EntityResearchSchemaDefinition: z.ZodObject<{
         discreteValue?: number | null | undefined;
         entityId: string;
         id: number;
-        source?: string | null | undefined;
-        sourceRecord?: {
-            changedAt?: string | null | undefined;
-            operation?: "CREATE" | "DELETE" | "UPDATE" | null | undefined;
-            provenanceSource?: {
-                actorType?: "agent" | "employee" | undefined;
-                agentChassis?: string | null | undefined;
-                agentModel?: string | null | undefined;
-                sourceDetail: string;
-                sourceProvider?: string | null | undefined;
-                sourceProviderId?: string | null | undefined;
-                sourceProviderSlug?: string | null | undefined;
-                sourceType: "api" | "aventureStaff" | "blogArticle" | "firstPartyWebsite" | "import" | "llm" | "manual" | "newsArticle" | "relatedPartyWebsite" | "requestChangeForm" | "thirdPartyWebsite";
-            } | null | undefined;
-            source?: string | null | undefined;
-        } | null | undefined;
         textValue?: string | null | undefined;
         typeResearchDetail: string;
         updatedAt?: string | null | undefined;
@@ -194,41 +132,6 @@ declare const EntityResearchSchemaDefinition: z.ZodObject<{
         id: z.ZodInt;
         isCurrent: z.ZodBoolean;
         isPrimary: z.ZodBoolean;
-        source: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-        sourceRecord: z.ZodOptional<z.ZodNullable<z.ZodObject<{
-            changedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
-            operation: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
-                CREATE: "CREATE";
-                DELETE: "DELETE";
-                UPDATE: "UPDATE";
-            }>>>;
-            provenanceSource: z.ZodOptional<z.ZodNullable<z.ZodObject<{
-                actorType: z.ZodOptional<z.ZodEnum<{
-                    agent: "agent";
-                    employee: "employee";
-                }>>;
-                agentChassis: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-                agentModel: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-                sourceDetail: z.ZodString;
-                sourceProvider: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-                sourceProviderId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-                sourceProviderSlug: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-                sourceType: z.ZodEnum<{
-                    api: "api";
-                    aventureStaff: "aventureStaff";
-                    blogArticle: "blogArticle";
-                    firstPartyWebsite: "firstPartyWebsite";
-                    import: "import";
-                    llm: "llm";
-                    manual: "manual";
-                    newsArticle: "newsArticle";
-                    relatedPartyWebsite: "relatedPartyWebsite";
-                    requestChangeForm: "requestChangeForm";
-                    thirdPartyWebsite: "thirdPartyWebsite";
-                }>;
-            }, z.core.$strip>>>;
-            source: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-        }, z.core.$strip>>>;
         text: z.ZodString;
         textType: z.ZodString;
         updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;

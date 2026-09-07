@@ -18,13 +18,9 @@ const UrlSlugRedirectSchemaDefinition = z.object({
  * URL slug redirect row
  *
  * @openapiSchema UrlSlugRedirect
- * @endpoint GET /v1/app/blog/articles/{id}/slug/redirects
- * @endpoint GET /v1/app/pages/{id}/slug/redirects
  * @endpoint GET /v1/entities/{entityId}/slug/redirects
  * @endpoint GET /v1/news/{newsId}/slug/redirects
  * @endpoint GET /v1/people/{personId}/slug/redirects
- * @endpoint PATCH /v1/app/blog/articles/{id}/slug
- * @endpoint PATCH /v1/app/pages/{id}/slug
  * @endpoint PATCH /v1/entities/{entityId}/slug
  * @endpoint PATCH /v1/news/{newsId}/slug
  * @endpoint PATCH /v1/people/{personId}/slug

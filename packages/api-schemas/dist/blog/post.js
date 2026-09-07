@@ -35,7 +35,6 @@ const BlogPostSchemaDefinition = z.object({
  * External research-side blog post owned by exactly one entity or person. Unrelated to app.app_blog_article.
  *
  * @openapiSchema BlogPost
- * @endpoint GET /v1/research/blog-posts
  * @endpoint GET /v1/entities/{entityId}/blog-posts
  * @endpoint GET /v1/entities/{entityId}/blog-posts/{blogPostId}
  * @endpoint GET /v1/people/{personId}/blog-posts

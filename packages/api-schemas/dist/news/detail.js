@@ -1,6 +1,5 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
-import { DatasourceSourceMetadataSchema } from "../datasource/source-metadata.js";
 import { NewsSchema } from "./news.js";
 import { NewsResolvedEntityLinkSchema } from "./resolved-entity-link.js";
 import { NewsResolvedPersonLinkSchema } from "./resolved-person-link.js";
@@ -13,8 +12,6 @@ const NewsDetailSchemaDefinition = z.object({
     linkedContent: z.string().nullish(),
     /** Resolved person mentions — read-only display projections. News mutations attach people only via flat personId/personSlug values, never these nested objects. */
     personMentionResolved: z.array(NewsResolvedPersonLinkSchema),
-    /** Grouped source/provenance state for privileged responses */
-    source: DatasourceSourceMetadataSchema.optional(),
 });
 /**
  * Canonical news detail owner

@@ -24,41 +24,6 @@ declare const EntityResearchDetailSchemaDefinition: z.ZodObject<{
     discreteValue: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
     entityId: z.ZodUUID;
     id: z.ZodInt;
-    source: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-    sourceRecord: z.ZodOptional<z.ZodNullable<z.ZodObject<{
-        changedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
-        operation: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
-            CREATE: "CREATE";
-            DELETE: "DELETE";
-            UPDATE: "UPDATE";
-        }>>>;
-        provenanceSource: z.ZodOptional<z.ZodNullable<z.ZodObject<{
-            actorType: z.ZodOptional<z.ZodEnum<{
-                agent: "agent";
-                employee: "employee";
-            }>>;
-            agentChassis: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-            agentModel: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-            sourceDetail: z.ZodString;
-            sourceProvider: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-            sourceProviderId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-            sourceProviderSlug: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-            sourceType: z.ZodEnum<{
-                api: "api";
-                aventureStaff: "aventureStaff";
-                blogArticle: "blogArticle";
-                firstPartyWebsite: "firstPartyWebsite";
-                import: "import";
-                llm: "llm";
-                manual: "manual";
-                newsArticle: "newsArticle";
-                relatedPartyWebsite: "relatedPartyWebsite";
-                requestChangeForm: "requestChangeForm";
-                thirdPartyWebsite: "thirdPartyWebsite";
-            }>;
-        }, z.core.$strip>>>;
-        source: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-    }, z.core.$strip>>>;
     textValue: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     typeResearchDetail: z.ZodString;
     updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
@@ -86,7 +51,6 @@ type EntityResearchDetailDefinition = z.infer<typeof EntityResearchDetailSchemaD
  * @endpoint GET /v1/entities/{entityId}/research
  * @endpoint GET /v1/entities/{entityId}/research/details
  * @endpoint GET /v1/entities/{entityId}/research/details/{detailId}
- * @endpoint POST /v1/entities
  * @endpoint POST /v1/entities/{entityId}/research/details
  * @endpoint POST /v1/entities/batch
  * @endpoint POST /v1/entities/detail
@@ -94,6 +58,7 @@ type EntityResearchDetailDefinition = z.infer<typeof EntityResearchDetailSchemaD
  * @endpoint POST /v1/entities/detail/full
  * @endpoint POST /v1/entities/detail/resolve
  * @endpoint POST /v1/entities/natural-search
+ * @endpoint POST /v1/entities/search
  * @endpoint POST /v1/search/all
  * @endpoint PATCH /v1/entities/detail
  * @endpoint PUT /v1/entities/{entityId}/research/details/{detailId}

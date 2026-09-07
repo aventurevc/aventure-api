@@ -15,7 +15,6 @@ import { z } from "zod/v4";
  * @endpoint GET /v1/entities/{entityId}/relationships/suggestions
  * @endpoint GET /v1/entities/detail/fundraise-rounds/{transactionId}
  * @endpoint GET /v1/people/{personId}/graph
- * @endpoint POST /v1/entities
  * @endpoint POST /v1/entities/batch
  * @endpoint POST /v1/entities/detail
  * @endpoint POST /v1/entities/detail/batch
@@ -23,6 +22,7 @@ import { z } from "zod/v4";
  * @endpoint POST /v1/entities/detail/fundraise-rounds
  * @endpoint POST /v1/entities/detail/resolve
  * @endpoint POST /v1/entities/natural-search
+ * @endpoint POST /v1/entities/search
  * @endpoint POST /v1/search/all
  * @endpoint PATCH /v1/entities/detail
  * @endpoint PATCH /v1/entities/detail/fundraise-rounds/{transactionId}
@@ -76,21 +76,6 @@ export declare const EntityFundraiseTransactionEntitySchema: z.ZodObject<{
             productServiceSlug: z.ZodArray<z.ZodString>;
         }, z.core.$strip>>>;
         slug: z.ZodString;
-        source: z.ZodOptional<z.ZodNullable<z.ZodObject<{
-            changedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
-            dataSourceUpdatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
-            detail: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-            kind: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-            pendingApproval: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
-            sourceId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-            status: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-        }, z.core.$strip>>>;
-        status: z.ZodOptional<z.ZodObject<{
-            isFeatured: z.ZodBoolean;
-            isHidden: z.ZodBoolean;
-            isVerified: z.ZodBoolean;
-            showOnSitemap: z.ZodBoolean;
-        }, z.core.$strip>>;
         typeRecord: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
             "Business Line": "Business Line";
             Company: "Company";

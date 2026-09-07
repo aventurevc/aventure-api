@@ -15,10 +15,7 @@ type AgentInstructionDefinition = z.infer<typeof AgentInstructionSchemaDefinitio
  * @openapiSchema AgentInstruction
  * @endpoint GET /v1/agents/instructions/{kind}/{name}
  * @endpoint GET /v1/agents/instructions/{kind}/{name}/versions/{version}
- * @endpoint GET /v1/harness/control-plane/runs/{runId}/usage
- * @endpoint GET /v1/harness/runs/{runId}/usage
  * @usedBySchema AgentInstructionDetailSchema
- * @usedBySchema HarnessRunUsageSchema
  * @contractShape agent.instruction
  * @contractRole canonical
  * @ownerSourceFile src/main/kotlin/vc/aventure/domain/model/agent/AgentInstruction.kt

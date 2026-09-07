@@ -32,21 +32,6 @@ declare const PersonInvestmentSchemaDefinition: z.ZodObject<{
                 productServiceSlug: string[];
             } | null | undefined;
             slug: string;
-            source?: {
-                changedAt?: string | null | undefined;
-                dataSourceUpdatedAt?: string | null | undefined;
-                detail?: string | null | undefined;
-                kind?: string | null | undefined;
-                pendingApproval?: number | null | undefined;
-                sourceId?: string | null | undefined;
-                status?: string | null | undefined;
-            } | null | undefined;
-            status?: {
-                isFeatured: boolean;
-                isHidden: boolean;
-                isVerified: boolean;
-                showOnSitemap: boolean;
-            } | undefined;
             typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
             updatedAt?: string | null | undefined;
         };
@@ -81,21 +66,6 @@ declare const PersonInvestmentSchemaDefinition: z.ZodObject<{
                 productServiceSlug: string[];
             } | null | undefined;
             slug: string;
-            source?: {
-                changedAt?: string | null | undefined;
-                dataSourceUpdatedAt?: string | null | undefined;
-                detail?: string | null | undefined;
-                kind?: string | null | undefined;
-                pendingApproval?: number | null | undefined;
-                sourceId?: string | null | undefined;
-                status?: string | null | undefined;
-            } | null | undefined;
-            status?: {
-                isFeatured: boolean;
-                isHidden: boolean;
-                isVerified: boolean;
-                showOnSitemap: boolean;
-            } | undefined;
             typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
             updatedAt?: string | null | undefined;
         };
@@ -150,6 +120,7 @@ type PersonInvestmentDefinition = z.infer<typeof PersonInvestmentSchemaDefinitio
  * @endpoint GET /v1/entities/detail/investors
  * @endpoint GET /v1/entities/detail/person-investors
  * @endpoint GET /v1/people/detail
+ * @endpoint GET /v1/people/detail/investments
  * @endpoint POST /v1/entities/batch
  * @endpoint POST /v1/entities/detail
  * @endpoint POST /v1/entities/detail/batch
@@ -162,6 +133,7 @@ type PersonInvestmentDefinition = z.infer<typeof PersonInvestmentSchemaDefinitio
  * @endpoint PATCH /v1/people/detail
  * @endpoint PUT /v1/entities/detail
  * @endpoint PUT /v1/people/detail
+ * @usedBySchema PagePersonInvestmentSchema
  * @usedBySchema PersonDetailSchema
  * @contractShape person.investment
  * @contractRole canonical

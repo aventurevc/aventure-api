@@ -5,7 +5,6 @@ import { DatasourceSourceMetadataSchema } from "../datasource/source-metadata.js
 import { EntityNameAliasPersonAliasTypeSchema } from "../entity/name-alias-person-alias-type.js";
 import { EntityTextBundleSchema } from "../entity/text-bundle.js";
 import { PersonImageSchema } from "./image.js";
-import { PersonVisibilityStatusSchema } from "./visibility-status.js";
 const PersonSchemaDefinition = z.object({
     /** Record creation timestamp */
     createdAt: z.iso.datetime({ offset: true }).nullish(),
@@ -35,8 +34,6 @@ const PersonSchemaDefinition = z.object({
         .regex(/^[a-z0-9_-]+$/)
         .max(255),
     source: DatasourceSourceMetadataSchema,
-    /** Privileged-only visibility and curation flags */
-    status: PersonVisibilityStatusSchema.optional(),
     suffix: z.string().nullish(),
     /** Grouped person text content */
     text: EntityTextBundleSchema,
@@ -60,12 +57,12 @@ const PersonSchemaDefinition = z.object({
  * @endpoint POST /v1/entities/detail/batch
  * @endpoint POST /v1/entities/detail/full
  * @endpoint POST /v1/entities/detail/resolve
- * @endpoint POST /v1/people
  * @endpoint POST /v1/people/batch
  * @endpoint POST /v1/people/detail
  * @endpoint POST /v1/people/detail/batch
  * @endpoint POST /v1/people/duplicate-check
  * @endpoint POST /v1/people/natural-search
+ * @endpoint POST /v1/people/search
  * @endpoint POST /v1/search/all
  * @endpoint PATCH /v1/entities/detail
  * @endpoint PATCH /v1/people/detail

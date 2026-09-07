@@ -7,16 +7,11 @@ import { IntRangeSchema } from "../int/range.js";
  * Array and range filters for person list endpoints
  *
  * @openapiSchema PersonListArrayFilter
- * @endpoint GET /v1/app/saved-views
  * @endpoint GET /v1/search/link
- * @endpoint GET /v1/app/saved-views/{savedViewId}
- * @endpoint POST /v1/app/saved-views
- * @endpoint POST /v1/people
  * @endpoint POST /v1/people/batch
  * @endpoint POST /v1/people/natural-search
+ * @endpoint POST /v1/people/search
  * @endpoint POST /v1/search/all
- * @endpoint PATCH /v1/app/saved-views/{savedViewId}
- * @endpoint DELETE /v1/app/saved-views/{savedViewId}
  * @usedBySchema PersonFilterSchema
  * @contractShape person.list-array-filter
  * @contractRole canonical

@@ -3,27 +3,7 @@ import { z } from "zod/v4";
  * Actor boundary for a provenance write event
  *
  * @openapiSchema DatasourceProvenanceActorType
- * @endpoint GET /v1/entities
- * @endpoint GET /v1/entities/detail
- * @endpoint GET /v1/entities/detail/investors
- * @endpoint GET /v1/entities/detail/similar
  * @endpoint GET /v1/provenance/history
- * @endpoint GET /v1/search/link
- * @endpoint GET /v1/entities/{entityId}/products/suggestions
- * @endpoint GET /v1/entities/{entityId}/relationships/suggestions
- * @endpoint GET /v1/entities/{entityId}/research
- * @endpoint GET /v1/entities/{entityId}/research/details
- * @endpoint GET /v1/entities/{entityId}/research/details/{detailId}
- * @endpoint GET /v1/entities/{entityId}/research/snippets
- * @endpoint GET /v1/entities/{entityId}/research/snippets/{snippetId}
- * @endpoint POST /v1/app/blog/articles
- * @endpoint POST /v1/deploy/pairs/{pairName}/promotions
- * @endpoint POST /v1/deploy/pairs/{pairName}/promotions/exact
- * @endpoint POST /v1/deploy/pairs/{pairName}/reverts
- * @endpoint POST /v1/deploy/targets/{targetName}/deployments
- * @endpoint POST /v1/deploy/targets/{targetName}/promotions
- * @endpoint POST /v1/deploy/targets/{targetName}/reverts
- * @endpoint POST /v1/entities
  * @endpoint POST /v1/entities/{entityId}/acquisitions
  * @endpoint POST /v1/entities/{entityId}/addresses
  * @endpoint POST /v1/entities/{entityId}/blog-posts
@@ -35,25 +15,20 @@ import { z } from "zod/v4";
  * @endpoint POST /v1/entities/{entityId}/texts
  * @endpoint POST /v1/entities/{entityId}/unique-ids
  * @endpoint POST /v1/entities/{entityId}/urls
- * @endpoint POST /v1/entities/batch
  * @endpoint POST /v1/entities/classifications/reconcile
  * @endpoint POST /v1/entities/detail
- * @endpoint POST /v1/entities/detail/batch
  * @endpoint POST /v1/entities/detail/financial/valuation
  * @endpoint POST /v1/entities/detail/full
  * @endpoint POST /v1/entities/detail/fundraise-investor-joins
  * @endpoint POST /v1/entities/detail/fundraise-rounds
  * @endpoint POST /v1/entities/detail/news
- * @endpoint POST /v1/entities/detail/resolve
  * @endpoint POST /v1/entities/merge
- * @endpoint POST /v1/entities/natural-search
  * @endpoint POST /v1/entities/relationships/join
  * @endpoint POST /v1/media/convert
  * @endpoint POST /v1/media/entity-logo/import
  * @endpoint POST /v1/media/logo-audit/jobs
  * @endpoint POST /v1/media/news-thumbnail/import
  * @endpoint POST /v1/media/retrofit/jobs
- * @endpoint POST /v1/media/screenshots
  * @endpoint POST /v1/media/upload
  * @endpoint POST /v1/news/detail
  * @endpoint POST /v1/people/{personId}/addresses
@@ -65,14 +40,10 @@ import { z } from "zod/v4";
  * @endpoint POST /v1/people/detail
  * @endpoint POST /v1/people/detail/news
  * @endpoint POST /v1/people/merge
- * @endpoint POST /v1/research/external-social-posts
- * @endpoint POST /v1/search/all
  * @endpoint POST /v1/sec/entities/{entityId}/address
  * @endpoint POST /v1/sec/entities/{entityId}/aliases
  * @endpoint POST /v1/sec/entities/{entityId}/exchange-urls
  * @endpoint POST /v1/sec/entities/{entityId}/identifiers
- * @endpoint PATCH /v1/app/blog/articles/{id}/slug
- * @endpoint PATCH /v1/app/pages/{id}/slug
  * @endpoint PATCH /v1/entities/{entityId}/acquisitions/{relationshipId}
  * @endpoint PATCH /v1/entities/{entityId}/addresses/{addressJoinId}
  * @endpoint PATCH /v1/entities/{entityId}/blog-posts/{blogPostId}
@@ -102,15 +73,11 @@ import { z } from "zod/v4";
  * @endpoint PATCH /v1/people/{personId}/urls/{urlId}
  * @endpoint PATCH /v1/people/detail
  * @endpoint PATCH /v1/people/detail/news/{newsId}
- * @endpoint PATCH /v1/research/external-social-posts/{externalSocialPostId}
- * @endpoint PUT /v1/app/blog/articles/{id}
- * @endpoint PUT /v1/app/blog/articles/by-slug/{slug}
- * @endpoint PUT /v1/app/pages/{id}
- * @endpoint PUT /v1/app/pages/by-slug/{slug}
  * @endpoint PUT /v1/entities/{entityId}/acquisitions/{relationshipId}
  * @endpoint PUT /v1/entities/{entityId}/addresses/{addressJoinId}
  * @endpoint PUT /v1/entities/{entityId}/blog-posts/{blogPostId}
  * @endpoint PUT /v1/entities/{entityId}/classifications/{classificationId}
+ * @endpoint PUT /v1/entities/{entityId}/fundraise-investor-joins/{joinId}
  * @endpoint PUT /v1/entities/{entityId}/operating-status
  * @endpoint PUT /v1/entities/{entityId}/research/details/{detailId}
  * @endpoint PUT /v1/entities/{entityId}/research/snippets/{snippetId}
@@ -119,7 +86,6 @@ import { z } from "zod/v4";
  * @endpoint PUT /v1/entities/detail
  * @endpoint PUT /v1/entities/detail/financial/valuation/{detailId}
  * @endpoint PUT /v1/entities/detail/financial/valuation/{year}/{month}
- * @endpoint PUT /v1/entities/detail/fundraise-investor-joins
  * @endpoint PUT /v1/entities/detail/fundraise-rounds/{transactionId}
  * @endpoint PUT /v1/entities/detail/news/{newsId}
  * @endpoint PUT /v1/news/detail
@@ -130,9 +96,6 @@ import { z } from "zod/v4";
  * @endpoint PUT /v1/people/{personId}/urls/{urlId}
  * @endpoint PUT /v1/people/detail
  * @endpoint PUT /v1/people/detail/news/{newsId}
- * @endpoint PUT /v1/research/external-social-posts/{externalSocialPostId}
- * @endpoint DELETE /v1/app/blog/articles/{id}/slug/redirects/{redirectId}
- * @endpoint DELETE /v1/app/pages/{id}/slug/redirects/{redirectId}
  * @endpoint DELETE /v1/entities/{entityId}/acquisitions/{relationshipId}
  * @endpoint DELETE /v1/entities/{entityId}/addresses/{addressJoinId}
  * @endpoint DELETE /v1/entities/{entityId}/blog-posts/{blogPostId}
@@ -163,7 +126,6 @@ import { z } from "zod/v4";
  * @endpoint DELETE /v1/people/{personId}/urls/{urlId}
  * @endpoint DELETE /v1/people/detail
  * @endpoint DELETE /v1/people/detail/news/{newsId}
- * @endpoint DELETE /v1/research/external-social-posts/{externalSocialPostId}
  * @usedBySchema DatasourceProvenanceActorSchema
  * @usedBySchema DatasourceProvenanceSourceSchema
  * @contractShape datasource.provenance-actor-type

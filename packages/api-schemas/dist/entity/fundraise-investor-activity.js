@@ -25,6 +25,7 @@ const EntityFundraiseInvestorActivitySchemaDefinition = z.object({
  *
  * @openapiSchema EntityFundraiseInvestorActivity
  * @endpoint GET /v1/entities/detail/investor-activity
+ * @endpoint GET /v1/people/detail/investor-activity
  * @contractShape entity.fundraise-investor-activity
  * @contractRole canonical
  * @ownerSourceFile src/main/kotlin/vc/aventure/domain/model/fundraise/EntityFundingDetail.kt

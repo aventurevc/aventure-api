@@ -4,18 +4,6 @@ import { z } from "zod/v4";
  *
  * @openapiSchema ExternalSocialPostPlatform
  * @endpoint GET /v1/entities/urls/surface-misclassifications
- * @endpoint GET /v1/research/external-social-posts
- * @endpoint GET /v1/research/external-social-posts/{externalSocialPostId}
- * @endpoint POST /v1/research/external-social-posts
- * @endpoint POST /v1/research/external-social-posts/scrape
- * @endpoint POST /v1/research/external-social-posts/scrape/{snapshotId}
- * @endpoint PATCH /v1/research/external-social-posts/{externalSocialPostId}
- * @endpoint PUT /v1/research/external-social-posts/{externalSocialPostId}
- * @endpoint DELETE /v1/research/external-social-posts/{externalSocialPostId}
- * @usedBySchema ExternalSocialPostMutationSchema
- * @usedBySchema ExternalSocialPostPermalinkSchema
- * @usedBySchema ExternalSocialPostScrapeResultSchema
- * @usedBySchema ExternalSocialPostScrapeTicketSchema
  * @usedBySchema UrlSurfaceMisclassificationRouteSchema
  * @contractShape external.social-post-platform
  * @contractRole canonical

@@ -9,7 +9,7 @@ import { z } from "zod/v4";
  * @endpoint POST /v1/entities/detail/fundraise-rounds
  * @endpoint PATCH /v1/entities/{entityId}/fundraise-investor-joins/{joinId}
  * @endpoint PATCH /v1/entities/detail/fundraise-rounds/{transactionId}
- * @endpoint PUT /v1/entities/detail/fundraise-investor-joins
+ * @endpoint PUT /v1/entities/{entityId}/fundraise-investor-joins/{joinId}
  * @endpoint PUT /v1/entities/detail/fundraise-rounds/{transactionId}
  * @endpoint DELETE /v1/entities/{entityId}/fundraise-investor-joins/{joinId}
  * @usedBySchema EntityFundraiseInvestorJoinMutationSchema

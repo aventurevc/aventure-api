@@ -14,8 +14,6 @@ const SlugChangeResultSchemaDefinition = z.object({
  * Completed slug change with created redirect
  *
  * @openapiSchema SlugChangeResult
- * @endpoint PATCH /v1/app/blog/articles/{id}/slug
- * @endpoint PATCH /v1/app/pages/{id}/slug
  * @endpoint PATCH /v1/entities/{entityId}/slug
  * @endpoint PATCH /v1/news/{newsId}/slug
  * @endpoint PATCH /v1/people/{personId}/slug

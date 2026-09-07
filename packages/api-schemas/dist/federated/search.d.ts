@@ -14,10 +14,6 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                 acceleratorName?: string[] | undefined;
                 acceleratorStatus?: string[] | undefined;
                 affinity?: string[] | undefined;
-                createdAtRange?: {
-                    max?: string | null | undefined;
-                    min?: string | null | undefined;
-                } | null | undefined;
                 employeeCountRange?: {
                     max?: number | null | undefined;
                     min?: number | null | undefined;
@@ -72,13 +68,10 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                     }[] | undefined;
                 } | undefined;
                 hasFundraising?: boolean | null | undefined;
-                hasLogo?: boolean | null | undefined;
-                hasRealLogo?: boolean | null | undefined;
                 headquartersCity?: string[] | undefined;
                 headquartersCountry?: string[] | undefined;
                 headquartersState?: string[] | undefined;
                 industry?: string[] | undefined;
-                isHidden?: boolean | null | undefined;
                 letter?: string | null | undefined;
                 location?: string[] | undefined;
                 logoOption?: {
@@ -91,7 +84,6 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                 portfolioHeadquartersState?: string[] | undefined;
                 qualityGate?: "COMPANY_LISTING_READY" | "NONE" | undefined;
                 semanticQuery?: string | null | undefined;
-                showOnSitemap?: boolean | null | undefined;
                 slug?: string[] | undefined;
                 stage?: string[] | undefined;
                 suppressNonOperating?: boolean | null | undefined;
@@ -104,10 +96,6 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                 typeRecord?: ("Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service")[] | undefined;
                 typeRevenue?: string[] | undefined;
                 typeTechnologyUsed?: string[] | undefined;
-                updatedAtRange?: {
-                    max?: string | null | undefined;
-                    min?: string | null | undefined;
-                } | null | undefined;
                 url?: string | null | undefined;
                 urlDomain?: string | null | undefined;
                 urlMatchMode?: "domain" | "hostPath" | undefined;
@@ -158,21 +146,6 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                         productServiceSlug: string[];
                     } | null | undefined;
                     slug: string;
-                    source?: {
-                        changedAt?: string | null | undefined;
-                        dataSourceUpdatedAt?: string | null | undefined;
-                        detail?: string | null | undefined;
-                        kind?: string | null | undefined;
-                        pendingApproval?: number | null | undefined;
-                        sourceId?: string | null | undefined;
-                        status?: string | null | undefined;
-                    } | null | undefined;
-                    status?: {
-                        isFeatured: boolean;
-                        isHidden: boolean;
-                        isVerified: boolean;
-                        showOnSitemap: boolean;
-                    } | undefined;
                     typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
                     updatedAt?: string | null | undefined;
                 };
@@ -446,15 +419,6 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                             entityId?: string | null | undefined;
                             personId?: string | null | undefined;
                         } | null | undefined;
-                        source?: {
-                            changedAt?: string | null | undefined;
-                            dataSourceUpdatedAt?: string | null | undefined;
-                            detail?: string | null | undefined;
-                            kind?: string | null | undefined;
-                            pendingApproval?: number | null | undefined;
-                            sourceId?: string | null | undefined;
-                            status?: string | null | undefined;
-                        } | null | undefined;
                         sourceId?: string | null | undefined;
                         status?: string | null | undefined;
                         statusChecked?: string | null | undefined;
@@ -502,21 +466,6 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                                 productServiceSlug: string[];
                             } | null | undefined;
                             slug: string;
-                            source?: {
-                                changedAt?: string | null | undefined;
-                                dataSourceUpdatedAt?: string | null | undefined;
-                                detail?: string | null | undefined;
-                                kind?: string | null | undefined;
-                                pendingApproval?: number | null | undefined;
-                                sourceId?: string | null | undefined;
-                                status?: string | null | undefined;
-                            } | null | undefined;
-                            status?: {
-                                isFeatured: boolean;
-                                isHidden: boolean;
-                                isVerified: boolean;
-                                showOnSitemap: boolean;
-                            } | undefined;
                             typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
                             updatedAt?: string | null | undefined;
                         };
@@ -595,21 +544,6 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                                 productServiceSlug: string[];
                             } | null | undefined;
                             slug: string;
-                            source?: {
-                                changedAt?: string | null | undefined;
-                                dataSourceUpdatedAt?: string | null | undefined;
-                                detail?: string | null | undefined;
-                                kind?: string | null | undefined;
-                                pendingApproval?: number | null | undefined;
-                                sourceId?: string | null | undefined;
-                                status?: string | null | undefined;
-                            } | null | undefined;
-                            status?: {
-                                isFeatured: boolean;
-                                isHidden: boolean;
-                                isVerified: boolean;
-                                showOnSitemap: boolean;
-                            } | undefined;
                             typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
                             updatedAt?: string | null | undefined;
                         };
@@ -634,22 +568,6 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                         discreteValue?: number | null | undefined;
                         entityId: string;
                         id: number;
-                        source?: string | null | undefined;
-                        sourceRecord?: {
-                            changedAt?: string | null | undefined;
-                            operation?: "CREATE" | "DELETE" | "UPDATE" | null | undefined;
-                            provenanceSource?: {
-                                actorType?: "agent" | "employee" | undefined;
-                                agentChassis?: string | null | undefined;
-                                agentModel?: string | null | undefined;
-                                sourceDetail: string;
-                                sourceProvider?: string | null | undefined;
-                                sourceProviderId?: string | null | undefined;
-                                sourceProviderSlug?: string | null | undefined;
-                                sourceType: "api" | "aventureStaff" | "blogArticle" | "firstPartyWebsite" | "import" | "llm" | "manual" | "newsArticle" | "relatedPartyWebsite" | "requestChangeForm" | "thirdPartyWebsite";
-                            } | null | undefined;
-                            source?: string | null | undefined;
-                        } | null | undefined;
                         textValue?: string | null | undefined;
                         typeResearchDetail: string;
                         updatedAt?: string | null | undefined;
@@ -689,10 +607,6 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                 acceleratorName?: string[] | undefined;
                 acceleratorStatus?: string[] | undefined;
                 affinity?: string[] | undefined;
-                createdAtRange?: {
-                    max?: string | null | undefined;
-                    min?: string | null | undefined;
-                } | null | undefined;
                 employeeCountRange?: {
                     max?: number | null | undefined;
                     min?: number | null | undefined;
@@ -747,13 +661,10 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                     }[] | undefined;
                 } | undefined;
                 hasFundraising?: boolean | null | undefined;
-                hasLogo?: boolean | null | undefined;
-                hasRealLogo?: boolean | null | undefined;
                 headquartersCity?: string[] | undefined;
                 headquartersCountry?: string[] | undefined;
                 headquartersState?: string[] | undefined;
                 industry?: string[] | undefined;
-                isHidden?: boolean | null | undefined;
                 letter?: string | null | undefined;
                 location?: string[] | undefined;
                 logoOption?: {
@@ -766,7 +677,6 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                 portfolioHeadquartersState?: string[] | undefined;
                 qualityGate?: "COMPANY_LISTING_READY" | "NONE" | undefined;
                 semanticQuery?: string | null | undefined;
-                showOnSitemap?: boolean | null | undefined;
                 slug?: string[] | undefined;
                 stage?: string[] | undefined;
                 suppressNonOperating?: boolean | null | undefined;
@@ -779,10 +689,6 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                 typeRecord?: ("Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service")[] | undefined;
                 typeRevenue?: string[] | undefined;
                 typeTechnologyUsed?: string[] | undefined;
-                updatedAtRange?: {
-                    max?: string | null | undefined;
-                    min?: string | null | undefined;
-                } | null | undefined;
                 url?: string | null | undefined;
                 urlDomain?: string | null | undefined;
                 urlMatchMode?: "domain" | "hostPath" | undefined;
@@ -833,21 +739,6 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                         productServiceSlug: string[];
                     } | null | undefined;
                     slug: string;
-                    source?: {
-                        changedAt?: string | null | undefined;
-                        dataSourceUpdatedAt?: string | null | undefined;
-                        detail?: string | null | undefined;
-                        kind?: string | null | undefined;
-                        pendingApproval?: number | null | undefined;
-                        sourceId?: string | null | undefined;
-                        status?: string | null | undefined;
-                    } | null | undefined;
-                    status?: {
-                        isFeatured: boolean;
-                        isHidden: boolean;
-                        isVerified: boolean;
-                        showOnSitemap: boolean;
-                    } | undefined;
                     typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
                     updatedAt?: string | null | undefined;
                 };
@@ -1121,15 +1012,6 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                             entityId?: string | null | undefined;
                             personId?: string | null | undefined;
                         } | null | undefined;
-                        source?: {
-                            changedAt?: string | null | undefined;
-                            dataSourceUpdatedAt?: string | null | undefined;
-                            detail?: string | null | undefined;
-                            kind?: string | null | undefined;
-                            pendingApproval?: number | null | undefined;
-                            sourceId?: string | null | undefined;
-                            status?: string | null | undefined;
-                        } | null | undefined;
                         sourceId?: string | null | undefined;
                         status?: string | null | undefined;
                         statusChecked?: string | null | undefined;
@@ -1177,21 +1059,6 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                                 productServiceSlug: string[];
                             } | null | undefined;
                             slug: string;
-                            source?: {
-                                changedAt?: string | null | undefined;
-                                dataSourceUpdatedAt?: string | null | undefined;
-                                detail?: string | null | undefined;
-                                kind?: string | null | undefined;
-                                pendingApproval?: number | null | undefined;
-                                sourceId?: string | null | undefined;
-                                status?: string | null | undefined;
-                            } | null | undefined;
-                            status?: {
-                                isFeatured: boolean;
-                                isHidden: boolean;
-                                isVerified: boolean;
-                                showOnSitemap: boolean;
-                            } | undefined;
                             typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
                             updatedAt?: string | null | undefined;
                         };
@@ -1270,21 +1137,6 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                                 productServiceSlug: string[];
                             } | null | undefined;
                             slug: string;
-                            source?: {
-                                changedAt?: string | null | undefined;
-                                dataSourceUpdatedAt?: string | null | undefined;
-                                detail?: string | null | undefined;
-                                kind?: string | null | undefined;
-                                pendingApproval?: number | null | undefined;
-                                sourceId?: string | null | undefined;
-                                status?: string | null | undefined;
-                            } | null | undefined;
-                            status?: {
-                                isFeatured: boolean;
-                                isHidden: boolean;
-                                isVerified: boolean;
-                                showOnSitemap: boolean;
-                            } | undefined;
                             typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
                             updatedAt?: string | null | undefined;
                         };
@@ -1309,22 +1161,6 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                         discreteValue?: number | null | undefined;
                         entityId: string;
                         id: number;
-                        source?: string | null | undefined;
-                        sourceRecord?: {
-                            changedAt?: string | null | undefined;
-                            operation?: "CREATE" | "DELETE" | "UPDATE" | null | undefined;
-                            provenanceSource?: {
-                                actorType?: "agent" | "employee" | undefined;
-                                agentChassis?: string | null | undefined;
-                                agentModel?: string | null | undefined;
-                                sourceDetail: string;
-                                sourceProvider?: string | null | undefined;
-                                sourceProviderId?: string | null | undefined;
-                                sourceProviderSlug?: string | null | undefined;
-                                sourceType: "api" | "aventureStaff" | "blogArticle" | "firstPartyWebsite" | "import" | "llm" | "manual" | "newsArticle" | "relatedPartyWebsite" | "requestChangeForm" | "thirdPartyWebsite";
-                            } | null | undefined;
-                            source?: string | null | undefined;
-                        } | null | undefined;
                         textValue?: string | null | undefined;
                         typeResearchDetail: string;
                         updatedAt?: string | null | undefined;
@@ -1365,15 +1201,6 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
             publication?: string | null | undefined;
             publishedAt?: string | null | undefined;
             slug?: string | null | undefined;
-            source?: {
-                changedAt?: string | null | undefined;
-                dataSourceUpdatedAt?: string | null | undefined;
-                detail?: string | null | undefined;
-                kind?: string | null | undefined;
-                pendingApproval?: number | null | undefined;
-                sourceId?: string | null | undefined;
-                status?: string | null | undefined;
-            } | undefined;
             title: string;
             updatedAt?: string | null | undefined;
         }[];
@@ -1395,15 +1222,6 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
             publication?: string | null | undefined;
             publishedAt?: string | null | undefined;
             slug?: string | null | undefined;
-            source?: {
-                changedAt?: string | null | undefined;
-                dataSourceUpdatedAt?: string | null | undefined;
-                detail?: string | null | undefined;
-                kind?: string | null | undefined;
-                pendingApproval?: number | null | undefined;
-                sourceId?: string | null | undefined;
-                status?: string | null | undefined;
-            } | undefined;
             title: string;
             updatedAt?: string | null | undefined;
         }[];
@@ -1527,10 +1345,6 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                     sourceId?: string | null | undefined;
                     status?: string | null | undefined;
                 };
-                status?: {
-                    isHidden: boolean;
-                    showOnSitemap: boolean;
-                } | undefined;
                 suffix?: string | null | undefined;
                 text: {
                     expanded?: string | null | undefined;
@@ -1659,10 +1473,6 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                     sourceId?: string | null | undefined;
                     status?: string | null | undefined;
                 };
-                status?: {
-                    isHidden: boolean;
-                    showOnSitemap: boolean;
-                } | undefined;
                 suffix?: string | null | undefined;
                 text: {
                     expanded?: string | null | undefined;

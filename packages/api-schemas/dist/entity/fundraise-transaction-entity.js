@@ -18,7 +18,6 @@ import { EntityFundingDetailSchema } from "./funding-detail.js";
  * @endpoint GET /v1/entities/{entityId}/relationships/suggestions
  * @endpoint GET /v1/entities/detail/fundraise-rounds/{transactionId}
  * @endpoint GET /v1/people/{personId}/graph
- * @endpoint POST /v1/entities
  * @endpoint POST /v1/entities/batch
  * @endpoint POST /v1/entities/detail
  * @endpoint POST /v1/entities/detail/batch
@@ -26,6 +25,7 @@ import { EntityFundingDetailSchema } from "./funding-detail.js";
  * @endpoint POST /v1/entities/detail/fundraise-rounds
  * @endpoint POST /v1/entities/detail/resolve
  * @endpoint POST /v1/entities/natural-search
+ * @endpoint POST /v1/entities/search
  * @endpoint POST /v1/search/all
  * @endpoint PATCH /v1/entities/detail
  * @endpoint PATCH /v1/entities/detail/fundraise-rounds/{transactionId}

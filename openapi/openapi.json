@@ -7,7 +7,7 @@
     },
     "description": "Public API docs for aVenture.vc, private company research data on their staff/team, products & services, fundraising and investors, and more.",
     "title": "aVenture Public API Docs",
-    "version": "0.7.263"
+    "version": "0.7.264"
   },
   "externalDocs": {
     "description": "Documentation and GitHub repositories: [aventure-docs](https://github.com/aventurevc/aventure-docs), [aventure-cli](https://github.com/aventurevc/aventure-cli), [aventure-mcp](https://github.com/aventurevc/aventure-mcp), [aventure-api](https://github.com/aventurevc/aventure-api).",
@@ -89,6 +89,10 @@
       "name": "Entity Acquisitions"
     },
     {
+      "description": "Session management and user info endpoints",
+      "name": "Auth Session"
+    },
+    {
       "description": "Typed research details and snippets for entities, with snippet provenance",
       "name": "Entity Research"
     },
@@ -127,6 +131,10 @@
     {
       "description": "Atomic standardized classification reconciliation to a desired exact set",
       "name": "Entity Classifications Reconcile"
+    },
+    {
+      "description": "Authenticated personal API-key lifecycle",
+      "name": "Personal API Key"
     },
     {
       "description": "Enrichment completion-gate catalog and per-entity floor coverage.",
@@ -209,6 +217,10 @@
       "name": "Unique IDs"
     },
     {
+      "description": "Browser-approved CLI credential delivery",
+      "name": "CLI Authorizations"
+    },
+    {
       "description": "Similar person discovery",
       "name": "Person Similarity"
     },
@@ -238,6 +250,81 @@
     }
   ],
   "paths": {
+    "/info": {
+      "get": {
+        "description": "Returns typed build metadata equivalent to the actuator info build payload",
+        "operationId": "info",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SystemBuild"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "406": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Acceptable"
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "500": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "summary": "Get build metadata",
+        "tags": [
+          "System"
+        ],
+        "x-aventure-visibility": {
+          "scope": "public"
+        }
+      }
+    },
     "/v1/agents/chassis": {
       "get": {
         "description": "Returns the sorted agent runtime chassis tokens accepted by the API to administrators.",
@@ -970,6 +1057,697 @@
         "tags": [
           "Agent Instructions"
         ]
+      }
+    },
+    "/v1/auth/api/me/permissions": {
+      "get": {
+        "description": "Returns resolved role/permission sets for session JWT auth, explicit permissions for personal API-key auth, or full admin permission for admin API key auth",
+        "operationId": "currentPermissions",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthPermissionGrant"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "406": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Acceptable"
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "500": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          },
+          {
+            "adminApiKeyAuth": []
+          }
+        ],
+        "summary": "Current user permissions",
+        "tags": [
+          "Auth Session"
+        ],
+        "x-aventure-visibility": {
+          "scope": "public"
+        }
+      }
+    },
+    "/v1/auth/cli-authorizations": {
+      "post": {
+        "description": "Creates a short-lived browser approval request and returns its poll credential once.",
+        "operationId": "createCliAuthorization",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CliAuthorizationMutation"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CliAuthorizationStart"
+                }
+              }
+            },
+            "description": "Created"
+          },
+          "400": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "406": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Acceptable"
+          },
+          "409": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "415": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unsupported Media Type"
+          },
+          "422": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "500": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "summary": "Start CLI authorization",
+        "tags": [
+          "CLI Authorizations"
+        ],
+        "x-aventure-cli-composite": {
+          "bodyOption": [
+            "clientLabel"
+          ],
+          "command": "auth login",
+          "localOption": [
+            {
+              "optionKey": "browser",
+              "flag": "--no-browser",
+              "description": "Print the approval URL without launching a browser."
+            }
+          ],
+          "role": "start"
+        },
+        "x-aventure-visibility": {
+          "scope": "public"
+        }
+      }
+    },
+    "/v1/auth/cli-authorizations/{cliAuthorizationId}/acknowledge": {
+      "post": {
+        "description": "Confirms the CLI stored the delivered personal key in its OS credential store and clears transient delivery material.",
+        "operationId": "acknowledgeCliAuthorization",
+        "parameters": [
+          {
+            "description": "Public CLI authorization request identifier",
+            "in": "path",
+            "name": "cliAuthorizationId",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "description": "One-time poll credential returned by request creation",
+            "in": "header",
+            "name": "X-Cli-Poll-Secret",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CliAuthorization"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "404": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "406": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Acceptable"
+          },
+          "409": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "500": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "summary": "Acknowledge CLI credential delivery",
+        "tags": [
+          "CLI Authorizations"
+        ],
+        "x-aventure-cli-composite": {
+          "command": "auth login",
+          "role": "acknowledge"
+        },
+        "x-aventure-visibility": {
+          "scope": "public"
+        }
+      }
+    },
+    "/v1/auth/cli-authorizations/{cliAuthorizationId}/poll": {
+      "post": {
+        "description": "Returns pending state, a terminal state, or an encrypted one-time credential delivery.",
+        "operationId": "pollCliAuthorization",
+        "parameters": [
+          {
+            "description": "Public CLI authorization request identifier",
+            "in": "path",
+            "name": "cliAuthorizationId",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "description": "One-time poll credential returned by request creation",
+            "in": "header",
+            "name": "X-Cli-Poll-Secret",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "202": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CliAuthorizationPoll"
+                }
+              }
+            },
+            "description": "Authorization is still pending or issuing"
+          },
+          "400": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "404": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "406": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Acceptable"
+          },
+          "409": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "500": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "summary": "Poll CLI authorization",
+        "tags": [
+          "CLI Authorizations"
+        ],
+        "x-aventure-cli-composite": {
+          "command": "auth login",
+          "role": "poll"
+        },
+        "x-aventure-visibility": {
+          "scope": "public"
+        }
+      }
+    },
+    "/v1/auth/personal-api-key": {
+      "get": {
+        "description": "Returns provider metadata for the personal API key authenticating this request.",
+        "operationId": "getCurrentPersonalApiKey",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PersonalApiKey"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "406": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Acceptable"
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "500": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Get current personal API key",
+        "tags": [
+          "Personal API Key"
+        ],
+        "x-aventure-visibility": {
+          "scope": "public"
+        }
+      },
+      "delete": {
+        "description": "Revokes the stored personal key and returns provider metadata so the CLI can confirm remote revocation before removing local bytes.",
+        "operationId": "revokeCurrentPersonalApiKey",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PersonalApiKey"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "406": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Acceptable"
+          },
+          "409": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "500": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Revoke current personal API key",
+        "tags": [
+          "Personal API Key"
+        ],
+        "x-aventure-cli-composite": {
+          "command": "auth logout",
+          "localOption": [
+            {
+              "optionKey": "forgetLocal",
+              "flag": "--forget-local",
+              "description": "Remove local bytes even when remote revocation cannot be confirmed."
+            }
+          ],
+          "role": "revoke"
+        },
+        "x-aventure-visibility": {
+          "scope": "public"
+        }
       }
     },
     "/v1/billing/checkout-sessions": {
@@ -4450,13 +5228,12 @@
             }
           },
           {
-            "description": "Semantic entity search phrase.",
+            "description": "Semantic entity search phrase. Supported only by GET /v1/entities and POST /v1/entities; every other entity filter surface rejects the parameter.",
             "in": "query",
             "name": "semanticQuery",
             "required": false,
             "schema": {
-              "type": "string",
-              "description": "Semantic entity search phrase."
+              "type": "string"
             }
           },
           {
@@ -4612,206 +5389,6 @@
         "tags": [
           "Entities"
         ]
-      },
-      "post": {
-        "description": "Run keyword, semantic, or explicit structured entity filtering with an EntityFilter JSON body. entityName is an exact normalized brand/legal-name filter; textSearch is keyword/full-text search. For a plain-English or multi-constraint company request, use POST /v1/entities/natural-search instead. Set semanticQuery for semantic nearest-neighbor ranking over stored content embeddings; semanticQuery uses the live priority embeddings tier and returns semanticMatch evidence. countOnly is unsupported when semanticQuery is present; count-only pages have no content, so read totalElements rather than empty. Default public visibility can filter hidden/off-sitemap records and does not prove create safety. Use duplicate-check before writes that need identity review.",
-        "operationId": "listEntitiesPost",
-        "parameters": [
-          {
-            "description": "Return only the matching entity count in totalElements. Content is empty by design, so the page empty flag describes content, not whether matches exist. Unsupported with semanticQuery.",
-            "in": "query",
-            "name": "countOnly",
-            "required": false,
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "description": "Allow generated monogram logos in results.",
-            "in": "query",
-            "name": "permitMonogram",
-            "required": false,
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "description": "Privileged admin readback scope. Includes hidden or off-sitemap entities. Defaults to private for admin API key or ROLE_ADMIN callers; client-secret/client-read callers stay public.",
-            "in": "query",
-            "name": "includePrivate",
-            "required": false,
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "description": "Zero-based page index (0..N)",
-            "in": "query",
-            "name": "page",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "default": 0,
-              "minimum": 0
-            }
-          },
-          {
-            "description": "The size of the page to be returned",
-            "in": "query",
-            "name": "size",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "default": 20,
-              "minimum": 1
-            }
-          },
-          {
-            "description": "Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported.",
-            "in": "query",
-            "name": "sort",
-            "required": false,
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/EntityFilter"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PageEntityList"
-                }
-              }
-            },
-            "description": "OK"
-          },
-          "400": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Bad Request"
-          },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
-          "406": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Not Acceptable"
-          },
-          "409": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Conflict"
-          },
-          "415": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unsupported Media Type"
-          },
-          "422": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unprocessable Content"
-          },
-          "429": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Too Many Requests"
-          },
-          "500": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Internal Server Error"
-          },
-          "503": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Service Unavailable"
-          }
-        },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
-        "summary": "Search companies and other entities (POST)",
-        "tags": [
-          "Entities"
-        ],
-        "x-aventure-tool": {
-          "cli": "entities search"
-        }
       }
     },
     "/v1/entities/batch": {
@@ -10666,350 +11243,6 @@
         "x-aventure-tool": {
           "cli": "entities fundraise investor-joins create"
         }
-      },
-      "put": {
-        "description": "Replaces the investor, lead flag, and amountInvested attribution for a fundraise investor join. amountInvested is a plain decimal number in the fundraise transaction currency. API and MCP request bodies use JSON numbers such as 220000 or 123456.78; aventure-cli uses --amount-invested 220000 or --amount-invested 123456.78. Do not send currency signs, currency codes, comma grouping, quoted numeric strings, or abbreviations such as 220k or 0.22M. PATCH with amountInvested:null clears the value. Use --entity-id or --entity-slug for the fundraising/portfolio company that raised the round — always a company, never the fund or investment firm that supplied the capital. For an Investment Firm's outgoing investment, pass the portfolio company that received the money here and identify the firm with --investor-entity-id or --investor-entity-slug. Use transactionId for the round id, or round plus dateAnnounced when transactionId is unknown. Investor entity/person selectors reference existing records only. Create a referenced investor entity first with POST /v1/entities/detail or a referenced investor person first with POST /v1/people/detail, then create the join.",
-        "operationId": "putFundraiseInvestorJoin",
-        "parameters": [
-          {
-            "description": "Owner-scoped resource UUID selector.",
-            "example": "04e2bf9c-a100-72ad-83ff-ba69c647b30b",
-            "in": "query",
-            "name": "id",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          },
-          {
-            "description": "Owner-scoped resource slug selector.",
-            "example": "acme-corp",
-            "in": "query",
-            "name": "slug",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "description": "Canonical lowercase URL slug for the resource",
-              "example": "aventure-vc",
-              "maxLength": 255,
-              "pattern": "^[a-z0-9_-]+$",
-              "x-source-file": "src/main/kotlin/vc/aventure/domain/model/identity/Slug.kt"
-            }
-          },
-          {
-            "description": "Join identifier. When present, lookup ignores transaction and investor query parameters.",
-            "in": "query",
-            "name": "joinId",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "format": "uuid",
-              "description": "Join identifier. When present, lookup ignores transaction and investor query parameters."
-            }
-          },
-          {
-            "description": "Fundraise round transaction id. The target entity id/slug is the entity that raised the round; for an Investment Firm investment, use the portfolio/fundraising company as target and identify the firm with investorEntityId or investorEntitySlug. When omitted, lookup uses the target entity plus round/dateAnnounced.",
-            "in": "query",
-            "name": "transactionId",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "format": "uuid",
-              "description": "Fundraise round transaction id. The target entity id/slug is the entity that raised the round; for an Investment Firm investment, use the portfolio/fundraising company as target and identify the firm with investorEntityId or investorEntitySlug. When omitted, lookup uses the target entity plus round/dateAnnounced."
-            }
-          },
-          {
-            "description": "Raw fundraise round label used when transactionId is omitted",
-            "in": "query",
-            "name": "round",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "description": "Raw fundraise round label used when transactionId is omitted"
-            }
-          },
-          {
-            "description": "Exact announced timestamp used to disambiguate same-label rounds",
-            "in": "query",
-            "name": "dateAnnounced",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "format": "date-time",
-              "description": "Exact announced timestamp used to disambiguate same-label rounds"
-            }
-          },
-          {
-            "description": "Existing investor entity identifier. The entity must already exist; create a referenced investor entity first with POST /v1/entities/detail.",
-            "in": "query",
-            "name": "investorEntityId",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "format": "uuid",
-              "description": "Existing investor entity identifier. The entity must already exist; create a referenced investor entity first with POST /v1/entities/detail."
-            }
-          },
-          {
-            "description": "Existing investor entity slug when investorEntityId is omitted. The entity must already exist; create it first with POST /v1/entities/detail.",
-            "in": "query",
-            "name": "investorEntitySlug",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "description": "Existing investor entity slug when investorEntityId is omitted. The entity must already exist; create it first with POST /v1/entities/detail."
-            }
-          },
-          {
-            "description": "Existing investor person identifier. The person must already exist; create a referenced investor person first with POST /v1/people/detail.",
-            "in": "query",
-            "name": "investorPersonId",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "format": "uuid",
-              "description": "Existing investor person identifier. The person must already exist; create a referenced investor person first with POST /v1/people/detail."
-            }
-          },
-          {
-            "description": "Existing investor person slug when investorPersonId is omitted. The person must already exist; create it first with POST /v1/people/detail.",
-            "in": "query",
-            "name": "investorPersonSlug",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "description": "Existing investor person slug when investorPersonId is omitted. The person must already exist; create it first with POST /v1/people/detail."
-            }
-          },
-          {
-            "description": "Write provenance source type.",
-            "in": "query",
-            "name": "sourceType",
-            "required": true,
-            "schema": {
-              "$ref": "#/components/schemas/DatasourceWritableDataSourceType",
-              "example": "aventureStaff"
-            }
-          },
-          {
-            "description": "Source detail or reviewer reference for the write.",
-            "example": "aventure.vc",
-            "in": "query",
-            "name": "sourceDetail",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "description": "Source detail or reviewer reference for the write.",
-              "example": "aventure.vc"
-            }
-          },
-          {
-            "description": "Provider name for provider-native IDs or slugs.",
-            "example": "TechCrunch",
-            "in": "query",
-            "name": "sourceProvider",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "description": "Provider name for provider-native IDs or slugs.",
-              "example": "TechCrunch"
-            }
-          },
-          {
-            "description": "Provider-native source ID.",
-            "example": "tc-2026-05-20-example-round",
-            "in": "query",
-            "name": "sourceProviderId",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "description": "Provider-native source ID.",
-              "example": "tc-2026-05-20-example-round"
-            }
-          },
-          {
-            "description": "Provider-native source slug.",
-            "example": "example-round",
-            "in": "query",
-            "name": "sourceProviderSlug",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "description": "Provider-native source slug.",
-              "example": "example-round"
-            }
-          },
-          {
-            "description": "Actor type; inferred as agent when agentChassis and agentModel are supplied, or as employee from an authenticated user JWT session.",
-            "example": "agent",
-            "in": "query",
-            "name": "actorType",
-            "required": false,
-            "schema": {
-              "$ref": "#/components/schemas/DatasourceProvenanceActorType"
-            }
-          },
-          {
-            "description": "Agent chassis token for agent-authored writes.",
-            "example": "codex-cli",
-            "in": "query",
-            "name": "agentChassis",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "description": "Agent chassis token for agent-authored writes.",
-              "example": "codex-cli"
-            }
-          },
-          {
-            "description": "Agent model id for agent-authored writes.",
-            "in": "query",
-            "name": "agentModel",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "description": "Agent model id for agent-authored writes."
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/EntityFundraiseInvestorJoinMutation"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/EntityFundraiseInvestorJoin"
-                }
-              }
-            },
-            "description": "OK"
-          },
-          "400": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Bad Request"
-          },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
-          "406": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Not Acceptable"
-          },
-          "409": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Conflict"
-          },
-          "415": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unsupported Media Type"
-          },
-          "422": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unprocessable Content"
-          },
-          "429": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Too Many Requests"
-          },
-          "500": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Internal Server Error"
-          },
-          "503": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Service Unavailable"
-          }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          },
-          {
-            "adminApiKeyAuth": []
-          }
-        ],
-        "summary": "Replace fundraise investor join",
-        "tags": [
-          "Entity Fundraise"
-        ],
-        "x-aventure-tool": {
-          "cli": "entities fundraise investor-joins replace"
-        }
       }
     },
     "/v1/entities/detail/fundraise-investor-joins/{joinId}": {
@@ -11309,7 +11542,16 @@
                 }
               }
             },
-            "description": "OK"
+            "description": "OK",
+            "headers": {
+              "X-Next-Cursor": {
+                "description": "Opaque continuation token when cursor traversal has another page.",
+                "schema": {
+                  "type": "string"
+                },
+                "style": "simple"
+              }
+            }
           },
           "400": {
             "content": {
@@ -12784,7 +13026,16 @@
                 }
               }
             },
-            "description": "OK"
+            "description": "OK",
+            "headers": {
+              "X-Next-Cursor": {
+                "description": "Opaque continuation token when cursor traversal has another page.",
+                "schema": {
+                  "type": "string"
+                },
+                "style": "simple"
+              }
+            }
           },
           "400": {
             "content": {
@@ -13101,7 +13352,16 @@
                 }
               }
             },
-            "description": "OK"
+            "description": "OK",
+            "headers": {
+              "X-Next-Cursor": {
+                "description": "Opaque continuation token when cursor traversal has another page.",
+                "schema": {
+                  "type": "string"
+                },
+                "style": "simple"
+              }
+            }
           },
           "400": {
             "content": {
@@ -14812,7 +15072,16 @@
                 }
               }
             },
-            "description": "OK"
+            "description": "OK",
+            "headers": {
+              "X-Next-Cursor": {
+                "description": "Opaque continuation token when cursor traversal has another page.",
+                "schema": {
+                  "type": "string"
+                },
+                "style": "simple"
+              }
+            }
           },
           "400": {
             "content": {
@@ -18708,6 +18977,208 @@
         ]
       }
     },
+    "/v1/entities/search": {
+      "post": {
+        "description": "Run keyword, semantic, or explicit structured entity filtering with an EntityListFilter JSON body. entityName is an exact normalized brand/legal-name filter; textSearch is keyword/full-text search. For a plain-English or multi-constraint company request, use POST /v1/entities/natural-search instead. Set semanticQuery for semantic nearest-neighbor ranking over stored content embeddings; semanticQuery uses the live priority embeddings tier and returns semanticMatch evidence. countOnly is unsupported when semanticQuery is present; count-only pages have no content, so read totalElements rather than empty. Default public visibility can filter hidden/off-sitemap records and does not prove create safety. Use duplicate-check before writes that need identity review.",
+        "operationId": "listEntitiesPost",
+        "parameters": [
+          {
+            "description": "Return only the matching entity count in totalElements. Content is empty by design, so the page empty flag describes content, not whether matches exist. Unsupported with semanticQuery.",
+            "in": "query",
+            "name": "countOnly",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "Allow generated monogram logos in results.",
+            "in": "query",
+            "name": "permitMonogram",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "Privileged admin readback scope. Includes hidden or off-sitemap entities. Defaults to private for admin API key or ROLE_ADMIN callers; client-secret/client-read callers stay public.",
+            "in": "query",
+            "name": "includePrivate",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "Zero-based page index (0..N)",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 0,
+              "minimum": 0
+            }
+          },
+          {
+            "description": "The size of the page to be returned",
+            "in": "query",
+            "name": "size",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 20,
+              "minimum": 1
+            }
+          },
+          {
+            "description": "Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported.",
+            "in": "query",
+            "name": "sort",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EntityListFilter"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageEntityList"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "406": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Acceptable"
+          },
+          "409": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "415": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unsupported Media Type"
+          },
+          "422": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "500": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "clientSecretAuth": []
+          }
+        ],
+        "summary": "Search companies and other entities (POST)",
+        "tags": [
+          "Entities"
+        ],
+        "x-aventure-tool": {
+          "cli": "entities search"
+        }
+      }
+    },
     "/v1/entities/summary": {
       "get": {
         "description": "List lean entity rows for homepage and card surfaces. Returns core identity, funding rollup, and fundraise rounds while omitting heavier list enrichment, research, address, text, classification, and URL sections.",
@@ -19449,16 +19920,6 @@
             "schema": {
               "type": "string",
               "description": "Non-blank keyword/full-text search term. Use natural-search for plain-English or multi-constraint company requests."
-            }
-          },
-          {
-            "description": "Semantic entity search phrase.",
-            "in": "query",
-            "name": "semanticQuery",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "description": "Semantic entity search phrase."
             }
           },
           {
@@ -25907,6 +26368,273 @@
       }
     },
     "/v1/entities/{entityId}/fundraise-investor-joins/{joinId}": {
+      "put": {
+        "description": "Replaces the investor, lead flag, and amountInvested attribution for a fundraise investor join. amountInvested is a plain decimal number in the fundraise transaction currency. API and MCP request bodies use JSON numbers such as 220000 or 123456.78; aventure-cli uses --amount-invested 220000 or --amount-invested 123456.78. Do not send currency signs, currency codes, comma grouping, quoted numeric strings, or abbreviations such as 220k or 0.22M. PATCH with amountInvested:null clears the value. Use --entity-id for the fundraising/portfolio company that raised the round. The entity is the company that received the capital, never the fund or investment firm that supplied it. Use transactionId for the round id, or round plus dateAnnounced when transactionId is unknown. Investor entity/person selectors reference existing records only. Create a referenced investor entity first with POST /v1/entities/detail or a referenced investor person first with POST /v1/people/detail, then create the join.",
+        "operationId": "putFundraiseInvestorJoin",
+        "parameters": [
+          {
+            "description": "Entity UUID",
+            "in": "path",
+            "name": "entityId",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "description": "Canonical entity UUID",
+              "x-source-file": "src/main/kotlin/vc/aventure/domain/model/identity/EntityId.kt"
+            }
+          },
+          {
+            "description": "Fundraise investor join identifier",
+            "in": "path",
+            "name": "joinId",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "description": "Type-safe identifier for fundraise investor joins",
+              "x-source-file": "src/main/kotlin/vc/aventure/domain/model/identity/FundraiseInvestorJoinId.kt"
+            }
+          },
+          {
+            "description": "Write provenance source type.",
+            "in": "query",
+            "name": "sourceType",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/DatasourceWritableDataSourceType",
+              "example": "aventureStaff"
+            }
+          },
+          {
+            "description": "Source detail or reviewer reference for the write.",
+            "example": "aventure.vc",
+            "in": "query",
+            "name": "sourceDetail",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "Source detail or reviewer reference for the write.",
+              "example": "aventure.vc"
+            }
+          },
+          {
+            "description": "Provider name for provider-native IDs or slugs.",
+            "example": "TechCrunch",
+            "in": "query",
+            "name": "sourceProvider",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Provider name for provider-native IDs or slugs.",
+              "example": "TechCrunch"
+            }
+          },
+          {
+            "description": "Provider-native source ID.",
+            "example": "tc-2026-05-20-example-round",
+            "in": "query",
+            "name": "sourceProviderId",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Provider-native source ID.",
+              "example": "tc-2026-05-20-example-round"
+            }
+          },
+          {
+            "description": "Provider-native source slug.",
+            "example": "example-round",
+            "in": "query",
+            "name": "sourceProviderSlug",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Provider-native source slug.",
+              "example": "example-round"
+            }
+          },
+          {
+            "description": "Actor type; inferred as agent when agentChassis and agentModel are supplied, or as employee from an authenticated user JWT session.",
+            "example": "agent",
+            "in": "query",
+            "name": "actorType",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/DatasourceProvenanceActorType"
+            }
+          },
+          {
+            "description": "Agent chassis token for agent-authored writes.",
+            "example": "codex-cli",
+            "in": "query",
+            "name": "agentChassis",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Agent chassis token for agent-authored writes.",
+              "example": "codex-cli"
+            }
+          },
+          {
+            "description": "Agent model id for agent-authored writes.",
+            "in": "query",
+            "name": "agentModel",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Agent model id for agent-authored writes."
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EntityFundraiseInvestorJoinMutation"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EntityFundraiseInvestorJoin"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "406": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Acceptable"
+          },
+          "409": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "415": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unsupported Media Type"
+          },
+          "422": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "500": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          },
+          {
+            "adminApiKeyAuth": []
+          }
+        ],
+        "summary": "Replace fundraise investor join",
+        "tags": [
+          "Entity Fundraise"
+        ],
+        "x-aventure-tool": {
+          "cli": "entities fundraise investor-joins replace"
+        }
+      },
       "patch": {
         "description": "Patches the investor, lead flag, or amountInvested attribution for a fundraise investor join. amountInvested is a plain decimal number in the fundraise transaction currency. API and MCP request bodies use JSON numbers such as 220000 or 123456.78; aventure-cli uses --amount-invested 220000 or --amount-invested 123456.78. Do not send currency signs, currency codes, comma grouping, quoted numeric strings, or abbreviations such as 220k or 0.22M. PATCH with amountInvested:null clears the value. Use --entity-id or --entity-slug for the fundraising/portfolio company that raised the round — always a company, never the fund or investment firm that supplied the capital. For an Investment Firm's outgoing investment, pass the portfolio company that received the money here and identify the firm with --investor-entity-id or --investor-entity-slug. Use transactionId for the round id, or round plus dateAnnounced when transactionId is unknown. Investor entity/person selectors reference existing records only. Create a referenced investor entity first with POST /v1/entities/detail or a referenced investor person first with POST /v1/people/detail, then create the join.",
         "operationId": "patchFundraiseInvestorJoin",
@@ -28179,7 +28907,16 @@
                 }
               }
             },
-            "description": "OK"
+            "description": "OK",
+            "headers": {
+              "X-Next-Cursor": {
+                "description": "Opaque continuation token when cursor traversal has another page.",
+                "schema": {
+                  "type": "string"
+                },
+                "style": "simple"
+              }
+            }
           },
           "400": {
             "content": {
@@ -39811,7 +40548,16 @@
                 }
               }
             },
-            "description": "OK"
+            "description": "OK",
+            "headers": {
+              "X-Next-Cursor": {
+                "description": "Opaque continuation token when cursor traversal has another page.",
+                "schema": {
+                  "type": "string"
+                },
+                "style": "simple"
+              }
+            }
           },
           "400": {
             "content": {
@@ -39960,7 +40706,16 @@
                 }
               }
             },
-            "description": "OK"
+            "description": "OK",
+            "headers": {
+              "X-Next-Cursor": {
+                "description": "Opaque continuation token when cursor traversal has another page.",
+                "schema": {
+                  "type": "string"
+                },
+                "style": "simple"
+              }
+            }
           },
           "400": {
             "content": {
@@ -44223,216 +44978,6 @@
         "x-aventure-tool": {
           "cli": "people list"
         }
-      },
-      "post": {
-        "description": "Returns a paginated people list matching a filter request body. semanticQuery uses the live priority embeddings tier and returns semanticMatch evidence.",
-        "operationId": "listPeoplePost",
-        "parameters": [
-          {
-            "description": "When true, return only the page total in the body and skip the content payload.",
-            "in": "query",
-            "name": "countOnly",
-            "required": false,
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "description": "When true, sort people who have a photo before those who do not.",
-            "in": "query",
-            "name": "hasImageFirst",
-            "required": false,
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "description": "When false, monogram fallback logos are stripped from the response. Defaults to true.",
-            "in": "query",
-            "name": "permitMonogram",
-            "required": false,
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "description": "Privileged read scope for admin callers. Bypasses the public visibility filter so hidden, unverified, and not-yet-published records are returned instead of being silently dropped. Defaults to private for admin API key or ROLE_ADMIN callers; client-secret/client-read callers stay public.",
-            "example": false,
-            "in": "query",
-            "name": "includePrivate",
-            "required": false,
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "description": "Zero-based page index (0..N)",
-            "in": "query",
-            "name": "page",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "default": 0,
-              "minimum": 0
-            }
-          },
-          {
-            "description": "The size of the page to be returned",
-            "in": "query",
-            "name": "size",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "default": 25,
-              "minimum": 1
-            }
-          },
-          {
-            "description": "Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported.",
-            "in": "query",
-            "name": "sort",
-            "required": false,
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/PersonFilter"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PagePerson"
-                }
-              }
-            },
-            "description": "OK"
-          },
-          "400": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Bad Request"
-          },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
-          "406": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Not Acceptable"
-          },
-          "409": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Conflict"
-          },
-          "415": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unsupported Media Type"
-          },
-          "422": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unprocessable Content"
-          },
-          "429": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Too Many Requests"
-          },
-          "500": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Internal Server Error"
-          },
-          "503": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Service Unavailable"
-          }
-        },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
-        "summary": "List people (POST)",
-        "tags": [
-          "People"
-        ],
-        "x-aventure-tool": {
-          "cli": "people search"
-        }
       }
     },
     "/v1/people/batch": {
@@ -46804,6 +47349,16 @@
           }
         ],
         "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PagePersonInvestment"
+                }
+              }
+            },
+            "description": "OK"
+          },
           "301": {
             "description": "Redirect to new slug location"
           },
@@ -46925,6 +47480,16 @@
           }
         ],
         "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EntityFundraiseInvestorActivity"
+                }
+              }
+            },
+            "description": "OK"
+          },
           "301": {
             "description": "Redirect to new slug location"
           },
@@ -50144,6 +50709,218 @@
         ],
         "x-aventure-tool": {
           "cli": "search people"
+        }
+      }
+    },
+    "/v1/people/search": {
+      "post": {
+        "description": "Returns a paginated people list matching a filter request body. semanticQuery uses the live priority embeddings tier and returns semanticMatch evidence.",
+        "operationId": "listPeoplePost",
+        "parameters": [
+          {
+            "description": "When true, return only the page total in the body and skip the content payload.",
+            "in": "query",
+            "name": "countOnly",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "When true, sort people who have a photo before those who do not.",
+            "in": "query",
+            "name": "hasImageFirst",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "When false, monogram fallback logos are stripped from the response. Defaults to true.",
+            "in": "query",
+            "name": "permitMonogram",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "Privileged read scope for admin callers. Bypasses the public visibility filter so hidden, unverified, and not-yet-published records are returned instead of being silently dropped. Defaults to private for admin API key or ROLE_ADMIN callers; client-secret/client-read callers stay public.",
+            "example": false,
+            "in": "query",
+            "name": "includePrivate",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "Zero-based page index (0..N)",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 0,
+              "minimum": 0
+            }
+          },
+          {
+            "description": "The size of the page to be returned",
+            "in": "query",
+            "name": "size",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 25,
+              "minimum": 1
+            }
+          },
+          {
+            "description": "Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported.",
+            "in": "query",
+            "name": "sort",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PersonFilter"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PagePerson"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "406": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Acceptable"
+          },
+          "409": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "415": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unsupported Media Type"
+          },
+          "422": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "500": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "clientSecretAuth": []
+          }
+        ],
+        "summary": "List people (POST)",
+        "tags": [
+          "People"
+        ],
+        "x-aventure-tool": {
+          "cli": "people search"
         }
       }
     },
@@ -54461,7 +55238,7 @@
         ]
       },
       "patch": {
-        "description": "Applies an RFC 7396 merge patch to one join.",
+        "description": "Applies an RFC 7396 merge patch to one join. An explicit corporateTitleId null clears the corporate title reference; omitting the key preserves it.",
         "operationId": "patchEntityPersonAssociation",
         "parameters": [
           {
@@ -55623,131 +56400,6 @@
       }
     },
     "/v1/people/{personId}/slug": {
-      "get": {
-        "description": "Returns the current slug, canonical path, and public URL.",
-        "operationId": "getPersonSlug",
-        "parameters": [
-          {
-            "description": "Person UUID",
-            "in": "path",
-            "name": "personId",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid",
-              "description": "Canonical person UUID",
-              "x-source-file": "src/main/kotlin/vc/aventure/domain/model/identity/PersonId.kt"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SlugLocation"
-                }
-              }
-            },
-            "description": "OK"
-          },
-          "400": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Bad Request"
-          },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
-          "404": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Not Found"
-          },
-          "406": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Not Acceptable"
-          },
-          "429": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Too Many Requests"
-          },
-          "500": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Internal Server Error"
-          },
-          "503": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Service Unavailable"
-          }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          },
-          {
-            "adminApiKeyAuth": []
-          },
-          {
-            "clientSecretAuth": []
-          }
-        ],
-        "summary": "Get person slug",
-        "tags": [
-          "URL Slug Redirects"
-        ]
-      },
       "patch": {
         "description": "Atomically changes the slug, creates a 301 redirect, and retargets inbound chains to the final public URL. Returns 409 when another record currently owns the new slug (slug-held-by-record) or a redirect row already claims its public path (slug-held-by-redirect). Company-class entity slugs keep the HQ location suffix; Product and Service slugs stay scoped to their provider pair: a rename may reuse a slug held by another provider's offering and returns 409 only for a same-provider sibling, a non-product holder, or a redirect owning the provider-scoped path.",
         "operationId": "changePersonSlug",
@@ -56000,8 +56652,8 @@
           "URL Slug Redirects"
         ],
         "x-aventure-mutation-readback": {
-          "readOperationId": "getPersonSlug",
-          "readPointer": "/slug",
+          "readOperationId": "getPersonDetail",
+          "readPointer": "/core/slug",
           "writePointer": "/newSlug"
         }
       }
@@ -63629,6 +64281,31 @@
         ],
         "x-source-file": "src/main/kotlin/vc/aventure/domain/model/agent/AgentInstruction.kt"
       },
+      "AuthPermissionGrant": {
+        "type": "object",
+        "description": "Auth permission grant",
+        "properties": {
+          "permission": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "uniqueItems": true
+          },
+          "role": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "uniqueItems": true
+          }
+        },
+        "required": [
+          "permission",
+          "role"
+        ],
+        "x-source-file": "src/main/kotlin/vc/aventure/domain/model/auth/AuthPermissionGrant.kt"
+      },
       "BillingCheckout": {
         "type": "object",
         "description": "Hosted Checkout destination and expiry without provider identifiers.",
@@ -64647,6 +65324,333 @@
           "patch"
         ],
         "x-source-file": "src/main/kotlin/vc/aventure/domain/model/classification/ClassificationReconcile.kt"
+      },
+      "CliAuthorization": {
+        "type": "object",
+        "description": "Browser-approved CLI authorization metadata. Secret poll and encrypted-delivery material are exposed only by their dedicated one-time response contracts.",
+        "properties": {
+          "approvedAt": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time",
+            "description": "Time the authenticated user approved this request"
+          },
+          "clientLabel": {
+            "type": "string",
+            "description": "User-supplied label for the requesting CLI installation"
+          },
+          "clientPlatform": {
+            "$ref": "#/components/schemas/CliAuthorizationClientPlatform",
+            "description": "Coarse client operating-system family"
+          },
+          "comparisonCode": {
+            "type": "string",
+            "description": "Human comparison code shown by both the CLI and browser"
+          },
+          "consumedAt": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time",
+            "description": "Time the CLI acknowledged durable local storage"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Authorization request creation timestamp"
+          },
+          "expiresAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Time after which an unfinished request cannot be approved"
+          },
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Public authorization request identifier"
+          },
+          "intervalSeconds": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Minimum server-directed poll interval in seconds",
+            "minimum": 1
+          },
+          "keyReadyAt": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time",
+            "description": "Time encrypted key delivery became available"
+          },
+          "status": {
+            "$ref": "#/components/schemas/CliAuthorizationStatus",
+            "description": "Current broker lifecycle state"
+          },
+          "terminalAt": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time",
+            "description": "Time this request entered its terminal state"
+          },
+          "terminalReason": {
+            "description": "Non-secret terminal-state explanation",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/CliAuthorizationTerminalReason"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Most recent lifecycle update timestamp"
+          }
+        },
+        "required": [
+          "clientLabel",
+          "clientPlatform",
+          "comparisonCode",
+          "createdAt",
+          "expiresAt",
+          "id",
+          "intervalSeconds",
+          "status",
+          "updatedAt"
+        ],
+        "x-source-file": "src/main/kotlin/vc/aventure/domain/model/cliauthorization/CliAuthorization.kt"
+      },
+      "CliAuthorizationClientPlatform": {
+        "type": "string",
+        "description": "Coarse operating-system family reported by the CLI",
+        "enum": [
+          "MACOS",
+          "LINUX",
+          "WINDOWS",
+          "OTHER"
+        ],
+        "x-source-file": "src/main/kotlin/vc/aventure/domain/model/cliauthorization/CliAuthorization.kt"
+      },
+      "CliAuthorizationDelivery": {
+        "type": "object",
+        "description": "RSA-wrapped AES-256-GCM delivery of one personal API-key secret",
+        "properties": {
+          "algorithm": {
+            "$ref": "#/components/schemas/CliAuthorizationEncryptionAlgorithm",
+            "description": "Hybrid encryption suite used for this delivery"
+          },
+          "authenticationTag": {
+            "type": "string",
+            "description": "Base64-encoded 16-byte AES-GCM authentication tag"
+          },
+          "ciphertext": {
+            "type": "string",
+            "description": "Base64-encoded encrypted UTF-8 personal API-key secret bytes"
+          },
+          "nonce": {
+            "type": "string",
+            "description": "Base64-encoded 12-byte AES-GCM nonce"
+          },
+          "wrappedKey": {
+            "type": "string",
+            "description": "Base64-encoded RSA-OAEP-wrapped AES key"
+          }
+        },
+        "required": [
+          "algorithm",
+          "authenticationTag",
+          "ciphertext",
+          "nonce",
+          "wrappedKey"
+        ],
+        "x-source-file": "src/main/kotlin/vc/aventure/domain/model/cliauthorization/CliAuthorization.kt"
+      },
+      "CliAuthorizationEncryptionAlgorithm": {
+        "type": "string",
+        "description": "Versioned hybrid encryption suite for one-time CLI credential delivery",
+        "enum": [
+          "RSA_OAEP_256_A256_GCM_V1"
+        ],
+        "x-source-file": "src/main/kotlin/vc/aventure/domain/model/cliauthorization/CliAuthorization.kt"
+      },
+      "CliAuthorizationMutation": {
+        "type": "object",
+        "description": "Creates a short-lived CLI authorization request bound to an ephemeral key",
+        "properties": {
+          "clientLabel": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Label for this CLI installation",
+            "example": "William's MacBook",
+            "maxLength": 120,
+            "minLength": 1,
+            "pattern": ".*\\S.*"
+          },
+          "clientPlatform": {
+            "description": "Coarse operating-system family",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/CliAuthorizationClientPlatform"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "encryptionAlgorithm": {
+            "description": "Requested hybrid encryption suite",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/CliAuthorizationEncryptionAlgorithm"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "encryptionPublicKey": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Base64-encoded DER SubjectPublicKeyInfo for an ephemeral RSA public key",
+            "maxLength": 12000,
+            "minLength": 344
+          }
+        },
+        "x-source-file": "src/main/kotlin/vc/aventure/domain/model/cliauthorization/CliAuthorization.kt"
+      },
+      "CliAuthorizationPoll": {
+        "type": "object",
+        "description": "Current broker state and encrypted delivery when the key is ready",
+        "properties": {
+          "delivery": {
+            "description": "Encrypted one-time delivery, present only for KEY_READY",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/CliAuthorizationDelivery"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "expiresAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Authorization request expiry timestamp"
+          },
+          "status": {
+            "$ref": "#/components/schemas/CliAuthorizationStatus",
+            "description": "Current broker lifecycle state"
+          },
+          "terminalReason": {
+            "description": "Non-secret terminal-state explanation",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/CliAuthorizationTerminalReason"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "expiresAt",
+          "status"
+        ],
+        "x-source-file": "src/main/kotlin/vc/aventure/domain/model/cliauthorization/CliAuthorization.kt"
+      },
+      "CliAuthorizationStart": {
+        "type": "object",
+        "description": "New CLI authorization handle and one-time poll credential",
+        "properties": {
+          "comparisonCode": {
+            "type": "string",
+            "description": "Human comparison code shown by both the CLI and browser"
+          },
+          "expiresAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Authorization request expiry timestamp"
+          },
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Public authorization request identifier"
+          },
+          "intervalSeconds": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Minimum poll interval in seconds",
+            "minimum": 1
+          },
+          "pollSecret": {
+            "type": "string",
+            "description": "One-time high-entropy credential required to poll and acknowledge delivery",
+            "readOnly": true
+          },
+          "verificationUrl": {
+            "type": "string",
+            "format": "uri",
+            "description": "Browser verification URL"
+          }
+        },
+        "required": [
+          "comparisonCode",
+          "expiresAt",
+          "id",
+          "intervalSeconds",
+          "pollSecret",
+          "verificationUrl"
+        ],
+        "x-source-file": "src/main/kotlin/vc/aventure/domain/model/cliauthorization/CliAuthorization.kt"
+      },
+      "CliAuthorizationStatus": {
+        "type": "string",
+        "description": "CLI authorization broker lifecycle state",
+        "enum": [
+          "PENDING",
+          "ISSUING",
+          "KEY_READY",
+          "REVOKING",
+          "CONSUMED",
+          "REVOKED",
+          "DENIED",
+          "EXPIRED",
+          "FAILED"
+        ],
+        "x-source-file": "src/main/kotlin/vc/aventure/domain/model/cliauthorization/CliAuthorization.kt"
+      },
+      "CliAuthorizationTerminalReason": {
+        "type": "string",
+        "description": "CLI authorization terminal explanation",
+        "enum": [
+          "Denied by user",
+          "Authorization request expired",
+          "CLI authorization expired before acknowledgement",
+          "Credential issuance recovery revoked an unrecoverable key",
+          "Revoked by user",
+          "Clerk create response validation failed",
+          "Credential issuance failed",
+          "Credential issuance could not be recovered",
+          "Personal API-key quota reached",
+          "Credential issuance lost its database claim",
+          "Credential delivery encryption failed",
+          "Credential issuance finalization was lost"
+        ],
+        "x-source-file": "src/main/kotlin/vc/aventure/domain/model/cliauthorization/CliAuthorization.kt"
       },
       "CompletionGateCoverage": {
         "type": "string",
@@ -67567,13 +68571,6 @@
             "$ref": "#/components/schemas/EntityListQualityGate",
             "description": "Named server-owned list quality gate."
           },
-          "semanticQuery": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "description": "Semantic entity search phrase."
-          },
           "slug": {
             "type": "array",
             "description": "Restrict results to entity slugs.",
@@ -69084,6 +70081,311 @@
           "research"
         ],
         "x-source-file": "src/main/kotlin/vc/aventure/domain/model/entity/EntityList.kt"
+      },
+      "EntityListFilter": {
+        "type": "object",
+        "additionalProperties": false,
+        "description": "Entity list and search filters including semantic entity search. Supported only by GET /v1/entities and POST /v1/entities; every other reused EntityFilter surface accepts the base EntityFilter, which omits semanticQuery.",
+        "properties": {
+          "acceleratorBrand": {
+            "type": "array",
+            "description": "Accelerator brand or operator name.",
+            "items": {
+              "type": "string"
+            }
+          },
+          "acceleratorCohort": {
+            "type": "array",
+            "description": "Accelerator batch or cohort label.",
+            "items": {
+              "type": "string"
+            }
+          },
+          "acceleratorName": {
+            "type": "array",
+            "description": "Specific accelerator program name.",
+            "items": {
+              "type": "string"
+            }
+          },
+          "acceleratorStatus": {
+            "type": "array",
+            "description": "Accelerator participation status.",
+            "items": {
+              "type": "string"
+            }
+          },
+          "affinity": {
+            "type": "array",
+            "description": "Affinity provider organization names accepted by the companies list filter. Affinity rows are member -> provider; use provider names here, not member names.",
+            "items": {
+              "type": "string"
+            }
+          },
+          "employeeCountRange": {
+            "type": "array",
+            "description": "Inclusive reported employee-count ranges, in employees.",
+            "items": {
+              "$ref": "#/components/schemas/IntRange"
+            }
+          },
+          "entityId": {
+            "type": "array",
+            "description": "Restrict results to specific entity IDs.",
+            "items": {
+              "type": "string",
+              "format": "uuid",
+              "description": "Canonical entity UUID",
+              "x-source-file": "src/main/kotlin/vc/aventure/domain/model/identity/EntityId.kt"
+            }
+          },
+          "entityName": {
+            "type": "array",
+            "description": "Exact normalized match against entity brand or legal names.",
+            "items": {
+              "type": "string"
+            }
+          },
+          "featured": {
+            "type": [
+              "boolean",
+              "null"
+            ],
+            "description": "Filter by featured status."
+          },
+          "fundraiseActivity": {
+            "$ref": "#/components/schemas/EntityFundraiseFilterCriteria",
+            "description": "Fundraise activity"
+          },
+          "hasFundraising": {
+            "type": [
+              "boolean",
+              "null"
+            ],
+            "description": "Filter to entities with fundraise activity."
+          },
+          "headquartersCity": {
+            "type": "array",
+            "description": "Headquarters city values.",
+            "items": {
+              "type": "string"
+            }
+          },
+          "headquartersCountry": {
+            "type": "array",
+            "description": "Headquarters country values.",
+            "items": {
+              "type": "string"
+            }
+          },
+          "headquartersState": {
+            "type": "array",
+            "description": "Headquarters state or region values.",
+            "items": {
+              "type": "string"
+            }
+          },
+          "industry": {
+            "type": "array",
+            "description": "Industry classification values.",
+            "items": {
+              "type": "string"
+            }
+          },
+          "letter": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "First letter of the display name."
+          },
+          "location": {
+            "type": "array",
+            "description": "Geographic classification values.",
+            "items": {
+              "type": "string"
+            }
+          },
+          "logoOption": {
+            "$ref": "#/components/schemas/EntityFilterLogoOption",
+            "description": "Logo sort priority."
+          },
+          "mainProduct": {
+            "type": "array",
+            "description": "Main product classification values.",
+            "items": {
+              "type": "string"
+            }
+          },
+          "operatingStatus": {
+            "type": "array",
+            "description": "Operating status values.",
+            "items": {
+              "type": "string"
+            }
+          },
+          "portfolioHeadquartersCity": {
+            "type": "array",
+            "description": "Portfolio-company headquarters city values.",
+            "items": {
+              "type": "string"
+            }
+          },
+          "portfolioHeadquartersCountry": {
+            "type": "array",
+            "description": "Portfolio-company headquarters country values.",
+            "items": {
+              "type": "string"
+            }
+          },
+          "portfolioHeadquartersState": {
+            "type": "array",
+            "description": "Portfolio-company headquarters state or region values.",
+            "items": {
+              "type": "string"
+            }
+          },
+          "qualityGate": {
+            "$ref": "#/components/schemas/EntityListQualityGate",
+            "description": "Named server-owned list quality gate."
+          },
+          "semanticQuery": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Semantic entity search phrase. Supported only by GET /v1/entities and POST /v1/entities."
+          },
+          "slug": {
+            "type": "array",
+            "description": "Restrict results to entity slugs.",
+            "items": {
+              "type": "string",
+              "description": "Canonical lowercase URL slug for the resource",
+              "example": "aventure-vc",
+              "maxLength": 255,
+              "pattern": "^[a-z0-9_-]+$",
+              "x-source-file": "src/main/kotlin/vc/aventure/domain/model/identity/Slug.kt"
+            }
+          },
+          "stage": {
+            "type": "array",
+            "description": "Investment stage classification values.",
+            "items": {
+              "type": "string"
+            }
+          },
+          "suppressNonOperating": {
+            "type": [
+              "boolean",
+              "null"
+            ],
+            "description": "Suppress entities with terminal operating status."
+          },
+          "suppressZeroTotalRaised": {
+            "type": [
+              "boolean",
+              "null"
+            ],
+            "description": "Suppress entities whose total raised is zero."
+          },
+          "tag": {
+            "type": "array",
+            "description": "General classification tag values.",
+            "items": {
+              "type": "string"
+            }
+          },
+          "textSearch": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Non-blank keyword/full-text search term. Use natural-search for plain-English or multi-constraint company requests."
+          },
+          "typeCustomer": {
+            "type": "array",
+            "description": "Customer-type classification values.",
+            "items": {
+              "type": "string"
+            }
+          },
+          "typeModel": {
+            "type": "array",
+            "description": "Business-model classification values.",
+            "items": {
+              "type": "string"
+            }
+          },
+          "typeOwnership": {
+            "type": "array",
+            "description": "Ownership-model classification values.",
+            "items": {
+              "type": "string"
+            }
+          },
+          "typeRecord": {
+            "type": "array",
+            "description": "Entity type filter. Organization expands to Company, Investment Firm, Nonprofit, and Government; omit to include every entity type.",
+            "items": {
+              "$ref": "#/components/schemas/EntityType"
+            }
+          },
+          "typeRevenue": {
+            "type": "array",
+            "description": "Revenue-model classification values.",
+            "items": {
+              "type": "string"
+            }
+          },
+          "typeTechnologyUsed": {
+            "type": "array",
+            "description": "Technology-used classification values.",
+            "items": {
+              "type": "string"
+            }
+          },
+          "url": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Current URL to match by normalized host and path."
+          },
+          "urlDomain": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Current root domain to match when urlMatchMode=domain.",
+            "example": "example.com"
+          },
+          "urlMatchMode": {
+            "$ref": "#/components/schemas/UrlMatchMode",
+            "description": "URL matching mode: hostPath uses host and path; domain uses the root domain.",
+            "example": "domain"
+          },
+          "urlType": {
+            "description": "Restrict URL matching to one URL type.",
+            "example": "website",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/EntityUrlType"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "yearFoundedRange": {
+            "type": "array",
+            "description": "Inclusive founding-year ranges, in calendar years.",
+            "items": {
+              "$ref": "#/components/schemas/IntRange"
+            }
+          }
+        },
+        "x-source-file": "src/main/kotlin/vc/aventure/domain/model/filter/entity/EntityListFilter.kt"
       },
       "EntityListQualityGate": {
         "type": "string",
@@ -73382,21 +74684,21 @@
               "boolean",
               "null"
             ],
-            "description": "When true, removes all existing entity joins"
+            "description": "When true, removes every entity join on /v1/news/detail and on person-scoped routes; an entity-scoped update removes only the route entity's join"
           },
           "detachPerson": {
             "type": [
               "boolean",
               "null"
             ],
-            "description": "When true, removes the existing person join"
+            "description": "When true, removes every person join on /v1/news/detail and on entity-scoped routes; a person-scoped update removes only the route person's join"
           },
           "entityJoinId": {
             "type": [
               "array",
               "null"
             ],
-            "description": "Entity ids for the replacement entity join set; scoped routes keep route entity",
+            "description": "Entity ids for the entity join set. They replace the article's whole entity join set on /v1/news/detail and on person-scoped routes; an entity-scoped create adds the route entity to them; an entity-scoped update of an existing article ignores them and acts on the route entity alone",
             "items": {
               "type": "string",
               "format": "uuid",
@@ -73419,7 +74721,7 @@
               "null"
             ],
             "format": "double",
-            "description": "Score applied to every entityJoinId replacement join",
+            "description": "Score for the entity joins this request writes: the entityJoinId set wherever that field applies, the route entity on an entity-scoped update",
             "maximum": 100,
             "minimum": 0
           },
@@ -73428,7 +74730,7 @@
               "string",
               "null"
             ],
-            "description": "Match status applied to every entityJoinId replacement join; matchStatus must be auto-match|needs-review|approved|rejected with optional audit metadata",
+            "description": "Match status for the entity joins this request writes: the entityJoinId set wherever that field applies, the route entity on an entity-scoped update. Omit it on an entity-scoped update to keep the decision already recorded. matchStatus must be auto-match|needs-review|approved|rejected with optional audit metadata",
             "pattern": "^(auto-match|needs-review|approved|rejected)(\\|user=[^|]+\\|at=[^|]+)?$"
           },
           "excerpt": {
@@ -73452,14 +74754,6 @@
             ],
             "description": "External article flag. Defaults to true (external/third-party article) when omitted; set false only for an internal aVenture-hosted article, which requires content."
           },
-          "newSlug": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "description": "Preferred detail-update slug rename field; omit on create.",
-            "example": "2026-06-04-clove-raises-series-a"
-          },
           "newsImageThumbnail": {
             "type": [
               "string",
@@ -73481,7 +74775,7 @@
               "null"
             ],
             "format": "uuid",
-            "description": "Single person id for the replacement person join",
+            "description": "Single person id attached to the article; other person joins are preserved, and omitting personMatchStatus keeps the decision already recorded for this person",
             "x-source-file": "src/main/kotlin/vc/aventure/domain/model/identity/PersonId.kt"
           },
           "personMatchEvidence": {
@@ -73508,7 +74802,7 @@
               "string",
               "null"
             ],
-            "description": "Match status for the replacement person join; matchStatus must be auto-match|needs-review|approved|rejected with optional audit metadata",
+            "description": "Match status for the attached person join; matchStatus must be auto-match|needs-review|approved|rejected with optional audit metadata",
             "pattern": "^(auto-match|needs-review|approved|rejected)(\\|user=[^|]+\\|at=[^|]+)?$"
           },
           "personSlug": {
@@ -73516,7 +74810,7 @@
               "string",
               "null"
             ],
-            "description": "Single person slug for the replacement person join"
+            "description": "Single person slug attached to the article; existing person joins are preserved"
           },
           "publication": {
             "type": [
@@ -73551,7 +74845,7 @@
               "string",
               "null"
             ],
-            "description": "Article slug. Omit for the dated slug generated from publishedAt and title; detail updates may rename through this field or newSlug.",
+            "description": "Initial article slug at create time. Omit for the dated slug generated from publishedAt and title. An update accepts only the article's current slug (a full-body resend); rename through PATCH /v1/news/{newsId}/slug.",
             "example": "2026-06-04-clove-raises-10m-series-a"
           },
           "title": {
@@ -75154,6 +76448,52 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/PersonDetail"
+            }
+          },
+          "empty": {
+            "type": "boolean"
+          },
+          "first": {
+            "type": "boolean"
+          },
+          "last": {
+            "type": "boolean"
+          },
+          "number": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "numberOfElements": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageable": {
+            "$ref": "#/components/schemas/PageableObject"
+          },
+          "size": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "sort": {
+            "$ref": "#/components/schemas/SortObject"
+          },
+          "totalElements": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalPages": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "PagePersonInvestment": {
+        "type": "object",
+        "properties": {
+          "content": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PersonInvestment"
             }
           },
           "empty": {
@@ -77068,6 +78408,93 @@
         },
         "x-source-file": "src/main/kotlin/vc/aventure/domain/model/person/PersonMutation.kt"
       },
+      "PersonalApiKey": {
+        "type": "object",
+        "description": "Personal API-key metadata sourced from Clerk; never contains the key secret",
+        "properties": {
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Provider creation timestamp"
+          },
+          "description": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Optional user-visible key description"
+          },
+          "expiresAt": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time",
+            "description": "Provider expiry timestamp"
+          },
+          "id": {
+            "type": "string",
+            "description": "Clerk API-key identifier",
+            "pattern": "^ak_[0-9A-Fa-f]{32}$"
+          },
+          "lastUsedAt": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time",
+            "description": "Most recent provider-recorded use timestamp"
+          },
+          "name": {
+            "type": "string",
+            "description": "User-visible key name"
+          },
+          "revocationReason": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Provider revocation explanation"
+          },
+          "scopes": {
+            "type": "array",
+            "description": "Clerk scopes assigned to this key",
+            "items": {
+              "type": "string"
+            }
+          },
+          "status": {
+            "type": "string",
+            "description": "Provider-derived current lifecycle state",
+            "enum": [
+              "ACTIVE",
+              "REVOKED",
+              "EXPIRED"
+            ],
+            "x-source-file": "src/main/kotlin/vc/aventure/domain/model/personalapikey/PersonalApiKey.kt"
+          },
+          "subject": {
+            "type": "string",
+            "description": "Owning Clerk user subject",
+            "x-source-file": "src/main/kotlin/vc/aventure/domain/model/identity/ClerkUserId.kt"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Provider metadata update timestamp"
+          }
+        },
+        "required": [
+          "createdAt",
+          "id",
+          "name",
+          "scopes",
+          "status",
+          "subject",
+          "updatedAt"
+        ],
+        "x-source-file": "src/main/kotlin/vc/aventure/domain/model/personalapikey/PersonalApiKey.kt"
+      },
       "ProblemDetail": {
         "type": "object",
         "description": "RFC 9457 problem response with aVenture extensions.",
@@ -78102,7 +79529,7 @@
             "description": "True when the semantic fallback replaced an untranslatable planner result with a semantic search over the original query."
           },
           "filter": {
-            "$ref": "#/components/schemas/EntityFilter",
+            "$ref": "#/components/schemas/EntityListFilter",
             "description": "Canonical entity filter generated from the natural-language query."
           },
           "interpretation": {
@@ -78916,6 +80343,75 @@
           "url"
         ],
         "x-source-file": "src/main/kotlin/vc/aventure/domain/model/url/UrlDuplicateConflict.kt"
+      },
+      "SystemBuild": {
+        "type": "object",
+        "description": "Build metadata exposed by the public info alias",
+        "properties": {
+          "build": {
+            "$ref": "#/components/schemas/SystemBuildDetail",
+            "description": "Application build metadata"
+          }
+        },
+        "required": [
+          "build"
+        ],
+        "x-source-file": "src/main/kotlin/vc/aventure/adapters/inbound/web/metrics/controller/InfoAliasController.kt"
+      },
+      "SystemBuildDetail": {
+        "type": "object",
+        "description": "Application build metadata",
+        "properties": {
+          "artifact": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Artifact identifier",
+            "example": "back-end"
+          },
+          "group": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Group identifier",
+            "example": "vc.aventure"
+          },
+          "name": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Project name",
+            "example": "aVenture API"
+          },
+          "revision": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Deployed Git commit revision",
+            "example": "0123456789abcdef"
+          },
+          "time": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time",
+            "description": "Build timestamp"
+          },
+          "version": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Project version",
+            "example": "0.6.2-SNAPSHOT"
+          }
+        },
+        "x-source-file": "src/main/kotlin/vc/aventure/adapters/inbound/web/metrics/controller/InfoAliasController.kt"
       },
       "SystemStatus": {
         "type": "object",

@@ -29,7 +29,7 @@ type EntityFundraiseInvestorJoinMutationDefinition = z.infer<typeof EntityFundra
  * @openapiSchema EntityFundraiseInvestorJoinMutation
  * @endpoint POST /v1/entities/detail/fundraise-investor-joins
  * @endpoint PATCH /v1/entities/{entityId}/fundraise-investor-joins/{joinId}
- * @endpoint PUT /v1/entities/detail/fundraise-investor-joins
+ * @endpoint PUT /v1/entities/{entityId}/fundraise-investor-joins/{joinId}
  * @contractShape entity.fundraise-investor-join-mutation
  * @contractRole canonical
  * @ownerSourceFile src/main/kotlin/vc/aventure/domain/model/fundraise/FundraiseInvestorJoin.kt

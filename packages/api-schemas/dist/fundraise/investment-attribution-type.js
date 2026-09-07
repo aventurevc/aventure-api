@@ -13,11 +13,11 @@ import { z } from "zod/v4";
  * @endpoint GET /v1/entities/detail/similar
  * @endpoint GET /v1/entities/summary
  * @endpoint GET /v1/people/detail
+ * @endpoint GET /v1/people/detail/investments
  * @endpoint GET /v1/search/link
  * @endpoint GET /v1/entities/{entityId}/products/suggestions
  * @endpoint GET /v1/entities/{entityId}/relationships/suggestions
  * @endpoint GET /v1/entities/detail/fundraise-rounds/{transactionId}
- * @endpoint POST /v1/entities
  * @endpoint POST /v1/entities/batch
  * @endpoint POST /v1/entities/detail
  * @endpoint POST /v1/entities/detail/batch
@@ -25,6 +25,7 @@ import { z } from "zod/v4";
  * @endpoint POST /v1/entities/detail/fundraise-rounds
  * @endpoint POST /v1/entities/detail/resolve
  * @endpoint POST /v1/entities/natural-search
+ * @endpoint POST /v1/entities/search
  * @endpoint POST /v1/people/batch
  * @endpoint POST /v1/people/detail
  * @endpoint POST /v1/people/detail/batch

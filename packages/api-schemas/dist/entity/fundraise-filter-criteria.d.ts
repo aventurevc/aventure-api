@@ -3,19 +3,15 @@ import { z } from "zod/v4";
  * Fundraise and investment filters for entity search
  *
  * @openapiSchema EntityFundraiseFilterCriteria
- * @endpoint GET /v1/app/saved-views
  * @endpoint GET /v1/search/link
- * @endpoint GET /v1/app/saved-views/{savedViewId}
- * @endpoint POST /v1/app/saved-views
- * @endpoint POST /v1/entities
  * @endpoint POST /v1/entities/batch
  * @endpoint POST /v1/entities/filters/refine
  * @endpoint POST /v1/entities/filters/search
  * @endpoint POST /v1/entities/natural-search
+ * @endpoint POST /v1/entities/search
  * @endpoint POST /v1/search/all
- * @endpoint PATCH /v1/app/saved-views/{savedViewId}
- * @endpoint DELETE /v1/app/saved-views/{savedViewId}
  * @usedBySchema EntityFilterSchema
+ * @usedBySchema EntityListFilterSchema
  * @contractShape entity.fundraise-filter-criteria
  * @contractRole canonical
  * @ownerSourceFile src/main/kotlin/vc/aventure/domain/model/filter/entity/FundraiseFilterCriteria.kt

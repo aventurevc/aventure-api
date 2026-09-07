@@ -20,11 +20,8 @@ type SourceDocumentListDefinition = z.infer<typeof SourceDocumentListSchemaDefin
  * Metadata-only ledger row for source-document lists
  *
  * @openapiSchema SourceDocumentList
- * @endpoint GET /v1/research/source-documents
- * @endpoint GET /v1/research/source-documents/latest
  * @endpoint GET /v1/search/web/{documentId}
  * @endpoint POST /v1/search/web
- * @usedBySchema PageSourceDocumentListSchema
  * @usedBySchema WebSearchSchema
  * @contractShape source.document-list
  * @contractRole canonical

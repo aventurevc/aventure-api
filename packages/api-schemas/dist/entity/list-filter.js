@@ -7,21 +7,7 @@ import { EntityTypeSchema } from "./type.js";
 import { EntityUrlTypeSchema } from "./url-type.js";
 import { IntRangeSchema } from "../int/range.js";
 import { UrlMatchModeSchema } from "../url/match-mode.js";
-/**
- * Entity list and search filters. GET flattens these fields as query parameters; POST accepts the same shape as JSON.
- *
- * @openapiSchema EntityFilter
- * @endpoint POST /v1/entities/batch
- * @endpoint POST /v1/entities/filters/refine
- * @endpoint POST /v1/entities/filters/search
- * @endpoint POST /v1/entities/natural-search
- * @usedBySchema EntityFilterSearchSchema
- * @usedBySchema EntityNaturalSearchSchema
- * @contractShape entity.filter
- * @contractRole canonical
- * @ownerSourceFile src/main/kotlin/vc/aventure/domain/model/filter/entity/EntityFilter.kt
- */
-export const EntityFilterSchema = z.strictObject({
+const EntityListFilterSchemaDefinition = z.strictObject({
     /** Accelerator brand or operator name. */
     acceleratorBrand: z.array(z.string()).optional(),
     /** Accelerator batch or cohort label. */
@@ -70,6 +56,8 @@ export const EntityFilterSchema = z.strictObject({
     portfolioHeadquartersState: z.array(z.string()).optional(),
     /** Named server-owned list quality gate. */
     qualityGate: EntityListQualityGateSchema.optional(),
+    /** Semantic entity search phrase. Supported only by GET /v1/entities and POST /v1/entities. */
+    semanticQuery: z.string().nullish(),
     /** Restrict results to entity slugs. */
     slug: z
         .array(z
@@ -110,4 +98,18 @@ export const EntityFilterSchema = z.strictObject({
     /** Inclusive founding-year ranges, in calendar years. */
     yearFoundedRange: z.array(IntRangeSchema).optional(),
 });
-//# sourceMappingURL=filter.js.map
+/**
+ * Entity list and search filters including semantic entity search. Supported only by GET /v1/entities and POST /v1/entities; every other reused EntityFilter surface accepts the base EntityFilter, which omits semanticQuery.
+ *
+ * @openapiSchema EntityListFilter
+ * @endpoint GET /v1/search/link
+ * @endpoint POST /v1/entities/natural-search
+ * @endpoint POST /v1/entities/search
+ * @endpoint POST /v1/search/all
+ * @usedBySchema SearchInterpretationSchema
+ * @contractShape entity.list-filter
+ * @contractRole canonical
+ * @ownerSourceFile src/main/kotlin/vc/aventure/domain/model/filter/entity/EntityListFilter.kt
+ */
+export const EntityListFilterSchema = EntityListFilterSchemaDefinition;
+//# sourceMappingURL=list-filter.js.map

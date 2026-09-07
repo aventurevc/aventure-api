@@ -19,7 +19,6 @@ import { z } from "zod/v4";
  * @endpoint DELETE /v1/people/{personId}/texts/{textId}
  * @endpoint DELETE /v1/people/{personId}/urls/{urlId}
  * @endpoint DELETE /v1/people/detail
- * @endpoint DELETE /v1/research/external-social-posts/{externalSocialPostId}
  * @usedBySchema EntityMergeSchema
  * @usedBySchema PersonMergeSchema
  * @contractShape delete.mode

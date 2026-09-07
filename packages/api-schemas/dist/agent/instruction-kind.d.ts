@@ -5,8 +5,6 @@ import { z } from "zod/v4";
  * @openapiSchema AgentInstructionKind
  * @endpoint GET /v1/agents/instructions/{kind}/{name}
  * @endpoint GET /v1/agents/instructions/{kind}/{name}/versions/{version}
- * @endpoint GET /v1/harness/control-plane/runs/{runId}/usage
- * @endpoint GET /v1/harness/runs/{runId}/usage
  * @usedBySchema AgentInstructionSchema
  * @contractShape agent.instruction-kind
  * @contractRole canonical

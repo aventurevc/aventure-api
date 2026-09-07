@@ -18,11 +18,8 @@ type SlugLocationDefinition = z.infer<typeof SlugLocationSchemaDefinition>;
  * Current slug location for a resource
  *
  * @openapiSchema SlugLocation
- * @endpoint GET /v1/app/blog/articles/{id}/slug
- * @endpoint GET /v1/app/pages/{id}/slug
  * @endpoint GET /v1/entities/{entityId}/slug
  * @endpoint GET /v1/news/{newsId}/slug
- * @endpoint GET /v1/people/{personId}/slug
  * @contractShape slug.location
  * @contractRole canonical
  * @ownerSourceFile src/main/kotlin/vc/aventure/domain/model/redirect/SlugLocation.kt

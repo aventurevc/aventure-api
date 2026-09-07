@@ -1,10 +1,8 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
-import { DatasourceSourceMetadataSchema } from "../datasource/source-metadata.js";
 import { EntityImageSchema } from "./image.js";
 import { EntityNameAliasEntityAliasTypeSchema } from "./name-alias-entity-alias-type.js";
 import { EntitySitemapSchema } from "./sitemap.js";
-import { EntityStatusSchema } from "./status.js";
 import { EntityTypeSchema } from "./type.js";
 /**
  * Flat entity core record — identity, naming, status, image, and source metadata. An entity is our umbrella record for organizations such as companies, funds, investment firms and investors, accelerators, nonprofits, and government agencies, plus products and services connected to those organizations. Returned directly by thin-mode (?mode=thin) and alphabetical (?letter=X) list endpoints. Nested as .core inside EntityList for default list reads and EntityDetail for detail reads.
@@ -18,12 +16,10 @@ import { EntityTypeSchema } from "./type.js";
  * @endpoint GET /v1/entities/detail/person-investors
  * @endpoint GET /v1/entities/detail/similar
  * @endpoint GET /v1/entities/duplicate-check
- * @endpoint GET /v1/entities/sitemap-routes
  * @endpoint GET /v1/entities/summary
- * @endpoint GET /v1/harness/runs
  * @endpoint GET /v1/people/detail
+ * @endpoint GET /v1/people/detail/investments
  * @endpoint GET /v1/search/link
- * @endpoint GET /v1/addresses/locations/{scope}/{slug}
  * @endpoint GET /v1/entities/{entityId}/acquisitions
  * @endpoint GET /v1/entities/{entityId}/acquisitions/{relationshipId}
  * @endpoint GET /v1/entities/{entityId}/products/suggestions
@@ -32,10 +28,8 @@ import { EntityTypeSchema } from "./type.js";
  * @endpoint GET /v1/entities/{entityId}/research
  * @endpoint GET /v1/entities/detail/fundraise-rounds/{transactionId}
  * @endpoint GET /v1/entities/relationships/{relationshipId}
- * @endpoint GET /v1/harness/runs/{runId}
  * @endpoint GET /v1/news/{id}/related-companies
  * @endpoint GET /v1/people/{personId}/graph
- * @endpoint POST /v1/entities
  * @endpoint POST /v1/entities/{entityId}/acquisitions
  * @endpoint POST /v1/entities/{entityId}/relationships
  * @endpoint POST /v1/entities/batch
@@ -47,6 +41,7 @@ import { EntityTypeSchema } from "./type.js";
  * @endpoint POST /v1/entities/duplicate-check
  * @endpoint POST /v1/entities/natural-search
  * @endpoint POST /v1/entities/relationships/join
+ * @endpoint POST /v1/entities/search
  * @endpoint POST /v1/people/batch
  * @endpoint POST /v1/people/detail
  * @endpoint POST /v1/people/detail/batch
@@ -69,7 +64,6 @@ import { EntityTypeSchema } from "./type.js";
  * @usedBySchema EntityFundraiseTransactionEntitySchema
  * @usedBySchema EntityListSchema
  * @usedBySchema EntityRelationshipSchema
- * @usedBySchema HarnessRunDetailSchema
  * @usedBySchema PageEntitySchema
  * @usedBySchema PersonGraphCoInvestorSchema
  * @usedBySchema PersonGraphRolePeerSchema
@@ -113,10 +107,6 @@ export const EntitySchema = z.object({
         .string()
         .regex(/^[a-z0-9_-]+$/)
         .max(255),
-    /** Data provenance and source tracking */
-    source: DatasourceSourceMetadataSchema.nullish(),
-    /** Privileged-only visibility and curation flags */
-    status: EntityStatusSchema.optional(),
     /** Entity type classification */
     typeRecord: EntityTypeSchema.nullish(),
     /** Last modification timestamp */

@@ -24,7 +24,6 @@ import { z } from "zod/v4";
  * @endpoint GET /v1/people/{personId}/urls
  * @endpoint GET /v1/people/{personId}/urls/{urlId}
  * @endpoint GET /v1/people/{personId}/urls/all
- * @endpoint POST /v1/entities
  * @endpoint POST /v1/entities/{entityId}/urls
  * @endpoint POST /v1/entities/batch
  * @endpoint POST /v1/entities/detail
@@ -32,6 +31,7 @@ import { z } from "zod/v4";
  * @endpoint POST /v1/entities/detail/full
  * @endpoint POST /v1/entities/detail/resolve
  * @endpoint POST /v1/entities/natural-search
+ * @endpoint POST /v1/entities/search
  * @endpoint POST /v1/people/{personId}/entities
  * @endpoint POST /v1/people/{personId}/urls
  * @endpoint POST /v1/people/batch

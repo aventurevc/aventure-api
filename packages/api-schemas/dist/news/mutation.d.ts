@@ -14,7 +14,6 @@ declare const NewsMutationSchemaDefinition: z.ZodObject<{
     externalId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     externalNewsArticle: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
     newsImageThumbnail: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-    newSlug: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     newsUrlOriginal: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     personId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
     personMatchEvidence: z.ZodOptional<z.ZodNullable<z.ZodString>>;

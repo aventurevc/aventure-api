@@ -10,9 +10,9 @@ import { z } from "zod/v4";
  * @usedBySchema ContentEmbeddingBacklogTypeCountSchema
  * @usedBySchema EntityDuplicateCriteriaSchema
  * @usedBySchema EntityFilterSchema
+ * @usedBySchema EntityListFilterSchema
  * @usedBySchema EntityPersonAssociationSchema
  * @usedBySchema EntitySchema
- * @usedBySchema EntitySitemapUrlSchema
  * @usedBySchema EntityTypeCountSchema
  * @usedBySchema EntityTypeGroupMembershipSchema
  * @usedBySchema NewsResolvedEntityLinkSchema

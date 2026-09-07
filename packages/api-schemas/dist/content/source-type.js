@@ -23,19 +23,19 @@ import { z } from "zod/v4";
  * @endpoint GET /v1/entities/{entityId}/relationships/suggestions
  * @endpoint POST /v1/content/embedding/refresh
  * @endpoint POST /v1/content/embedding/refresh/sweep
- * @endpoint POST /v1/entities
  * @endpoint POST /v1/entities/batch
  * @endpoint POST /v1/entities/detail
  * @endpoint POST /v1/entities/detail/batch
  * @endpoint POST /v1/entities/detail/full
  * @endpoint POST /v1/entities/detail/resolve
  * @endpoint POST /v1/entities/natural-search
- * @endpoint POST /v1/people
+ * @endpoint POST /v1/entities/search
  * @endpoint POST /v1/people/batch
  * @endpoint POST /v1/people/detail
  * @endpoint POST /v1/people/detail/batch
  * @endpoint POST /v1/people/duplicate-check
  * @endpoint POST /v1/people/natural-search
+ * @endpoint POST /v1/people/search
  * @endpoint POST /v1/search/all
  * @endpoint PATCH /v1/entities/detail
  * @endpoint PATCH /v1/people/detail

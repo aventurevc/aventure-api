@@ -86,21 +86,6 @@ declare const EntityRelationshipSchemaDefinition: z.ZodObject<{
             productServiceSlug: z.ZodArray<z.ZodString>;
         }, z.core.$strip>>>;
         slug: z.ZodString;
-        source: z.ZodOptional<z.ZodNullable<z.ZodObject<{
-            changedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
-            dataSourceUpdatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
-            detail: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-            kind: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-            pendingApproval: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
-            sourceId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-            status: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-        }, z.core.$strip>>>;
-        status: z.ZodOptional<z.ZodObject<{
-            isFeatured: z.ZodBoolean;
-            isHidden: z.ZodBoolean;
-            isVerified: z.ZodBoolean;
-            showOnSitemap: z.ZodBoolean;
-        }, z.core.$strip>>;
         typeRecord: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
             "Business Line": "Business Line";
             Company: "Company";

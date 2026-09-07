@@ -9,6 +9,7 @@ const StageFrequencySchemaDefinition = z.object({
  *
  * @openapiSchema StageFrequency
  * @endpoint GET /v1/entities/detail/investor-activity
+ * @endpoint GET /v1/people/detail/investor-activity
  * @usedBySchema EntityFundraiseInvestorActivitySchema
  * @contractShape stage.frequency
  * @contractRole canonical

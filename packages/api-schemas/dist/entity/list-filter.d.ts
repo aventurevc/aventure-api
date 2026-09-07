@@ -1,19 +1,5 @@
 import { z } from "zod/v4";
-/**
- * Entity list and search filters. GET flattens these fields as query parameters; POST accepts the same shape as JSON.
- *
- * @openapiSchema EntityFilter
- * @endpoint POST /v1/entities/batch
- * @endpoint POST /v1/entities/filters/refine
- * @endpoint POST /v1/entities/filters/search
- * @endpoint POST /v1/entities/natural-search
- * @usedBySchema EntityFilterSearchSchema
- * @usedBySchema EntityNaturalSearchSchema
- * @contractShape entity.filter
- * @contractRole canonical
- * @ownerSourceFile src/main/kotlin/vc/aventure/domain/model/filter/entity/EntityFilter.kt
- */
-export declare const EntityFilterSchema: z.ZodObject<{
+declare const EntityListFilterSchemaDefinition: z.ZodObject<{
     acceleratorBrand: z.ZodOptional<z.ZodArray<z.ZodString>>;
     acceleratorCohort: z.ZodOptional<z.ZodArray<z.ZodString>>;
     acceleratorName: z.ZodOptional<z.ZodArray<z.ZodString>>;
@@ -128,6 +114,7 @@ export declare const EntityFilterSchema: z.ZodObject<{
         COMPANY_LISTING_READY: "COMPANY_LISTING_READY";
         NONE: "NONE";
     }>>;
+    semanticQuery: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     slug: z.ZodOptional<z.ZodArray<z.ZodString>>;
     stage: z.ZodOptional<z.ZodArray<z.ZodString>>;
     suppressNonOperating: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
@@ -217,5 +204,21 @@ export declare const EntityFilterSchema: z.ZodObject<{
         min?: number | null | undefined;
     }, unknown>>>>;
 }, z.core.$strict>;
-export type EntityFilter = z.infer<typeof EntityFilterSchema>;
-//# sourceMappingURL=filter.d.ts.map
+type EntityListFilterDefinition = z.infer<typeof EntityListFilterSchemaDefinition>;
+/**
+ * Entity list and search filters including semantic entity search. Supported only by GET /v1/entities and POST /v1/entities; every other reused EntityFilter surface accepts the base EntityFilter, which omits semanticQuery.
+ *
+ * @openapiSchema EntityListFilter
+ * @endpoint GET /v1/search/link
+ * @endpoint POST /v1/entities/natural-search
+ * @endpoint POST /v1/entities/search
+ * @endpoint POST /v1/search/all
+ * @usedBySchema SearchInterpretationSchema
+ * @contractShape entity.list-filter
+ * @contractRole canonical
+ * @ownerSourceFile src/main/kotlin/vc/aventure/domain/model/filter/entity/EntityListFilter.kt
+ */
+export declare const EntityListFilterSchema: z.ZodType<EntityListFilterDefinition>;
+export type EntityListFilter = z.infer<typeof EntityListFilterSchema>;
+export {};
+//# sourceMappingURL=list-filter.d.ts.map

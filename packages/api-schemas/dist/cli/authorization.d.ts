@@ -48,13 +48,7 @@ type CliAuthorizationDefinition = z.infer<typeof CliAuthorizationSchemaDefinitio
  * Browser-approved CLI authorization metadata. Secret poll and encrypted-delivery material are exposed only by their dedicated one-time response contracts.
  *
  * @openapiSchema CliAuthorization
- * @endpoint GET /v1/app/cli-authorizations
- * @endpoint GET /v1/app/cli-authorizations/{cliAuthorizationId}
- * @endpoint POST /v1/app/cli-authorizations/{cliAuthorizationId}/approve
- * @endpoint POST /v1/app/cli-authorizations/{cliAuthorizationId}/deny
  * @endpoint POST /v1/auth/cli-authorizations/{cliAuthorizationId}/acknowledge
- * @endpoint DELETE /v1/app/cli-authorizations/{cliAuthorizationId}
- * @usedBySchema PageCliAuthorizationSchema
  * @contractShape cli.authorization
  * @contractRole canonical
  * @ownerSourceFile src/main/kotlin/vc/aventure/domain/model/cliauthorization/CliAuthorization.kt

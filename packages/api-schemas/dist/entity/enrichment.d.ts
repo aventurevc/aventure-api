@@ -517,15 +517,6 @@ declare const EntityEnrichmentSchemaDefinition: z.ZodObject<{
             entityId?: string | null | undefined;
             personId?: string | null | undefined;
         } | null | undefined;
-        source?: {
-            changedAt?: string | null | undefined;
-            dataSourceUpdatedAt?: string | null | undefined;
-            detail?: string | null | undefined;
-            kind?: string | null | undefined;
-            pendingApproval?: number | null | undefined;
-            sourceId?: string | null | undefined;
-            status?: string | null | undefined;
-        } | null | undefined;
         sourceId?: string | null | undefined;
         status?: string | null | undefined;
         statusChecked?: string | null | undefined;
@@ -542,15 +533,6 @@ declare const EntityEnrichmentSchemaDefinition: z.ZodObject<{
         owner?: {
             entityId?: string | null | undefined;
             personId?: string | null | undefined;
-        } | null | undefined;
-        source?: {
-            changedAt?: string | null | undefined;
-            dataSourceUpdatedAt?: string | null | undefined;
-            detail?: string | null | undefined;
-            kind?: string | null | undefined;
-            pendingApproval?: number | null | undefined;
-            sourceId?: string | null | undefined;
-            status?: string | null | undefined;
         } | null | undefined;
         sourceId?: string | null | undefined;
         status?: string | null | undefined;
@@ -572,13 +554,13 @@ type EntityEnrichmentDefinition = z.infer<typeof EntityEnrichmentSchemaDefinitio
  * @endpoint GET /v1/search/link
  * @endpoint GET /v1/entities/{entityId}/products/suggestions
  * @endpoint GET /v1/entities/{entityId}/relationships/suggestions
- * @endpoint POST /v1/entities
  * @endpoint POST /v1/entities/batch
  * @endpoint POST /v1/entities/detail
  * @endpoint POST /v1/entities/detail/batch
  * @endpoint POST /v1/entities/detail/full
  * @endpoint POST /v1/entities/detail/resolve
  * @endpoint POST /v1/entities/natural-search
+ * @endpoint POST /v1/entities/search
  * @endpoint POST /v1/search/all
  * @endpoint PATCH /v1/entities/detail
  * @endpoint PUT /v1/entities/detail

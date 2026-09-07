@@ -6,10 +6,6 @@ declare const EntityNaturalSearchSchemaDefinition: z.ZodObject<{
         acceleratorName: z.ZodOptional<z.ZodArray<z.ZodString>>;
         acceleratorStatus: z.ZodOptional<z.ZodArray<z.ZodString>>;
         affinity: z.ZodOptional<z.ZodArray<z.ZodString>>;
-        createdAtRange: z.ZodOptional<z.ZodNullable<z.ZodObject<{
-            max: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
-            min: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
-        }, z.core.$strip>>>;
         employeeCountRange: z.ZodOptional<z.ZodArray<z.ZodType<{
             max?: number | null | undefined;
             min?: number | null | undefined;
@@ -97,13 +93,10 @@ declare const EntityNaturalSearchSchemaDefinition: z.ZodObject<{
             }, unknown>>>>;
         }, z.core.$strip>>;
         hasFundraising: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
-        hasLogo: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
-        hasRealLogo: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
         headquartersCity: z.ZodOptional<z.ZodArray<z.ZodString>>;
         headquartersCountry: z.ZodOptional<z.ZodArray<z.ZodString>>;
         headquartersState: z.ZodOptional<z.ZodArray<z.ZodString>>;
         industry: z.ZodOptional<z.ZodArray<z.ZodString>>;
-        isHidden: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
         letter: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         location: z.ZodOptional<z.ZodArray<z.ZodString>>;
         logoOption: z.ZodOptional<z.ZodObject<{
@@ -122,8 +115,6 @@ declare const EntityNaturalSearchSchemaDefinition: z.ZodObject<{
             COMPANY_LISTING_READY: "COMPANY_LISTING_READY";
             NONE: "NONE";
         }>>;
-        semanticQuery: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-        showOnSitemap: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
         slug: z.ZodOptional<z.ZodArray<z.ZodString>>;
         stage: z.ZodOptional<z.ZodArray<z.ZodString>>;
         suppressNonOperating: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
@@ -146,10 +137,6 @@ declare const EntityNaturalSearchSchemaDefinition: z.ZodObject<{
         }>>>;
         typeRevenue: z.ZodOptional<z.ZodArray<z.ZodString>>;
         typeTechnologyUsed: z.ZodOptional<z.ZodArray<z.ZodString>>;
-        updatedAtRange: z.ZodOptional<z.ZodNullable<z.ZodObject<{
-            max: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
-            min: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
-        }, z.core.$strip>>>;
         url: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         urlDomain: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         urlMatchMode: z.ZodOptional<z.ZodEnum<{
